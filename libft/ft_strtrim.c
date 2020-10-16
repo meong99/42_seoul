@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 01:07:26 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/16 17:26:40 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/16 22:26:29 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h> ////////////////////////////////////////////////////////////
 
 static void		part_start(char **s1, char *set, size_t set_len)
 {
