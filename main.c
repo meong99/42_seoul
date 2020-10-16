@@ -5,6 +5,5 @@
 
 int main(void)
 {
-	ft_putnbr_fd(0, 1);
-	printf("\n%d", 0);
+	printf("%s", ft_strtrim("123412393", "123"));
 }
