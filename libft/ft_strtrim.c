@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 01:07:26 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/16 23:00:47 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/16 23:14:04 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		part_start(char **s1, char *set, size_t set_len)
 {
-	while (set_len--)
+	while (**s1)
 	{
 		if (ft_strchr(set, **s1))
 			*s1 += 1;
@@ -26,9 +26,9 @@ static void		part_start(char **s1, char *set, size_t set_len)
 static size_t	part_end(char *s1, const char *set,
 						size_t set_len, size_t cpy_size)
 {
-	while (set_len--)
+	while (s1[cpy_size])
 	{
-		if (ft_strrchr(set, s1[cpy_size - 1]))
+		if (ft_strrchr(set, s1[cpy_size]))
 			cpy_size--;
 		else
 			break ;
