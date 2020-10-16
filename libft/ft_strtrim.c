@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 01:07:26 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/16 23:14:04 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/16 23:16:41 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		part_start(char **s1, char *set, size_t set_len)
+static void		part_start(char **s1, char *set)
 {
 	while (**s1)
 	{
@@ -24,7 +24,7 @@ static void		part_start(char **s1, char *set, size_t set_len)
 }
 
 static size_t	part_end(char *s1, const char *set,
-						size_t set_len, size_t cpy_size)
+						size_t cpy_size)
 {
 	while (s1[cpy_size])
 	{
@@ -47,8 +47,8 @@ char		*ft_strtrim(char const *s1, char const *set)
 		return (ft_strdup(""));
 	set_len = ft_strlen(set);
 	temp_s1 = (char*)s1;
-	part_start(&temp_s1, (char*)set, set_len);
-	cpy_len = part_end(temp_s1, set, set_len, ft_strlen(temp_s1));
+	part_start(&temp_s1, (char*)set);
+	cpy_len = part_end(temp_s1, set, ft_strlen(temp_s1));
 	if (!(new_str = malloc(cpy_len + 1)))
 		return (NULL);
 	ft_strlcpy(new_str, temp_s1, cpy_len);
