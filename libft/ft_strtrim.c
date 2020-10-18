@@ -3,54 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 01:07:26 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/16 23:33:03 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/18 16:23:41 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#define SIGN_START 1
+#define SIGN_END -1
 
-static void		part_start(char **s1, char *set)
+static void		is_include(char **s1, char *set, int sign)
 {
 	while (**s1)
 	{
 		if (ft_strchr(set, **s1))
-			*s1 += 1;
+			*s1 += sign;
 		else
 			return ;
 	}
 }
 
-static size_t	part_end(char *s1, const char *set,
-						size_t cpy_size)
-{
-	while (s1[cpy_size])
-	{
-		if (ft_strrchr(set, s1[cpy_size - 1]))
-			cpy_size--;
-		else
-			break ;
-	}
-	return (cpy_size);
-}
-
 char		*ft_strtrim(char const *s1, char const *set)
 {
 	char	*new_str;
-	char	*temp_s1;
-	size_t	set_len;
+	char	*start_s1;
+	char	*end_s1;
 	size_t	cpy_len;
 
-	if (!*s1 && !*set)
-		return (ft_strdup(""));
-	set_len = ft_strlen(set);
-	temp_s1 = (char*)s1;
-	part_start(&temp_s1, (char*)set);
-	cpy_len = part_end(temp_s1, set, ft_strlen(temp_s1));
-	if (!(new_str = malloc(cpy_len + 1)))
+	if (!set)
+		return (ft_strdup(s1));
+	if (!s1)
 		return (NULL);
-	ft_strlcpy(new_str, temp_s1, cpy_len);
+	start_s1 = (char*)s1;
+	end_s1 = (char*)s1 + ft_strlen(s1) - 1;
+	cpy_len = 0;
+	is_include(&start_s1, (char*)set, SIGN_START);
+	is_include(&end_s1, (char*)set, SIGN_END);
+	while (&start_s1[cpy_len++] <= end_s1)
+		;
+	if (!cpy_len)
+		return (ft_strdup(""));
+	if (!(new_str = malloc(cpy_len)))
+		return (NULL);
+	ft_strlcpy(new_str, start_s1, cpy_len);
 	return (new_str);
 }

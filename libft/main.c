@@ -5,5 +5,10 @@
 
 int main(void)
 {
-	printf("%s", ft_strtrim("123412393", "123"));
+	char **asd = ft_split("hellolo", 'l');
+	while (asd)
+	{
+		printf("%s\n", *asd);
+		asd++;
+	}
 }
