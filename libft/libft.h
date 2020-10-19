@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 11:26:09 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/16 22:35:11 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/19 21:48:22 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+typedef struct		s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
 
 int		ft_atoi(const char *str);
 int		ft_isalnum(int c);
@@ -56,4 +62,6 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 #endif
