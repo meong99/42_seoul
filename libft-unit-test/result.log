@@ -25,41 +25,7 @@ ft_strdup:     [OK] [OK] [OK] [OK] [OK] [OK] [OK]
 ft_substr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] {protected}[OK] 
 ft_strjoin:    [OK] [OK] [OK] [OK] [OK] {protected}
 ft_strtrim:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] {protected}
-ft_split:      [FAILED] [OK] [FAILED] [FAILED] [OK] [OK] [OK] [OK] [OK] {protected}
-[fail]: your split does not work with basic input
-Test code:
-	char *string = "      split       this for   me  !       ";
-	char **expected = ((char*[6]){"split", "this", "for", "me", "!", ((void *)0)});
-	char **result = ft_split(string, ' ');
-
-	split_cmp_array(expected, result);
-
-Diffs:
-       split: |split|
-    ft_split: |(null)|
-
-[fail]: your split does not work with one word
-Test code:
-	char *s = "                  olol";
-	char **result = ft_split(s, ' ');
-
-	split_cmp_array(expected, result);
-
-Diffs:
-       split: |olol|
-    ft_split: |(null)|
-
-[fail]: your split does not work with one word
-Test code:
-	char *s = "olol                     ";
-	char **result = ft_split(s, ' ');
-
-	split_cmp_array(expected, result);
-
-Diffs:
-       split: |olol|
-    ft_split: |(null)|
-
+ft_split:      [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] {protected}
 ft_itoa:       [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strmapi:    [OK] [OK] [OK] [OK] [OK] {protected}
 ft_putchar_fd: [OK] [OK] [KO] 
@@ -87,8 +53,61 @@ ft_putchar_fd: |ø|
 ft_putstr_fd:  [OK] [OK] {protected}
 ft_putendl_fd: [OK] [OK] {protected}
 ft_putnbr_fd:  [OK] [OK] [OK] [OK] [OK] 
-ft_lstnew:     [MISSING]
-ft_lstadd_front: [MISSING]
+ft_lstnew:     [OK] [OK] [OK] [OK] 
+ft_lstadd_front: [FAILED] [FAILED] [CRASH] 
+[fail]: your lstadd_front does not work with basic input
+Test code:
+	t_list *l = lstnew(strdup("nyacat"));
+	t_list *n = lstnew(strdup("OK"));
+
+	ft_lstadd_front(&l, n);
+	if (l == n && !strcmp(l->content, "OK"))
+	{
+		exit(TEST_SUCCESS);
+	}
+	exit(TEST_FAILED);
+
+Diffs:
+lstadd_front: |0x7fbe32c00160|
+ft_lstadd_front: |0x7fbe32c00140|
+
+[fail]: your lstadd_front does not work with basic input
+Test code:
+	t_list *l = lstnew(strdup("nyacat"));
+	t_list *n = lstnew(strdup("OK"));
+
+	ft_lstadd_front(&l, n);
+	if (l == n && !strcmp(l->content, "OK"))
+	{
+		free(l->next);
+		free(l);
+		exit(TEST_SUCCESS);
+	}
+	free(l->next);
+	free(l);
+	exit(TEST_FAILED);
+
+Diffs:
+lstadd_front: |0x7fbe32e00210|
+ft_lstadd_front: |0x7fbe32e001f0|
+
+[crash]: your lstadd_front does not work with null node input
+Test code:
+	t_list *l = ((void *)0);
+	t_list *n = lstnew(strdup("OK"));
+
+	ft_lstadd_front(&l, n);
+	if (l == n && !strcmp(l->content, "OK"))
+	{
+		free(l->next);
+		free(l);
+		exit(TEST_SUCCESS);
+	}
+	free(l->next);
+	free(l);
+	exit(TEST_FAILED);
+
+
 ft_lstsize:    [MISSING]
 ft_lstlast:    [MISSING]
 ft_lstadd_back:[MISSING]
