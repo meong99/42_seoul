@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 21:48:07 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/19 21:59:43 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/22 20:06:16 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
+	if (!new)
+		return ;
 	new->next = *lst;
+	*lst = new;
 }

@@ -6,24 +6,22 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 10:33:37 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/14 17:17:22 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/22 21:04:12 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *input_str, int input_char)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	*temp_input_str;
-	int		input_str_len;
+	char	*temp_s;
 
-	input_str_len = ft_strlen(input_str);
-	temp_input_str = (char*)input_str + input_str_len;
-	while (*input_str && input_str_len-- + 1)
+	temp_s = (char*)s + ft_strlen(s);
+	while (temp_s >= s)
 	{
-		if (*temp_input_str == input_char)
-			return (temp_input_str);
-		temp_input_str--;
+		if (*temp_s == c)
+			return (temp_s);
+		temp_s--;
 	}
 	return (NULL);
 }

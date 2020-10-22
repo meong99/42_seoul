@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 01:07:26 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/18 16:23:41 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/22 21:18:49 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		is_include(char **s1, char *set, int sign)
 	}
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char			*ft_strtrim(char const *s1, char const *set)
 {
 	char	*new_str;
 	char	*start_s1;
@@ -40,13 +40,13 @@ char		*ft_strtrim(char const *s1, char const *set)
 	end_s1 = (char*)s1 + ft_strlen(s1) - 1;
 	cpy_len = 0;
 	is_include(&start_s1, (char*)set, SIGN_START);
+	if (!*start_s1)
+		return (ft_strdup(""));
 	is_include(&end_s1, (char*)set, SIGN_END);
 	while (&start_s1[cpy_len++] <= end_s1)
 		;
-	if (!cpy_len)
-		return (ft_strdup(""));
-	if (!(new_str = malloc(cpy_len)))
-		return (NULL);
+	if (!(new_str = (cpy_len == 0) ? ft_strdup("") : malloc(cpy_len)))
+		return (0);
 	ft_strlcpy(new_str, start_s1, cpy_len);
 	return (new_str);
 }
