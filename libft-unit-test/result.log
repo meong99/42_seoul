@@ -54,64 +54,11 @@ ft_putstr_fd:  [OK] [OK] {protected}
 ft_putendl_fd: [OK] [OK] {protected}
 ft_putnbr_fd:  [OK] [OK] [OK] [OK] [OK] 
 ft_lstnew:     [OK] [OK] [OK] [OK] 
-ft_lstadd_front: [FAILED] [FAILED] [CRASH] 
-[fail]: your lstadd_front does not work with basic input
-Test code:
-	t_list *l = lstnew(strdup("nyacat"));
-	t_list *n = lstnew(strdup("OK"));
-
-	ft_lstadd_front(&l, n);
-	if (l == n && !strcmp(l->content, "OK"))
-	{
-		exit(TEST_SUCCESS);
-	}
-	exit(TEST_FAILED);
-
-Diffs:
-lstadd_front: |0x7fbe32c00160|
-ft_lstadd_front: |0x7fbe32c00140|
-
-[fail]: your lstadd_front does not work with basic input
-Test code:
-	t_list *l = lstnew(strdup("nyacat"));
-	t_list *n = lstnew(strdup("OK"));
-
-	ft_lstadd_front(&l, n);
-	if (l == n && !strcmp(l->content, "OK"))
-	{
-		free(l->next);
-		free(l);
-		exit(TEST_SUCCESS);
-	}
-	free(l->next);
-	free(l);
-	exit(TEST_FAILED);
-
-Diffs:
-lstadd_front: |0x7fbe32e00210|
-ft_lstadd_front: |0x7fbe32e001f0|
-
-[crash]: your lstadd_front does not work with null node input
-Test code:
-	t_list *l = ((void *)0);
-	t_list *n = lstnew(strdup("OK"));
-
-	ft_lstadd_front(&l, n);
-	if (l == n && !strcmp(l->content, "OK"))
-	{
-		free(l->next);
-		free(l);
-		exit(TEST_SUCCESS);
-	}
-	free(l->next);
-	free(l);
-	exit(TEST_FAILED);
-
-
-ft_lstsize:    [MISSING]
-ft_lstlast:    [MISSING]
-ft_lstadd_back:[MISSING]
-ft_lstdelone:  [MISSING]
-ft_lstclear:   [MISSING]
-ft_lstiter:    [MISSING]
-ft_lstmap:     [MISSING]
+ft_lstadd_front: [OK] [OK] [OK] 
+ft_lstsize:    [OK] [OK] 
+ft_lstlast:    [OK] [OK] 
+ft_lstadd_back:[OK] [OK] [OK] 
+ft_lstdelone:  [OK] 
+ft_lstclear:   [OK] [OK] [OK] 
+ft_lstiter:    [OK] {protected}
+ft_lstmap:     [OK] {protected}
