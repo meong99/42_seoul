@@ -6,23 +6,28 @@
 #    By: mchae <mchae@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/09 16:16:57 by mchae             #+#    #+#              #
-#    Updated: 2020/10/09 18:08:25 by mchae            ###   ########.fr        #
+#    Updated: 2020/10/23 18:57:30 by mchae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-FLAG = -Wall -Wextra -Werror
-SRCS = ${shell echo *.c}
-OBJS = ${SRCS:.c=.o}
+CC = gcc
+FLAGS = -Wall -Wextra -Werror
 HEADER = ./
-$(NAME) : $(OBJS)
-	ar rc $(NAME) $(OBJS)
-%.o: %.c
-	gcc $(FLAG) -c $< -o $@
+BSRCS = $(wildcard *lst*.c)
+SRCS = $(filter-out $(BSRCS), $(wildcard ft_*.c))
+OBJS = $(patsubst %.c,%.o,$(SRCS))
+BOBJS = $(patsubst %.c,%.o,$(BSRCS))
 all : $(NAME)
+%.o : %.c
+	$(CC) $(FLAGS) -c $< -o $@
+$(NAME) : $(OBJS)
+	ar rcs $@ $^
+bonus: $(BOBJS)
+	ar rcs $(NAME) $^
 clean :
-	/bin/rm -f $(OBJS)
+	rm -f $(BOBJS) $(OBJS)
 fclean : clean
-	/bin/rm -f $(NAME)
+	rm -f $(NAME)
 re : fclean all
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
