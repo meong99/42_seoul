@@ -6,23 +6,23 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 12:38:54 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/14 16:47:59 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/23 15:50:05 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *str_1, const char *str_2, size_t input_size)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t i;
 
 	i = 0;
-	while ((str_1[i] || str_2[i]) && i < input_size)
+	while ((s1[i] || s2[i]) && i < n)
 	{
-		if (str_1[i] > str_2[i])
-			return (((unsigned char*)str_1)[i] - ((unsigned char*)str_2)[i]);
-		else if (str_1[i] < str_2[i])
-			return (((unsigned char*)str_1)[i] - ((unsigned char*)str_2)[i]);
+		if (s1[i] > s2[i])
+			return (((unsigned char*)s1)[i] - ((unsigned char*)s2)[i]);
+		else if (s1[i] < s2[i])
+			return (((unsigned char*)s1)[i] - ((unsigned char*)s2)[i]);
 		i++;
 	}
 	return (0);

@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 12:39:33 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/14 16:32:27 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/23 14:09:14 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int input_num)
+int	ft_isascii(int num)
 {
-	return (input_num >= 0 && input_num <= 127) ? 1 : 0;
+	return (num >= 0 && num <= 127) ? 1 : 0;
 }

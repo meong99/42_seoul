@@ -6,22 +6,22 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 15:16:46 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/14 17:19:26 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/23 14:28:22 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *str_1, const void *str_2, size_t input_size)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	while (input_size--)
+	while (n--)
 	{
-		if (*(unsigned char*)str_1 > *(unsigned char*)str_2)
-			return (*(unsigned char*)str_1 - *(unsigned char*)str_2);
-		else if (*(unsigned char*)str_1 < *(unsigned char*)str_2)
-			return (*(unsigned char*)str_1 - *(unsigned char*)str_2);
-		str_1++;
-		str_2++;
+		if (*(unsigned char*)s1 > *(unsigned char*)s2)
+			return (*(unsigned char*)s1 - *(unsigned char*)s2);
+		else if (*(unsigned char*)s1 < *(unsigned char*)s2)
+			return (*(unsigned char*)s1 - *(unsigned char*)s2);
+		s1++;
+		s2++;
 	}
 	return (0);
 }

@@ -6,25 +6,25 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 12:10:24 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/22 19:54:51 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/23 14:58:30 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *input_str)
+char	*ft_strdup(const char *s)
 {
 	int		i;
-	char	*result_copy;
+	char	*result;
 
 	i = 0;
-	if (!(result_copy = (char *)malloc(ft_strlen(input_str) + 1)))
+	if (!(result = (char *)malloc(ft_strlen(s) + 1)))
 		return (0);
-	while (input_str[i] != 0)
+	while (s[i] != 0)
 	{
-		result_copy[i] = input_str[i];
+		result[i] = s[i];
 		i++;
 	}
-	result_copy[i] = 0;
-	return (result_copy);
+	result[i] = 0;
+	return (result);
 }

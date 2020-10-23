@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 10:01:42 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/14 16:56:19 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/23 15:52:41 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@ char	*ft_strnstr(const char *target_str, const char *search_str, size_t len)
 {
 	size_t	i;
 	size_t	search_str_len;
-	char	*temp_target;
 
-	temp_target = (char*)target_str;
 	if (*search_str == '\0')
-		return (temp_target);
+		return ((char*)target_str);
 	i = 0;
 	search_str_len = ft_strlen(search_str);
-	while (*temp_target && search_str_len + i <= len)
+	while (*(char*)target_str && search_str_len + i <= len)
 	{
-		if (!ft_strncmp(temp_target + i, search_str, search_str_len))
-			return (temp_target + i);
+		if (!ft_strncmp((char*)target_str + i, search_str, search_str_len))
+			return ((char*)target_str + i);
 		i++;
 	}
 	return (NULL);

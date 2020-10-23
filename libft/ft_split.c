@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:25:23 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/22 23:07:26 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/23 14:54:12 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	separation_num(const char *s, char c)
+static size_t	get_arr_size(const char *s, char c)
 {
 	size_t num;
 
@@ -68,7 +68,7 @@ char			**ft_split(char const *s, char c)
 	if (!s)
 		return (0);
 	index = 0;
-	arr_size = separation_num(s, c);
+	arr_size = get_arr_size(s, c);
 	if (!(double_str = (char**)malloc(sizeof(char*) * (arr_size + 1))))
 		return (NULL);
 	while (arr_size--)
