@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 12:36:50 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/23 15:48:36 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/25 16:01:09 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 		i++;
 	}
 	if (size)
-		dest[i] = 0;
+		dest[i] = '\0';
 	while (src[i])
 		i++;
 	return (i);

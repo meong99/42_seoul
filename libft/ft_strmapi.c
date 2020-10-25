@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 01:07:18 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/18 16:59:55 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/25 15:44:54 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		new_str[i] = (*f)(i, s[i]);
 		i++;
 	}
-	new_str[i] = 0;
+	new_str[i] = '\0';
 	return (new_str);
 }

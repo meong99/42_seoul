@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 01:07:26 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/23 16:07:47 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/25 15:44:33 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,19 @@ char			*ft_strtrim(char const *s1, char const *set)
 	char	*end_s1;
 	size_t	cpy_len;
 
-	if (!set)
+	if (!*set)
 		return (ft_strdup(s1));
-	if (!s1)
+	if (!*s1)
 		return (NULL);
 	start_s1 = (char*)s1;
 	end_s1 = (char*)s1 + ft_strlen(s1) - 1;
-	cpy_len = 0;
 	is_include(&start_s1, (char*)set, 1);
 	if (!*start_s1)
 		return (ft_strdup(""));
 	is_include(&end_s1, (char*)set, -1);
-	while (&start_s1[cpy_len++] <= end_s1)
-		;
+	cpy_len = ft_strlen(start_s1) - ft_strlen(end_s1) + 2;
 	if (!(new_str = malloc(cpy_len)))
-		return (0);
+		return (NULL);
 	ft_strlcpy(new_str, start_s1, cpy_len);
 	return (new_str);
 }

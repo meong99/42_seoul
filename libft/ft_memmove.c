@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 15:33:43 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/23 14:33:57 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/25 15:46:38 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memmove(void *dest, const void *src, size_t len)
 
 	temp_dest = (char*)dest;
 	if (!dest && !src)
-		return (0);
+		return (NULL);
 	if ((dest > src && src + len > dest))
 	{
 		temp_dest += len;

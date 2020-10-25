@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 14:30:48 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/23 14:22:53 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/25 15:47:04 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 		if (*(unsigned char*)src++ == (unsigned char)c)
 			return (dest);
 	}
-	return (0);
+	return (NULL);
 }

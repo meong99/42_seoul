@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:25:45 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/22 22:15:04 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/25 15:44:28 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s || ft_strlen(s) <= start || !len)
 		return (ft_strdup(""));
 	if (!(str = malloc(len + 1)))
-		return (0);
+		return (NULL);
 	ft_strlcpy(str, s + start, len + 1);
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:25:23 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/23 14:54:12 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/25 16:36:23 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ static void		*free_arr(char **double_str, size_t index)
 	while (i < index)
 	{
 		free(double_str[index]);
-		double_str[i++] = 0;
+		double_str[i++] = NULL;
 	}
 	free(double_str);
-	double_str = 0;
+	double_str = NULL;
 	return (NULL);
 }
 
@@ -66,7 +66,7 @@ char			**ft_split(char const *s, char c)
 	size_t	index;
 
 	if (!s)
-		return (0);
+		return (NULL);
 	index = 0;
 	arr_size = get_arr_size(s, c);
 	if (!(double_str = (char**)malloc(sizeof(char*) * (arr_size + 1))))
@@ -81,6 +81,6 @@ char			**ft_split(char const *s, char c)
 		ft_strlcpy(double_str[index++], s, alloc_size);
 		s = ft_strchr(s, c);
 	}
-	double_str[index] = 0;
+	double_str[index] = NULL;
 	return (double_str);
 }
