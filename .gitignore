@@ -1,5 +1,6 @@
 .vscode
 libft-unit-test
-libft-war-machine
+*machine*
 clear
 test
+*test*
