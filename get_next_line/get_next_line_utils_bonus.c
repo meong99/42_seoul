@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 14:46:47 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/27 22:07:46 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/29 01:28:46 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,29 @@ void	free_buff(t_list **head, int fd)
 
 t_list	*find_buff(t_list *lst_buff, int fd)
 {
-	t_list *new;
-
 	while (lst_buff)
 	{
 		if (lst_buff->fd == fd)
-			return (lst_buff);
+			break ;
+		if (lst_buff->next == NULL)
+			if (!(lst_buff->next = new_buff(fd)))
+				return (0);
 		lst_buff = lst_buff->next;
 	}
-	if (!(new = new_buff(fd)))
+	return (lst_buff);
+}
+
+t_list	*new_buff(int fd)
+{
+	t_list *new;
+
+	if (!(new = malloc(sizeof(t_list))))
 		return (0);
-	lst_buff->next = new;
+	if (!(new->buff = malloc(1)))
+		return (0);
+	new->buff[0] = '\0';
+	new->fd = fd;
+	new->next = NULL;
 	return (new);
 }
 
@@ -66,21 +78,6 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	while (src[i])
 		i++;
 	return (i);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*new_str;
-	size_t	join_str_len;
-
-	if (!s1 || !s2)
-		return (NULL);
-	join_str_len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	if (!(new_str = (char*)malloc(join_str_len)))
-		return (NULL);
-	ft_strlcpy(new_str, s1, join_str_len);
-	ft_strlcat(new_str, s2, join_str_len);
-	return (new_str);
 }
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
