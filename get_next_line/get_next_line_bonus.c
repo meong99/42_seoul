@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 21:02:58 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/29 02:26:47 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/29 02:30:45 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int		find_new_line(char **line, t_list *lst_buf)
 			break ;
 		}
 	if (found)
-		ft_strlcpy(lst_buf->buff, lst_buf->buff + i, ft_strlen(lst_buf->buff) + 1);
+		ft_strlcpy(lst_buf->buff, lst_buf->buff + i,
+					ft_strlen(lst_buf->buff) + 1);
 	return (found);
 }
 
@@ -73,10 +74,10 @@ int		get_next_line(int fd, char **line)
 	*line = 0;
 	while (!(found = find_new_line(line, lst_buf)) &&
 		((size = read(fd, lst_buf->temp_buff, BUFFER_SIZE)) > 0))
-		{
-			lst_buf->temp_buff[size] = '\0';
-			lst_buf->buff = ft_strjoin(&(lst_buf->buff), lst_buf->temp_buff);
-		}
+	{
+		lst_buf->temp_buff[size] = '\0';
+		lst_buf->buff = ft_strjoin(&(lst_buf->buff), lst_buf->temp_buff);
+	}
 	if (found)
 		return (found);
 	if (size < 0)
