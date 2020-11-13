@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_parsing_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/06 12:39:33 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/11 19:17:04 by mchae            ###   ########.fr       */
+/*   Created: 2020/11/12 15:07:10 by mchae             #+#    #+#             */
+/*   Updated: 2020/11/13 15:56:08 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_isascii(int num)
+void	parsing_varialbe_float(double number, t_info *node)
 {
-	if (num >= 0 && num <= 127)
-		return (1);
-	else
-		return (0);
+	node->variable = (double*)malloc(sizeof(double));
+	*(double*)node->variable = number;
+	// else if (node->format == 'f')
+	// 	{
+	// 		parsing_varialbe_float((double)va_arg(ap, double), node);
+	// 	}
 }
+

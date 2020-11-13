@@ -4,6 +4,7 @@ libft-unit-test
 clear
 test
 *test*
-*.txt
+comf.txt
 main.c
 whwh
+*piscine
