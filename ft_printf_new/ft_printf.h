@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 18:52:14 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/15 20:19:12 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/15 21:45:11 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,18 @@ typedef struct	s_info
 	char			format;
 	char			sign;
 	char			*variable;
+	char			minus;
 }				t_info;
 
 t_info			*new_list();
 int				ft_printf(const char *str, ...);
-void			get_format_specifier(const char *str,
-				va_list ap, t_info **head);
-int				parsing(const char **str, va_list ap, t_info *info);
-int				lets_print(t_info *head, const char *str);
+int				get_format_specifier(const char *str, va_list ap, t_info *info);
+int				print(const char **str, va_list ap, t_info *info);
+int				lets_print(t_info *head);
 
 void			parsing_flag(const char **str, t_info *node);
-void			parsing_wid_or_pre(const char **str, int *wid_or_precision,
-							va_list ap, t_info *node);
-void			parsing_format(const char **str, t_info *node);
+void			parsing_wid(const char **str, va_list ap, t_info *info);
+void			parsing_pre(const char **str, va_list ap, t_info *info);
 void			parsing_varialbe(va_list ap, t_info *node);
 void			parsing_varialbe_str(char *str, t_info *node);
 void			parsing_varialbe_integer(int number, t_info *node);
@@ -54,5 +53,8 @@ int				put_flag(t_info *node);
 int				left_sort(t_info *node);
 int				right_sort(t_info *node);
 int				get_variable_len(t_info *node);
+void			clean_up(t_info *info);
+int				print_d_i(t_info *node);
+void	get_print_width(t_info *node);
 
 #endif

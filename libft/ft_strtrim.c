@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 01:07:26 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/25 15:44:33 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/15 15:54:03 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char			*ft_strtrim(char const *s1, char const *set)
 
 	if (!*set)
 		return (ft_strdup(s1));
-	if (!*s1)
+	if (!s1)
 		return (NULL);
 	start_s1 = (char*)s1;
 	end_s1 = (char*)s1 + ft_strlen(s1) - 1;

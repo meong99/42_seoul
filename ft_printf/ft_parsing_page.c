@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 21:01:54 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/13 19:32:17 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/15 19:57:10 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	parsing_flag(const char **str, t_info *node)
 		*str = *str + 1;
 	}
 	if (**str == '#' || **str == ' ' || **str == '+'
-		|| (**str == '0' && (*(*str + 1) >= '0' && (*(*str + 1) <= '9'))))
+		|| (**str == '0' && ((*(*str + 1) >= '0' &&
+		(*(*str + 1) <= '9')) || (*(*str + 1) >= '*'))))
 	{
 		node->flags = *(*str)++;
 	}
@@ -31,16 +32,28 @@ void	parsing_flag(const char **str, t_info *node)
 	}
 }
 
-void	parsing_wid_or_pre(const char **str, int *wid_or_precision, va_list ap)
+void	parsing_wid_or_pre(const char **str, int *wid_or_precision,
+							va_list ap, t_info *node)
 {
 	if ((**str >= '0' && **str <= '9'))
+	{
+		*wid_or_precision = 0;
 		while (**str >= '0' && **str <= '9')
 		{
 			*wid_or_precision *= 10;
 			*wid_or_precision += *(*str)++ - '0';
 		}
+	}
 	else if (**str == '*')
+	{
 		*wid_or_precision = va_arg(ap, int);
+		if (*wid_or_precision < 0 && !(node->precision < 0))
+		{
+			*wid_or_precision *= -1;
+			node->sign = '-';
+		}
+		(*str)++;
+	}
 }
 
 void	parsing_format(const char **str, t_info *node)
@@ -78,13 +91,22 @@ void	parsing(const char **str, va_list ap, t_info **head)
 	t_info	*node;
 
 	(*str)++;
+	if (**str == '%')
+	{
+		(*str)++;
+		return ;
+	}
 	node = find_end_list(head);
 	parsing_flag(str, node);
-	parsing_wid_or_pre(str, &node->width, ap);
+	parsing_wid_or_pre(str, &node->width, ap, node);
 	if (**str == '.')
 	{
 		(*str)++;
-		parsing_wid_or_pre(str, &node->precision, ap);
+		if (!(**str >= '0' && **str <= '9'))
+		{
+			node->precision = 0;
+		}
+		parsing_wid_or_pre(str, &node->precision, ap, node);
 	}
 	parsing_format(str, node);
 	parsing_varialbe(ap, node);
