@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 11:29:42 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/15 19:00:02 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/18 17:04:06 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,81 @@
 
 int		ft_printf(const char *str, ...)
 {
-	t_info	*head;
 	va_list	ap;
+	int		result;
 
-	head = 0;
 	va_start(ap, str);
-	get_format_specifier(str, ap, &head);
+	result = start_printf(str, ap);
 	va_end(ap);
-	return (lets_print(head, str));
+	return (result);
 }
 
-void	get_format_specifier(const char *str, va_list ap, t_info **head)
+int		start_printf(const char *str, va_list ap)
 {
-	while (*str)
-	{
-		if (*str == '%')
-			parsing(&str, ap, head);
-		else
-			str++;
-	}
-}
+	t_info	info;
+	int		result;
 
-int		lets_print(t_info *head, const char *str)
-{
-	int result_num;
-
-	result_num = 0;
+	result = 0;
 	while (*str)
 	{
 		if (*str == '%')
 		{
-			str++;
-			if (*str == '%')
-			{
-				result_num += ft_putchar_fd(*str++, 1);
-				continue;
-			}
-			result_num += put_integer(head);
-			while (*(str - 1) != head->format)
-				str++;
-			free_node(&head);
+			initialization_info(&info);
+			result += parsing_print(&str, ap, &info);
 		}
 		else
-			result_num += ft_putchar_fd(*str++, 1);
+			result += ft_putchar_fd(*str++, 1);
 	}
-	return (result_num);
+	return (result);
+}
+
+int		parsing_print(const char **str, va_list ap, t_info *info)
+{
+	(*str)++;
+	parsing_flag(str, info);
+	parsing_wid(str, ap, info);
+	if (**str == '.')
+	{
+		info->dot++;
+		(*str)++;
+		parsing_pre(str, ap, info);
+	}
+	info->format = *(*str)++;
+	parsing_varialbe(ap, info);
+	clean_up(info);
+	return (print_conversions(info));
+}
+
+void	clean_up(t_info *info)
+{
+	if (info->flags == '0' && (info->sign == '-' ||
+		info->format == 's' || info->format == 'c' ||
+		(info->dot && info->precision >= 0)))
+		info->flags = 0;
+	else if (info->flags == '#' && info->format != 'x' &&
+			info->format != 'X' && info->format != 'p')
+		info->flags = 0;
+	else if (info->flags == '+' && (info->format != 'd' && info->format != 'i'))
+		info->flags = 0;
+	else if (info->flags == ' ' && info->minus == '-')
+		info->flags = 0;
+	else if (info->dot && info->format == 's')
+	{
+		if (info->precision < (int)ft_strlen(info->variable))
+			info->variable[info->precision] = 0;
+		info->precision = 0;
+	}
+}
+
+void	initialization_info(t_info *info)
+{
+	info->flags = 0;
+	info->format = 0;
+	info->precision = 0;
+	info->sign = 0;
+	info->width = 0;
+	info->variable = 0;
+	info->minus = 0;
+	info->dot = 0;
+	info->bonus_flasgs = 0;
 }

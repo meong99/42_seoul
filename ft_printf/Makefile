@@ -4,7 +4,6 @@ FLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 SRCS = \
 		ft_itoa_base.c \
-		ft_list_ctrl.c \
 		ft_parsing_page.c \
 		ft_parsing_variable.c \
 		ft_print_page.c \

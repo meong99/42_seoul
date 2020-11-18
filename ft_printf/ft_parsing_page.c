@@ -6,108 +6,89 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 21:01:54 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/15 19:57:10 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/18 17:30:01 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	parsing_flag(const char **str, t_info *node)
+void	parsing_flag(const char **str, t_info *info)
 {
-	if (**str == '-')
-	{
-		node->sign = '-';
-		*str = *str + 1;
-	}
-	if (**str == '#' || **str == ' ' || **str == '+'
+	while (**str == '-' || **str == '#' || **str == ' ' || **str == '+'
 		|| (**str == '0' && ((*(*str + 1) >= '0' &&
-		(*(*str + 1) <= '9')) || (*(*str + 1) >= '*'))))
+		(*(*str + 1) <= '9')) || (*(*str + 1) == '*') || (*(*str + 1) == '-'))))
 	{
-		node->flags = *(*str)++;
-	}
-	if (**str == '-')
-	{
-		node->sign = '-';
+		if (**str == '-')
+			info->sign = '-';
+		else if (**str == '#' || **str == ' ' || **str == '+')
+			info->bonus_flasgs = **str;
+		else
+			info->flags = **str;
 		*str = *str + 1;
 	}
 }
 
-void	parsing_wid_or_pre(const char **str, int *wid_or_precision,
-							va_list ap, t_info *node)
+void	parsing_wid(const char **str, va_list ap, t_info *info)
 {
 	if ((**str >= '0' && **str <= '9'))
 	{
-		*wid_or_precision = 0;
 		while (**str >= '0' && **str <= '9')
 		{
-			*wid_or_precision *= 10;
-			*wid_or_precision += *(*str)++ - '0';
+			info->width *= 10;
+			info->width += *(*str)++ - '0';
 		}
 	}
 	else if (**str == '*')
 	{
-		*wid_or_precision = va_arg(ap, int);
-		if (*wid_or_precision < 0 && !(node->precision < 0))
+		info->width = va_arg(ap, int);
+		if (info->width < 0)
 		{
-			*wid_or_precision *= -1;
-			node->sign = '-';
+			info->width *= -1;
+			info->sign = '-';
 		}
 		(*str)++;
 	}
 }
 
-void	parsing_format(const char **str, t_info *node)
+void	parsing_pre(const char **str, va_list ap, t_info *info)
 {
-	node->format = *(*str)++;
-	if ((node->format != 'x' && node->format != 'X') && node->flags == '#')
-		node->flags = 0;
-	else if ((node->format != 'd' && node->format != 'i') && node->flags == '+')
-		node->flags = 0;
-}
-
-void	parsing_varialbe(va_list ap, t_info *node)
-{
-	if (node->format == 'd' || node->format == 'i'
-		|| node->format == 'u' || node->format == 'x' || node->format == 'X')
+	if ((**str >= '0' && **str <= '9'))
 	{
-		parsing_varialbe_integer(va_arg(ap, int), node);
-	}
-	else if (node->format == 'c')
-	{
-		parsing_varialbe_char(va_arg(ap, int), node);
-	}
-	else if (node->format == 's')
-	{
-		parsing_varialbe_str(va_arg(ap, char*), node);
-	}
-	else if (node->format == 'p')
-	{
-		parsing_varialbe_pointer((size_t)va_arg(ap, void*), node);
-	}
-}
-
-void	parsing(const char **str, va_list ap, t_info **head)
-{
-	t_info	*node;
-
-	(*str)++;
-	if (**str == '%')
-	{
-		(*str)++;
-		return ;
-	}
-	node = find_end_list(head);
-	parsing_flag(str, node);
-	parsing_wid_or_pre(str, &node->width, ap, node);
-	if (**str == '.')
-	{
-		(*str)++;
-		if (!(**str >= '0' && **str <= '9'))
+		while (**str >= '0' && **str <= '9')
 		{
-			node->precision = 0;
+			info->precision *= 10;
+			info->precision += *(*str)++ - '0';
 		}
-		parsing_wid_or_pre(str, &node->precision, ap, node);
 	}
-	parsing_format(str, node);
-	parsing_varialbe(ap, node);
+	else if (**str == '*')
+	{
+		info->precision = va_arg(ap, int);
+		(*str)++;
+	}
+}
+
+void	parsing_varialbe(va_list ap, t_info *info)
+{
+	if (info->format == 'd' || info->format == 'i'
+		|| info->format == 'u' || info->format == 'x' || info->format == 'X')
+	{
+		parsing_varialbe_integer(va_arg(ap, int), info);
+	}
+	else if (info->format == 'c')
+	{
+		parsing_varialbe_char(va_arg(ap, int), info);
+	}
+	else if (info->format == 's')
+	{
+		parsing_varialbe_str(va_arg(ap, char*), info);
+	}
+	else if (info->format == 'p')
+	{
+		parsing_varialbe_pointer(va_arg(ap, size_t), info);
+	}
+	else
+	{
+		parsing_varialbe_char('%', info);
+		info->bonus_flasgs = 0;
+	}
 }
