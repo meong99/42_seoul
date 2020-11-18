@@ -11,7 +11,8 @@ SRCS = \
 		./libft/ft_putchar_fd.c \
 		./libft/ft_putstr_fd.c \
 		./libft/ft_strlcpy.c \
-		./libft/ft_strlen.c
+		./libft/ft_strlen.c \
+		./libft/ft_tolower.c
 OBJS = $(SRCS:.c=.o)
 all : $(NAME)
 %.o : %.c

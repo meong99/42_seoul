@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 11:29:42 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/18 17:04:06 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/18 21:03:58 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,11 @@ int		parsing_print(const char **str, va_list ap, t_info *info)
 		(*str)++;
 		parsing_pre(str, ap, info);
 	}
-	info->format = *(*str)++;
+	info->format = **str;
+	if (**str)
+		*str = (*str) + 1;
+	if (info->format != 'X')
+		info->format = ft_tolower(info->format);
 	parsing_varialbe(ap, info);
 	clean_up(info);
 	return (print_conversions(info));
@@ -62,7 +66,6 @@ int		parsing_print(const char **str, va_list ap, t_info *info)
 void	clean_up(t_info *info)
 {
 	if (info->flags == '0' && (info->sign == '-' ||
-		info->format == 's' || info->format == 'c' ||
 		(info->dot && info->precision >= 0)))
 		info->flags = 0;
 	else if (info->flags == '#' && info->format != 'x' &&
