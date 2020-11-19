@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/06 12:20:42 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/25 15:45:04 by mchae            ###   ########.fr       */
+/*   Created: 2020/10/19 21:48:07 by mchae             #+#    #+#             */
+/*   Updated: 2020/10/22 20:06:16 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	size_t i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	if (!new)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

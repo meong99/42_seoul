@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 11:29:42 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/18 21:03:58 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/19 21:18:53 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ int		start_printf(const char *str, va_list ap)
 	{
 		if (*str == '%')
 		{
+			str++;
 			initialization_info(&info);
 			result += parsing_print(&str, ap, &info);
 		}
 		else
-			result += ft_putchar_fd(*str++, 1);
+			result += write(1, str++, 1);
 	}
 	return (result);
 }
 
 int		parsing_print(const char **str, va_list ap, t_info *info)
 {
-	(*str)++;
 	parsing_flag(str, info);
 	parsing_wid(str, ap, info);
 	if (**str == '.')
@@ -53,11 +53,7 @@ int		parsing_print(const char **str, va_list ap, t_info *info)
 		(*str)++;
 		parsing_pre(str, ap, info);
 	}
-	info->format = **str;
-	if (**str)
-		*str = (*str) + 1;
-	if (info->format != 'X')
-		info->format = ft_tolower(info->format);
+	parsing_format(str, info);
 	parsing_varialbe(ap, info);
 	clean_up(info);
 	return (print_conversions(info));
@@ -65,16 +61,15 @@ int		parsing_print(const char **str, va_list ap, t_info *info)
 
 void	clean_up(t_info *info)
 {
-	if (info->flags == '0' && (info->sign == '-' ||
-		(info->dot && info->precision >= 0)))
-		info->flags = 0;
-	else if (info->flags == '#' && info->format != 'x' &&
+	if (info->flag == '0' && (info->dot && info->precision >= 0))
+		info->flag = 0;
+	else if (info->flag == '#' && info->format != 'x' &&
 			info->format != 'X' && info->format != 'p')
-		info->flags = 0;
-	else if (info->flags == '+' && (info->format != 'd' && info->format != 'i'))
-		info->flags = 0;
-	else if (info->flags == ' ' && info->minus == '-')
-		info->flags = 0;
+		info->flag = 0;
+	else if (info->flag == '+' && (info->format != 'd' && info->format != 'i'))
+		info->flag = 0;
+	else if (info->flag == ' ' && info->minus == '-')
+		info->flag = 0;
 	else if (info->dot && info->format == 's')
 	{
 		if (info->precision < (int)ft_strlen(info->variable))
@@ -85,13 +80,14 @@ void	clean_up(t_info *info)
 
 void	initialization_info(t_info *info)
 {
-	info->flags = 0;
+	info->flag = 0;
 	info->format = 0;
 	info->precision = 0;
-	info->sign = 0;
+	info->flag = 0;
 	info->width = 0;
 	info->variable = 0;
 	info->minus = 0;
 	info->dot = 0;
-	info->bonus_flasgs = 0;
+	info->bonus_flasg = 0;
+	info->bonus_format = 0;
 }

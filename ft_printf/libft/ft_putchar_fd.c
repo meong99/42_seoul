@@ -6,14 +6,13 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:27:55 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/13 18:14:14 by mchae            ###   ########.fr       */
+/*   Updated: 2020/10/14 17:38:00 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
-	return (1);
 }

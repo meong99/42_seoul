@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 21:01:54 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/18 17:30:01 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/19 21:48:50 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,22 @@
 
 void	parsing_flag(const char **str, t_info *info)
 {
-	while (**str == '-' || **str == '#' || **str == ' ' || **str == '+'
-		|| (**str == '0' && ((*(*str + 1) >= '0' &&
-		(*(*str + 1) <= '9')) || (*(*str + 1) == '*') || (*(*str + 1) == '-'))))
+	while (**str == '-' || ft_strchr(BONUS_FLAGS, **str)
+		|| (**str == '0' && !((*(*str + 1) == '.') || ft_isalpha(*(*str + 1)))))
 	{
-		if (**str == '-')
-			info->sign = '-';
-		else if (**str == '#' || **str == ' ' || **str == '+')
-			info->bonus_flasgs = **str;
-		else
-			info->flags = **str;
+		if (ft_strchr(BONUS_FLAGS, **str))
+			info->bonus_flasg = **str;
+		else if (info->flag != '-')
+			info->flag = **str;
 		*str = *str + 1;
 	}
 }
 
 void	parsing_wid(const char **str, va_list ap, t_info *info)
 {
-	if ((**str >= '0' && **str <= '9'))
+	if (ft_isdigit(**str))
 	{
-		while (**str >= '0' && **str <= '9')
+		while (ft_isdigit(**str))
 		{
 			info->width *= 10;
 			info->width += *(*str)++ - '0';
@@ -44,7 +41,7 @@ void	parsing_wid(const char **str, va_list ap, t_info *info)
 		if (info->width < 0)
 		{
 			info->width *= -1;
-			info->sign = '-';
+			info->flag = '-';
 		}
 		(*str)++;
 	}
@@ -52,9 +49,9 @@ void	parsing_wid(const char **str, va_list ap, t_info *info)
 
 void	parsing_pre(const char **str, va_list ap, t_info *info)
 {
-	if ((**str >= '0' && **str <= '9'))
+	if (ft_isdigit(**str))
 	{
-		while (**str >= '0' && **str <= '9')
+		while (ft_isdigit(**str))
 		{
 			info->precision *= 10;
 			info->precision += *(*str)++ - '0';
@@ -67,12 +64,33 @@ void	parsing_pre(const char **str, va_list ap, t_info *info)
 	}
 }
 
+void	parsing_format(const char **str, t_info *info)
+{
+	int i;
+	int check_bonus_format;
+
+	i = 3;
+	check_bonus_format = 0;
+	if (**str == 'l' || **str == 'h')
+		while (**str == 'l' || **str == 'h')
+		{
+			info->bonus_format = *(*str)++;
+			check_bonus_format++;
+		}
+	info->format = **str;
+	if (check_bonus_format > 1)
+		info->bonus_format = ft_toupper(info->bonus_format);
+	if (**str)
+		*str = (*str) + 1;
+	if (info->format != 'X')
+		info->format = ft_tolower(info->format);
+}
+
 void	parsing_varialbe(va_list ap, t_info *info)
 {
-	if (info->format == 'd' || info->format == 'i'
-		|| info->format == 'u' || info->format == 'x' || info->format == 'X')
+	if (ft_strchr(FORMAT_D_I_U_X_XX, info->format))
 	{
-		parsing_varialbe_integer(va_arg(ap, int), info);
+		parsing_varialbe_integer(va_arg(ap, long), info);
 	}
 	else if (info->format == 'c')
 	{
@@ -83,12 +101,10 @@ void	parsing_varialbe(va_list ap, t_info *info)
 		parsing_varialbe_str(va_arg(ap, char*), info);
 	}
 	else if (info->format == 'p')
-	{
-		parsing_varialbe_pointer(va_arg(ap, size_t), info);
-	}
+		parsing_varialbe_pointer(va_arg(ap, long long), info);
 	else
 	{
 		parsing_varialbe_char('%', info);
-		info->bonus_flasgs = 0;
+		info->bonus_flasg = 0;
 	}
 }

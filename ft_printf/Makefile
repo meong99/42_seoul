@@ -1,29 +1,31 @@
 NAME = libftprintf.a
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-AR = ar rcs
+AR = ar rc
 SRCS = \
 		ft_itoa_base.c \
 		ft_parsing_page.c \
 		ft_parsing_variable.c \
 		ft_print_page.c \
-		ft_printf.c \
-		./libft/ft_putchar_fd.c \
-		./libft/ft_putstr_fd.c \
-		./libft/ft_strlcpy.c \
-		./libft/ft_strlen.c \
-		./libft/ft_tolower.c
+		ft_printf.c
 OBJS = $(SRCS:.c=.o)
 all : $(NAME)
+bonus : all
 %.o : %.c
 	$(CC) $(FLAGS) -c $< -o $@
 $(NAME) : $(OBJS)
-	ar rcs $@ $^
-bonus: $(BOBJS)
-	ar rcs $(NAME) $^
+	make -C libft
+	mv libft/libft.a ./$(NAME)
+	$(AR) $@ $^
 clean :
-	rm -f $(BOBJS) $(OBJS)
+	rm -f $(OBJS)
+	make clean -C libft
 fclean : clean
 	rm -f $(NAME)
+	make fclean -C libft
 re : fclean all
+test :
+	$(CC) $(FLAGS) *.c ./libft/*.c
+testclean :
+	rm a.out main.c
 .PHONY: all clean fclean re bonus
