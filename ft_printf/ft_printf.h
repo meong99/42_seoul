@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 18:52:14 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/19 21:48:27 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/20 22:56:12 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void			parsing_varialbe(va_list ap, t_info *node);
 **ft_parsing_variable.c
 */
 void			parsing_varialbe_str(char *str, t_info *node);
-void			parsing_varialbe_integer(long number, t_info *node);
-int				get_va_datatype(int number, t_info *info);
+void			parsing_varialbe_number(long number, t_info *node);
+int				get_switch(long number, t_info *info);
 void			parsing_varialbe_char(char c, t_info *node);
 void			parsing_varialbe_pointer(size_t pointer, t_info *node);
 /*
@@ -75,5 +75,6 @@ void			get_width(t_info *node);
 /*
 **ft_bonus_variable.c
 */
+void			parsing_bonus(int number, t_info *info);
 
 #endif

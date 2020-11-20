@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 21:01:54 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/19 21:48:50 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/20 22:28:48 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,8 @@ void	parsing_pre(const char **str, va_list ap, t_info *info)
 
 void	parsing_format(const char **str, t_info *info)
 {
-	int i;
 	int check_bonus_format;
 
-	i = 3;
 	check_bonus_format = 0;
 	if (**str == 'l' || **str == 'h')
 		while (**str == 'l' || **str == 'h')
@@ -90,7 +88,12 @@ void	parsing_varialbe(va_list ap, t_info *info)
 {
 	if (ft_strchr(FORMAT_D_I_U_X_XX, info->format))
 	{
-		parsing_varialbe_integer(va_arg(ap, long), info);
+		if (info->bonus_format == 'l' || info->bonus_format == 'L')
+			parsing_varialbe_number(va_arg(ap, long), info);
+		else if (info->bonus_format)
+			parsing_bonus(va_arg(ap, int), info);
+		else
+			parsing_varialbe_number((long)va_arg(ap, int), info);
 	}
 	else if (info->format == 'c')
 	{
@@ -101,7 +104,7 @@ void	parsing_varialbe(va_list ap, t_info *info)
 		parsing_varialbe_str(va_arg(ap, char*), info);
 	}
 	else if (info->format == 'p')
-		parsing_varialbe_pointer(va_arg(ap, long long), info);
+		parsing_varialbe_pointer(va_arg(ap, size_t), info);
 	else
 	{
 		parsing_varialbe_char('%', info);

@@ -7,6 +7,7 @@ SRCS = \
 		ft_parsing_page.c \
 		ft_parsing_variable.c \
 		ft_print_page.c \
+		ft_bonus_parsing.c \
 		ft_printf.c
 OBJS = $(SRCS:.c=.o)
 all : $(NAME)
