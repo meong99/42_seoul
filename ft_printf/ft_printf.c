@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 11:29:42 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/23 00:01:20 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/23 18:47:34 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	initialization_info(t_info *info)
 	info->format = 0;
 	info->precision = -1;
 	info->width = 0;
-	info->variable = 0;
 	info->minus = 0;
 	info->bonus_flasg = 0;
 	info->bonus_format = 0;
