@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 11:29:42 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/23 00:01:20 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/23 14:49:25 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ int		start_printf(const char *str, va_list ap)
 		{
 			str++;
 			initialization_info(&info);
-			if (*str != 'n')
-				result += parsing_print(&str, ap, &info);
-			else
+			if (*str == 'n')
 			{
 				n_pointer = va_arg(ap, int *);
 				*n_pointer = result;
 				str++;
 			}
+			else
+				result += parsing_print(&str, ap, &info);
 		}
 		else
 			result += write(1, str++, 1);
@@ -65,9 +65,7 @@ int		parsing_print(const char **str, va_list ap, t_info *info)
 
 void	clean_up(t_info *info)
 {
-	if (info->flag == '0' && info->precision >= 0)
-		info->flag = 0;
-	else if (info->flag == '#' && info->format != 'x' &&
+	if (info->flag == '#' && info->format != 'x' &&
 			info->format != 'X' && info->format != 'p')
 		info->flag = 0;
 	else if (info->flag == '+' && (info->format != 'd' && info->format != 'i'))

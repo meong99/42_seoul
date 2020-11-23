@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 21:01:54 by mchae             #+#    #+#             */
-/*   Updated: 2020/11/23 00:03:49 by mchae            ###   ########.fr       */
+/*   Updated: 2020/11/23 14:49:17 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	parsing_pre(const char **str, va_list ap, t_info *info)
 {
 	(*str)++;
 	info->precision = 0;
+	if (info->flag == '0')
+		info->flag = 0;
 	if (ft_isdigit(**str))
 		info->precision = ft_atoi(*str);
 	else if (**str == '*')
