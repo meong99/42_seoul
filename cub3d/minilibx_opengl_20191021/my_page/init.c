@@ -28,9 +28,8 @@ void	game_init(t_game *game)
 		game->map[i] = (int*)malloc(sizeof(int) * COLS);
 	}
 	atoi_mapi(map, game->map);
-	game->character[g_char_init] = 0;
-	game->char_mask[0] = TILE_SIZE / 2;
-	game->char_mask[1] = TILE_SIZE / 2;
+	game->char_mask_x = TILE_SIZE / 2;
+	game->char_mask_y = TILE_SIZE / 2;
 }
 
 void	window_init(t_game *game)

@@ -23,10 +23,6 @@
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 # define CHARACTER 30
 
-int		g_char_x;
-int		g_char_y;
-int		g_char_init;
-
 typedef struct	s_img
 {
 	void	*img;
@@ -44,9 +40,10 @@ typedef struct	s_game
 	t_img	img;
 
 	int		**map;
-	int		map_mask[TILE_SIZE][TILE_SIZE];
-	int		char_mask[2];
-	int		character[3];
+	int		char_mask_x;
+	int		char_mask_y;
+	int		char_x;
+	int		char_y;
 }				t_game;
 
 //drow

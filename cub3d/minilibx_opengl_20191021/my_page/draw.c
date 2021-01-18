@@ -92,9 +92,10 @@ void	draw_rectangles(t_game *game)
 				draw_rectangle(game, j, i);
 			else if (game->map[i][j] == CHARACTER)
 			{
+				game->char_x = j;
+				game->char_y = i;
+				game->map[i][j] = 0;
 				draw_character(game, j, i);
-				g_char_x = j;
-				g_char_y = i;
 			}
 			j++;
 		}
