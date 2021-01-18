@@ -51,7 +51,6 @@ void	draw_line(t_game *game, double x1, double y1, double x2, double y2);
 void 	draw_lines(t_game *game);
 void	draw_rectangle(t_game *game, int x, int y);
 void	draw_rectangles(t_game *game);
-void	draw_character(t_game *game, int x, int y);
 
 //get_map
 char	**get_map();
@@ -61,6 +60,11 @@ void	atoi_mapi(char **c_map, int **map);
 void	game_init(t_game *game);
 void	window_init(t_game *game);
 void	img_init(t_game *game);
+
+//util
+void	redraw(t_game *game);
+void	move_x(t_game *game, int dir);
+void	move_y(t_game *game, int dir);
 
 //main
 int		main_loop(t_game *game);
