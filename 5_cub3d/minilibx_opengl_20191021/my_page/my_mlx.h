@@ -44,6 +44,7 @@ typedef struct	s_game
 	int		char_mask_y;
 	int		char_x;
 	int		char_y;
+	int		move;
 }				t_game;
 
 //drow
@@ -51,6 +52,7 @@ void	draw_line(t_game *game, double x1, double y1, double x2, double y2);
 void 	draw_lines(t_game *game);
 void	draw_rectangle(t_game *game, int x, int y);
 void	draw_rectangles(t_game *game);
+void	draw_character(t_game *game, int x, int y, int color);
 
 //get_map
 char	**get_map();

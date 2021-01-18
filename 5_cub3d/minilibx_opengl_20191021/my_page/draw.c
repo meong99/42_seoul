@@ -60,7 +60,7 @@ void	draw_rectangle(t_game *game, int x, int y)
 	}
 }
 
-void	draw_character(t_game *game, int x, int y)
+void	draw_character(t_game *game, int x, int y, int color)
 {
 	int i;
 	int j;
@@ -71,8 +71,8 @@ void	draw_character(t_game *game, int x, int y)
 		j = -1;
 		while (++j < TILE_SIZE)
 		{
-			if ((pow(abs(TILE_SIZE / 2 - i), 2) + pow(abs(TILE_SIZE / 2 - j), 2)) <= 3 * 3)
-				game->img.data[((y * TILE_SIZE) + i) * WIDTH + (x * TILE_SIZE) + j] = 0xFF00FF;
+			if ((pow(abs(game->char_mask_x - i), 2) + pow(abs(game->char_mask_y - j), 2)) <= 3 * 3)
+				game->img.data[((y * TILE_SIZE) + i) * WIDTH + (x * TILE_SIZE) + j] = color;
 		}
 	}
 }
@@ -95,7 +95,7 @@ void	draw_rectangles(t_game *game)
 				game->char_x = j;
 				game->char_y = i;
 				game->map[i][j] = 0;
-				draw_character(game, j, i);
+				draw_character(game, j, i, 0xFF00FF);
 			}
 			j++;
 		}
