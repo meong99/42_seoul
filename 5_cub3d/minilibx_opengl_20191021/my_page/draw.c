@@ -71,7 +71,7 @@ void	draw_character(t_game *game, int x, int y, int color)
 		j = -1;
 		while (++j < TILE_SIZE)
 		{
-			if ((pow(abs(game->char_mask_x - i), 2) + pow(abs(game->char_mask_y - j), 2)) <= 3 * 3)
+			if ((pow(abs(game->char_mask_y - i), 2) + pow(abs(game->char_mask_x - j), 2)) <= 3 * 3)
 				game->img.data[((y * TILE_SIZE) + i) * WIDTH + (x * TILE_SIZE) + j] = color;
 		}
 	}
