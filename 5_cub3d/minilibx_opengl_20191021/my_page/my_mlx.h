@@ -52,7 +52,7 @@ typedef struct	s_game
 }				t_game;
 
 //drow
-void	draw_rectangle(t_game *game, int x, int y);
+void	draw_rectangle(t_game *game, int x, int y, int color);
 void	draw_rectangles(t_game *game);
 void	draw_character(t_game *game, int x, int y, int color);
 
@@ -66,7 +66,6 @@ void	window_init(t_game *game);
 void	img_init(t_game *game);
 
 //util
-void	redraw(t_game *game);
 void	move_x(t_game *game, int dir);
 void	move_y(t_game *game, int dir);
 

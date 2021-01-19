@@ -1,6 +1,6 @@
 #include "my_mlx.h"
 
-void	draw_rectangle(t_game *game, int x, int y)
+void	draw_rectangle(t_game *game, int x, int y, int color)
 {
 	int i;
 	int j;
@@ -13,7 +13,7 @@ void	draw_rectangle(t_game *game, int x, int y)
 		j = 0;
 		while (j < TILE_SIZE)
 		{
-			game->img.data[(y + i) * WIDTH + x + j] = 0xFFFFFF;
+			game->img.data[(y + i) * WIDTH + x + j] = color;
 			j++;
 		}
 		i++;
@@ -52,16 +52,18 @@ void	draw_rectangles(t_game *game)
 		while (j < COLS)
 		{
 			if (game->map[i][j] == 1)
-				draw_rectangle(game, j, i);
+				draw_rectangle(game, j, i, 0xFFFFFF);
+			else if (game->map[i][j] == 0)
+				draw_rectangle(game, j, i, 0x000000);
 			else if (game->map[i][j] == CHARACTER)
 			{
 				game->char_x = j;
 				game->char_y = i;
 				game->map[i][j] = 0;
-				draw_character(game, j, i, 0xFF00FF);
 			}
 			j++;
 		}
 		i++;
 	}
+	draw_character(game, game->char_x, game->char_y, 0xFF00FF);
 }
