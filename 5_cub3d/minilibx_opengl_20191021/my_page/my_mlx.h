@@ -22,6 +22,10 @@
 # define HEIGHT ROWS * TILE_SIZE
 # define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 # define CHARACTER 30
+# define LEFT -1
+# define UP -1
+# define RIGHT 1
+# define DOWN 1
 
 typedef struct	s_img
 {
@@ -48,8 +52,6 @@ typedef struct	s_game
 }				t_game;
 
 //drow
-void	draw_line(t_game *game, double x1, double y1, double x2, double y2);
-void 	draw_lines(t_game *game);
 void	draw_rectangle(t_game *game, int x, int y);
 void	draw_rectangles(t_game *game);
 void	draw_character(t_game *game, int x, int y, int color);

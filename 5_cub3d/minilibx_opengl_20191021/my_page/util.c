@@ -11,7 +11,7 @@ void	redraw(t_game *game)
 
 void	move_x(t_game *game, int dir)
 {
-	if (game->char_mask_x + dir > 0 && game->char_mask_x + dir < TILE_SIZE - 1)
+	if (game->char_mask_x + dir >= 0 && game->char_mask_x + dir < TILE_SIZE)
 	{
 		draw_character(game, game->char_x, game->char_y, 0x000000);
 		game->char_mask_x += dir;
@@ -34,7 +34,7 @@ void	move_x(t_game *game, int dir)
 
 void	move_y(t_game *game, int dir)
 {
-	if (game->char_mask_y + dir > 0 && game->char_mask_y + dir < TILE_SIZE - 1)
+	if (game->char_mask_y + dir >= 0 && game->char_mask_y + dir < TILE_SIZE)
 	{
 		draw_character(game, game->char_x, game->char_y, 0x000000);
 		game->char_mask_y += dir;
@@ -42,9 +42,9 @@ void	move_y(t_game *game, int dir)
 	}
 	else
 	{
-		draw_character(game, game->char_x, game->char_y, 0x000000);
 		if (game->map[game->char_y + dir][game->char_x] != 1)
 		{
+			draw_character(game, game->char_x, game->char_y, 0x000000);
 			game->char_y += dir;
 			if (dir > 0)
 				game->char_mask_y = 0;
