@@ -25,10 +25,10 @@ void	draw_character(t_game *game, int x, int y, int color)
 	int i;
 	int j;
 	
-	i = -4;
+	i = -20;
 	while (++i < TILE_SIZE + 3)
 	{
-		j = -4;
+		j = -20;
 		while (++j < TILE_SIZE + 3)
 		{
 			if ((pow(abs(game->char_mask_y - i), 2) + pow(abs(game->char_mask_x - j), 2)) <= 3 * 3)
@@ -66,4 +66,5 @@ void	draw_rectangles(t_game *game)
 		i++;
 	}
 	draw_character(game, game->char_x, game->char_y, 0xFF00FF);
+	raycast(game);
 }
