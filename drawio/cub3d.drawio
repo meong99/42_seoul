@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-01-22T08:25:03.266Z" agent="5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="0JHVjIKSWUyqmKqbqMOt" version="14.2.2" type="github">
+<mxfile host="app.diagrams.net" modified="2021-01-22T08:27:35.901Z" agent="5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="V9Y1IKkhkYbHzyuhWaf3" version="14.2.2" type="github">
   <diagram name="Page-1" id="e56a1550-8fbb-45ad-956c-1786394a9013">
     <mxGraphModel dx="1298" dy="722" grid="1" gridSize="1" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
       <root>
@@ -7,10 +7,10 @@
         <mxCell id="uAMPDl_Nky-WzL86phEE-77" value="main.c" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=#FFFFFF;" vertex="1" parent="1">
           <mxGeometry x="1632" y="560" width="160" height="176" as="geometry" />
         </mxCell>
-        <mxCell id="uAMPDl_Nky-WzL86phEE-80" value="mlx 등 초기화 함수" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-77">
+        <mxCell id="uAMPDl_Nky-WzL86phEE-78" value="메인함수" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-77">
           <mxGeometry y="26" width="160" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="uAMPDl_Nky-WzL86phEE-78" value="구조체 초기화 함수" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-77">
+        <mxCell id="uAMPDl_Nky-WzL86phEE-80" value="mlx 등 초기화 함수" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-77">
           <mxGeometry y="56" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="uAMPDl_Nky-WzL86phEE-79" value="이벤트키 함수" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-77">
@@ -19,11 +19,11 @@
         <mxCell id="uAMPDl_Nky-WzL86phEE-85" value="win_close함수" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-77">
           <mxGeometry y="116" width="160" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="uAMPDl_Nky-WzL86phEE-86" value="메인루프함수" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-77">
+        <mxCell id="uAMPDl_Nky-WzL86phEE-86" value="루프함수" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-77">
           <mxGeometry y="146" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="uAMPDl_Nky-WzL86phEE-81" value="map.c" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=#FFFFFF;" vertex="1" parent="1">
-          <mxGeometry x="1632" y="752" width="160" height="131" as="geometry" />
+          <mxGeometry x="1632" y="784" width="160" height="131" as="geometry" />
         </mxCell>
         <mxCell id="uAMPDl_Nky-WzL86phEE-82" value="맵 받아오는 함수" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-81">
           <mxGeometry y="26" width="160" height="30" as="geometry" />
@@ -104,6 +104,24 @@
           <mxGeometry y="116" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="uAMPDl_Nky-WzL86phEE-119" value="캐릭터와 벽의 거리 계산" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-115">
+          <mxGeometry y="146" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-121" value="init.c" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="2065" y="561" width="160" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-122" value="일반 game구조체 초기화" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-121">
+          <mxGeometry y="26" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-123" value="레이캐스팅 구조체 초기화" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-121">
+          <mxGeometry y="56" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-124" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-121">
+          <mxGeometry y="86" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-125" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-121">
+          <mxGeometry y="116" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-126" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-121">
           <mxGeometry y="146" width="160" height="30" as="geometry" />
         </mxCell>
       </root>
