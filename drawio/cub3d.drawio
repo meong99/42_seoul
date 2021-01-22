@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-01-22T08:02:55.297Z" agent="5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="mh-3QNXGA-RKmNp7tEZa" version="14.2.2" type="github">
+<mxfile host="app.diagrams.net" modified="2021-01-22T08:06:32.069Z" agent="5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="pJOa7M2L2ATMcfOm3gNy" version="14.2.2" type="github">
   <diagram name="Page-1" id="e56a1550-8fbb-45ad-956c-1786394a9013">
     <mxGraphModel dx="1298" dy="722" grid="1" gridSize="1" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
       <root>
@@ -33,6 +33,60 @@
         </mxCell>
         <mxCell id="uAMPDl_Nky-WzL86phEE-84" value="int형으로 바꾼 맵을 mapmask&#xa;에 따라 변환" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-81">
           <mxGeometry y="86" width="160" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-91" value="image.c" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="1873" y="560" width="160" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-96" value="2d 맵 그려주는 함수" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-91">
+          <mxGeometry y="26" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-92" value="2d 캐릭터 그려주는 함수" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-91">
+          <mxGeometry y="56" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-93" value="2d 광선 그려주는 함수" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-91">
+          <mxGeometry y="86" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-94" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-91">
+          <mxGeometry y="116" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-95" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-91">
+          <mxGeometry y="146" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-103" value="image" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="2257" y="560" width="160" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-104" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-103">
+          <mxGeometry y="26" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-105" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-103">
+          <mxGeometry y="56" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-106" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-103">
+          <mxGeometry y="86" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-107" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-103">
+          <mxGeometry y="116" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-108" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-103">
+          <mxGeometry y="146" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-109" value="util.c" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="1323" y="618" width="160" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-110" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-109">
+          <mxGeometry y="26" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-111" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-109">
+          <mxGeometry y="56" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-112" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-109">
+          <mxGeometry y="86" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-113" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-109">
+          <mxGeometry y="116" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uAMPDl_Nky-WzL86phEE-114" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="uAMPDl_Nky-WzL86phEE-109">
+          <mxGeometry y="146" width="160" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
