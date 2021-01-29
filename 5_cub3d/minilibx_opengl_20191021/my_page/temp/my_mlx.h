@@ -1,14 +1,14 @@
 #ifndef MY_MLX_H
 # define MY_MLX_H
 
-#include "../mlx.h"
+#include "../../mlx.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <math.h>
 #include "key_macos.h"
-#include "../../get_next_line/get_next_line.h"
-#include "../../libft/libft.h"
+#include "../../../get_next_line/get_next_line.h"
+#include "../../../libft/libft.h"
 
 #define X_EVENT_KEY_PRESS		2
 #define X_EVENT_KEY_EXIT		17 //Exit program key code
