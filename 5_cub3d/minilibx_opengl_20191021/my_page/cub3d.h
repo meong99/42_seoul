@@ -13,6 +13,7 @@
 # define X_EVENT_KEY_PRESS		2
 # define X_EVENT_KEY_EXIT		17 //Exit program key code
 # define KEY_ESC			53
+# define CHARACTER 'N' - '0'
 
 # define RESOLUTION 0
 # define NORTH 1
@@ -63,8 +64,10 @@ typedef struct	s_game
 	void	*mlx;
 	void	*win;
 
+	int		cols;
 	int		**pixel_map;
 	int		**map;
+	char	**char_map;
 	char	*info_map[8];
 }				t_game;
 
@@ -94,13 +97,13 @@ void	mwi_init(t_game *game);
 */
 void	get_map(t_game *game, const char *filename);
 int		check_gnl(char *one_line);
-int		map_parsing(int fd, t_game *game, char **map);
-void	map_mapi(t_game *game, char *map);
+void	map_parsing(int fd, t_game *game);
+void	map_mapi(t_game *game, const char *map);
 void	get_mapmask(t_game *game);
 /*
 ** error.c
 */
-int		map_check(t_game *game, int pos_x, int pos_y);
+void	map_check(t_game *game, int pos_x, int pos_y);
 
 /*
 **	ray.c
