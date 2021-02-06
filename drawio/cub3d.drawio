@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-02-04T07:22:46.458Z" agent="5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36" etag="-pp4riybexyp8WfMwlLu" version="14.2.7" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-06T16:11:46.572Z" agent="5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36" etag="7LaWfWSwea0l6YuyQ42r" version="14.2.7" type="github">
   <diagram name="Page-1" id="e56a1550-8fbb-45ad-956c-1786394a9013">
-    <mxGraphModel dx="1298" dy="722" grid="1" gridSize="1" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="1298" dy="722" grid="0" gridSize="1" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -172,8 +172,53 @@
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="uAMPDl_Nky-WzL86phEE-84" target="8qiG2ld6KfT_s-U2V5Yb-2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-9" value="캐릭터가 맵 밖&lt;br&gt;캐릭터가 두개&lt;br&gt;허용되지 않은 문자&lt;br&gt;오타" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="2152" y="1281" width="160" height="66" as="geometry" />
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-10" value="info_error.c" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="1643" y="1246" width="160" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-11" value="info_error()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
+          <mxGeometry y="26" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-12" value="remove_space()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
+          <mxGeometry y="56" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-14" value="empty_error()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
+          <mxGeometry y="86" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-13" value="typing_error()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
+          <mxGeometry y="116" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-15" value="path_error()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
+          <mxGeometry y="146" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-16" value="info_error()&lt;br&gt;인포 에러는 맵 정보에 대한 에러들을 종합적으로 실행시켜주는 함수로 만들 것이다.&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1942" y="1203" width="120" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-17" value="removq_space()&lt;br&gt;우선 맵의 각 정보들은 스페이스로 구분되어 질 수 있는데 스페이스가 여러개가 포함되어있으면 사용하기 불편해질 것 같다. 그렇기 때문에 우선은 스페이스들을 하나만 남겨두고 모두 제거해준다.&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1944" y="1334" width="120" height="186" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8qiG2ld6KfT_s-U2V5Yb-11" target="8qiG2ld6KfT_s-U2V5Yb-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8qiG2ld6KfT_s-U2V5Yb-12" target="8qiG2ld6KfT_s-U2V5Yb-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-20" value="empty_error()&lt;br&gt;각 정보들의 오타나 잘못된 값이 들어왔는지 확인하기 전에 우선은 값이 들어왔는지 확인을 해야할 것 같다.&amp;nbsp;&lt;br&gt;&lt;br&gt;일단은 이 함수는 만들지 않을 수도 있을 것 같다. 오타나 정확한 값이 맞는지 확인하면서 만약 값이 아예 없다면 바로 에러처리를 하면 될 수도 있기 때문이다.&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1358" y="1207" width="120" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8qiG2ld6KfT_s-U2V5Yb-14" target="8qiG2ld6KfT_s-U2V5Yb-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-22" value="typing_error()&lt;br&gt;오타나 잘못된 값이 들어왔는지 확안해주는 함수이다. 각 값을 스플릿해서 나눠서 값이 사용할 수 있는지 없는지 확인하면 될 것 같다." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="1473" width="120" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8qiG2ld6KfT_s-U2V5Yb-13" target="8qiG2ld6KfT_s-U2V5Yb-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-24" value="path_error()&lt;br&gt;텍스쳐 파일들을 불러올 때 만약 해당 파일이 없다면 에러처리를 해야하기 때문에 해당 경로를 확인해주는 함수이다." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1648" y="1474" width="120" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="8qiG2ld6KfT_s-U2V5Yb-15" target="8qiG2ld6KfT_s-U2V5Yb-24">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
