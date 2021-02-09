@@ -1,43 +1,17 @@
-#include "my_mlx.h"
+#include "cub3d.h"
 
-void	atoi_mapi(char **c_map, int **map)
+void	game_init(t_game *game, char *filename)
 {
-	int map_cols;
-	int i;
-	int j;
-
-	i = 0;
-	while (i < ROWS)
-	{
-		j = 0;
-		while (j < COLS)
-		{
-			map[i][j] = c_map[i][j] - '0';
-			j++;
-		}
-		i++;
-	}
+	get_map(game, filename);
 }
 
-void	game_init(t_game *game)
-{	
-	char **map = get_map();
-	game->map = (int**)malloc(sizeof(int*) * ROWS);
-	for (int i = 0; i < ROWS; i++)
-	{
-		game->map[i] = (int*)malloc(sizeof(int) * COLS);
-	}
-	atoi_mapi(map, game->map);
-}
-
-void	window_init(t_game *game)
+void	mwi_init(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "mlx 42");
+	game->win = mlx_new_window(game->mlx, 500, 500, "cub3d");
 }
 
-void	img_init(t_game *game)
+void	ray_init(t_game *game)
 {
-	game->img.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	game->img.data = (int *)mlx_get_data_addr(game->img.img, &game->img.bpp, &game->img.size_l, &game->img.endian);
+	game = 0;
 }

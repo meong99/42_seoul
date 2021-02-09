@@ -1,6 +1,6 @@
 #include "my_mlx.h"
 
-static void pars(int fd, char **map_info)
+static void parsing(int fd, char **map_info)
 {
 	int i;
 
@@ -23,7 +23,7 @@ char **get_map()
 	close(fd);
     fd = open("map.cub", O_RDONLY);
 	map_info = (char**)malloc(sizeof(char*) * i);
-    pars(fd, map_info);
+    parsing(fd, map_info);
 	close(fd);
 	
 	return (map_info);
