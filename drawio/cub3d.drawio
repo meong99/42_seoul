@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-02-06T16:11:46.572Z" agent="5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36" etag="7LaWfWSwea0l6YuyQ42r" version="14.2.7" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-09T08:32:41.201Z" agent="5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36" etag="_y0f910A0mzjo4EFXMT-" version="14.2.7" type="github">
   <diagram name="Page-1" id="e56a1550-8fbb-45ad-956c-1786394a9013">
     <mxGraphModel dx="1298" dy="722" grid="0" gridSize="1" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
       <root>
@@ -178,7 +178,7 @@
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-11" value="info_error()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
           <mxGeometry y="26" width="160" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-12" value="remove_space()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-12" value="parsing_map_info()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
           <mxGeometry y="56" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-14" value="empty_error()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
@@ -193,7 +193,7 @@
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-16" value="info_error()&lt;br&gt;인포 에러는 맵 정보에 대한 에러들을 종합적으로 실행시켜주는 함수로 만들 것이다.&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1942" y="1203" width="120" height="112" as="geometry" />
         </mxCell>
-        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-17" value="removq_space()&lt;br&gt;우선 맵의 각 정보들은 스페이스로 구분되어 질 수 있는데 스페이스가 여러개가 포함되어있으면 사용하기 불편해질 것 같다. 그렇기 때문에 우선은 스페이스들을 하나만 남겨두고 모두 제거해준다.&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-17" value="&lt;span style=&quot;text-align: left&quot;&gt;parsing_map_info()&lt;/span&gt;&lt;br&gt;맵의 각 정보들을 구조체의 각 정보로 용도에 맞게 파싱해준다." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1944" y="1334" width="120" height="186" as="geometry" />
         </mxCell>
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8qiG2ld6KfT_s-U2V5Yb-11" target="8qiG2ld6KfT_s-U2V5Yb-16">
