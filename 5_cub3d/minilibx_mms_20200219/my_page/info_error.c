@@ -22,11 +22,6 @@ void	element_count_error(t_game *game)
 	}
 }
 
-void	parsing_map_info(t_game *game)
-{
-	
-}
-
 void	typing_error(t_game *game)
 {
 

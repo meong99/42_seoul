@@ -13,6 +13,7 @@ SRCS =	main.c\
 		map_error.c\
 		2d_image.c\
 		ray.c\
+		map_parsing.c\
 		../../get_next_line/get_next_line.c\
 		../../get_next_line/get_next_line_utils.c
 OBJS = $(SRCS:.c=.o)

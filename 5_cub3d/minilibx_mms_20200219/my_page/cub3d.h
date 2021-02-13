@@ -124,10 +124,14 @@ void	character_error(t_game *game, int character);
 ** info_error.c
 */
 void	info_error(t_game *game);
-void	parsing_map_info(t_game *game);
 void	element_count_error(t_game *game);
 void	typing_error(t_game *game);
 void	path_error(t_game *game);
+
+/*
+** map_error.c
+*/
+void	parsing_map_info(t_game *game);
 
 /*
 **	ray.c
