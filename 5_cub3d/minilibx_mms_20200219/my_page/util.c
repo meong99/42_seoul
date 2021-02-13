@@ -5,7 +5,7 @@ void	move_char(t_game *game)
 	game = 0;	
 }
 
-void	f_free(char **val, int i)
+void	val_free(char **val, int i)
 {
 	if (i == 1)
 	{
@@ -40,7 +40,7 @@ int		*todigit(t_game *game, char *s, int index)
 	return (new_str);
 }
 
-int		count_element(t_game *game, char **element)
+int		count_element(char **element)
 {
 	int i;
 

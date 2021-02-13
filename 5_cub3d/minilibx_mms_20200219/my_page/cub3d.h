@@ -145,8 +145,8 @@ void	distance(t_game *game);
 **	util.c
 */
 void	move_char(t_game *game);
-void	f_free(char **val, int i);
+void	val_free(char **val, int i);
 int		*todigit(t_game *game, char *s, int index);
-int		count_element(t_game *game, char **element);
+int		count_element(char **element);
 
 #endif

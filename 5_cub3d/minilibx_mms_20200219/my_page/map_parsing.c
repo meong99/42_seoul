@@ -11,21 +11,31 @@ void	parsing_map_info(t_game *game)
 	tmp = ft_strchr(game->info_map[NORTH], ' ');
 	game->north_texture = ft_strdup(tmp);
 	tmp = ft_strchr(game->info_map[SOUTH], ' ');
-	game->north_texture = ft_strdup(tmp);
+	game->south_texture = ft_strdup(tmp);
 	tmp = ft_strchr(game->info_map[WEST], ' ');
-	game->north_texture = ft_strdup(tmp);
+	game->west_texture = ft_strdup(tmp);
 	tmp = ft_strchr(game->info_map[EAST], ' ');
-	game->north_texture = ft_strdup(tmp);
+	game->east_texture = ft_strdup(tmp);
 	tmp = ft_strchr(game->info_map[SPRITE], ' ');
-	game->north_texture = ft_strdup(tmp);
+	game->sprite_texture = ft_strdup(tmp);
 }
 
 void	parsing_color(t_game *game)
 {
 	char	*tmp;
-	
+	char	**tmp_split;
+	int		i;
+
+	i = -1;
 	tmp = ft_strchr(game->info_map[FLOOR_COLOR], ' ');
-	game->north_texture = ft_strdup(tmp);
+	tmp_split = ft_split(tmp, ',');
+	while (++i < 3)
+		game->floor_color[i] = ft_atoi(tmp_split[i]);
+	val_free(tmp_split, 2);
+	i = -1;
 	tmp = ft_strchr(game->info_map[CEILING_COLOR], ' ');
-	game->north_texture = ft_strdup(tmp);
+	tmp_split = ft_split(tmp, ',');
+	while (++i < 3)
+		game->floor_color[i] = ft_atoi(tmp_split[i]);
+	val_free(tmp_split, 2);
 }

@@ -31,10 +31,10 @@ void	map_parsing(int fd, t_game *game)
 				map = ft_strdup(one_line);
 			else
 				map = ft_strjoin(map, one_line);
-			f_free(&temp_map, 1);
+			val_free(&temp_map, 1);
 			game->cols += 1;
 		}
-		f_free(&one_line, 1);
+		val_free(&one_line, 1);
 	}
 	game->map = (int**)malloc(sizeof(int*) * game->cols);
 	map_mapi(game, (const char*)map);

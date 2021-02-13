@@ -14,12 +14,13 @@ void	element_count_error(t_game *game)
 	while (++i <= CEILING_COLOR)
 	{
 		temp = ft_split(game->info_map[i], ' ');
-		if (i != 0 && count_element(game, temp) != 2)
+		if (i != 0 && count_element(temp) != 2)
 			map_error_exit();
-		else if (count_element(game, temp) != 3)
+		else if (count_element(temp) != 3)
 			map_error_exit();
-		f_free(temp, 2);
+		val_free(temp, 2);
 	}
+	parsing_map_info(game);
 }
 
 void	typing_error(t_game *game)
