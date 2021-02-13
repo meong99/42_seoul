@@ -18,24 +18,26 @@ void	parsing_map_info(t_game *game)
 	game->east_texture = ft_strdup(tmp);
 	tmp = ft_strchr(game->info_map[SPRITE], ' ');
 	game->sprite_texture = ft_strdup(tmp);
+	parsing_color(game->info_map[FLOOR_COLOR], game->floor_color);
+	parsing_color(game->info_map[CEILING_COLOR], game->ceiling_color);
 }
 
-void	parsing_color(t_game *game)
+void	parsing_color(char *cei_or_floor, int *p_color)
 {
+	int		i;
+	int		j;
 	char	*tmp;
 	char	**tmp_split;
-	int		i;
 
-	i = -1;
-	tmp = ft_strchr(game->info_map[FLOOR_COLOR], ' ');
+	tmp = ft_strchr(cei_or_floor, ' ');
 	tmp_split = ft_split(tmp, ',');
-	while (++i < 3)
-		game->floor_color[i] = ft_atoi(tmp_split[i]);
-	val_free(tmp_split, 2);
 	i = -1;
-	tmp = ft_strchr(game->info_map[CEILING_COLOR], ' ');
-	tmp_split = ft_split(tmp, ',');
+	j = 0;
+	while (tmp_split[j])
+		j++;
+	if (j != 3)
+		error_exit();
 	while (++i < 3)
-		game->floor_color[i] = ft_atoi(tmp_split[i]);
+		p_color[i] = ft_atoi(tmp_split[i]);
 	val_free(tmp_split, 2);
 }

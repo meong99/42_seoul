@@ -10,7 +10,7 @@ void	val_free(char **val, int i)
 	if (i == 1)
 	{
 		free(*val);
-		val = 0;
+		*val = 0;
 	}
 	else
 	{

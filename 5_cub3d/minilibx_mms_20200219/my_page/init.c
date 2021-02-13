@@ -2,6 +2,7 @@
 
 void	game_init(t_game *game, char *filename)
 {
+	game->cols = 0;
 	get_map(game, filename);
 }
 

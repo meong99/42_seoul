@@ -117,7 +117,7 @@ void	find_character(t_game *game);
 ** map_error.c
 */
 void	map_check(t_game *game, int pos_x, int pos_y);
-void	map_error_exit();
+void	error_exit();
 void	character_error(t_game *game, int character);
 
 /*
@@ -127,11 +127,13 @@ void	info_error(t_game *game);
 void	element_count_error(t_game *game);
 void	typing_error(t_game *game);
 void	path_error(t_game *game);
+//-i3 i1 -fc13 -fc6 fc4 3 2 w4 -w2 -r7 r3
 
 /*
-** map_error.c
+** map_parsing.c
 */
 void	parsing_map_info(t_game *game);
+void	parsing_color(char *cei_or_floor, int *p_color);
 
 /*
 **	ray.c

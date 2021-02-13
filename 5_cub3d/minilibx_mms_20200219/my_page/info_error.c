@@ -14,21 +14,32 @@ void	element_count_error(t_game *game)
 	while (++i <= CEILING_COLOR)
 	{
 		temp = ft_split(game->info_map[i], ' ');
-		if (i != 0 && count_element(temp) != 2)
-			map_error_exit();
-		else if (count_element(temp) != 3)
-			map_error_exit();
+		if (i == 0 && count_element(temp) != 3)
+			error_exit();
+		else if (i != 0 && count_element(temp) != 2)
+			error_exit();
 		val_free(temp, 2);
 	}
 	parsing_map_info(game);
 }
 
+void	max_error(int *val, int count, int is_resol)
+{
+	int		i;
+
+	i = -1;
+	if (is_resol)
+	{
+		if (val[0])
+	}
+}
+
 void	typing_error(t_game *game)
 {
-
+	game = 0;
 }
 
 void	path_error(t_game *game)
 {
-
+	game = 0;
 }

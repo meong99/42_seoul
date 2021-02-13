@@ -4,10 +4,12 @@ void	get_map(t_game *game, const char *filename)
 {
 	int	fd;
 
-	fd = open(filename, O_RDONLY);
+	if ((fd = open(filename, O_RDONLY)) == -1)
+		error_exit();
 	map_parsing(fd, game);
 	find_character(game);
 	map_check(game, game->ray.map_x, game->ray.map_y);
+	info_error(game);
 	return ;
 }
 
@@ -32,7 +34,7 @@ void	map_parsing(int fd, t_game *game)
 			else
 				map = ft_strjoin(map, one_line);
 			val_free(&temp_map, 1);
-			game->cols += 1;
+			game->cols++;
 		}
 		val_free(&one_line, 1);
 	}
@@ -42,24 +44,24 @@ void	map_parsing(int fd, t_game *game)
 
 int		check_gnl(char *one_line)
 {
-	if (ft_strncmp(one_line, "R ", 2))
+	if (!ft_strncmp(one_line, "R ", 2))
 		return (RESOLUTION);
-	else if (ft_strncmp(one_line, "N ", 2))
+	else if (!ft_strncmp(one_line, "NO ", 3))
 		return (NORTH);
-	else if (ft_strncmp(one_line, "SO ", 3))
+	else if (!ft_strncmp(one_line, "SO ", 3))
 		return (SOUTH);
-	else if (ft_strncmp(one_line, "W ", 2))
+	else if (!ft_strncmp(one_line, "WE ", 3))
 		return (WEST);
-	else if (ft_strncmp(one_line, "E ", 2))
+	else if (!ft_strncmp(one_line, "EA ", 3))
 		return (EAST);
-	else if (ft_strncmp(one_line, "S ", 2))
+	else if (!ft_strncmp(one_line, "S ", 2))
 		return (SPRITE);
-	else if (ft_strncmp(one_line, "F ", 2))
+	else if (!ft_strncmp(one_line, "F ", 2))
 		return (FLOOR_COLOR);
-	else if (ft_strncmp(one_line, "C ", 2))
+	else if (!ft_strncmp(one_line, "C ", 2))
 		return (CEILING_COLOR);	
 	else
-		map_error_exit(4);
+		error_exit();
 	return (-1);
 }
 
