@@ -34,16 +34,9 @@ void	map_check(t_game *game, int pos_x, int pos_y)
 	map_check(game, pos_x, pos_y + 1);
 }
 
-void	map_error_exit(int type)
+void	map_error_exit()
 {
 	printf("Error\n");
-	if (type == 1)
-		printf("The map is not surrounded by wall.\n");
-	else if (type == 2)
-		printf("The map contains invalid characters.\n");
-	else if (type == 3)
-		printf("Character error.");
-	else if (type == 4)
-		printf("Info error");
+	printf("Invalid map!\n");
 	exit(-1);
 }

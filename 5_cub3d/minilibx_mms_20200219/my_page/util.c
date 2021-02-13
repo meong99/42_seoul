@@ -40,7 +40,15 @@ int		*todigit(t_game *game, char *s, int index)
 	return (new_str);
 }
 
-int		count_element(t_game *game)
+int		count_element(t_game *game, char **element)
 {
+	int i;
 
+	i = 0;
+	while (*element)
+	{
+		i++;
+		element++;
+	}
+	return (i);
 }

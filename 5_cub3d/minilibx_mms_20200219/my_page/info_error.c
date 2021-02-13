@@ -2,18 +2,29 @@
 
 void	info_error(t_game *game)
 {
-	parsing_map_info(game);
+	element_count_error(game);
 }
 
-void	empty_error(t_game *game)
+void	element_count_error(t_game *game)
 {
 	char	**temp;
+	int		i;
+
+	i = -1;
+	while (++i <= CEILING_COLOR)
+	{
+		temp = ft_split(game->info_map[i], ' ');
+		if (i != 0 && count_element(game, temp) != 2)
+			map_error_exit();
+		else if (count_element(game, temp) != 3)
+			map_error_exit();
+		f_free(temp, 2);
+	}
 }
 
 void	parsing_map_info(t_game *game)
 {
-	game->resolution[0] = ft_atoi(ft_strchr(game->info_map[RESOLUTION], ' '));
-	game->resolution[1] = ft_atoi(ft_strrchr(game->info_map[RESOLUTION], ' '));
+	
 }
 
 void	typing_error(t_game *game)

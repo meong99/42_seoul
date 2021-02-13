@@ -125,7 +125,7 @@ void	character_error(t_game *game, int character);
 */
 void	info_error(t_game *game);
 void	parsing_map_info(t_game *game);
-void	empty_error(t_game *game);
+void	element_count_error(t_game *game);
 void	typing_error(t_game *game);
 void	path_error(t_game *game);
 
@@ -143,5 +143,6 @@ void	distance(t_game *game);
 void	move_char(t_game *game);
 void	f_free(char **val, int i);
 int		*todigit(t_game *game, char *s, int index);
+int		count_element(t_game *game, char **element);
 
 #endif
