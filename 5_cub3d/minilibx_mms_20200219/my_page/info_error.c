@@ -3,6 +3,7 @@
 void	info_error(t_game *game)
 {
 	element_count_error(game);
+	screen_size_and_color_error(game);
 }
 
 void	element_count_error(t_game *game)
@@ -23,14 +24,23 @@ void	element_count_error(t_game *game)
 	parsing_map_info(game);
 }
 
-void	max_error(int *val, int count, int is_resol)
+void	screen_size_and_color_error(t_game *game)
 {
 	int		i;
+	int		resol_x;
+	int		resol_y;
 
 	i = -1;
-	if (is_resol)
+	mlx_get_screen_size(game->mlx, resol_x, resol_y);
+	if (game->resolution[0] > resol_x)
+		game->resolution[0] = resol_x;
+	if (game->resolution[1] > resol_y)
+		game->resolution[1] = resol_y;
+	while (++i < 3)
 	{
-		if (val[0])
+		if (game->floor_color[i] > 255 || game->floor_color[i] < 0 ||
+			game->ceiling_color[i] > 255 || game->ceiling_color[i] < 0)
+			error_exit();
 	}
 }
 

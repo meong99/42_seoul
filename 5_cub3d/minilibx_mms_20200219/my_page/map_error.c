@@ -33,10 +33,3 @@ void	map_check(t_game *game, int pos_x, int pos_y)
 	map_check(game, pos_x, pos_y - 1);
 	map_check(game, pos_x, pos_y + 1);
 }
-
-void	error_exit()
-{
-	printf("Error\n");
-	printf("Invalid map!\n");
-	exit(-1);
-}

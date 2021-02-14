@@ -16,6 +16,7 @@
 # define X_EVENT_KEY_EXIT		17 //Exit program key code
 # define KEY_ESC			53
 # define CHARACTER_DIRS "SNWE"
+# define TRUE 1
 
 # define RESOLUTION 0
 # define NORTH 1
@@ -117,7 +118,6 @@ void	find_character(t_game *game);
 ** map_error.c
 */
 void	map_check(t_game *game, int pos_x, int pos_y);
-void	error_exit();
 void	character_error(t_game *game, int character);
 
 /*
@@ -125,8 +125,10 @@ void	character_error(t_game *game, int character);
 */
 void	info_error(t_game *game);
 void	element_count_error(t_game *game);
+void	screen_size_and_color_error(t_game *game);
 void	typing_error(t_game *game);
 void	path_error(t_game *game);
+
 //-i3 i1 -fc13 -fc6 fc4 3 2 w4 -w2 -r7 r3
 
 /*
@@ -150,5 +152,6 @@ void	move_char(t_game *game);
 void	val_free(char **val, int i);
 int		*todigit(t_game *game, char *s, int index);
 int		count_element(char **element);
+void	error_exit();
 
 #endif

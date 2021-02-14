@@ -52,3 +52,10 @@ int		count_element(char **element)
 	}
 	return (i);
 }
+
+void	error_exit()
+{
+	printf("Error\n");
+	printf("Invalid map!\n");
+	exit(-1);
+}
