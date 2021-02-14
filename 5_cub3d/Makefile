@@ -1,14 +1,16 @@
 NAME = cub3D
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-MLX_FLAGS = -L./mlxs/ -lmlx -framework OpenGL -framework AppKit 
+MLX_FLAGS = -L./ -lmlx -framework OpenGL -framework AppKit 
 LIBFT_DIR = ./libft
 LIBFT = -L$(LIBFT_DIR) -lft
-GNL = -D BUFFER_SIZE=10
 RM = rm -f
-SRCS_PATH = ./srcs/
-OBJS_PATH = ./objs/
-SRCS =	main.c\
+SRCS_PATH = ./srcs
+OBJS_PATH = ./objs
+GNL_PATH = ./get_next_line
+INCS = -I./incs
+SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))
+SRCS_NAME =	main.c\
 		init.c\
 		util.c\
 		map.c\
@@ -17,20 +19,21 @@ SRCS =	main.c\
 		map_parsing.c\
 		2d_image.c\
 		ray.c\
-		./get_next_line/get_next_line.c\
-		./get_next_line/get_next_line_utils.c
-OBJS = $(SRCS:.c=.o)
+		get_next_line.c\
+		get_next_line_utils.c
+OBJS_NAME = $(SRCS_NAME:.c=.o)
+OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
 
 all : $(NAME)
 
-%.o : %.c
-	$(CC) $(CFLAGS) -g $(GNL) -c $< -o $@
+$(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
+	$(CC) $(CFLAGS) $(INCS) -g -c $< -o $@
 
 $(NAME) : $(OBJS)
 	# make -C $(LIBFT_DIR)
 	# make -C ..
 	# mv ../libmlx.dylib ./
-	$(CC) $(CFLAGS) $(LIBFT) -o $(NAME) $(OBJS) $(MLX_FLAGS)
+	$(CC) $(CFLAGS) $(LIBFT) $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
 clean :
 	$(RM) $(OBJS)
@@ -44,7 +47,7 @@ fclean : clean
 leak : $(OBJS)
 	# make -C $(LIBFT_DIR)
 	# make -C ..
-	$(CC) $(CFLAGS) $(LIBFT) -o $(NAME) $(OBJS) $(MLX_FLAGS) -fsanitize=address
+	$(CC) $(CFLAGS) $(LIBFT) $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS) -fsanitize=address
 
 re : fclean all
 
