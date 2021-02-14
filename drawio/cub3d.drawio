@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-02-14T06:02:51.513Z" agent="5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36" etag="T-5rI5JXLOO9NunxWjQ8" version="14.2.7" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-14T07:23:30.806Z" agent="5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36" etag="0yfNILZFTnhRWIOorOrY" version="14.2.7" type="github">
   <diagram name="Page-1" id="e56a1550-8fbb-45ad-956c-1786394a9013">
     <mxGraphModel dx="1854" dy="1031" grid="0" gridSize="1" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
       <root>
@@ -111,7 +111,7 @@
         <mxCell id="uAMPDl_Nky-WzL86phEE-80" value="mlx_init" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="uAMPDl_Nky-WzL86phEE-121" vertex="1">
           <mxGeometry y="86" width="239" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="uAMPDl_Nky-WzL86phEE-125" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="uAMPDl_Nky-WzL86phEE-121" vertex="1">
+        <mxCell id="uAMPDl_Nky-WzL86phEE-125" value="main_loop()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="uAMPDl_Nky-WzL86phEE-121" vertex="1">
           <mxGeometry y="116" width="239" height="30" as="geometry" />
         </mxCell>
         <mxCell id="uAMPDl_Nky-WzL86phEE-126" value="-" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="uAMPDl_Nky-WzL86phEE-121" vertex="1">
@@ -151,25 +151,25 @@
           <mxGeometry y="146" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-10" value="info_error.c" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=#FFFFFF;" vertex="1" parent="1">
-          <mxGeometry x="1632" y="1513" width="160" height="176" as="geometry" />
+          <mxGeometry x="1598" y="1512" width="230" height="176" as="geometry" />
         </mxCell>
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-11" value="info_error()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
-          <mxGeometry y="26" width="160" height="30" as="geometry" />
+          <mxGeometry y="26" width="230" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-12" value="element_count_error()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
-          <mxGeometry y="56" width="160" height="30" as="geometry" />
+          <mxGeometry y="56" width="230" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-14" value="max_error()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
-          <mxGeometry y="86" width="160" height="30" as="geometry" />
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-14" value="screen_size_and_color_error()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
+          <mxGeometry y="86" width="230" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-13" value="typing_error()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
-          <mxGeometry y="116" width="160" height="30" as="geometry" />
+          <mxGeometry y="116" width="230" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-15" value="path_error()" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8qiG2ld6KfT_s-U2V5Yb-10">
-          <mxGeometry y="146" width="160" height="30" as="geometry" />
+          <mxGeometry y="146" width="230" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-16" value="info_error()&lt;br&gt;인포 에러는 맵 정보에 대한 에러들을 종합적으로 실행시켜주는 함수로 만들 것이다.&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1905" y="2133" width="120" height="112" as="geometry" />
+          <mxGeometry x="1971" y="2136" width="120" height="112" as="geometry" />
         </mxCell>
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-17" value="&lt;span style=&quot;text-align: left&quot;&gt;parsing_map_info()&lt;/span&gt;&lt;br&gt;맵의 각 정보들을 구조체의 각 정보로 용도에 맞게 파싱해준다." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="2461" y="2124" width="120" height="186" as="geometry" />
@@ -204,8 +204,8 @@
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-32" value="&lt;div&gt;&lt;span&gt;parsing_color()&lt;/span&gt;&lt;/div&gt;&lt;div&gt;바닥, 천장의 컬러 색을 각 배열에 파싱해준다.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="2333" y="2124" width="120" height="186" as="geometry" />
         </mxCell>
-        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-34" value="max_error()&lt;br&gt;&lt;br&gt;컬러 및 해상도의 최대 크기에 오류가 있는지 확인한다. 컬러같은 경우는 최댓값보다 많다면 에러를 내고, 해상도는 최대 크기에 맞춘다." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1778" y="2114" width="120" height="168" as="geometry" />
+        <mxCell id="8qiG2ld6KfT_s-U2V5Yb-34" value="&lt;span style=&quot;text-align: left&quot;&gt;screen_size_and_color_error()&lt;br&gt;&lt;br&gt;해상도와 각 컬러의 rgb값이 적절한 값인지 확인하고 잘못된 값이면 해당 조치에 따라 작동&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1778" y="2114" width="186" height="168" as="geometry" />
         </mxCell>
         <mxCell id="8qiG2ld6KfT_s-U2V5Yb-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=16;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8qiG2ld6KfT_s-U2V5Yb-42" target="uAMPDl_Nky-WzL86phEE-81">
           <mxGeometry relative="1" as="geometry" />
