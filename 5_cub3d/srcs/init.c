@@ -18,9 +18,9 @@ void	mwi_init(t_game *game)
 	game->img.img = mlx_new_image(game->mlx, game->resolution[0], game->resolution[1]);
 }
 
-void	ray_init(t_game *game)
+void	dir_plane_init(t_game *game)
 {
-	dir_plane_init(game);
+	dir_check_init(game);
 	if (game->ray.dir_x)
 		game->ray.dir_y = 0;
 	else
@@ -31,7 +31,7 @@ void	ray_init(t_game *game)
 		game->ray.plane_x = 0;
 }
 
-void	dir_plane_init(t_game *game)
+void	dir_check_init(t_game *game)
 {
 	if (game->char_dir == 'N')
 	{

@@ -2,7 +2,7 @@ NAME = cub3D
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-MLX_FLAGS = -L./ -lmlx -framework OpenGL -framework AppKit 
+MLX_FLAGS = -L./ -lmlx -framework OpenGL -framework AppKit
 
 SRCS_PATH = ./srcs
 OBJS_PATH = ./objs
@@ -26,6 +26,7 @@ SRCS_NAME =	main.c\
 		map_parsing.c\
 		2d_image.c\
 		ray.c\
+		ray_init.c\
 		get_next_line.c\
 		get_next_line_utils.c
 OBJS_NAME = $(SRCS_NAME:.c=.o)
