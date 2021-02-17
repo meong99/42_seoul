@@ -4,10 +4,11 @@ int		main(int argc, char *argv[])
 {
 	t_game game;
 
-	if (argc < 1 || !argv)
+	if (argc < 2 || !argv)
 		return (-1);
 	game_init(&game, argv[1]);
-	// mwi_init(&game);
+	ray_init(&game);
+	mwi_init(&game);
 	// mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &event_key, &game);
 	// mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &win_close, 0);
 

@@ -59,7 +59,7 @@ int		check_gnl(t_game *game, char *one_line)
 	else if (!ft_strncmp(one_line, "F ", 2))
 		return (overlap_error(game, FLOOR_COLOR));
 	else if (!ft_strncmp(one_line, "C ", 2))
-		return (overlap_error(game, CEILING_COLOR));	
+		return (overlap_error(game, CEILING_COLOR));
 	else
 		error_exit(2);
 	return (-1);
@@ -89,12 +89,12 @@ void	find_character(t_game *game)
 		j = -1;
 		while (++j < game->rows[i])
 		{
-			if (game->map[i][j] != 0 && game->map[i][j] != 2 
+			if (game->map[i][j] != 0 && game->map[i][j] != 2
 			&& ft_strchr(CHARACTER_DIRS, game->char_map[i][j]))
 			{
 				character++;
-				game->ray.map_x = j;
-				game->ray.map_y = i;
+				game->ray.char_pos_x = j;
+				game->ray.char_pos_y = i;
 			}
 		}
 	}
