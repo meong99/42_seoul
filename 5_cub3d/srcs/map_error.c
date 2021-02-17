@@ -3,7 +3,7 @@
 void	character_error(t_game *game, int character)
 {
 	if (character != 1)
-		error_exit();
+		error_exit(3);
 	game->char_dir = game->char_map[game->ray.map_y][game->ray.map_x];
 	game->map[game->ray.map_y][game->ray.map_x] = 0;
 }
@@ -12,12 +12,12 @@ void	map_check(t_game *game, int pos_x, int pos_y)
 {
 	if (pos_y == -1 || pos_y >= game->cols ||
 			pos_x == -1 || game->char_map[pos_y][pos_x] == '\0')
-		error_exit();
+		error_exit(4);
 	if (game->map[pos_y][pos_x] == 1 || game->map[pos_y][pos_x] == 'X' ||
 		game->map[pos_y][pos_x] == 'S')
 		return ;
 	else if (game->map[pos_y][pos_x] != 0 && game->map[pos_y][pos_x] != 2)
-		error_exit();
+		error_exit(5);
 	if (game->map[pos_y][pos_x] == 2)
 	{
 		game->map[pos_y][pos_x] = 'S';

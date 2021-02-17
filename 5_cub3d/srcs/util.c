@@ -1,8 +1,15 @@
 #include "cub3d.h"
 
-void	move_char(t_game *game)
+void	remove_space_info(t_game *game)
 {
-	game = 0;	
+	int i;
+
+	i = -1;
+	while (++i <= CEILING_COLOR)
+	{
+		ft_strtrim(game->info_map[i], " ");
+	}
+	
 }
 
 void	val_free(char **val, int i)
@@ -53,9 +60,25 @@ int		count_element(char **element)
 	return (i);
 }
 
-void	error_exit()
+void	error_exit(int type)
 {
-	printf("Error\n");
-	printf("Invalid map!\n");
+	if (type == 1)
+		printf("file open error\n");
+	else if (type == 2)
+		printf("invalid element\n");
+	else if (type == 3)
+		printf("to many characters\n");
+	else if (type == 4)
+		printf("not closed\n");
+	else if (type == 5)
+		printf("invalid character\n");
+	else if (type == 6)
+		printf("color count\n");
+	else if (type == 7)
+		printf("element count\n");
+	else if (type == 8)
+		printf("color value over\n");
+	else if (type == 9)
+		printf("overlapping error\n");
 	exit(-1);
 }

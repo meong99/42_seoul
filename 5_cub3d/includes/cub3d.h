@@ -73,6 +73,7 @@ typedef struct	s_game
 	int		**map;
 	char	**char_map;
 	char	*info_map[8];
+	int		info_check[8];
 	int		resolution[2];
 	char	*north_texture;
 	char	*south_texture;
@@ -109,7 +110,7 @@ void	mwi_init(t_game *game);
 **	map.c
 */
 void	get_map(t_game *game, const char *filename);
-int		check_gnl(char *one_line);
+int		check_gnl(t_game *game, char *one_line);
 void	map_parsing(int fd, t_game *game);
 void	map_mapi(t_game *game, const char *map);
 void	find_character(t_game *game);
@@ -126,8 +127,8 @@ void	character_error(t_game *game, int character);
 void	info_error(t_game *game);
 void	element_count_error(t_game *game);
 void	screen_size_and_color_error(t_game *game);
-void	typing_error(t_game *game);
-void	path_error(t_game *game);
+int		overlap_error(t_game *game, int type);
+void	invalid_char_error(const char *info, int type);
 
 //-i3 i1 -fc13 -fc6 fc4 3 2 w4 -w2 -r7 r3
 
@@ -135,7 +136,7 @@ void	path_error(t_game *game);
 ** map_parsing.c
 */
 void	parsing_map_info(t_game *game);
-void	parsing_color(char *cei_or_floor, int *p_color);
+void	parsing_color(t_game *game, int type, int *p_color);
 
 /*
 **	ray.c
@@ -148,10 +149,10 @@ void	distance(t_game *game);
 /*
 **	util.c
 */
-void	move_char(t_game *game);
+void	remove_space_info(t_game *game);
 void	val_free(char **val, int i);
 int		*todigit(t_game *game, char *s, int index);
 int		count_element(char **element);
-void	error_exit();
+void	error_exit(int type);
 
 #endif

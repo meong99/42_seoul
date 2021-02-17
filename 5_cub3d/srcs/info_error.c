@@ -16,9 +16,9 @@ void	element_count_error(t_game *game)
 	{
 		temp = ft_split(game->info_map[i], ' ');
 		if (i == 0 && count_element(temp) != 3)
-			error_exit();
+			error_exit(7);
 		else if (i != 0 && count_element(temp) != 2)
-			error_exit();
+			error_exit(7);
 		val_free(temp, 2);
 	}
 	parsing_map_info(game);
@@ -40,16 +40,37 @@ void	screen_size_and_color_error(t_game *game)
 	{
 		if (game->floor_color[i] > 255 || game->floor_color[i] < 0 ||
 			game->ceiling_color[i] > 255 || game->ceiling_color[i] < 0)
-			error_exit();
+			error_exit(8);
 	}
 }
 
-void	typing_error(t_game *game)
+int		overlap_error(t_game *game, int type)
 {
-	game = 0;
+	if (game->info_check[type] == type)
+		error_exit(9);
+	else
+		game->info_check[type] = type;
+	return (type);
 }
 
-void	path_error(t_game *game)
+void	invalid_char_error(const char *info, int type)
 {
-	game = 0;
+	if (type == RESOLUTION)
+	{	
+		while (*info)
+		{
+			if (*info != ' ' && !ft_isdigit(*info))
+				error_exit(5);
+			info++;
+		}
+	}
+	else
+	{
+		while (*info)
+		{
+			if (*info != ' ' && *info != ',' && !ft_isdigit(*info))
+				error_exit(5);
+			info++;
+		}
+	}
 }

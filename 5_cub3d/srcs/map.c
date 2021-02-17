@@ -5,7 +5,7 @@ void	get_map(t_game *game, const char *filename)
 	int	fd;
 
 	if ((fd = open(filename, O_RDONLY)) == -1)
-		error_exit();
+		error_exit(1);
 	map_parsing(fd, game);
 	find_character(game);
 	map_check(game, game->ray.map_x, game->ray.map_y);
@@ -25,7 +25,7 @@ void	map_parsing(int fd, t_game *game)
 	while (get_next_line(fd, &one_line) || *one_line != '\0')
 	{
 		if (*one_line != '\0' && ++i <= CEILING_COLOR)
-			game->info_map[check_gnl(one_line)] = ft_strdup(one_line);
+			game->info_map[check_gnl(game, one_line)] = ft_strdup(one_line);
 		else if(*one_line != '\0')
 		{
 			temp_map = map;
@@ -42,26 +42,26 @@ void	map_parsing(int fd, t_game *game)
 	map_mapi(game, (const char*)map);
 }
 
-int		check_gnl(char *one_line)
+int		check_gnl(t_game *game, char *one_line)
 {
 	if (!ft_strncmp(one_line, "R ", 2))
-		return (RESOLUTION);
+		return (overlap_error(game, RESOLUTION));
 	else if (!ft_strncmp(one_line, "NO ", 3))
-		return (NORTH);
+		return (overlap_error(game, NORTH));
 	else if (!ft_strncmp(one_line, "SO ", 3))
-		return (SOUTH);
+		return (overlap_error(game, SOUTH));
 	else if (!ft_strncmp(one_line, "WE ", 3))
-		return (WEST);
+		return (overlap_error(game, WEST));
 	else if (!ft_strncmp(one_line, "EA ", 3))
-		return (EAST);
+		return (overlap_error(game, EAST));
 	else if (!ft_strncmp(one_line, "S ", 2))
-		return (SPRITE);
+		return (overlap_error(game, SPRITE));
 	else if (!ft_strncmp(one_line, "F ", 2))
-		return (FLOOR_COLOR);
+		return (overlap_error(game, FLOOR_COLOR));
 	else if (!ft_strncmp(one_line, "C ", 2))
-		return (CEILING_COLOR);	
+		return (overlap_error(game, CEILING_COLOR));	
 	else
-		error_exit();
+		error_exit(2);
 	return (-1);
 }
 

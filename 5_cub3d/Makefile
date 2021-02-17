@@ -1,15 +1,22 @@
 NAME = cub3D
+
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -L./ -lmlx -framework OpenGL -framework AppKit 
-LIBFT_DIR = ./libft
-LIBFT = -L$(LIBFT_DIR) -lft
-RM = rm -f
+
 SRCS_PATH = ./srcs
 OBJS_PATH = ./objs
 GNL_PATH = ./get_next_line
-INCS = -I./incs
+LIBFT_PATH = ./libft
+MLX_PATH = ./mlxs
+INCS_PATH = ./includes
+
+LIBFT = -L$(LIBFT_PATH) -lft
+INCS = -I$(INCS_PATH)
+
 SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))
+OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
+
 SRCS_NAME =	main.c\
 		init.c\
 		util.c\
@@ -22,32 +29,36 @@ SRCS_NAME =	main.c\
 		get_next_line.c\
 		get_next_line_utils.c
 OBJS_NAME = $(SRCS_NAME:.c=.o)
-OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
+
+RM = rm -f
+
+ifeq ($(DEBUG), true)
+	CDEBUG = -g
+
+endif
 
 all : $(NAME)
 
 $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
-	$(CC) $(CFLAGS) $(INCS) -g -c $< -o $@
+	$(CC) $(CFLAGS) $(CDEBUG) $(INCS) -c $< -o $@
 
 $(NAME) : $(OBJS)
-	# make -C $(LIBFT_DIR)
-	# make -C ..
-	# mv ../libmlx.dylib ./
+	# make -C $(LIBFT_PATH)
+	# make -C $(MLX_PATH)
+	# mv ./$(MLX_PATH)/libmlx.dylib ./
 	$(CC) $(CFLAGS) $(LIBFT) $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
 clean :
 	$(RM) $(OBJS)
-	# make -C $(LIBFT_DIR) fclean
+	# make -C $(LIBFT_PATH) fclean
 	# $(RM) libmlx.dylib
-	# make -C .. clean
+	# make -C $(MLX_PATH) clean
 
 fclean : clean
 	$(RM) $(NAME)
 
-leak : $(OBJS)
-	# make -C $(LIBFT_DIR)
-	# make -C ..
-	$(CC) $(CFLAGS) $(LIBFT) $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS) -fsanitize=address
+debug : $(OBJS)
+	$(CC) $(CFLAGS) $(LIBFT) -g $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
 re : fclean all
 
