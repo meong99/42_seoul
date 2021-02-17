@@ -8,7 +8,7 @@ void	get_map(t_game *game, const char *filename)
 		error_exit(1);
 	map_parsing(fd, game);
 	find_character(game);
-	map_check(game, game->ray.map_x, game->ray.map_y);
+	map_check(game, game->ray.char_pos_x, game->ray.char_pos_y);
 	info_error(game);
 	return ;
 }

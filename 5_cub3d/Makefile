@@ -44,21 +44,21 @@ $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
 	$(CC) $(CFLAGS) $(CDEBUG) $(INCS) -c $< -o $@
 
 $(NAME) : $(OBJS)
-	# make -C $(LIBFT_PATH)
-	# make -C $(MLX_PATH)
-	# mv ./$(MLX_PATH)/libmlx.dylib ./
+	make -C $(LIBFT_PATH)
+	make -C $(MLX_PATH)
+	mv ./$(MLX_PATH)/libmlx.dylib ./
 	$(CC) $(CFLAGS) $(LIBFT) $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
 clean :
 	$(RM) $(OBJS)
-	# make -C $(LIBFT_PATH) fclean
-	# $(RM) libmlx.dylib
-	# make -C $(MLX_PATH) clean
+	make -C $(LIBFT_PATH) fclean
+	$(RM) libmlx.dylib
+	make -C $(MLX_PATH) clean
 
 fclean : clean
 	$(RM) $(NAME)
 
-debug : $(OBJS)
+debug : $(NAME) $(OBJS)
 	$(CC) $(CFLAGS) $(LIBFT) -g $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
 re : fclean all

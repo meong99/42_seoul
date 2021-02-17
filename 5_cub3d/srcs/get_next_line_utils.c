@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 14:47:01 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/29 08:00:40 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/18 01:13:29 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,44 @@ t_gnl_lst	*new_buff(int fd)
 	new->fd = fd;
 	new->next = NULL;
 	return (new);
+}
+
+size_t	gnl_ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	size_t i;
+
+	i = 0;
+	if ((!dest && !src))
+		return (0);
+	while (src[i] && i + 1 < size)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	if (size)
+		dest[i] = '\0';
+	while (src[i])
+		i++;
+	return (i);
+}
+
+size_t	gnl_ft_strlcat(char *dest, const char *src, size_t size)
+{
+	size_t j;
+	size_t i;
+
+	j = 0;
+	i = 0;
+	while (dest[i] && i < size)
+		i++;
+	while (src[j] && i + j + 1 < size)
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	if (i + j < size)
+		dest[i + j] = '\0';
+	while (src[j])
+		j++;
+	return (i + j);
 }

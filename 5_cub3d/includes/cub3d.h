@@ -26,6 +26,7 @@
 # define SPRITE 5
 # define FLOOR_COLOR 6
 # define CEILING_COLOR 7
+# define H 10
 
 typedef struct	s_img
 {
@@ -58,6 +59,10 @@ typedef struct	s_ray
 	int		step_y;
 	int		hit;
 	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		wall_color;
 }				t_ray;
 typedef struct	s_game
 {
@@ -143,9 +148,14 @@ void	parsing_color(t_game *game, int type, int *p_color);
 **	ray.c
 */
 void	raycasting(t_game *game);
-void	get_dir_ray(t_game *game);
+void	ver_line(t_game *game, int x, int y1, int y2, int color);
 void	check_wall(t_game *game);
 void	distance(t_game *game);
+
+/*
+**	ray_init.c
+*/
+void	ray_init(t_game *game);
 
 /*
 **	util.c
