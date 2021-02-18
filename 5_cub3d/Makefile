@@ -41,12 +41,13 @@ endif
 all : $(NAME)
 
 $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
-	$(CC) $(CFLAGS) $(CDEBUG) $(INCS) -c $< -o $@
+	@mkdir -p $(OBJS_PATH) 2> /dev/null || true
+	@$(CC) $(CFLAGS) $(CDEBUG) $(INCS) -c $< -o $@
 
 $(NAME) : $(OBJS)
 	make -C $(LIBFT_PATH)
 	make -C $(MLX_PATH)
-	mv ./$(MLX_PATH)/libmlx.dylib ./
+	mv $(MLX_PATH)/libmlx.dylib ./
 	$(CC) $(CFLAGS) $(LIBFT) $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
 clean :

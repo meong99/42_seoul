@@ -6,7 +6,7 @@
 #    By: mchae <mchae@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/09 16:16:57 by mchae             #+#    #+#              #
-#    Updated: 2021/02/18 01:37:39 by mchae            ###   ########.fr        #
+#    Updated: 2021/02/18 18:26:01 by mchae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ OBJS = $(patsubst %.c,%.o,$(SRCS))
 BOBJS = $(patsubst %.c,%.o,$(BSRCS))
 all : $(NAME)
 %.o : %.c
-	$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 $(NAME) : $(OBJS)
-	ar rcs $@ $^
+	@ar rcs $@ $^
 bonus: $(BOBJS)
 	ar rcs $(NAME) $^
 clean :

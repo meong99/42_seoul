@@ -15,7 +15,6 @@ void	mwi_init(t_game *game)
 {
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->resolution[0], game->resolution[1], "cub3d");
-	game->img.img = mlx_new_image(game->mlx, game->resolution[0], game->resolution[1]);
 }
 
 void	dir_plane_init(t_game *game)
@@ -33,12 +32,12 @@ void	dir_plane_init(t_game *game)
 
 void	dir_check_init(t_game *game)
 {
-	if (game->char_dir == 'N')
+	if (game->char_dir == 'S')
 	{
 		game->ray.dir_y = 1;
 		game->ray.plane_x = 0.66;
 	}
-	else if (game->char_dir == 'S')
+	else if (game->char_dir == 'N')
 	{
 		game->ray.dir_y = -1;
 		game->ray.plane_x = -0.66;

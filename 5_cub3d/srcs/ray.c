@@ -7,6 +7,7 @@ void	raycasting(t_game *game)
 	x = -1;
 	while (++x < game->resolution[0])
 	{
+		game->ray.hit = 0;
 		game->ray.camera_x = 2 * x / (double)game->resolution[0] - 1;
 		game->ray.ray_dir_x = game->ray.dir_x + game->ray.plane_x * game->ray.camera_x;
 		game->ray.ray_dir_y = game->ray.dir_y + game->ray.plane_y * game->ray.camera_x;
@@ -66,7 +67,7 @@ void	raycasting(t_game *game)
 		if (game->map[game->ray.map_y][game->ray.map_x] == 1)
 			game->ray.wall_color = 0x66FFFF;
 		else
-			game->ray.wall_color = 0x00FF33;
+			game->ray.wall_color = 0xFFCCFF * 2;
 		if (game->ray.side)
 			game->ray.wall_color /= 2;
 		ver_line(game, x, game->ray.draw_start, game->ray.draw_end, game->ray.wall_color);
@@ -78,6 +79,7 @@ void	ver_line(t_game *game, int x, int y1, int y2, int color)
 	int	y;
 
 	y = y1;
+
 	while (y <= y2)
 	{
 		mlx_pixel_put(game->mlx, game->win, x, y, color);

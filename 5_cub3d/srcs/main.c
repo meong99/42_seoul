@@ -7,13 +7,13 @@ int		main(int argc, char *argv[])
 	if (argc < 2 || !argv)
 		return (-1);
 	game_init(&game, argv[1]);
-	ray_init(&game);
 	mwi_init(&game);
-	// mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &event_key, &game);
-	// mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &win_close, 0);
+	ray_init(&game);
+	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &event_key, &game);
+	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &win_close, 0);
 
-	// mlx_loop_hook(game.mlx, &main_loop, &game);
-	// mlx_loop(game.mlx);
+	mlx_loop_hook(game.mlx, &main_loop, &game);
+	mlx_loop(game.mlx);
 	return (0);
 }
 
