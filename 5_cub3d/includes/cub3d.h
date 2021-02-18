@@ -109,8 +109,6 @@ void	draw_2d_ray(t_game *game);
 */
 void	game_init(t_game *game, char *filename);
 void	mwi_init(t_game *game);
-void	dir_plane_init(t_game *game);
-void	dir_check_init(t_game *game);
 
 /*
 **	map.c
@@ -156,6 +154,8 @@ void	distance(t_game *game);
 **	ray_init.c
 */
 void	ray_init(t_game *game);
+void	dir_plane_init(t_game *game);
+void	dir_check_init(t_game *game);
 
 /*
 **	util.c
