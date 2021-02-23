@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parsing.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 19:29:50 by mchae             #+#    #+#             */
+/*   Updated: 2021/02/23 19:51:42 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	parsing_map_info(t_game *game)
@@ -38,7 +50,7 @@ void	parsing_color(t_game *game, int type, int *p_color)
 	while (tmp_split[j])
 		j++;
 	if (j != 3)
-		error_exit(6);
+		error_exit("color over count");
 	while (++i < 3)
 		p_color[i] = ft_atoi(tmp_split[i]);
 	val_free(tmp_split, 2);

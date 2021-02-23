@@ -1,16 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   util.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 19:29:54 by mchae             #+#    #+#             */
+/*   Updated: 2021/02/23 19:44:07 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
-
-void	remove_space_info(t_game *game)
-{
-	int i;
-
-	i = -1;
-	while (++i <= CEILING_COLOR)
-	{
-		ft_strtrim(game->info_map[i], " ");
-	}
-	
-}
 
 void	val_free(char **val, int i)
 {
@@ -60,25 +60,9 @@ int		count_element(char **element)
 	return (i);
 }
 
-void	error_exit(int type)
+void	error_exit(char *massege)
 {
-	if (type == 1)
-		printf("file open error\n");
-	else if (type == 2)
-		printf("invalid element\n");
-	else if (type == 3)
-		printf("to many characters\n");
-	else if (type == 4)
-		printf("not closed\n");
-	else if (type == 5)
-		printf("invalid character\n");
-	else if (type == 6)
-		printf("color count\n");
-	else if (type == 7)
-		printf("element count\n");
-	else if (type == 8)
-		printf("color value over\n");
-	else if (type == 9)
-		printf("overlapping error\n");
+	printf("Error\n");
+	printf("%s\n", massege);
 	exit(-1);
 }

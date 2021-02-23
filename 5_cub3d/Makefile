@@ -27,6 +27,7 @@ SRCS_NAME =	main.c\
 		2d_image.c\
 		ray.c\
 		ray_init.c\
+		image.c\
 		get_next_line.c\
 		get_next_line_utils.c
 OBJS_NAME = $(SRCS_NAME:.c=.o)

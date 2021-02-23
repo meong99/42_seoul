@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
+/*   Updated: 2021/02/23 19:48:09 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	get_map(t_game *game, const char *filename)
@@ -5,7 +17,7 @@ void	get_map(t_game *game, const char *filename)
 	int	fd;
 
 	if ((fd = open(filename, O_RDONLY)) == -1)
-		error_exit(1);
+		error_exit("map file open error");
 	map_parsing(fd, game);
 	find_character(game);
 	map_check(game, game->ray.char_pos_x, game->ray.char_pos_y);
@@ -26,7 +38,7 @@ void	map_parsing(int fd, t_game *game)
 	{
 		if (*one_line != '\0' && ++i <= CEILING_COLOR)
 			game->info_map[check_gnl(game, one_line)] = ft_strdup(one_line);
-		else if(*one_line != '\0')
+		else if (*one_line != '\0')
 		{
 			temp_map = map;
 			if (!map)
@@ -61,7 +73,7 @@ int		check_gnl(t_game *game, char *one_line)
 	else if (!ft_strncmp(one_line, "C ", 2))
 		return (overlap_error(game, CEILING_COLOR));
 	else
-		error_exit(2);
+		error_exit("invalid map info");
 	return (-1);
 }
 

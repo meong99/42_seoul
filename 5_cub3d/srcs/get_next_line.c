@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 14:47:04 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/18 01:14:04 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/23 19:39:07 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int		get_next_line(int fd, char **line)
 {
 	static t_gnl_lst	*head;
 	t_gnl_lst			*lst_buf;
-	ssize_t			size;
-	int				found;
+	ssize_t				size;
+	int					found;
 
 	if (BUFFER_SIZE <= 0 || !line || (!head && !(head = new_buff(fd))) ||
 		!(lst_buf = find_buff(head, fd)))

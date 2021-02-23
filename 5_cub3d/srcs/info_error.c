@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   info_error.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 19:29:43 by mchae             #+#    #+#             */
+/*   Updated: 2021/02/23 19:50:16 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	info_error(t_game *game)
@@ -16,9 +28,9 @@ void	element_count_error(t_game *game)
 	{
 		temp = ft_split(game->info_map[i], ' ');
 		if (i == 0 && count_element(temp) != 3)
-			error_exit(7);
+			error_exit("resolution count error");
 		else if (i != 0 && count_element(temp) != 2)
-			error_exit(7);
+			error_exit("info count error");
 		val_free(temp, 2);
 	}
 	parsing_map_info(game);
@@ -40,14 +52,14 @@ void	screen_size_and_color_error(t_game *game)
 	{
 		if (game->floor_color[i] > 255 || game->floor_color[i] < 0 ||
 			game->ceiling_color[i] > 255 || game->ceiling_color[i] < 0)
-			error_exit(8);
+			error_exit("color over value");
 	}
 }
 
 int		overlap_error(t_game *game, int type)
 {
 	if (game->info_check[type] == type)
-		error_exit(9);
+		error_exit("overlap error");
 	else
 		game->info_check[type] = type;
 	return (type);
@@ -56,11 +68,11 @@ int		overlap_error(t_game *game, int type)
 void	invalid_char_error(const char *info, int type)
 {
 	if (type == RESOLUTION)
-	{	
+	{
 		while (*info)
 		{
 			if (*info != ' ' && !ft_isdigit(*info))
-				error_exit(5);
+				error_exit("invalid char error");
 			info++;
 		}
 	}
@@ -69,7 +81,7 @@ void	invalid_char_error(const char *info, int type)
 		while (*info)
 		{
 			if (*info != ' ' && *info != ',' && !ft_isdigit(*info))
-				error_exit(5);
+				error_exit("invalid char error");
 			info++;
 		}
 	}

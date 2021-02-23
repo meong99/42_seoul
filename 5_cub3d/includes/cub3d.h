@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
+/*   Updated: 2021/02/23 23:34:55 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -17,6 +29,8 @@
 # define KEY_ESC			53
 # define CHARACTER_DIRS "SNWE"
 # define TRUE 1
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
 
 # define RESOLUTION 0
 # define NORTH 1
@@ -35,6 +49,7 @@ typedef struct	s_img
 	int		size_l;
 	int		bpp;
 	int		endian;
+	int		*image_data[5];
 }				t_img;
 
 typedef struct	s_ray
@@ -63,6 +78,14 @@ typedef struct	s_ray
 	int		draw_start;
 	int		draw_end;
 	int		wall_color;
+	double	wall_x;
+	double	step;
+	double	tex_pos;
+	int		tex_x;
+	int		tex_y;
+	int		texture_color;
+	int		texture_width;
+	int		texture_height;
 }				t_ray;
 typedef struct	s_game
 {
@@ -72,6 +95,7 @@ typedef struct	s_game
 	void	*mlx;
 	void	*win;
 
+	char	*map_name;
 	int		*rows;
 	int		cols;
 	char	char_dir;
@@ -94,7 +118,7 @@ typedef struct	s_game
 **	main.c
 */
 int		event_key(int key_code, t_game *game);
-int		win_close();
+int		win_close(void);
 int		main_loop(t_game *game);
 
 /*
@@ -134,8 +158,6 @@ void	screen_size_and_color_error(t_game *game);
 int		overlap_error(t_game *game, int type);
 void	invalid_char_error(const char *info, int type);
 
-//-i3 i1 -fc13 -fc6 fc4 3 2 w4 -w2 -r7 r3
-
 /*
 ** map_parsing.c
 */
@@ -151,6 +173,12 @@ void	check_wall(t_game *game);
 void	distance(t_game *game);
 
 /*
+**  image.c
+*/
+void	load_xpm_image(t_game *game);
+void	draw_image(t_game *game, int *buffer);
+
+/*
 **	ray_init.c
 */
 void	ray_init(t_game *game);
@@ -160,10 +188,9 @@ void	dir_check_init(t_game *game);
 /*
 **	util.c
 */
-void	remove_space_info(t_game *game);
 void	val_free(char **val, int i);
 int		*todigit(t_game *game, char *s, int index);
 int		count_element(char **element);
-void	error_exit(int type);
+void	error_exit(char *massege);
 
 #endif
