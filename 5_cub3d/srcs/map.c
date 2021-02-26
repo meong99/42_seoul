@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/23 19:48:09 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/26 19:43:58 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	map_parsing(int fd, t_game *game)
 				map = ft_strdup(one_line);
 			else
 				map = ft_strjoin(map, one_line);
-			val_free(&temp_map, 1);
+			char_free(&temp_map, 1);
 			game->cols++;
 		}
-		val_free(&one_line, 1);
+		char_free(&one_line, 1);
 	}
-	game->map = (int**)malloc(sizeof(int*) * game->cols);
+	game->map = (int**)val_malloc(sizeof(int*) * game->cols);
 	map_mapi(game, (const char*)map);
 }
 
@@ -82,7 +82,7 @@ void	map_mapi(t_game *game, const char *map)
 	int	i;
 
 	i = -1;
-	game->rows = (int*)malloc(sizeof(int) * game->cols);
+	game->rows = (int*)val_malloc(sizeof(int) * game->cols);
 	game->char_map = ft_split(map, '\n');
 	while (game->char_map[++i])
 		game->map[i] = todigit(game, game->char_map[i], i);

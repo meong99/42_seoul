@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/23 23:34:55 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/26 20:18:20 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,26 @@
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 
-# define RESOLUTION 0
-# define NORTH 1
-# define SOUTH 2
-# define WEST 3
-# define EAST 4
-# define SPRITE 5
+# define NORTH 0
+# define SOUTH 1
+# define WEST 2
+# define EAST 3
+# define SPRITE 4
+# define RESOLUTION 5
 # define FLOOR_COLOR 6
 # define CEILING_COLOR 7
-# define H 10
+
+typedef struct	s_tex
+{
+	void	*img;
+	int		*data;
+	int		size_l;
+	int		bpp;
+	int		endian;
+	int		texture_color;
+	int		texture_width;
+	int		texture_height;
+}				t_tex;
 
 typedef struct	s_img
 {
@@ -49,11 +60,11 @@ typedef struct	s_img
 	int		size_l;
 	int		bpp;
 	int		endian;
-	int		*image_data[5];
 }				t_img;
 
 typedef struct	s_ray
 {
+	int		**buf;
 	double	char_pos_x;
 	double	char_pos_y;
 	double	dir_x;
@@ -83,13 +94,12 @@ typedef struct	s_ray
 	double	tex_pos;
 	int		tex_x;
 	int		tex_y;
-	int		texture_color;
-	int		texture_width;
-	int		texture_height;
 }				t_ray;
+
 typedef struct	s_game
 {
 	t_img	img;
+	t_tex	tex[5];
 	t_ray	ray;
 
 	void	*mlx;
@@ -103,12 +113,9 @@ typedef struct	s_game
 	char	**char_map;
 	char	*info_map[8];
 	int		info_check[8];
-	int		resolution[2];
-	char	*north_texture;
-	char	*south_texture;
-	char	*west_texture;
-	char	*east_texture;
-	char	*sprite_texture;
+	int		screen_width;
+	int		screen_height;
+	char	*texture_path[5];
 	int		floor_color[3];
 	int		ceiling_color[3];
 	int		**pixel_map;
@@ -175,8 +182,8 @@ void	distance(t_game *game);
 /*
 **  image.c
 */
-void	load_xpm_image(t_game *game);
-void	draw_image(t_game *game, int *buffer);
+void	load_xpm_image(t_game *game, int i, char *tex_path);
+void	draw_image(t_game *game, int **buffer);
 
 /*
 **	ray_init.c
@@ -184,13 +191,29 @@ void	draw_image(t_game *game, int *buffer);
 void	ray_init(t_game *game);
 void	dir_plane_init(t_game *game);
 void	dir_check_init(t_game *game);
+void	buf_init(t_game *game);
+
+/*
+** ray_util.c
+*/
+void	play_set(t_game *game, int x);
+void	dir_set(t_game *game);
+void	hit_scan(t_game *game);
+void	draw_set(t_game *game);
+void	texture_set(t_game *game, int x);
 
 /*
 **	util.c
 */
-void	val_free(char **val, int i);
 int		*todigit(t_game *game, char *s, int index);
 int		count_element(char **element);
 void	error_exit(char *massege);
+
+/*
+** malloc_free.c
+*/
+void	char_free(char **val, int i);
+void	int_free(int **val, int i);
+void	*val_malloc(size_t size);
 
 #endif

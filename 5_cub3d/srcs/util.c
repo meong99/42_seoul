@@ -6,30 +6,11 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:54 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/23 19:44:07 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/26 19:44:25 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	val_free(char **val, int i)
-{
-	if (i == 1)
-	{
-		free(*val);
-		*val = 0;
-	}
-	else
-	{
-		while (*val)
-		{
-			free(*val);
-			*val = 0;
-			val++;
-		}
-		val = 0;
-	}
-}
 
 int		*todigit(t_game *game, char *s, int index)
 {
@@ -40,7 +21,7 @@ int		*todigit(t_game *game, char *s, int index)
 		return (NULL);
 	i = -1;
 	game->rows[index] = ft_strlen(s);
-	if (!(new_str = malloc(sizeof(int) * game->rows[index])))
+	if (!(new_str = (int*)val_malloc(sizeof(int) * game->rows[index])))
 		return (NULL);
 	while (s[++i])
 		new_str[i] = s[i] - '0';

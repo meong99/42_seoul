@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:43 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/23 19:50:16 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/26 20:21:32 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	element_count_error(t_game *game)
 			error_exit("resolution count error");
 		else if (i != 0 && count_element(temp) != 2)
 			error_exit("info count error");
-		val_free(temp, 2);
+		char_free(temp, 2);
 	}
 	parsing_map_info(game);
 }
@@ -44,10 +44,10 @@ void	screen_size_and_color_error(t_game *game)
 
 	i = -1;
 	mlx_get_screen_size(game->mlx, &resol_x, &resol_y);
-	if (game->resolution[0] > resol_x)
-		game->resolution[0] = resol_x;
-	if (game->resolution[1] > resol_y)
-		game->resolution[1] = resol_y;
+	if (game->screen_width > resol_x)
+		game->screen_width = resol_x;
+	if (game->screen_height > resol_y)
+		game->screen_height = resol_y;
 	while (++i < 3)
 	{
 		if (game->floor_color[i] > 255 || game->floor_color[i] < 0 ||

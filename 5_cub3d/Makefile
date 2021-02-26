@@ -26,8 +26,10 @@ SRCS_NAME =	main.c\
 		map_parsing.c\
 		2d_image.c\
 		ray.c\
+		ray_util.c\
 		ray_init.c\
 		image.c\
+		malloc_free.c\
 		get_next_line.c\
 		get_next_line_utils.c
 OBJS_NAME = $(SRCS_NAME:.c=.o)
@@ -42,7 +44,7 @@ endif
 all : $(NAME)
 
 $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
-	@mkdir -p $(OBJS_PATH) 2> /dev/null || true
+	@mkdir -p $(OBJS_PATH)
 	@$(CC) $(CFLAGS) $(CDEBUG) $(INCS) -c $< -o $@
 
 $(NAME) : $(OBJS)
