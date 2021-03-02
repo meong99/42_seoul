@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:43 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/26 20:21:32 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/28 16:17:18 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	element_count_error(t_game *game)
 	while (++i <= CEILING_COLOR)
 	{
 		temp = ft_split(game->info_map[i], ' ');
-		if (i == 0 && count_element(temp) != 3)
+		if (i == RESOLUTION && count_element(temp) != 3)
 			error_exit("resolution count error");
-		else if (i != 0 && count_element(temp) != 2)
+		else if (i != RESOLUTION && count_element(temp) != 2)
 			error_exit("info count error");
 		char_free(temp, 2);
 	}

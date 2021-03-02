@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:23:24 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/26 20:20:25 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/28 17:31:27 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	load_xpm_image(t_game *game, int i, char *tex_path)
 	mlx_destroy_image(game->mlx, game->tex[i].img);
 }
 
-void	draw_image(t_game *game, int **buffer)
+void	draw_image(t_game *game)
 {
 	int		i;
 	int		j;
@@ -31,7 +31,7 @@ void	draw_image(t_game *game, int **buffer)
 	{
 		j = -1;
 		while (++j < game->screen_width)
-			game->img.data[i * game->screen_width + j] = buffer[i][j];
+			game->img.data[i * game->screen_width + j] = game->ray.buf[i][j];
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 }

@@ -24,7 +24,6 @@ SRCS_NAME =	main.c\
 		map_error.c\
 		info_error.c\
 		map_parsing.c\
-		2d_image.c\
 		ray.c\
 		ray_util.c\
 		ray_init.c\

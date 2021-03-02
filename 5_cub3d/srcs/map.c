@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/26 19:43:58 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/28 16:58:40 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	get_map(t_game *game, const char *filename)
 	map_parsing(fd, game);
 	find_character(game);
 	map_check(game, game->ray.char_pos_x, game->ray.char_pos_y);
+	char_free(game->char_map, 2);
 	info_error(game);
 	return ;
 }
@@ -110,5 +111,6 @@ void	find_character(t_game *game)
 			}
 		}
 	}
+	int_free(&game->rows, 1, game->cols);
 	character_error(game, character);
 }

@@ -1,8 +1,8 @@
 #include "cub3d.h"
 
-void	char_free(char **val, int i)
+void	char_free(char **val, int type)
 {
-	if (i == 1)
+	if (type == 1)
 	{
 		free(*val);
 		*val = 0;
@@ -18,20 +18,23 @@ void	char_free(char **val, int i)
 		val = 0;
 	}
 }
-void	int_free(int **val, int i)
+void	int_free(int **val, int type, int index)
 {
-	if (i == 1)
+	int		i;
+
+	i = -1;
+	if (type == 1)
 	{
 		free(*val);
 		*val = 0;
+		index = 0;
 	}
 	else
 	{
-		while (*val)
+		while (++i < index)
 		{
-			free(*val);
-			*val = 0;
-			val++;
+			free(val[i]);
+			val[i] = 0;
 		}
 		val = 0;
 	}

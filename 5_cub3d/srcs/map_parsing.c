@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:50 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/26 20:18:39 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/28 16:54:00 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void	parsing_map_info(t_game *game)
 	}
 	parsing_color(game, FLOOR_COLOR, game->floor_color);
 	parsing_color(game, CEILING_COLOR, game->ceiling_color);
+	i = -1;
+	while (++i < 8)
+		char_free(&game->info_map[i], 1);
 }
 
 void	parsing_color(t_game *game, int type, int *p_color)

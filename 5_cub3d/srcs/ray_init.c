@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:30:31 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/26 20:12:18 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/28 17:13:28 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 void	ray_init(t_game *game)
 {
+	int		i;
+
+	i = -1;
 	dir_plane_init(game);
-	load_xpm_image(game);
+	while (++i < SPRITE)
+		load_xpm_image(game, i, game->texture_path[i]);
+	i = -1;
+	while (++i < 5)
+		char_free(&game->texture_path[i], 1);
 	buf_init(game);
 	raycasting(game);
 }
@@ -26,14 +33,14 @@ void	buf_init(t_game *game)
 	int		j;
 
 	i = -1;
-	game->ray.buf = (int**)val_malloc(sizeof(int*) * game->resolution[1]);
-	while (++i < game->resolution[1])
-		game->ray.buf[i] =(int*)val_malloc(sizeof(int) * game->resolution[0]);
+	game->ray.buf = (int**)val_malloc(sizeof(int*) * game->screen_height);
+	while (++i < game->screen_height)
+		game->ray.buf[i] =(int*)val_malloc(sizeof(int) * game->screen_width);
 	i = -1;
-	while (++i < game->resolution[1])
+	while (++i < game->screen_height)
 	{
 		j = -1;
-		while (++j < game->resolution[0])
+		while (++j < game->screen_width)
 			game->ray.buf[i][j] = 0;
 	}
 }

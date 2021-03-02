@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:53 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/26 18:59:42 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/28 17:31:32 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	raycasting(t_game *game)
 	int		x;
 
 	x = -1;
-	while (++x < game->resolution[0])
+	while (++x < game->screen_width)
 	{
 		play_set(game, x);
 		dir_set(game);
@@ -25,6 +25,7 @@ void	raycasting(t_game *game)
 		draw_set(game);
 		texture_set(game, x);
 	}
+	int_free(game->ray.buf, 2, game->screen_height);
 }
 
 void	check_wall(t_game *game)

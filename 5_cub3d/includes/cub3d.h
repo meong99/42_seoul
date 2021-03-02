@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/26 20:18:20 by mchae            ###   ########.fr       */
+/*   Updated: 2021/02/28 17:30:29 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 # define KEY_ESC			53
 # define CHARACTER_DIRS "SNWE"
 # define TRUE 1
-# define TEX_WIDTH 64
-# define TEX_HEIGHT 64
 
 # define NORTH 0
 # define SOUTH 1
@@ -60,6 +58,7 @@ typedef struct	s_img
 	int		size_l;
 	int		bpp;
 	int		endian;
+	int		dir_texture;
 }				t_img;
 
 typedef struct	s_ray
@@ -118,7 +117,6 @@ typedef struct	s_game
 	char	*texture_path[5];
 	int		floor_color[3];
 	int		ceiling_color[3];
-	int		**pixel_map;
 }				t_game;
 
 /*
@@ -183,7 +181,7 @@ void	distance(t_game *game);
 **  image.c
 */
 void	load_xpm_image(t_game *game, int i, char *tex_path);
-void	draw_image(t_game *game, int **buffer);
+void	draw_image(t_game *game);
 
 /*
 **	ray_init.c
@@ -212,8 +210,8 @@ void	error_exit(char *massege);
 /*
 ** malloc_free.c
 */
-void	char_free(char **val, int i);
-void	int_free(int **val, int i);
+void	char_free(char **val, int type);
+void	int_free(int **val, int type, int index);
 void	*val_malloc(size_t size);
 
 #endif
