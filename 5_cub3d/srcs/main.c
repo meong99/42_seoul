@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/28 16:11:09 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/02 14:54:23 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		main(int argc, char *argv[])
 	game_init(&game, argv[1]);
 	mwi_init(&game);
 	ray_init(&game);
+	raycasting(&game);
 	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &event_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &win_close, 0);
 
@@ -33,7 +34,9 @@ int		event_key(int key_code, t_game *game)
 {
 	if (key_code == KEY_ESC)
 		exit(0);
-	game = 0;
+	else
+		player_event_key(game, key_code);
+	raycasting(game);
 	return (0);
 }
 

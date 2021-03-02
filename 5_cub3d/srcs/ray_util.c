@@ -63,7 +63,7 @@ void	draw_set(t_game *game)
 	if (game->ray.side == 0)
 	{
 		game->ray.perp_wall_dist = (game->ray.map_x - game->ray.char_pos_x +(1 - game->ray.step_x) / 2) / game->ray.ray_dir_x;
-		if (game->ray.ray_dir_y > 0)
+		if (game->ray.step_x > 0)
 			game->img.dir_texture = NORTH;
 		else
 			game->img.dir_texture = SOUTH;
@@ -71,11 +71,10 @@ void	draw_set(t_game *game)
 	else
 	{
 		game->ray.perp_wall_dist = (game->ray.map_y - game->ray.char_pos_y +(1 - game->ray.step_y) / 2) / game->ray.ray_dir_y;
-		if (game->ray.ray_dir_x > 0)
+		if (game->ray.step_y > 0)
 			game->img.dir_texture = EAST;
 		else
 			game->img.dir_texture = WEST;
-
 	}
 	game->ray.line_height = (int)(game->screen_height / game->ray.perp_wall_dist);
 	game->ray.draw_start = -game->ray.line_height / 2 + game->screen_height / 2;
@@ -108,8 +107,7 @@ void	texture_set(t_game *game, int x)
 	{
 		game->ray.tex_y = (int)game->ray.tex_pos & (game->tex[game->img.dir_texture].texture_height - 1);
 		game->ray.tex_pos += game->ray.step;
-		color = game->tex[game->img.dir_texture].data[game->tex[game->img.dir_texture].size_l / (game->tex[game->img.dir_texture].bpp / 8) * game->ray.tex_y + game->ray.tex_x];
+		color = game->tex[game->img.dir_texture].data[game->tex[game->img.dir_texture].texture_height * game->ray.tex_y + game->ray.tex_x];
 		game->ray.buf[y][x] = color;
 	}
-	draw_image(game);
 }

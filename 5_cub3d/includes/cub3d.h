@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/28 17:30:29 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/02 15:28:35 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 # include <time.h>
 # include <unistd.h>
 
-# define X_EVENT_KEY_PRESS		2
-# define X_EVENT_KEY_EXIT		17 //Exit program key code
-# define KEY_ESC			53
+# define X_EVENT_KEY_PRESS 2
+# define X_EVENT_KEY_EXIT 17 //Exit program key code
+# define KEY_ESC 53
 # define CHARACTER_DIRS "SNWE"
 # define TRUE 1
 
@@ -38,6 +38,8 @@
 # define RESOLUTION 5
 # define FLOOR_COLOR 6
 # define CEILING_COLOR 7
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.05
 
 typedef struct	s_tex
 {
@@ -93,6 +95,10 @@ typedef struct	s_ray
 	double	tex_pos;
 	int		tex_x;
 	int		tex_y;
+	double	old_dir_x;
+	double	old_dir_y;
+	double	old_plane_x;
+	double	old_plane_y;
 }				t_ray;
 
 typedef struct	s_game
@@ -213,5 +219,12 @@ void	error_exit(char *massege);
 void	char_free(char **val, int type);
 void	int_free(int **val, int type, int index);
 void	*val_malloc(size_t size);
+
+/*
+** player.c
+*/
+void	player_event_key(t_game *game, int key_code);
+void	player_move(t_game *game, int key_code);
+void	player_cam(t_game *game, int key_code);
 
 #endif

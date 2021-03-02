@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:30:31 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/28 17:13:28 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/02 14:28:17 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	ray_init(t_game *game)
 	i = -1;
 	while (++i < 5)
 		char_free(&game->texture_path[i], 1);
-	buf_init(game);
-	raycasting(game);
 }
 
 void	buf_init(t_game *game)

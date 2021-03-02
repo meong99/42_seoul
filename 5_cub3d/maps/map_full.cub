@@ -1,8 +1,8 @@
 R 1920 800
 NO ./textures/NO.xpm
-SO ./textures/SO.xpm
+SO ./textures/south.xpm
 WE ./textures/WE.xpm
-EA ./textures/EA.xpm
+EA ./textures/east.xpm
 
 S ./textures/orangefish.xpm
 F 220,100,0
@@ -13,7 +13,7 @@ C 225,30,0
 100000020000001
 100010000010001
 100000000000001
-1002000S0002001
+1002000W0002001
 100000000000001
 100000000000001
 100011000001101
