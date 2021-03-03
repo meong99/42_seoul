@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:23:24 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/28 17:31:27 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/03 16:02:58 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_image(t_game *game)
 	{
 		j = -1;
 		while (++j < game->screen_width)
-			game->img.data[i * game->screen_width + j] = game->ray.buf[i][j];
+			game->img.data[game->img.size_l / (game->img.bpp / 8) * i + j] = game->ray.buf[i][j];
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 }

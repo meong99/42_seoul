@@ -107,7 +107,7 @@ void	texture_set(t_game *game, int x)
 	{
 		game->ray.tex_y = (int)game->ray.tex_pos & (game->tex[game->img.dir_texture].texture_height - 1);
 		game->ray.tex_pos += game->ray.step;
-		color = game->tex[game->img.dir_texture].data[game->tex[game->img.dir_texture].texture_height * game->ray.tex_y + game->ray.tex_x];
+		color = game->tex[game->img.dir_texture].data[game->tex[game->img.dir_texture].size_l / (game->tex[game->img.dir_texture].bpp / 8) * game->ray.tex_y + game->ray.tex_x];
 		game->ray.buf[y][x] = color;
 	}
 }
