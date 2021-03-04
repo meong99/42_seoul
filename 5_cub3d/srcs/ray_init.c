@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:30:31 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/02 14:28:17 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/03 16:22:07 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ray_init(t_game *game)
 
 	i = -1;
 	dir_plane_init(game);
-	while (++i < SPRITE)
+	while (++i <= SPRITE)
 		load_xpm_image(game, i, game->texture_path[i]);
 	i = -1;
 	while (++i < 5)
