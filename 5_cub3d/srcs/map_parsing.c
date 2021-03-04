@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:50 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/28 16:54:00 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/04 17:36:11 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,20 @@ void	parsing_map_info(t_game *game)
 		tmp = ft_strrchr(game->info_map[i], ' ') + 1;
 		game->texture_path[i] = ft_strdup(tmp);
 	}
-	parsing_color(game, FLOOR_COLOR, game->floor_color);
-	parsing_color(game, CEILING_COLOR, game->ceiling_color);
+	parsing_color(game, FLOOR_COLOR);
+	parsing_color(game, CEILING_COLOR);
 	i = -1;
 	while (++i < 8)
 		char_free(&game->info_map[i], 1);
 }
 
-void	parsing_color(t_game *game, int type, int *p_color)
+void	parsing_color(t_game *game, int type)
 {
 	int		i;
 	int		j;
 	char	*tmp;
 	char	**tmp_split;
+	int		temp_color[3];
 
 	tmp = ft_strchr(game->info_map[type], ' ');
 	invalid_char_error(tmp, type);
@@ -52,6 +53,21 @@ void	parsing_color(t_game *game, int type, int *p_color)
 	if (j != 3)
 		error_exit("color over count");
 	while (++i < 3)
-		p_color[i] = ft_atoi(tmp_split[i]);
+		temp_color[i] = ft_atoi(tmp_split[i]);
 	char_free(tmp_split, 2);
+	get_color(temp_color, &game->color[type - 6]);
+}
+
+void	get_color(int *temp_color, int *color)
+{
+	int i;
+
+	i = -1;
+	*color = 0;
+	while (++i < 3)
+	{
+		if (temp_color[i] > 255 || temp_color[i] < 0)
+			error_exit("color over value");
+		*color = (*color << 8) + temp_color[i];
+	}
 }

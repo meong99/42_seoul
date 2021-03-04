@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:30:31 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/03 16:22:07 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/04 17:10:21 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,37 +45,33 @@ void	buf_init(t_game *game)
 
 void	dir_plane_init(t_game *game)
 {
+	game->ray.dir_y = 0.0;
+	game->ray.dir_x = 0.0;
+	game->ray.plane_y = 0.0;
+	game->ray.plane_x = 0.0;
 	dir_check_init(game);
-	if (game->ray.dir_x)
-		game->ray.dir_y = 0;
-	else
-		game->ray.dir_x = 0;
-	if (game->ray.plane_x)
-		game->ray.plane_y = 0;
-	else
-		game->ray.plane_x = 0;
 }
 
 void	dir_check_init(t_game *game)
 {
 	if (game->char_dir == 'S')
 	{
-		game->ray.dir_y = 1;
+		game->ray.dir_y = 1.0;
 		game->ray.plane_x = 0.66;
 	}
 	else if (game->char_dir == 'N')
 	{
-		game->ray.dir_y = -1;
+		game->ray.dir_y = -1.0;
 		game->ray.plane_x = -0.66;
 	}
 	else if (game->char_dir == 'W')
 	{
-		game->ray.dir_x = -1;
+		game->ray.dir_x = -1.0;
 		game->ray.plane_y = 0.66;
 	}
 	else
 	{
-		game->ray.dir_x = 1;
+		game->ray.dir_x = 1.0;
 		game->ray.plane_y = -0.66;
 	}
 }

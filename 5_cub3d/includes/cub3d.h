@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/02 15:28:35 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/04 17:34:21 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 # define RESOLUTION 5
 # define FLOOR_COLOR 6
 # define CEILING_COLOR 7
+# define FLOOR 0
+# define CEILING 1
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.05
 
@@ -121,8 +123,7 @@ typedef struct	s_game
 	int		screen_width;
 	int		screen_height;
 	char	*texture_path[5];
-	int		floor_color[3];
-	int		ceiling_color[3];
+	int		color[2];
 }				t_game;
 
 /*
@@ -165,7 +166,7 @@ void	character_error(t_game *game, int character);
 */
 void	info_error(t_game *game);
 void	element_count_error(t_game *game);
-void	screen_size_and_color_error(t_game *game);
+void	screen_size_error(t_game *game);
 int		overlap_error(t_game *game, int type);
 void	invalid_char_error(const char *info, int type);
 
@@ -173,7 +174,8 @@ void	invalid_char_error(const char *info, int type);
 ** map_parsing.c
 */
 void	parsing_map_info(t_game *game);
-void	parsing_color(t_game *game, int type, int *p_color);
+void	parsing_color(t_game *game, int type);
+void	get_color(int *temp_color, int *color);
 
 /*
 **	ray.c
@@ -188,6 +190,7 @@ void	distance(t_game *game);
 */
 void	load_xpm_image(t_game *game, int i, char *tex_path);
 void	draw_image(t_game *game);
+void	draw_fl_cei(t_game *game);
 
 /*
 **	ray_init.c

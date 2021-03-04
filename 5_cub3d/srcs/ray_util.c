@@ -54,7 +54,7 @@ void	hit_scan(t_game *game)
 
 		}
 		if (game->map[game->ray.map_y][game->ray.map_x] > 0)
-				game->ray.hit = 1;
+			game->ray.hit = 1;
 	}
 }
 
@@ -62,19 +62,19 @@ void	draw_set(t_game *game)
 {
 	if (game->ray.side == 0)
 	{
-		game->ray.perp_wall_dist = (game->ray.map_x - game->ray.char_pos_x +(1 - game->ray.step_x) / 2) / game->ray.ray_dir_x;
+		game->ray.perp_wall_dist = (game->ray.map_x - game->ray.char_pos_x + (1 - game->ray.step_x) / 2) / game->ray.ray_dir_x;
 		if (game->ray.step_x > 0)
-			game->img.dir_texture = NORTH;
-		else
-			game->img.dir_texture = SOUTH;
-	}
-	else
-	{
-		game->ray.perp_wall_dist = (game->ray.map_y - game->ray.char_pos_y +(1 - game->ray.step_y) / 2) / game->ray.ray_dir_y;
-		if (game->ray.step_y > 0)
 			game->img.dir_texture = EAST;
 		else
 			game->img.dir_texture = WEST;
+	}
+	else
+	{
+		game->ray.perp_wall_dist = (game->ray.map_y - game->ray.char_pos_y + (1 - game->ray.step_y) / 2) / game->ray.ray_dir_y;
+		if (game->ray.step_y > 0)
+			game->img.dir_texture = NORTH;
+		else
+			game->img.dir_texture = SOUTH;
 	}
 	game->ray.line_height = (int)(game->screen_height / game->ray.perp_wall_dist);
 	game->ray.draw_start = -game->ray.line_height / 2 + game->screen_height / 2;
@@ -83,10 +83,6 @@ void	draw_set(t_game *game)
 	game->ray.draw_end = game->ray.line_height / 2 + game->screen_height / 2;
 	if (game->ray.draw_end >= game->screen_height)
 		game->ray.draw_end = game->screen_height - 1;
-	if (game->ray.side == 0)
-		game->ray.wall_x = game->ray.char_pos_y + game->ray.perp_wall_dist * game->ray.ray_dir_y;
-	else
-		game->ray.wall_x =  game->ray.char_pos_x+ game->ray.perp_wall_dist * game->ray.dir_x;
 }
 
 void	texture_set(t_game *game, int x)
@@ -94,11 +90,15 @@ void	texture_set(t_game *game, int x)
 	int		y;
 	int		color;
 
+	if (game->ray.side == 0)
+		game->ray.wall_x = game->ray.char_pos_y + game->ray.perp_wall_dist * game->ray.ray_dir_y;
+	else
+		game->ray.wall_x =  game->ray.char_pos_x+ game->ray.perp_wall_dist * game->ray.ray_dir_x;
 	game->ray.wall_x -= floor((game->ray.wall_x));
-	game->ray.tex_x = (int)(game->ray.wall_x * (double)game->tex[game->img.dir_texture].texture_width);
+	game->ray.tex_x = (int)(game->ray.wall_x * game->tex[game->img.dir_texture].texture_width);
 	if (game->ray.side == 0 && game->ray.ray_dir_x > 0)
 		game->ray.tex_x = game->tex[game->img.dir_texture].texture_width - game->ray.tex_x - 1;
-	if (game->ray.side == 1 && game->ray.ray_dir_y < 0)
+	else if (game->ray.side == 1 && game->ray.ray_dir_y < 0)
 		game->ray.tex_x = game->tex[game->img.dir_texture].texture_width - game->ray.tex_x - 1;
 	game->ray.step = 1.0 * game->tex[game->img.dir_texture].texture_height / game->ray.line_height;
 	game->ray.tex_pos = (game->ray.draw_start - game->screen_height / 2 + game->ray.line_height / 2) * game->ray.step;

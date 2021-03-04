@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:43 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/28 16:17:18 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/04 17:34:01 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	info_error(t_game *game)
 {
 	element_count_error(game);
-	screen_size_and_color_error(game);
+	screen_size_error(game);
 }
 
 void	element_count_error(t_game *game)
@@ -36,7 +36,7 @@ void	element_count_error(t_game *game)
 	parsing_map_info(game);
 }
 
-void	screen_size_and_color_error(t_game *game)
+void	screen_size_error(t_game *game)
 {
 	int		i;
 	int		resol_x;
@@ -48,12 +48,6 @@ void	screen_size_and_color_error(t_game *game)
 		game->screen_width = resol_x;
 	if (game->screen_height > resol_y)
 		game->screen_height = resol_y;
-	while (++i < 3)
-	{
-		if (game->floor_color[i] > 255 || game->floor_color[i] < 0 ||
-			game->ceiling_color[i] > 255 || game->ceiling_color[i] < 0)
-			error_exit("color over value");
-	}
 }
 
 int		overlap_error(t_game *game, int type)

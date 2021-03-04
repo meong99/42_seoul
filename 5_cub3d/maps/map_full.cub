@@ -5,8 +5,8 @@ WE ./textures/WE.xpm
 EA ./textures/east.xpm
 
 S ./textures/orangefish.xpm
-F 220,100,0
-C 225,30,0
+F 153,153,153
+C 0,204,255
 
 111111111111111
 100000000000001
