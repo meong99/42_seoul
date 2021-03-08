@@ -12,30 +12,30 @@ void	player_move(t_game *game, int key_code)
 {
 	if (key_code == K_W)
 	{
-		if(!(game->map[(int)(game->ray.char_pos_x + game->ray.dir_x * game->ray.move_speed)][(int)(game->ray.char_pos_y)]))
+		if(!(game->map[(int)(game->ray.char_pos_y)][(int)(game->ray.char_pos_x + game->ray.dir_x * game->ray.move_speed)]))
 			game->ray.char_pos_x += game->ray.dir_x * game->ray.move_speed;
-		if(!(game->map[(int)(game->ray.char_pos_x)][(int)(game->ray.char_pos_y + game->ray.dir_y * game->ray.move_speed)]))
+		if(!(game->map[(int)(game->ray.char_pos_y + game->ray.dir_y * game->ray.move_speed)][(int)(game->ray.char_pos_x)]))
 			game->ray.char_pos_y += game->ray.dir_y * game->ray.move_speed;
 	}
 	else if (key_code == K_S)
 	{
-		if(!(game->map[(int)(game->ray.char_pos_x - game->ray.dir_x * game->ray.move_speed)][(int)(game->ray.char_pos_y)]))
+		if(!(game->map[(int)(game->ray.char_pos_y)][(int)(game->ray.char_pos_x - game->ray.dir_x * game->ray.move_speed)]))
 			game->ray.char_pos_x -= game->ray.dir_x * game->ray.move_speed;
-		if(!(game->map[(int)(game->ray.char_pos_x)][(int)(game->ray.char_pos_y - game->ray.dir_y * game->ray.move_speed)]))
+		if(!(game->map[(int)(game->ray.char_pos_y - game->ray.dir_y * game->ray.move_speed)][(int)(game->ray.char_pos_x)]))
 			game->ray.char_pos_y -= game->ray.dir_y * game->ray.move_speed;
 	}
 	else if (key_code == K_A)
 	{
-		if(!(game->map[(int)(game->ray.char_pos_x)][(int)(game->ray.char_pos_y + game->ray.dir_x * game->ray.move_speed)]))
+		if(!(game->map[(int)(game->ray.char_pos_y + game->ray.dir_x * game->ray.move_speed)][(int)(game->ray.char_pos_x)]))
 			game->ray.char_pos_y += game->ray.dir_x * game->ray.move_speed;
-		if(!(game->map[(int)(game->ray.char_pos_x + game->ray.dir_y * game->ray.move_speed)][(int)(game->ray.char_pos_y)]))
+		if(!(game->map[(int)(game->ray.char_pos_y)][(int)(game->ray.char_pos_x + game->ray.dir_y * game->ray.move_speed)]))
 			game->ray.char_pos_x -= game->ray.dir_y * game->ray.move_speed;
 	}
 	else if (key_code == K_D)
 	{
-		if(!(game->map[(int)(game->ray.char_pos_x)][(int)(game->ray.char_pos_y - game->ray.dir_x * game->ray.move_speed)]))
+		if(!(game->map[(int)(game->ray.char_pos_y - game->ray.dir_x * game->ray.move_speed)][(int)(game->ray.char_pos_x)]))
 			game->ray.char_pos_y -= game->ray.dir_x * game->ray.move_speed;
-		if(!(game->map[(int)(game->ray.char_pos_x - game->ray.dir_y * game->ray.move_speed)][(int)(game->ray.char_pos_y)]))
+		if(!(game->map[(int)(game->ray.char_pos_y)][(int)(game->ray.char_pos_x - game->ray.dir_y * game->ray.move_speed)]))
 			game->ray.char_pos_x += game->ray.dir_y * game->ray.move_speed;
 	}
 }
