@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:30:31 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/07 14:08:47 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/08 15:41:57 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	ray_init(t_game *game)
 	int		i;
 
 	i = -1;
-	dir_plane_init(game);
+	game->ray.turn_speed = get_radian(3);
+	game->ray.move_speed = 0.05;
+	player_dir_init(game);
 	while (++i <= SPRITE)
 		load_xpm_image(game, i, game->texture_path[i]);
 	i = -1;
@@ -40,38 +42,5 @@ void	buf_init(t_game *game)
 		j = -1;
 		while (++j < game->screen_width)
 			game->ray.buf[i][j] = 0;
-	}
-}
-
-void	dir_plane_init(t_game *game)
-{
-	game->ray.dir_y = 0.0;
-	game->ray.dir_x = 0.0;
-	game->ray.plane_y = 0.0;
-	game->ray.plane_x = 0.0;
-	dir_check_init(game);
-}
-
-void	dir_check_init(t_game *game)
-{
-	if (game->char_dir == 'S')
-	{
-		game->ray.dir_y = 1.0;
-		game->ray.plane_x = 0.66;
-	}
-	else if (game->char_dir == 'N')
-	{
-		game->ray.dir_y = -1.0;
-		game->ray.plane_x = -0.66;
-	}
-	else if (game->char_dir == 'W')
-	{
-		game->ray.dir_x = -1.0;
-		game->ray.plane_y = 0.66;
-	}
-	else
-	{
-		game->ray.dir_x = 1.0;
-		game->ray.plane_y = -0.66;
 	}
 }

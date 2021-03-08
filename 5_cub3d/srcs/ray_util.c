@@ -65,18 +65,18 @@ void	draw_set(t_game *game)
 	if (game->ray.side == 0)
 	{
 		game->ray.perp_wall_dist = (game->ray.map_x - game->ray.char_pos_x + (1 - game->ray.step_x) / 2) / game->ray.ray_dir_x;
-		if (game->ray.dir_y > 0)
-			game->img.dir_texture = NORTH;
+		if (game->ray.step_x > 0)
+			game->img.dir_texture = EAST;
 		else
-			game->img.dir_texture = SOUTH;
+			game->img.dir_texture = WEST;
 	}
 	else
 	{
 		game->ray.perp_wall_dist = (game->ray.map_y - game->ray.char_pos_y + (1 - game->ray.step_y) / 2) / game->ray.ray_dir_y;
-		if (game->ray.dir_x > 0)
-			game->img.dir_texture = EAST;
+		if (game->ray.step_y > 0)
+			game->img.dir_texture = SOUTH;
 		else
-			game->img.dir_texture = WEST;
+			game->img.dir_texture = NORTH;
 	}
 	game->ray.line_height = (int)(game->screen_height / game->ray.perp_wall_dist);
 	game->ray.draw_start = -game->ray.line_height / 2 + game->screen_height / 2;

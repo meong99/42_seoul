@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/28 16:58:40 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/08 16:06:50 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ void	find_character(t_game *game)
 			&& ft_strchr(CHARACTER_DIRS, game->char_map[i][j]))
 			{
 				character++;
-				game->ray.char_pos_x = j;
-				game->ray.char_pos_y = i;
+				game->ray.char_pos_x = 0.5f + j;
+				game->ray.char_pos_y = 0.5f + i;
 			}
 		}
 	}

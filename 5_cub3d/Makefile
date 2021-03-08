@@ -29,6 +29,7 @@ SRCS_NAME =	main.c\
 		ray_init.c\
 		image.c\
 		player.c\
+		player_move.c\
 		malloc_free.c\
 		get_next_line.c\
 		get_next_line_utils.c

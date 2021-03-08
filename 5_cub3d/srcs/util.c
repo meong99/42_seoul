@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:54 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/26 19:44:25 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/08 15:36:34 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,9 @@ void	error_exit(char *massege)
 	printf("Error\n");
 	printf("%s\n", massege);
 	exit(-1);
+}
+
+double	get_radian(int angle)
+{
+	return (angle * (M_PI / 180));
 }

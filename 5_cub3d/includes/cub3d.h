@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/04 17:34:21 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/08 15:42:08 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@
 # define CEILING_COLOR 7
 # define FLOOR 0
 # define CEILING 1
-# define MOVE_SPEED 0.05
-# define ROT_SPEED 0.05
 
 typedef struct	s_tex
 {
@@ -101,6 +99,8 @@ typedef struct	s_ray
 	double	old_dir_y;
 	double	old_plane_x;
 	double	old_plane_y;
+	double	turn_speed;
+	double	move_speed;
 }				t_ray;
 
 typedef struct	s_game
@@ -196,8 +196,6 @@ void	draw_fl_cei(t_game *game);
 **	ray_init.c
 */
 void	ray_init(t_game *game);
-void	dir_plane_init(t_game *game);
-void	dir_check_init(t_game *game);
 void	buf_init(t_game *game);
 
 /*
@@ -215,6 +213,7 @@ void	texture_set(t_game *game, int x);
 int		*todigit(t_game *game, char *s, int index);
 int		count_element(char **element);
 void	error_exit(char *massege);
+double	get_radian(int angle);
 
 /*
 ** malloc_free.c
@@ -222,9 +221,14 @@ void	error_exit(char *massege);
 void	char_free(char **val, int type);
 void	int_free(int **val, int type, int index);
 void	*val_malloc(size_t size);
-
 /*
 ** player.c
+*/
+void	player_dir_init(t_game *game);
+void	player_set_dir(t_game *game, double angle);
+
+/*
+** player_move.c
 */
 void	player_event_key(t_game *game, int key_code);
 void	player_move(t_game *game, int key_code);

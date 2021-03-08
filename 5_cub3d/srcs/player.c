@@ -1,63 +1,34 @@
 #include "cub3d.h"
 
-void	player_event_key(t_game *game, int key_code)
+
+void	player_dir_init(t_game *game)
 {
-	if (key_code == K_W || key_code == K_A || key_code == K_S || key_code == K_D)
-		player_move(game, key_code);
-	else if (key_code == K_AR_U || key_code == K_AR_D || key_code == K_AR_L || key_code == K_AR_R)
-		player_cam(game, key_code);
+	int		angle;
+
+	game->ray.dir_x = 1.0;
+	game->ray.dir_y = 0.0;
+	game->ray.plane_x = 0.0;
+	game->ray.plane_y = -0.66;
+	if (game->char_dir == 'E')
+		angle = 0;
+	else if (game->char_dir == 'S')
+		angle = 90;
+	else if (game->char_dir == 'W')
+		angle = 180;
+	else
+		angle = 270;
+	player_set_dir(game, get_radian(angle));
 }
 
-void	player_move(t_game *game, int key_code)
+void	player_set_dir(t_game *game, double radian)
 {
-	if (key_code == K_W)
-	{
-		if(!(game->map[(int)(game->ray.char_pos_x + game->ray.dir_x * MOVE_SPEED)][(int)(game->ray.char_pos_y)]))
-			game->ray.char_pos_x += game->ray.dir_x * MOVE_SPEED;
-		if(!(game->map[(int)(game->ray.char_pos_x)][(int)(game->ray.char_pos_y + game->ray.dir_y * MOVE_SPEED)]))
-			game->ray.char_pos_y += game->ray.dir_y * MOVE_SPEED;
-	}
-	else if (key_code == K_S)
-	{
-		if(!(game->map[(int)(game->ray.char_pos_x - game->ray.dir_x * MOVE_SPEED)][(int)(game->ray.char_pos_y)]))
-			game->ray.char_pos_x -= game->ray.dir_x * MOVE_SPEED;
-		if(!(game->map[(int)(game->ray.char_pos_x)][(int)(game->ray.char_pos_y - game->ray.dir_y * MOVE_SPEED)]))
-			game->ray.char_pos_y -= game->ray.dir_y * MOVE_SPEED;
-	}
-	else if (key_code == K_A)
-	{
-		if(!(game->map[(int)(game->ray.char_pos_x)][(int)(game->ray.char_pos_y + game->ray.dir_x * MOVE_SPEED)]))
-			game->ray.char_pos_y += game->ray.dir_x * MOVE_SPEED;
-		if(!(game->map[(int)(game->ray.char_pos_x + game->ray.dir_y * MOVE_SPEED)][(int)(game->ray.char_pos_y)]))
-			game->ray.char_pos_x += game->ray.dir_y * MOVE_SPEED;
-	}
-	else if (key_code == K_D)
-	{
-		if(!(game->map[(int)(game->ray.char_pos_x)][(int)(game->ray.char_pos_y - game->ray.dir_x * MOVE_SPEED)]))
-			game->ray.char_pos_y -= game->ray.dir_x * MOVE_SPEED;
-		if(!(game->map[(int)(game->ray.char_pos_x - game->ray.dir_y * MOVE_SPEED)][(int)(game->ray.char_pos_y)]))
-			game->ray.char_pos_x -= game->ray.dir_y * MOVE_SPEED;
-	}
+	int		temp;
+
+	temp = game->ray.dir_x;
+	game->ray.dir_x = game->ray.dir_x * cos(radian) - game->ray.dir_y * sin(radian);
+	game->ray.dir_y = temp * sin(radian) + game->ray.dir_y * cos(radian);
+	temp = game->ray.plane_x;
+	game->ray.plane_x = game->ray.plane_x * cos(radian) - game->ray.plane_y * sin(radian);
+	game->ray.plane_y = temp * sin(radian) + game->ray.plane_y * cos(radian);
 }
 
-void	player_cam(t_game *game, int key_code)
-{
-	if (key_code == K_AR_L)
-	{
-		game->ray.old_dir_x = game->ray.dir_x;
-		game->ray.dir_x = game->ray.dir_x * cos(ROT_SPEED) - game->ray.dir_y * sin(ROT_SPEED);
-		game->ray.dir_y = game->ray.old_dir_x * sin(ROT_SPEED) + game->ray.dir_y * cos(ROT_SPEED);
-		game->ray.old_plane_x = game->ray.plane_x;
-		game->ray.plane_x = game->ray.plane_x * cos(ROT_SPEED) - game->ray.plane_y * sin(ROT_SPEED);
-		game->ray.plane_y = game->ray.old_plane_x * sin(ROT_SPEED) + game->ray.plane_y * cos(ROT_SPEED);
-	}
-	else if (key_code == K_AR_R)
-	{
-		game->ray.old_dir_x = game->ray.dir_x;
-		game->ray.dir_x = game->ray.dir_x * cos(-ROT_SPEED) - game->ray.dir_y * sin(-ROT_SPEED);
-		game->ray.dir_y = game->ray.old_dir_x * sin(-ROT_SPEED) + game->ray.dir_y * cos(-ROT_SPEED);
-		game->ray.old_plane_x = game->ray.plane_x;
-		game->ray.plane_x = game->ray.plane_x * cos(-ROT_SPEED) - game->ray.plane_y * sin(-ROT_SPEED);
-		game->ray.plane_y = game->ray.old_plane_x * sin(-ROT_SPEED) + game->ray.plane_y * cos(-ROT_SPEED);
-	}
-}
