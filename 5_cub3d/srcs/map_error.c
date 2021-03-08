@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/08 18:09:48 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/08 18:39:37 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@ void	character_error(t_info *info, t_player *player, int character)
 		[(int)player->char_pos_y][(int)player->char_pos_x];
 	info->char_map[(int)player->char_pos_y][(int)player->char_pos_x] = '0';
 }
-
-/*
-** void	asdasd(t_game *game)
-** {
-** 	int i = -1;
-** 	while (game->char_map[++i])
-** 		printf("%s\n", game->char_map[i]);
-** }
-*/
-/*
-** 	asdasd(game);
-** 	usleep(5000);
-*/
 
 void	map_check(t_info *info, int pos_x, int pos_y)
 {
