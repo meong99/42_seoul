@@ -3,61 +3,64 @@
 void	player_event_key(t_game *game, int key_code)
 {
 	if (key_code == K_W || key_code == K_A || key_code == K_S || key_code == K_D)
-		player_move(game, key_code);
+		player_move(&game->info, &game->player, key_code);
 	else if (key_code == K_AR_U || key_code == K_AR_D || key_code == K_AR_L || key_code == K_AR_R)
-		player_cam(game, key_code);
+		player_cam(&game->player, key_code);
 }
 
-void	player_move(t_game *game, int key_code)
+void	player_move(t_info *info, t_player *player, int key_code)
 {
 	if (key_code == K_W)
 	{
-		if(!(game->map[(int)(game->ray.char_pos_y)][(int)(game->ray.char_pos_x + game->ray.dir_x * game->ray.move_speed)]))
-			game->ray.char_pos_x += game->ray.dir_x * game->ray.move_speed;
-		if(!(game->map[(int)(game->ray.char_pos_y + game->ray.dir_y * game->ray.move_speed)][(int)(game->ray.char_pos_x)]))
-			game->ray.char_pos_y += game->ray.dir_y * game->ray.move_speed;
+		if(!(info->char_map[(int)(player->char_pos_y)][(int)(player->char_pos_x + player->dir_x * player->move_speed)]))
+			player->char_pos_x += player->dir_x * player->move_speed;
+		if(!(info->char_map[(int)(player->char_pos_y + player->dir_y * player->move_speed)][(int)(player->char_pos_x)]))
+			player->char_pos_y += player->dir_y * player->move_speed;
 	}
 	else if (key_code == K_S)
 	{
-		if(!(game->map[(int)(game->ray.char_pos_y)][(int)(game->ray.char_pos_x - game->ray.dir_x * game->ray.move_speed)]))
-			game->ray.char_pos_x -= game->ray.dir_x * game->ray.move_speed;
-		if(!(game->map[(int)(game->ray.char_pos_y - game->ray.dir_y * game->ray.move_speed)][(int)(game->ray.char_pos_x)]))
-			game->ray.char_pos_y -= game->ray.dir_y * game->ray.move_speed;
+		if(!(info->char_map[(int)(player->char_pos_y)][(int)(player->char_pos_x - player->dir_x * player->move_speed)]))
+			player->char_pos_x -= player->dir_x * player->move_speed;
+		if(!(info->char_map[(int)(player->char_pos_y - player->dir_y * player->move_speed)][(int)(player->char_pos_x)]))
+			player->char_pos_y -= player->dir_y * player->move_speed;
 	}
 	else if (key_code == K_A)
 	{
-		if(!(game->map[(int)(game->ray.char_pos_y + game->ray.dir_x * game->ray.move_speed)][(int)(game->ray.char_pos_x)]))
-			game->ray.char_pos_y += game->ray.dir_x * game->ray.move_speed;
-		if(!(game->map[(int)(game->ray.char_pos_y)][(int)(game->ray.char_pos_x + game->ray.dir_y * game->ray.move_speed)]))
-			game->ray.char_pos_x -= game->ray.dir_y * game->ray.move_speed;
+		if(!(info->char_map[(int)(player->char_pos_y + player->dir_x * player->move_speed)][(int)(player->char_pos_x)]))
+			player->char_pos_y += player->dir_x * player->move_speed;
+		if(!(info->char_map[(int)(player->char_pos_y)][(int)(player->char_pos_x + player->dir_y * player->move_speed)]))
+			player->char_pos_x -= player->dir_y * player->move_speed;
 	}
 	else if (key_code == K_D)
 	{
-		if(!(game->map[(int)(game->ray.char_pos_y - game->ray.dir_x * game->ray.move_speed)][(int)(game->ray.char_pos_x)]))
-			game->ray.char_pos_y -= game->ray.dir_x * game->ray.move_speed;
-		if(!(game->map[(int)(game->ray.char_pos_y)][(int)(game->ray.char_pos_x - game->ray.dir_y * game->ray.move_speed)]))
-			game->ray.char_pos_x += game->ray.dir_y * game->ray.move_speed;
+		if(!(info->char_map[(int)(player->char_pos_y - player->dir_x * player->move_speed)][(int)(player->char_pos_x)]))
+			player->char_pos_y -= player->dir_x * player->move_speed;
+		if(!(info->char_map[(int)(player->char_pos_y)][(int)(player->char_pos_x - player->dir_y * player->move_speed)]))
+			player->char_pos_x += player->dir_y * player->move_speed;
 	}
 }
 
-void	player_cam(t_game *game, int key_code)
+void	player_cam(t_player *player, int key_code)
 {
+	double	old_dir_x;
+	double	old_plane_x;
+
 	if (key_code == K_AR_L)
 	{
-		game->ray.old_dir_x = game->ray.dir_x;
-		game->ray.dir_x = game->ray.dir_x * cos(game->ray.turn_speed) - game->ray.dir_y * sin(game->ray.turn_speed);
-		game->ray.dir_y = game->ray.old_dir_x * sin(game->ray.turn_speed) + game->ray.dir_y * cos(game->ray.turn_speed);
-		game->ray.old_plane_x = game->ray.plane_x;
-		game->ray.plane_x = game->ray.plane_x * cos(game->ray.turn_speed) - game->ray.plane_y * sin(game->ray.turn_speed);
-		game->ray.plane_y = game->ray.old_plane_x * sin(game->ray.turn_speed) + game->ray.plane_y * cos(game->ray.turn_speed);
+		old_dir_x = player->dir_x;
+		player->dir_x = player->dir_x * cos(player->turn_speed) - player->dir_y * sin(player->turn_speed);
+		player->dir_y = old_dir_x * sin(player->turn_speed) + player->dir_y * cos(player->turn_speed);
+		old_plane_x = player->plane_x;
+		player->plane_x = player->plane_x * cos(player->turn_speed) - player->plane_y * sin(player->turn_speed);
+		player->plane_y = old_plane_x * sin(player->turn_speed) + player->plane_y * cos(player->turn_speed);
 	}
 	else if (key_code == K_AR_R)
 	{
-		game->ray.old_dir_x = game->ray.dir_x;
-		game->ray.dir_x = game->ray.dir_x * cos(-game->ray.turn_speed) - game->ray.dir_y * sin(-game->ray.turn_speed);
-		game->ray.dir_y = game->ray.old_dir_x * sin(-game->ray.turn_speed) + game->ray.dir_y * cos(-game->ray.turn_speed);
-		game->ray.old_plane_x = game->ray.plane_x;
-		game->ray.plane_x = game->ray.plane_x * cos(-game->ray.turn_speed) - game->ray.plane_y * sin(-game->ray.turn_speed);
-		game->ray.plane_y = game->ray.old_plane_x * sin(-game->ray.turn_speed) + game->ray.plane_y * cos(-game->ray.turn_speed);
+		old_dir_x = player->dir_x;
+		player->dir_x = player->dir_x * cos(-player->turn_speed) - player->dir_y * sin(-player->turn_speed);
+		player->dir_y = old_dir_x * sin(-player->turn_speed) + player->dir_y * cos(-player->turn_speed);
+		old_plane_x = player->plane_x;
+		player->plane_x = player->plane_x * cos(-player->turn_speed) - player->plane_y * sin(-player->turn_speed);
+		player->plane_y = old_plane_x * sin(-player->turn_speed) + player->plane_y * cos(-player->turn_speed);
 	}
 }

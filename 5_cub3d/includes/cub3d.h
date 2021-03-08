@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/08 15:42:08 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/08 18:26:04 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define FLOOR 0
 # define CEILING 1
 
-typedef struct	s_tex
+typedef struct	s_tex_info
 {
 	void	*img;
 	int		*data;
@@ -51,7 +51,8 @@ typedef struct	s_tex
 	int		texture_color;
 	int		texture_width;
 	int		texture_height;
-}				t_tex;
+	char	*texture_path;
+}				t_tex_info;
 
 typedef struct	s_img
 {
@@ -63,15 +64,37 @@ typedef struct	s_img
 	int		dir_texture;
 }				t_img;
 
-typedef struct	s_ray
+typedef struct	s_player
 {
-	int		**buf;
 	double	char_pos_x;
 	double	char_pos_y;
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
+	double	turn_speed;
+	double	move_speed;
+	char	char_dir;
+}				t_player;
+
+typedef struct	s_info
+{
+	int		color[2];
+	char	*map_name;
+	int		*rows;
+	int		cols;
+	char	**char_map;
+	char	*info_map[8];
+	int		info_check[8];
+	void	*mlx;
+	void	*win;
+	int		screen_width;
+	int		screen_height;
+}				t_info;
+
+typedef struct	s_ray
+{
+	int		**buf;
 	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
@@ -95,35 +118,15 @@ typedef struct	s_ray
 	double	tex_pos;
 	int		tex_x;
 	int		tex_y;
-	double	old_dir_x;
-	double	old_dir_y;
-	double	old_plane_x;
-	double	old_plane_y;
-	double	turn_speed;
-	double	move_speed;
 }				t_ray;
 
 typedef struct	s_game
 {
-	t_img	img;
-	t_tex	tex[5];
-	t_ray	ray;
-
-	void	*mlx;
-	void	*win;
-
-	char	*map_name;
-	int		*rows;
-	int		cols;
-	char	char_dir;
-	int		**map;
-	char	**char_map;
-	char	*info_map[8];
-	int		info_check[8];
-	int		screen_width;
-	int		screen_height;
-	char	*texture_path[5];
-	int		color[2];
+	t_img		img;
+	t_tex_info	tex_info[5];
+	t_ray		ray;
+	t_info		info;
+	t_player	player;
 }				t_game;
 
 /*
@@ -144,37 +147,37 @@ void	draw_2d_ray(t_game *game);
 **	init.c
 */
 void	game_init(t_game *game, char *filename);
-void	mwi_init(t_game *game);
+void	mwi_init(t_info *info, t_img *img);
 
 /*
 **	map.c
 */
-void	get_map(t_game *game, const char *filename);
-int		check_gnl(t_game *game, char *one_line);
-void	map_parsing(int fd, t_game *game);
-void	map_mapi(t_game *game, const char *map);
-void	find_character(t_game *game);
+void	get_map(t_info *info, t_player *player, t_tex_info *tex_info, const char *filename);
+int		check_gnl(t_info *info, char *one_line);
+void	map_parsing(int fd, t_info *info);
+void	map_mapi(t_info *info, const char *map);
+void	find_character(t_info *info, t_player *player);
 
 /*
 ** map_error.c
 */
-void	map_check(t_game *game, int pos_x, int pos_y);
-void	character_error(t_game *game, int character);
+void	map_check(t_info *info, int pos_x, int pos_y);
+void	character_error(t_info *info, t_player *player, int character);
 
 /*
 ** info_error.c
 */
-void	info_error(t_game *game);
-void	element_count_error(t_game *game);
-void	screen_size_error(t_game *game);
-int		overlap_error(t_game *game, int type);
+void	info_error(t_info *info, t_tex_info *tex_info);
+void	element_count_error(t_info *info, t_tex_info *tex_info);
+void	screen_size_error(t_info *info);
+int		overlap_error(t_info *info, int type);
 void	invalid_char_error(const char *info, int type);
 
 /*
 ** map_parsing.c
 */
-void	parsing_map_info(t_game *game);
-void	parsing_color(t_game *game, int type);
+void	parsing_map_info(t_info *info, t_tex_info *tex_info);
+void	parsing_color(t_info *info, int type);
 void	get_color(int *temp_color, int *color);
 
 /*
@@ -188,15 +191,15 @@ void	distance(t_game *game);
 /*
 **  image.c
 */
-void	load_xpm_image(t_game *game, int i, char *tex_path);
-void	draw_image(t_game *game);
-void	draw_fl_cei(t_game *game);
+void	load_xpm_image(t_tex_info *tex_info, t_info *info);
+void	draw_image(t_info *info, t_img *img, t_ray *ray);
+void	draw_fl_cei(t_info *info, t_ray *ray);
 
 /*
 **	ray_init.c
 */
 void	ray_init(t_game *game);
-void	buf_init(t_game *game);
+void	buf_init(t_info *info, t_ray *ray);
 
 /*
 ** ray_util.c
@@ -210,7 +213,6 @@ void	texture_set(t_game *game, int x);
 /*
 **	util.c
 */
-int		*todigit(t_game *game, char *s, int index);
 int		count_element(char **element);
 void	error_exit(char *massege);
 double	get_radian(int angle);
@@ -224,14 +226,14 @@ void	*val_malloc(size_t size);
 /*
 ** player.c
 */
-void	player_dir_init(t_game *game);
-void	player_set_dir(t_game *game, double angle);
+void	player_dir_init(t_player *player);
+void	player_set_dir(t_player *player, double angle);
 
 /*
 ** player_move.c
 */
 void	player_event_key(t_game *game, int key_code);
-void	player_move(t_game *game, int key_code);
-void	player_cam(t_game *game, int key_code);
+void	player_move(t_info *info, t_player *player, int key_code);
+void	player_cam(t_player *player, int key_code);
 
 #endif

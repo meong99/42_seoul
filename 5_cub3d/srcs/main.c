@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/04 17:00:10 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/08 18:01:54 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int		main(int argc, char *argv[])
 	if (argc < 2 || !argv)
 		return (-1);
 	game_init(&game, argv[1]);
-	mwi_init(&game);
+	mwi_init(&game.info, &game.img);
 	ray_init(&game);
 	raycasting(&game);
-	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &event_key, &game);
-	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &win_close, 0);
+	mlx_hook(game.info.win, X_EVENT_KEY_PRESS, 0, &event_key, &game);
+	mlx_hook(game.info.win, X_EVENT_KEY_EXIT, 0, &win_close, 0);
 
-	mlx_loop_hook(game.mlx, &main_loop, &game);
-	mlx_loop(game.mlx);
+	mlx_loop_hook(game.info.mlx, &main_loop, &game);
+	mlx_loop(game.info.mlx);
 	return (0);
 }
 

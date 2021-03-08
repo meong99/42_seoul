@@ -6,20 +6,19 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/23 19:49:48 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/08 18:09:48 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	character_error(t_game *game, int character)
+void	character_error(t_info *info, t_player *player, int character)
 {
 	if (character != 1)
-		error_exit("many player");
-	game->char_dir = game->char_map
-		[(int)game->ray.char_pos_y][(int)game->ray.char_pos_x];
-	game->char_map[(int)game->ray.char_pos_y][(int)game->ray.char_pos_x] = '0';
-	game->map[(int)game->ray.char_pos_y][(int)game->ray.char_pos_x] = 0;
+		error_exit("many info");
+	player->char_dir = info->char_map
+		[(int)player->char_pos_y][(int)player->char_pos_x];
+	info->char_map[(int)player->char_pos_y][(int)player->char_pos_x] = '0';
 }
 
 /*
@@ -35,24 +34,24 @@ void	character_error(t_game *game, int character)
 ** 	usleep(5000);
 */
 
-void	map_check(t_game *game, int pos_x, int pos_y)
+void	map_check(t_info *info, int pos_x, int pos_y)
 {
-	if (pos_y == -1 || pos_y >= game->cols ||
-			pos_x == -1 || game->char_map[pos_y][pos_x] == '\0')
+	if (pos_y == -1 || pos_y >= info->cols ||
+			pos_x == -1 || info->char_map[pos_y][pos_x] == '\0')
 		error_exit("not closed");
-	if (game->char_map[pos_y][pos_x] == '1' ||
-		game->char_map[pos_y][pos_x] == 'X' ||
-		game->char_map[pos_y][pos_x] == 'S')
+	if (info->char_map[pos_y][pos_x] == '1' ||
+		info->char_map[pos_y][pos_x] == 'X' ||
+		info->char_map[pos_y][pos_x] == 'S')
 		return ;
-	else if (game->char_map[pos_y][pos_x] != '0' &&
-		game->char_map[pos_y][pos_x] != '2')
+	else if (info->char_map[pos_y][pos_x] != '0' &&
+		info->char_map[pos_y][pos_x] != '2')
 		error_exit("invalid char");
-	if (game->char_map[pos_y][pos_x] == '2')
-		game->char_map[pos_y][pos_x] = 'S';
+	if (info->char_map[pos_y][pos_x] == '2')
+		info->char_map[pos_y][pos_x] = 'S';
 	else
-		game->char_map[pos_y][pos_x] = 'X';
-	map_check(game, pos_x + 1, pos_y);
-	map_check(game, pos_x - 1, pos_y);
-	map_check(game, pos_x, pos_y - 1);
-	map_check(game, pos_x, pos_y + 1);
+		info->char_map[pos_y][pos_x] = 'X';
+	map_check(info, pos_x + 1, pos_y);
+	map_check(info, pos_x - 1, pos_y);
+	map_check(info, pos_x, pos_y - 1);
+	map_check(info, pos_x, pos_y + 1);
 }
