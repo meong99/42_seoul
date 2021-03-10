@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/10 14:32:54 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/10 18:21:27 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@
 # define CEILING_COLOR 7
 # define FLOOR 0
 # define CEILING 1
+# define TYPE_CHAR 0
+# define TYPE_INT 1
+# define TYPE_DOUBLE 2
 
 typedef struct	s_tex_info
 {
@@ -118,6 +121,7 @@ typedef struct	s_ray
 	double	tex_pos;
 	int		tex_x;
 	int		tex_y;
+	double	*sprite_buf;
 }				t_ray;
 
 typedef struct	s_game
@@ -221,9 +225,8 @@ double	get_radian(int angle);
 /*
 ** malloc_free.c
 */
-void	char_free(char **val, int type);
-void	int_free(int **val, int type, int index);
-void	*val_malloc(size_t size);
+void	var_free(void *val, int pointer_num, int index, int type);
+void	*var_malloc(size_t size);
 /*
 ** player.c
 */

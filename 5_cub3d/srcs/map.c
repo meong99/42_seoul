@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/10 14:34:58 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/10 18:22:18 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	map_parsing(int fd, t_info *info)
 				map = ft_strdup(one_line);
 			else
 				map = ft_strjoin(map, one_line);
-			char_free(&temp_map, 1);
+			var_free(&temp_map, 1, 0, TYPE_CHAR);
 			info->cols++;
 		}
-		char_free(&one_line, 1);
+		var_free(&one_line, 1, 0, TYPE_CHAR);
 	}
 	map_mapi(info, (const char*)map);
 }
@@ -82,7 +82,7 @@ void	map_mapi(t_info *info, const char *map)
 	int	i;
 
 	i = -1;
-	info->rows = (int*)val_malloc(sizeof(int) * info->cols);
+	info->rows = (int*)var_malloc(sizeof(int) * info->cols);
 	info->map = ft_split(map, '\n');
 	while (++i < info->cols)
 		info->rows[i] = (int)ft_strlen(info->map[i]);

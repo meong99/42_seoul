@@ -39,19 +39,24 @@ RM = rm -f
 
 ifeq ($(DEBUG), true)
 	CDEBUG = -g
+endif
 
+ifeq ($(SANITIZE), true)
+	FSANITIZE = -g -fsanitize=address
 endif
 
 all : $(NAME)
 
 $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
 	@mkdir -p $(OBJS_PATH)
-	@$(CC) $(CFLAGS) $(CDEBUG) $(INCS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CDEBUG) $(FSANITIZE) $(INCS) -c $< -o $@
 
-$(NAME) : $(OBJS)
+make_path :
 	make -C $(LIBFT_PATH)
 	make -C $(MLX_PATH)
 	mv $(MLX_PATH)/libmlx.dylib ./
+
+$(NAME) : make_path $(OBJS)
 	$(CC) $(CFLAGS) $(LIBFT) $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
 clean :
@@ -63,8 +68,8 @@ clean :
 fclean : clean
 	$(RM) $(NAME)
 
-debug : $(NAME) $(OBJS)
-	$(CC) $(CFLAGS) $(LIBFT) -g $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
+debug : make_path $(OBJS)
+	$(CC) $(CFLAGS) $(LIBFT) $(CDEBUG) $(FSANITIZE) $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
 re : fclean all
 

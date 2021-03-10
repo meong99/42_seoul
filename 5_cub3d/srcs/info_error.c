@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:43 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/08 17:59:10 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/10 17:54:34 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	element_count_error(t_info *info, t_tex_info *tex_info)
 			error_exit("resolution count error");
 		else if (i != RESOLUTION && count_element(temp) != 2)
 			error_exit("info count error");
-		char_free(temp, 2);
+		var_free(temp, 2, 0, TYPE_CHAR);
+		free(temp);
 	}
 	parsing_map_info(info, tex_info);
 }

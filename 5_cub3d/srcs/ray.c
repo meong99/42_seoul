@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:53 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/08 18:22:33 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/10 18:20:14 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	raycasting(t_game *game)
 		texture_set(game, x);
 	}
 	draw_image(&game->info, &game->img, &game->ray);
-	int_free(game->ray.buf, 2, game->info.screen_height);
+	var_free(game->ray.buf, 2, game->info.screen_height, TYPE_INT);
+	var_free(&game->ray.sprite_buf, 1, 0, TYPE_DOUBLE);
 }
 
 void	check_wall(t_game *game)
