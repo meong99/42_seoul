@@ -12,30 +12,30 @@ void	player_move(t_info *info, t_player *player, int key_code)
 {
 	if (key_code == K_W)
 	{
-		if(!(info->char_map[(int)(player->char_pos_y)][(int)(player->char_pos_x + player->dir_x * player->move_speed)]))
+		if(info->map[(int)(player->char_pos_y)][(int)(player->char_pos_x + player->dir_x * player->move_speed)] == '0')
 			player->char_pos_x += player->dir_x * player->move_speed;
-		if(!(info->char_map[(int)(player->char_pos_y + player->dir_y * player->move_speed)][(int)(player->char_pos_x)]))
+		if(info->map[(int)(player->char_pos_y + player->dir_y * player->move_speed)][(int)(player->char_pos_x)] == '0')
 			player->char_pos_y += player->dir_y * player->move_speed;
 	}
 	else if (key_code == K_S)
 	{
-		if(!(info->char_map[(int)(player->char_pos_y)][(int)(player->char_pos_x - player->dir_x * player->move_speed)]))
+		if(info->map[(int)(player->char_pos_y)][(int)(player->char_pos_x - player->dir_x * player->move_speed)] == '0')
 			player->char_pos_x -= player->dir_x * player->move_speed;
-		if(!(info->char_map[(int)(player->char_pos_y - player->dir_y * player->move_speed)][(int)(player->char_pos_x)]))
+		if(info->map[(int)(player->char_pos_y - player->dir_y * player->move_speed)][(int)(player->char_pos_x)] == '0')
 			player->char_pos_y -= player->dir_y * player->move_speed;
 	}
 	else if (key_code == K_A)
 	{
-		if(!(info->char_map[(int)(player->char_pos_y + player->dir_x * player->move_speed)][(int)(player->char_pos_x)]))
+		if(info->map[(int)(player->char_pos_y + player->dir_x * player->move_speed)][(int)(player->char_pos_x)] == '0')
 			player->char_pos_y += player->dir_x * player->move_speed;
-		if(!(info->char_map[(int)(player->char_pos_y)][(int)(player->char_pos_x + player->dir_y * player->move_speed)]))
+		if(info->map[(int)(player->char_pos_y)][(int)(player->char_pos_x + player->dir_y * player->move_speed)] == '0')
 			player->char_pos_x -= player->dir_y * player->move_speed;
 	}
 	else if (key_code == K_D)
 	{
-		if(!(info->char_map[(int)(player->char_pos_y - player->dir_x * player->move_speed)][(int)(player->char_pos_x)]))
+		if(info->map[(int)(player->char_pos_y - player->dir_x * player->move_speed)][(int)(player->char_pos_x)] == '0')
 			player->char_pos_y -= player->dir_x * player->move_speed;
-		if(!(info->char_map[(int)(player->char_pos_y)][(int)(player->char_pos_x - player->dir_y * player->move_speed)]))
+		if(info->map[(int)(player->char_pos_y)][(int)(player->char_pos_x - player->dir_y * player->move_speed)] == '0')
 			player->char_pos_x += player->dir_y * player->move_speed;
 	}
 }

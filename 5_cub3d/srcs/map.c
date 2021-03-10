@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/08 18:31:41 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/10 14:34:58 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	get_map(t_info *info, t_player *player, t_tex_info *tex_info, const char *f
 	map_parsing(fd, info);
 	find_character(info, player);
 	map_check(info, player->char_pos_x, player->char_pos_y);
+	map_init_zero(info);
 	info_error(info, tex_info);
 	return ;
 }
@@ -82,9 +83,9 @@ void	map_mapi(t_info *info, const char *map)
 
 	i = -1;
 	info->rows = (int*)val_malloc(sizeof(int) * info->cols);
-	info->char_map = ft_split(map, '\n');
+	info->map = ft_split(map, '\n');
 	while (++i < info->cols)
-		info->rows[i] = (int)ft_strlen(info->char_map[i]);
+		info->rows[i] = (int)ft_strlen(info->map[i]);
 }
 
 void	find_character(t_info *info, t_player *player)
@@ -100,8 +101,8 @@ void	find_character(t_info *info, t_player *player)
 		j = -1;
 		while (++j < info->rows[i])
 		{
-			if (info->char_map[i][j] != '0' && info->char_map[i][j] != '2'
-			&& ft_strchr(CHARACTER_DIRS, info->char_map[i][j]))
+			if (info->map[i][j] != '0' && info->map[i][j] != '2'
+			&& ft_strchr(CHARACTER_DIRS, info->map[i][j]))
 			{
 				character++;
 				player->char_pos_x = 0.5f + j;
@@ -109,6 +110,5 @@ void	find_character(t_info *info, t_player *player)
 			}
 		}
 	}
-	int_free(&info->rows, 1, info->cols);
 	character_error(info, player, character);
 }

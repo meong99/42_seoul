@@ -55,7 +55,7 @@ void	hit_scan(t_game *game)
 			game->ray.side = 1;
 
 		}
-		if (game->info.char_map[game->ray.map_y][game->ray.map_x] > '0')
+		if (game->info.map[game->ray.map_y][game->ray.map_x] > '0')
 			game->ray.hit = 1;
 	}
 }

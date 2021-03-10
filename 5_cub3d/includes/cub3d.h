@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/08 18:26:04 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/10 14:32:54 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct	s_info
 	char	*map_name;
 	int		*rows;
 	int		cols;
-	char	**char_map;
+	char	**map;
 	char	*info_map[8];
 	int		info_check[8];
 	void	*mlx;
@@ -163,6 +163,7 @@ void	find_character(t_info *info, t_player *player);
 */
 void	map_check(t_info *info, int pos_x, int pos_y);
 void	character_error(t_info *info, t_player *player, int character);
+void	map_init_zero(t_info *info);
 
 /*
 ** info_error.c
