@@ -113,4 +113,5 @@ void	texture_set(t_game *game, int x)
 				(game->tex_info[game->img.dir_texture].bpp / 8) * game->ray.tex_y + game->ray.tex_x];
 		game->ray.buf[y][x] = color;
 	}
+	game->ray.sprite_buf[x] = game->ray.perp_wall_dist;
 }

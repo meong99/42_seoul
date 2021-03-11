@@ -8,6 +8,7 @@ void	var_free(void *var, int pointer_num, int index, int type)
 	if (pointer_num == 1)
 	{
 		free(*((void**)var));
+		*((void**)var) = 0;
 	}
 	else
 	{
@@ -23,6 +24,7 @@ void	var_free(void *var, int pointer_num, int index, int type)
 		free(var);
 	}
 }
+
 void	*var_malloc(size_t size)
 {
 	void	*val;
