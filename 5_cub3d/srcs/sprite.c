@@ -27,5 +27,5 @@ void   set_sprite(t_game *game)
 
 void	sprite(t_game *game)
 {
-	
+	game = 0;
 }
