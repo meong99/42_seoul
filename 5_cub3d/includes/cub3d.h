@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/10 18:21:27 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/11 17:08:18 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,91 +46,122 @@
 
 typedef struct	s_tex_info
 {
-	void	*img;
-	int		*data;
-	int		size_l;
-	int		bpp;
-	int		endian;
-	int		texture_color;
-	int		texture_width;
-	int		texture_height;
-	char	*texture_path;
+	void			*img;
+	int				*data;
+	int				size_l;
+	int				bpp;
+	int				endian;
+	int				texture_color;
+	int				texture_width;
+	int				texture_height;
+	char			*texture_path;
 }				t_tex_info;
 
 typedef struct	s_img
 {
-	void	*img;
-	int		*data;
-	int		size_l;
-	int		bpp;
-	int		endian;
-	int		dir_texture;
+	void			*img;
+	int				*data;
+	int				size_l;
+	int				bpp;
+	int				endian;
+	int				dir_texture;
 }				t_img;
 
 typedef struct	s_player
 {
-	double	char_pos_x;
-	double	char_pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double	turn_speed;
-	double	move_speed;
-	char	char_dir;
+	double			char_pos_x;
+	double			char_pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	double			turn_speed;
+	double			move_speed;
+	char			char_dir;
 }				t_player;
 
 typedef struct	s_info
 {
-	int		color[2];
-	char	*map_name;
-	int		*rows;
-	int		cols;
-	char	**map;
-	char	*info_map[8];
-	int		info_check[8];
-	void	*mlx;
-	void	*win;
-	int		screen_width;
-	int		screen_height;
+	int				color[2];
+	char			*map_name;
+	int				*rows;
+	int				cols;
+	char			**map;
+	char			*info_map[8];
+	int				info_check[8];
+	void			*mlx;
+	void			*win;
+	int				screen_width;
+	int				screen_height;
+	int				sprite_num;
 }				t_info;
+
+typedef struct	s_sprite
+{
+	double			sprite_x;
+	double			sprite_y;
+	int				texture;
+	double			inverse_determinant;
+	double			transform_x;
+	double			transform_y;
+	int				sprite_screen_x;
+	int				sprite_height;
+	int				sprite_width;
+	int				sprite_drow_start_x;
+	int				sprite_drow_start_y;
+	int				sprite_drow_end_x;
+	int				sprite_drow_end_y;
+	int				sprite_tex_x;
+	int				sprite_tex_y;
+	int				d;
+}				t_sprite;
+
+typedef struct	s_sprite_dist
+{
+	double			x;
+	double			y;
+	int				dist;
+}				t_sprite_dist;
+
 
 typedef struct	s_ray
 {
-	int		**buf;
-	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	int		map_x;
-	int		map_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perp_wall_dist;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		wall_color;
-	double	wall_x;
-	double	step;
-	double	tex_pos;
-	int		tex_x;
-	int		tex_y;
-	double	*sprite_buf;
+	t_sprite		sprite;
+	t_sprite_dist	*sprite_dist;
+	int				**buf;
+	double			camera_x;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	int				wall_color;
+	double			wall_x;
+	double			step;
+	double			tex_pos;
+	int				tex_x;
+	int				tex_y;
+	double			*sprite_buf;
 }				t_ray;
 
 typedef struct	s_game
 {
-	t_img		img;
-	t_tex_info	tex_info[5];
-	t_ray		ray;
-	t_info		info;
-	t_player	player;
+	t_img			img;
+	t_tex_info		tex_info[5];
+	t_ray			ray;
+	t_info			info;
+	t_player		player;
 }				t_game;
 
 /*
@@ -156,11 +187,11 @@ void	mwi_init(t_info *info, t_img *img);
 /*
 **	map.c
 */
-void	get_map(t_info *info, t_player *player, t_tex_info *tex_info, const char *filename);
+void	get_map(t_game *game, const char *filename);
 int		check_gnl(t_info *info, char *one_line);
 void	map_parsing(int fd, t_info *info);
 void	map_mapi(t_info *info, const char *map);
-void	find_character(t_info *info, t_player *player);
+void	find_character(t_info *info, t_player *player, t_ray *ray);
 
 /*
 ** map_error.c

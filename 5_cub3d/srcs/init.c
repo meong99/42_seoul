@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/08 18:24:49 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/11 16:39:09 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	game_init(t_game *game, char *filename)
 	game->info.map_name = filename;
 	while (++i < 8)
 		game->info.info_check[i] = -1;
-	get_map(&game->info, &game->player, game->tex_info, filename);
+	game->info.sprite_num = 0;
+	get_map(game, filename);
 }
 
 void	mwi_init(t_info *info, t_img *img)

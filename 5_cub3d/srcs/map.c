@@ -6,23 +6,23 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/10 18:22:18 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/11 17:08:30 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	get_map(t_info *info, t_player *player, t_tex_info *tex_info, const char *filename)
+void	get_map(t_game *game, const char *filename)
 {
 	int	fd;
 
 	if ((fd = open(filename, O_RDONLY)) == -1)
 		error_exit("map file open error");
-	map_parsing(fd, info);
-	find_character(info, player);
-	map_check(info, player->char_pos_x, player->char_pos_y);
-	map_init_zero(info);
-	info_error(info, tex_info);
+	map_parsing(fd, &game->info);
+	find_character(&game->info, &game->player, &game->ray);
+	map_check(&game->info, &game->player.char_pos_x, &game->player.char_pos_y);
+	map_init_zero(&game->info);
+	info_error(&game->info, &game->tex_info);
 	return ;
 }
 
@@ -88,7 +88,7 @@ void	map_mapi(t_info *info, const char *map)
 		info->rows[i] = (int)ft_strlen(info->map[i]);
 }
 
-void	find_character(t_info *info, t_player *player)
+void	find_character(t_info *info, t_player *player, t_ray *ray)
 {
 	int	i;
 	int	j;
@@ -108,6 +108,8 @@ void	find_character(t_info *info, t_player *player)
 				player->char_pos_x = 0.5f + j;
 				player->char_pos_y = 0.5f + i;
 			}
+			else if (info->map[i][j] == '2')
+				info->sprite_num++;
 		}
 	}
 	character_error(info, player, character);
