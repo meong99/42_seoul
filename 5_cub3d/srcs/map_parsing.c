@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:50 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/13 15:34:31 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/13 18:37:21 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	parsing_color(t_info *info, int type)
 	while (++i < 3)
 		temp_color[i] = ft_atoi(tmp_split[i]);
 	var_free(tmp_split, 2, 0, 1);
+	tmp_split = 0;
 	get_color(temp_color, &info->color[type - 6]);
 }
 

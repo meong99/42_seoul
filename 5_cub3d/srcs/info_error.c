@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:43 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/13 15:13:59 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/13 18:32:28 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	element_count_error(t_info *info, t_tex_info *tex_info)
 		else if (i != RESOLUTION && count_element(temp) != 2)
 			error_exit("info count error");
 		var_free(temp, 2, 0, 1);
+		temp = 0;
 	}
 	parsing_map_info(info, tex_info);
 }

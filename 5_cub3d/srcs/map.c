@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/13 15:14:05 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/13 18:38:23 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	map_parsing(int fd, t_info *info)
 		var_free(&one_line, 1, 0, 1);
 	}
 	map_mapi(info, (const char*)map);
+	free(map);
 }
 
 int		check_gnl(t_info *info, char *one_line)

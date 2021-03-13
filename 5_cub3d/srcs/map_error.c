@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/11 17:08:12 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/13 18:35:50 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	character_error(t_info *info, t_player *player, int character)
 {
 	if (character != 1)
-		error_exit("many info");
+		error_exit("too many players");
 	player->char_dir = info->map
 		[(int)player->char_pos_y][(int)player->char_pos_x];
 	info->map[(int)player->char_pos_y][(int)player->char_pos_x] = '0';
