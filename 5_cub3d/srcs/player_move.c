@@ -1,37 +1,35 @@
 #include "cub3d.h"
 
-void	player_event_key(t_game *game, int key_code)
+void	player_move(t_game *game)
 {
-	if (key_code == K_W || key_code == K_A || key_code == K_S || key_code == K_D)
-		player_move(&game->info, &game->player, key_code);
-	else if (key_code == K_AR_U || key_code == K_AR_D || key_code == K_AR_L || key_code == K_AR_R)
-		player_cam(&game->player, key_code);
+	player_move_set(&game->info, &game->player);
+	player_cam(&game->player);
 }
 
-void	player_move(t_info *info, t_player *player, int key_code)
+void	player_move_set(t_info *info, t_player *player)
 {
-	if (key_code == K_W)
+	if (!player->reverse && player->forward)
 	{
 		if(info->map[(int)(player->char_pos_y)][(int)(player->char_pos_x + player->dir_x * player->move_speed)] == '0')
 			player->char_pos_x += player->dir_x * player->move_speed;
 		if(info->map[(int)(player->char_pos_y + player->dir_y * player->move_speed)][(int)(player->char_pos_x)] == '0')
 			player->char_pos_y += player->dir_y * player->move_speed;
 	}
-	else if (key_code == K_S)
+	else if (!player->forward && player->reverse)
 	{
 		if(info->map[(int)(player->char_pos_y)][(int)(player->char_pos_x - player->dir_x * player->move_speed)] == '0')
 			player->char_pos_x -= player->dir_x * player->move_speed;
 		if(info->map[(int)(player->char_pos_y - player->dir_y * player->move_speed)][(int)(player->char_pos_x)] == '0')
 			player->char_pos_y -= player->dir_y * player->move_speed;
 	}
-	else if (key_code == K_A)
+	if (!player->right && player->left)
 	{
 		if(info->map[(int)(player->char_pos_y + player->dir_x * player->move_speed)][(int)(player->char_pos_x)] == '0')
 			player->char_pos_y += player->dir_x * player->move_speed;
 		if(info->map[(int)(player->char_pos_y)][(int)(player->char_pos_x + player->dir_y * player->move_speed)] == '0')
 			player->char_pos_x -= player->dir_y * player->move_speed;
 	}
-	else if (key_code == K_D)
+	else if (!player->left && player->right)
 	{
 		if(info->map[(int)(player->char_pos_y - player->dir_x * player->move_speed)][(int)(player->char_pos_x)] == '0')
 			player->char_pos_y -= player->dir_x * player->move_speed;
@@ -40,12 +38,12 @@ void	player_move(t_info *info, t_player *player, int key_code)
 	}
 }
 
-void	player_cam(t_player *player, int key_code)
+void	player_cam(t_player *player)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 
-	if (key_code == K_AR_L)
+	if (!player->right_turn && player->left_turn)
 	{
 		old_dir_x = player->dir_x;
 		player->dir_x = player->dir_x * cos(player->turn_speed) - player->dir_y * sin(player->turn_speed);
@@ -54,7 +52,7 @@ void	player_cam(t_player *player, int key_code)
 		player->plane_x = player->plane_x * cos(player->turn_speed) - player->plane_y * sin(player->turn_speed);
 		player->plane_y = old_plane_x * sin(player->turn_speed) + player->plane_y * cos(player->turn_speed);
 	}
-	else if (key_code == K_AR_R)
+	else if (!player->left_turn && player->right_turn)
 	{
 		old_dir_x = player->dir_x;
 		player->dir_x = player->dir_x * cos(-player->turn_speed) - player->dir_y * sin(-player->turn_speed);

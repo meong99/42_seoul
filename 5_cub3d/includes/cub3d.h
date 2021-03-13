@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/13 15:45:17 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/13 17:49:58 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <time.h>
 # include <unistd.h>
 
+# define X_EVENT_KEY_RELEASE 3
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17 //Exit program key code
 # define KEY_ESC 53
@@ -66,6 +67,12 @@ typedef struct	s_img
 
 typedef struct	s_player
 {
+	int				forward;
+	int				reverse;
+	int				left;
+	int				right;
+	int				left_turn;
+	int				right_turn;
 	double			char_pos_x;
 	double			char_pos_y;
 	double			dir_x;
@@ -182,12 +189,18 @@ void	invalid_char_error(const char *info, int type);
 */
 void	game_init(t_game *game, char *filename);
 void	mwi_init(t_info *info, t_img *img);
+void	key_init(t_player *player);
+
+/*
+** key_set.c
+*/
+int		key_press_set(int key_code, t_game *game);
+int		key_release_set(int key_code, t_player *player);
 
 /*
 **	main.c
 */
-int		event_key(int key_code, t_game *game);
-int		win_close(void);
+int		win_close(t_game *game);
 int		main_loop(t_game *game);
 
 /*
@@ -222,9 +235,9 @@ void	find_character(t_info *info, t_player *player);
 /*
 ** player_move.c
 */
-void	player_event_key(t_game *game, int key_code);
-void	player_move(t_info *info, t_player *player, int key_code);
-void	player_cam(t_player *player, int key_code);
+void	player_move(t_game *game);
+void	player_move_set(t_info *info, t_player *player);
+void	player_cam(t_player *player);
 
 /*
 ** player.c

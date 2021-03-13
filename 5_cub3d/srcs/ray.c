@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:53 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/13 15:16:04 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/13 17:36:53 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	raycasting(t_game *game)
 	int		x;
 
 	x = -1;
+	player_move(game);
 	buf_init(&game->info, &game->ray);
 	draw_fl_cei(&game->info, &game->ray);
 	while (++x < game->info.screen_width)

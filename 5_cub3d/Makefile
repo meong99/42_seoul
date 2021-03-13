@@ -23,6 +23,7 @@ SRCS_NAME =	\
 		image.c\
 		info_error.c\
 		init.c\
+		key_set.c\
 		main.c\
 		malloc_free.c\
 		map_error.c\
