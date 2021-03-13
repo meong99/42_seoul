@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/11 17:08:30 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/13 14:54:55 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	get_map(t_game *game, const char *filename)
 	if ((fd = open(filename, O_RDONLY)) == -1)
 		error_exit("map file open error");
 	map_parsing(fd, &game->info);
-	find_character(&game->info, &game->player, &game->ray);
-	map_check(&game->info, &game->player.char_pos_x, &game->player.char_pos_y);
+	find_character(&game->info, &game->player);
+	map_check(&game->info, game->player.char_pos_x, game->player.char_pos_y);
 	map_init_zero(&game->info);
-	info_error(&game->info, &game->tex_info);
+	info_error(&game->info, game->tex_info);
 	return ;
 }
 
@@ -88,7 +88,7 @@ void	map_mapi(t_info *info, const char *map)
 		info->rows[i] = (int)ft_strlen(info->map[i]);
 }
 
-void	find_character(t_info *info, t_player *player, t_ray *ray)
+void	find_character(t_info *info, t_player *player)
 {
 	int	i;
 	int	j;

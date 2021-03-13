@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/11 17:08:18 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/13 14:54:20 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void	get_map(t_game *game, const char *filename);
 int		check_gnl(t_info *info, char *one_line);
 void	map_parsing(int fd, t_info *info);
 void	map_mapi(t_info *info, const char *map);
-void	find_character(t_info *info, t_player *player, t_ray *ray);
+void	find_character(t_info *info, t_player *player);
 
 /*
 ** map_error.c

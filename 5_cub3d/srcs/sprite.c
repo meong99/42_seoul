@@ -18,8 +18,9 @@ void   set_sprite(t_game *game)
 			{
 				game->ray.sprite_dist[k].x = 0.5 + j;
 				game->ray.sprite_dist[k].y = 0.5 + i;
-				game->ray.sprite_dist[k++].dist =
+				game->ray.sprite_dist[k].dist =
 					pow(game->ray.sprite_dist[k].x, 2) + pow(game->ray.sprite_dist[k].y, 2);
+				k++;
 			}
 		}
 	}
