@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:53 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/10 18:20:14 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/13 15:16:04 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,12 @@ void	raycasting(t_game *game)
 		hit_scan(game);
 		draw_set(game);
 		texture_set(game, x);
+		game->ray.sprite_buf[x] = game->ray.perp_wall_dist;
 	}
+	set_sprite(game);
+	sprite_cast(game);
 	draw_image(&game->info, &game->img, &game->ray);
-	var_free(game->ray.buf, 2, game->info.screen_height, TYPE_INT);
-	var_free(&game->ray.sprite_buf, 1, 0, TYPE_DOUBLE);
-}
-
-void	check_wall(t_game *game)
-{
-	game = 0;
-}
-
-void	distance(t_game *game)
-{
-	game = 0;
+	var_free(game->ray.buf, 2, game->info.screen_height, 0);
+	var_free(&game->ray.sprite_buf, 1, 0, 0);
+	var_free(&game->ray.sprite_dist, 1, 0, 0);
 }

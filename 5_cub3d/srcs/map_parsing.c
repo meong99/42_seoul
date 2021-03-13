@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:50 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/10 18:19:40 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/13 15:34:31 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	parsing_map_info(t_info *info, t_tex_info *tex_info)
 	parsing_color(info, CEILING_COLOR);
 	i = -1;
 	while (++i < 8)
-		var_free(&info->info_map[i], 1, 0, TYPE_CHAR);
+		var_free(&info->info_map[i], 1, 0, 1);
 }
 
 void	parsing_color(t_info *info, int type)
@@ -54,7 +54,7 @@ void	parsing_color(t_info *info, int type)
 		error_exit("color over count");
 	while (++i < 3)
 		temp_color[i] = ft_atoi(tmp_split[i]);
-	var_free(tmp_split, 2, 0, TYPE_CHAR);
+	var_free(tmp_split, 2, 0, 1);
 	get_color(temp_color, &info->color[type - 6]);
 }
 

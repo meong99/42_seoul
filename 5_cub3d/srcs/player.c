@@ -1,10 +1,12 @@
 #include "cub3d.h"
 
 
-void	player_dir_init(t_player *player)
+void	player_init(t_player *player)
 {
 	int		angle;
 
+	player->turn_speed = get_radian(3);
+	player->move_speed = 0.05;
 	player->dir_x = 1.0;
 	player->dir_y = 0.0;
 	player->plane_x = 0.0;
@@ -18,6 +20,7 @@ void	player_dir_init(t_player *player)
 	else
 		angle = 270;
 	player_set_dir(player, get_radian(angle));
+
 }
 
 void	player_set_dir(t_player *player, double radian)

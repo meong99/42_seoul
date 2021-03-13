@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	var_free(void *var, int pointer_num, int index, int type)
+void	var_free(void *var, int pointer_num, int index, int is_char)
 {
 	int i;
 
@@ -12,7 +12,7 @@ void	var_free(void *var, int pointer_num, int index, int type)
 	}
 	else
 	{
-		if (type == TYPE_CHAR)
+		if (is_char)
 		{
 			while (((char**)var)[index++])
 				;

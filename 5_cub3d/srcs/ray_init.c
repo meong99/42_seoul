@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:30:31 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/10 18:22:20 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/13 15:47:00 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@ void	ray_init(t_game *game)
 	int		i;
 
 	i = -1;
-	game->player.turn_speed = get_radian(3);
-	game->player.move_speed = 0.5f;
-	player_dir_init(&game->player);
+	player_init(&game->player);
 	while (++i <= SPRITE)
 		load_xpm_image(&game->tex_info[i], &game->info);
 	i = -1;
 	while (++i < 5)
-		var_free(&game->tex_info[i].texture_path, 1, 0, TYPE_CHAR);
+		var_free(&game->tex_info[i].texture_path, 1, 0, 1);
 }
 
 void	buf_init(t_info *info, t_ray *ray)

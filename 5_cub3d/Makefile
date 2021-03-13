@@ -17,22 +17,24 @@ INCS = -I$(INCS_PATH)
 SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
 
-SRCS_NAME =	main.c\
-		init.c\
-		util.c\
-		map.c\
-		map_error.c\
-		info_error.c\
-		map_parsing.c\
-		ray.c\
-		ray_util.c\
-		ray_init.c\
-		image.c\
-		player.c\
-		player_move.c\
-		malloc_free.c\
+SRCS_NAME =	\
+		get_next_line_utils.c\
 		get_next_line.c\
-		get_next_line_utils.c
+		image.c\
+		info_error.c\
+		init.c\
+		main.c\
+		malloc_free.c\
+		map_error.c\
+		map_parsing.c\
+		map.c\
+		player_move.c\
+		player.c\
+		ray_init.c\
+		ray_util.c\
+		ray.c\
+		sprite.c\
+		util.c
 OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 RM = rm -f

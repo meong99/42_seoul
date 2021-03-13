@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/13 14:54:55 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/13 15:14:05 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	map_parsing(int fd, t_info *info)
 				map = ft_strdup(one_line);
 			else
 				map = ft_strjoin(map, one_line);
-			var_free(&temp_map, 1, 0, TYPE_CHAR);
+			var_free(&temp_map, 1, 0, 1);
 			info->cols++;
 		}
-		var_free(&one_line, 1, 0, TYPE_CHAR);
+		var_free(&one_line, 1, 0, 1);
 	}
 	map_mapi(info, (const char*)map);
 }

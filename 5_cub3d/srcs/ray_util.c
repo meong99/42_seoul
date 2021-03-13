@@ -55,7 +55,7 @@ void	hit_scan(t_game *game)
 			game->ray.side = 1;
 
 		}
-		if (game->info.map[game->ray.map_y][game->ray.map_x] > '0')
+		if (game->info.map[game->ray.map_y][game->ray.map_x] == '1')
 			game->ray.hit = 1;
 	}
 }
@@ -113,5 +113,4 @@ void	texture_set(t_game *game, int x)
 				(game->tex_info[game->img.dir_texture].bpp / 8) * game->ray.tex_y + game->ray.tex_x];
 		game->ray.buf[y][x] = color;
 	}
-	game->ray.sprite_buf[x] = game->ray.perp_wall_dist;
 }
