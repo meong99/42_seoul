@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:40:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/14 18:06:42 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/14 18:51:11 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,21 @@ void	dir_set(t_game *game)
 	if (game->ray.ray_dir_x < 0)
 	{
 		game->ray.step_x = -1;
-		game->ray.side_dist_x =\
-		(game->player.char_pos_x - game->ray.map_x) * game->ray.delta_dist_x;
+		game->ray.side_dist_x = (game->player.char_pos_x - game->ray.map_x)\
+		* game->ray.delta_dist_x;
 	}
 	else
 	{
 		game->ray.step_x = 1;
-		game->ray.side_dist_x = (game->ray.map_x + 1.0 -\
-		game->player.char_pos_x) * game->ray.delta_dist_x;
+		game->ray.side_dist_x =\
+		(game->ray.map_x + 1.0 - game->player.char_pos_x)\
+		* game->ray.delta_dist_x;
 	}
 	if (game->ray.ray_dir_y < 0)
 	{
 		game->ray.step_y = -1;
-		game->ray.side_dist_y = (game->player.char_pos_y -\
-		game->ray.map_y) * game->ray.delta_dist_y;
+		game->ray.side_dist_y = (game->player.char_pos_y - game->ray.map_y)\
+		* game->ray.delta_dist_y;
 	}
 	else
 	{
@@ -91,13 +92,13 @@ void	perp_dist_and_texture_num(t_game *game)
 	}
 	else
 	{
-		game->ray.perp_wall_dist = (game->ray.map_y -\
-		game->player.char_pos_y + (1 - game->ray.step_y) / 2)\
-		/ game->ray.ray_dir_y;
+		game->ray.perp_wall_dist =\
+		(game->ray.map_y - game->player.char_pos_y +\
+		(1 - game->ray.step_y) / 2) / game->ray.ray_dir_y;
 		if (game->ray.step_y > 0)
-			game->img.texture_dir = NORTH;
-		else
 			game->img.texture_dir = SOUTH;
+		else
+			game->img.texture_dir = NORTH;
 	}
 }
 

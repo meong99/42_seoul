@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:39:41 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/14 18:03:10 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/14 18:50:53 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	player_init(t_player *player)
 	player->plane_y = -0.66;
 	if (player->char_dir == 'E')
 		angle = 0;
-	else if (player->char_dir == 'N')
+	else if (player->char_dir == 'S')
 		angle = 90;
 	else if (player->char_dir == 'W')
 		angle = 180;
