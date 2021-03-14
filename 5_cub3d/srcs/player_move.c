@@ -26,14 +26,14 @@ void	player_move_set(t_info *info, t_player *player)
 	{
 		if(info->map[(int)(player->char_pos_y + player->dir_x * player->move_speed)][(int)(player->char_pos_x)] == '0')
 			player->char_pos_y += player->dir_x * player->move_speed;
-		if(info->map[(int)(player->char_pos_y)][(int)(player->char_pos_x + player->dir_y * player->move_speed)] == '0')
+		if(info->map[(int)(player->char_pos_y)][(int)(player->char_pos_x - player->dir_y * player->move_speed)] == '0')
 			player->char_pos_x -= player->dir_y * player->move_speed;
 	}
 	else if (!player->left && player->right)
 	{
 		if(info->map[(int)(player->char_pos_y - player->dir_x * player->move_speed)][(int)(player->char_pos_x)] == '0')
 			player->char_pos_y -= player->dir_x * player->move_speed;
-		if(info->map[(int)(player->char_pos_y)][(int)(player->char_pos_x - player->dir_y * player->move_speed)] == '0')
+		if(info->map[(int)(player->char_pos_y)][(int)(player->char_pos_x + player->dir_y * player->move_speed)] == '0')
 			player->char_pos_x += player->dir_y * player->move_speed;
 	}
 }
