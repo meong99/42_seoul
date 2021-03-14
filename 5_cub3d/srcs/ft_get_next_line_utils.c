@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_get_next_line_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 14:47:01 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/26 19:43:04 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/14 14:43:40 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	free_buff(t_gnl_lst **head, int fd)
+void		free_buff(t_gnl_lst **head, int fd)
 {
 	t_gnl_lst	*temp;
 	t_gnl_lst	*free_list;
@@ -61,7 +61,7 @@ t_gnl_lst	*new_buff(int fd)
 	return (new);
 }
 
-size_t	gnl_ft_strlcpy(char *dest, const char *src, size_t size)
+size_t		gnl_ft_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t i;
 
@@ -80,7 +80,7 @@ size_t	gnl_ft_strlcpy(char *dest, const char *src, size_t size)
 	return (i);
 }
 
-size_t	gnl_ft_strlcat(char *dest, const char *src, size_t size)
+size_t		gnl_ft_strlcat(char *dest, const char *src, size_t size)
 {
 	size_t j;
 	size_t i;

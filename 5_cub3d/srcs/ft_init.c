@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/13 17:50:15 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/14 16:04:02 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,16 @@ void	mwi_init(t_info *info, t_img *img)
 	info->mlx = mlx_init();
 	info->win = mlx_new_window(info->mlx, info->screen_width,
 		info->screen_height, info->map_name);
-	img->img = mlx_new_image(info->mlx, info->screen_width, info->screen_height);
-	img->data = (int*)mlx_get_data_addr(img->img, &img->bpp, &img->size_l, &img->endian);
+	img->img = \
+		mlx_new_image(info->mlx, info->screen_width, info->screen_height);
+	img->data = (int*)mlx_get_data_addr(\
+		img->img, &img->bpp, &img->size_l, &img->endian);
 }
 
 void	key_init(t_player *player)
 {
 	player->forward = 0;
-	player->reverse = 0;
+	player->back = 0;
 	player->right = 0;
 	player->left = 0;
 	player->left_turn = 0;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   ft_ray.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:53 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/13 17:36:53 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/14 17:39:24 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ void	raycasting(t_game *game)
 	draw_fl_cei(&game->info, &game->ray);
 	while (++x < game->info.screen_width)
 	{
-		play_set(game, x);
+		raycasting_set(game, x);
 		dir_set(game);
 		hit_scan(game);
 		draw_set(game);
-		texture_set(game, x);
+		texture_ctrl(game, x);
 		game->ray.sprite_buf[x] = game->ray.perp_wall_dist;
 	}
+	game->ray.sprite_dist =\
+	(t_sprite_dist*)var_malloc(sizeof(t_sprite_dist) * game->info.sprite_num);
 	set_sprite(game);
 	sprite_cast(game);
 	draw_image(&game->info, &game->img, &game->ray);

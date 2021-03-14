@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_init.c                                         :+:      :+:    :+:   */
+/*   ft_ray_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:30:31 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/13 15:47:00 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/14 16:39:12 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	buf_init(t_info *info, t_ray *ray)
 	i = -1;
 	ray->buf = (int**)var_malloc(sizeof(int*) * info->screen_height);
 	while (++i < info->screen_height)
-		ray->buf[i] =(int*)var_malloc(sizeof(int) * info->screen_width);
+		ray->buf[i] = (int*)var_malloc(sizeof(int) * info->screen_width);
 	i = -1;
 	while (++i < info->screen_height)
 	{

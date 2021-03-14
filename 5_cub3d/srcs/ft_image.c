@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   ft_image.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:23:24 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/08 17:29:42 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/14 17:15:04 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	load_xpm_image(t_tex_info *tex_info, t_info *info)
 {
-	if (!(tex_info->img = mlx_xpm_file_to_image(info->mlx, tex_info->texture_path,
+	if (!(tex_info->img =\
+		mlx_xpm_file_to_image(info->mlx, tex_info->texture_path, \
 		&tex_info->texture_width, &tex_info->texture_height)))
 		error_exit("texture path error");
-	tex_info->data = (int*)mlx_get_data_addr(tex_info->img, &tex_info->bpp,
-												&tex_info->size_l, &tex_info->endian);
+	tex_info->data = (int*)mlx_get_data_addr(tex_info->img, &tex_info->bpp, \
+		&tex_info->size_l, &tex_info->endian);
 	mlx_destroy_image(info->mlx, tex_info->img);
 }
 

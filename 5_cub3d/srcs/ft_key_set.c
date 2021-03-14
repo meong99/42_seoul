@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_set.c                                          :+:      :+:    :+:   */
+/*   ft_key_set.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:11:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/13 17:47:50 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/14 15:02:04 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		key_press_set(int key_code, t_game *game)
 	else if (key_code == K_W)
 		game->player.forward = 1;
 	else if (key_code == K_S)
-		game->player.reverse = 1;
+		game->player.back = 1;
 	else if (key_code == K_A)
 		game->player.left = 1;
 	else if (key_code == K_D)
@@ -36,7 +36,7 @@ int		key_release_set(int key_code, t_player *player)
 	if (key_code == K_W)
 		player->forward = 0;
 	else if (key_code == K_S)
-		player->reverse = 0;
+		player->back = 0;
 	else if (key_code == K_A)
 		player->left = 0;
 	else if (key_code == K_D)
