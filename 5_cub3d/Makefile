@@ -60,6 +60,7 @@ make_path :
 	make -C $(LIBFT_PATH)
 	make -C $(MLX_PATH)
 	mv $(MLX_PATH)/libmlx.dylib ./
+	cp $(MLX_PATH)/mlx.h $(INCS_PATH)
 
 $(NAME) : make_path $(OBJS)
 	$(CC) $(CFLAGS) $(LIBFT) $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
@@ -69,6 +70,7 @@ clean :
 	make -C $(LIBFT_PATH) fclean
 	$(RM) libmlx.dylib
 	make -C $(MLX_PATH) clean
+	rm $(INCS_PATH)/mlx.h
 
 fclean : clean
 	$(RM) $(NAME)

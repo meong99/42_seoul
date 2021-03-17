@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/17 18:55:10 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/17 18:56:47 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		win_close(t_game *game)
 {
 	mlx_destroy_image(game->info.mlx, game->img.img);
 	mlx_destroy_window(game->info.mlx, game->info.win);
-	// all_free(game);
 	exit(0);
 	return (0);
 }
