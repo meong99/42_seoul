@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/17 12:03:43 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/17 18:16:49 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct	s_img
 	int				bpp;
 	int				endian;
 	int				texture_dir;
+	int				padding;
 }				t_img;
 
 typedef struct	s_player
@@ -170,130 +171,126 @@ typedef struct	s_game
 /*
 **  image.c
 */
-void	load_xpm_image(t_tex_info *tex_info, t_info *info);
-void	draw_image(t_info *info, t_img *img, t_ray *ray);
-void	draw_fl_cei(t_info *info, t_ray *ray);
+void			load_xpm_image(t_tex_info *tex_info, t_info *info);
+void			draw_image(t_info *info, t_img *img, t_ray *ray);
+void			draw_fl_cei(t_info *info, t_ray *ray);
 
 /*
 ** info_error.c
 */
-void	info_error(t_info *info, t_tex_info *tex_info);
-void	element_count_error(t_info *info, t_tex_info *tex_info);
-void	screen_size_error(t_info *info);
-int		overlap_error(t_info *info, int type);
-void	invalid_char_error(const char *info, int type);
+void			info_error(t_info *info, t_tex_info *tex_info);
+void			element_count_error(t_info *info, t_tex_info *tex_info);
+void			screen_size_error(t_info *info);
+int				overlap_error(t_info *info, int type);
+void			invalid_char_error(const char *info, int type);
 
 /*
 **	init.c
 */
-void	game_init(t_game *game, char *filename);
-void	mwi_init(t_info *info, t_img *img);
-void	key_init(t_player *player);
+void			game_init(t_game *game, char *filename);
+void			mwi_init(t_info *info, t_img *img);
+void			key_init(t_player *player);
 
 /*
 ** key_set.c
 */
-int		key_press_set(int key_code, t_game *game);
-int		key_release_set(int key_code, t_player *player);
+int				key_press_set(int key_code, t_game *game);
+int				key_release_set(int key_code, t_player *player);
 
 /*
 **	main.c
 */
-int		win_close(t_game *game);
-int		main_loop(t_game *game);
+int				win_close(t_game *game);
+int				main_loop(t_game *game);
 
 /*
 ** malloc_free.c
 */
-void	var_free(void *val, int pointer_num, int index, int is_char);
-void	*var_malloc(size_t size);
+void			var_free(void *val, int pointer_num, int index, int is_char);
+void			*var_malloc(size_t size);
 
 /*
 ** map_error.c
 */
-void	map_check(t_info *info, int pos_x, int pos_y);
-void	character_error(t_info *info, t_player *player, int character);
-void	map_init_zero(t_info *info);
+void			map_check(t_info *info, int pos_x, int pos_y);
+void			character_error(t_info *info, t_player *player, int character);
+void			map_init_zero(t_info *info);
 
 /*
 ** map_parsing.c
 */
-void	parsing_map_info(t_info *info, t_tex_info *tex_info);
-void	parsing_color(t_info *info, int type);
-void	get_color(int *temp_color, int *color);
+void			parsing_map_info(t_info *info, t_tex_info *tex_info);
+void			parsing_color(t_info *info, int type);
+void			get_color(int *temp_color, int *color);
 
 /*
 **	map.c
 */
-void	get_map(t_game *game, const char *filename);
-int		check_gnl(t_info *info, char *one_line);
-void	map_parsing(int fd, t_info *info);
-void	map_mapi(t_info *info, const char *map);
-void	find_character(t_info *info, t_player *player);
+void			get_map(t_game *game, const char *filename);
+int				check_gnl(t_info *info, char *one_line);
+void			map_parsing(int fd, t_info *info);
+void			map_mapi(t_info *info, const char *map);
+void			find_character(t_info *info, t_player *player);
 
 /*
 ** player_move.c
 */
-void	player_move(t_game *game);
-void	player_move_back_forward(t_info *info, t_player *player);
-void	player_move_left_right(t_info *info, t_player *player);
-void	player_cam_left(t_player *player);
-void	player_cam_right(t_player *player);
-
-void	player_cam(t_player *player);
+void			player_move(t_game *game);
+void			player_move_back_forward(t_info *info, t_player *player);
+void			player_move_left_right(t_info *info, t_player *player);
 
 /*
 ** player.c
 */
-void	player_init(t_player *player);
-void	player_set_dir(t_player *player, double angle);
+void			player_init(t_player *player);
+void			player_camera_turn(t_player *player, double angle);
 
 /*
 **	ray_init.c
 */
-void	ray_init(t_game *game);
-void	buf_init(t_info *info, t_ray *ray);
+void			ray_init(t_game *game);
+void			buf_init(t_info *info, t_ray *ray);
 
 /*
 ** ray_util.c
 */
-void	raycasting_set(t_game *game, int x);
-void	dir_set(t_game *game);
-void	hit_scan(t_game *game);
-void	perp_dist_and_texture_num(t_game *game);
-void	draw_set(t_game *game);
+void			raycasting_set(t_game *game, int x);
+void			dir_set(t_game *game);
+void			hit_scan(t_game *game);
+void			perp_dist_and_texture_num(t_game *game);
+void			draw_set(t_game *game);
 
 /*
 **	ray.c
 */
-void	raycasting(t_game *game);
-void	ver_line(t_game *game, int x, int y1, int y2, int color);
-void	check_wall(t_game *game);
-void	distance(t_game *game);
+void			raycasting(t_game *game);
+void			ver_line(t_game *game, int x, int y1, int y2, int color);
+void			check_wall(t_game *game);
+void			distance(t_game *game);
 
 /*
 ** sort.c
 */
-void	quick_sort(void *value, int left_index, int right_index);
+void			quick_sort(void *value, int left_index, int right_index);
 
 /*
 ** sprite.c
 */
-void	set_sprite(t_game *game);
-void	sprite_cast(t_game *game);
-void	sprite_sort(t_game *game);
+void			set_sprite(t_game *game);
+void			sprite_cast(t_game *game);
+void			sprite_sort(t_game *game);
 
 /*
 ** texture.c
 */
-void	texture_set(t_game *game);
-void	texture_ctrl(t_game *game, int x);
+void			texture_set(t_game *game);
+void			texture_ctrl(t_game *game, int x);
 
 /*
 **	util.c
 */
-int		count_element(char **element);
-void	error_exit(char *massege);
-double	get_radian(int angle);
+int				count_element(char **element);
+void			error_exit(char *massege);
+double			get_radian(int angle);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/14 18:28:22 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/17 16:23:31 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	mwi_init(t_info *info, t_img *img)
 		mlx_new_image(info->mlx, info->screen_width, info->screen_height);
 	img->data = (int*)mlx_get_data_addr(\
 		img->img, &img->bpp, &img->size_l, &img->endian);
+	img->padding = (img->size_l - info->screen_width * (img->bpp / 8)) / 4;
 }
 
 void	key_init(t_player *player)

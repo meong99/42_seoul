@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:53:28 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/16 18:35:38 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/17 18:18:56 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,8 @@ void	texture_set(t_game *game)
 	game->ray.wall_x -= floor((game->ray.wall_x));
 	game->ray.tex_x = (int)(game->ray.wall_x *\
 	game->tex_info[texture_dir].texture_width);
-	if (game->ray.side == 0 && game->ray.ray_dir_x > 0)
+	if (texture_dir == SOUTH || texture_dir == WEST)
 		game->ray.tex_x = \
-		game->tex_info[texture_dir].texture_width -\
-		game->ray.tex_x - 1;
-	else if (game->ray.side == 1 && game->ray.ray_dir_y < 0)
-		game->ray.tex_x =\
 		game->tex_info[texture_dir].texture_width -\
 		game->ray.tex_x - 1;
 }

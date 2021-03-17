@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:39:41 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/16 18:26:34 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/17 17:29:22 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	player_init(t_player *player)
 	player->dir_x = 1.0;
 	player->dir_y = 0.0;
 	player->plane_x = 0.0;
-	player->plane_y = -0.66;
+	player->plane_y = 0.66;
 	if (player->char_dir == 'E')
 		angle = 0;
 	else if (player->char_dir == 'S')
@@ -30,12 +30,12 @@ void	player_init(t_player *player)
 		angle = 180;
 	else
 		angle = 270;
-	player_set_dir(player, get_radian(angle));
+	player_camera_turn(player, get_radian(angle));
 }
 
-void	player_set_dir(t_player *player, double radian)
+void	player_camera_turn(t_player *player, double radian)
 {
-	int		temp;
+	double	temp;
 
 	temp = player->dir_x;
 	player->dir_x = player->dir_x * cos(radian) - player->dir_y * sin(radian);

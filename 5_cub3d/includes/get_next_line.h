@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 14:47:06 by mchae             #+#    #+#             */
-/*   Updated: 2021/02/18 01:11:18 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/17 18:15:46 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 
 typedef struct		s_gnl_lst
 {
-	int				fd;
-	char			*buff;
+	int					fd;
+	char				*buff;
 	struct s_gnl_lst	*next;
-	char			temp_buff[BUFFER_SIZE + 1];
+	char				temp_buff[BUFFER_SIZE + 1];
 }					t_gnl_lst;
 
 int					get_next_line(int fd, char **line);
-t_gnl_lst				*new_buff(int fd);
-t_gnl_lst				*find_buff(t_gnl_lst *lst_buff, int fd);
+t_gnl_lst			*new_buff(int fd);
+t_gnl_lst			*find_buff(t_gnl_lst *lst_buff, int fd);
 int					find_new_line(char **line, t_gnl_lst *lst_buf);
 size_t				gnl_ft_strlcpy(char *dest, const char *src, size_t size);
 char				*gnl_ft_strjoin(char **s1, char *s2);
