@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:43 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/17 17:36:57 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/17 18:52:39 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ void	screen_size_error(t_info *info)
 	int		resol_y;
 
 	i = -1;
-	resol_x = 1600;
-	resol_y = 900;
-	// mlx_get_screen_size(info->mlx, &resol_x, &resol_y);
+	mlx_get_screen_size(info->mlx, &resol_x, &resol_y);
 	if (info->screen_width > resol_x)
 		info->screen_width = resol_x;
 	if (info->screen_height > resol_y)

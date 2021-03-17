@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:23:24 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/17 18:29:12 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/17 18:51:04 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	load_xpm_image(t_tex_info *tex_info, t_info *info)
 		error_exit("texture path error");
 	tex_info->data = (int*)mlx_get_data_addr(tex_info->img, &tex_info->bpp, \
 		&tex_info->size_l, &tex_info->endian);
-	mlx_destroy_image(info->mlx, tex_info->img);
 }
 
 void	draw_image(t_info *info, t_img *img, t_ray *ray)

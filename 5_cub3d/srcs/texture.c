@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:53:28 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/17 18:18:56 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/17 18:45:14 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void	texture_ctrl(t_game *game, int x)
 		(game->tex_info[texture_dir].texture_height - 1);
 		game->ray.tex_pos += game->ray.step;
 		color = game->tex_info[texture_dir].data\
-		[game->tex_info[texture_dir].size_l /\
-		(game->tex_info[texture_dir].bpp / 8) *\
+		[game->tex_info[texture_dir].texture_height *\
 		game->ray.tex_y + game->ray.tex_x];
 		game->ray.buf[y][x] = color;
 	}

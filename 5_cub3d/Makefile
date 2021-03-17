@@ -8,7 +8,7 @@ SRCS_PATH = ./srcs
 OBJS_PATH = ./objs
 GNL_PATH = ./get_next_line
 LIBFT_PATH = ./libft
-MLX_PATH = ./mlxs
+MLX_PATH = ./mlx
 INCS_PATH = ./includes
 
 LIBFT = -L$(LIBFT_PATH) -lft
@@ -59,7 +59,7 @@ $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
 make_path :
 	make -C $(LIBFT_PATH)
 	make -C $(MLX_PATH)
-	# mv $(MLX_PATH)/libmlx.dylib ./
+	mv $(MLX_PATH)/libmlx.dylib ./
 
 $(NAME) : make_path $(OBJS)
 	$(CC) $(CFLAGS) $(LIBFT) $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
@@ -67,7 +67,7 @@ $(NAME) : make_path $(OBJS)
 clean :
 	$(RM) $(OBJS)
 	make -C $(LIBFT_PATH) fclean
-	# $(RM) libmlx.dylib
+	$(RM) libmlx.dylib
 	make -C $(MLX_PATH) clean
 
 fclean : clean
