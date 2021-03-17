@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/14 18:28:44 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/17 12:03:43 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define X_EVENT_KEY_RELEASE 3
 # define X_EVENT_KEY_PRESS 2
-# define X_EVENT_KEY_EXIT 17 //Exit program key code
+# define X_EVENT_KEY_EXIT 17
 # define KEY_ESC 53
 # define CHARACTER_DIRS "SNWE"
 # define TRUE 1

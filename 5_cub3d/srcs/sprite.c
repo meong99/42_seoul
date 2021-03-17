@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sprite.c                                        :+:      :+:    :+:   */
+/*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:15:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/14 18:27:03 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/16 18:42:43 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	draw_sprite(t_game *game, int stripe)
 			game->tex_info[SPRITE].texture_height) /\
 			game->ray.sprite.sprite_height) / 256;
 		color = game->tex_info[SPRITE].data\
-			[game->tex_info[SPRITE].texture_width *\
+			[game->tex_info[SPRITE].size_l / (game->tex_info[SPRITE].bpp / 8) *\
 			game->ray.sprite.sprite_tex_y +\
 			game->ray.sprite.sprite_tex_x];
 		if ((color & 0x00FFFFFF) != 0)
