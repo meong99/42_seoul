@@ -6,19 +6,19 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:16:16 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/14 16:16:31 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/18 13:44:23 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	swap_value(int *value_1, int *value_2)
+void	swap_value(t_sprite_dist **value, int index_1, int index_2)
 {
-	int temp;
+	t_sprite_dist	temp;
 
-	temp = *value_1;
-	*value_1 = *value_2;
-	*value_2 = temp;
+	temp = (*value)[index_1];
+	(*value)[index_1] = (*value)[index_2];
+	(*value)[index_2] = temp;
 }
 
 int		partition(void *value, int left_index, int right_index)
@@ -32,14 +32,14 @@ int		partition(void *value, int left_index, int right_index)
 	j = left_index - 1;
 	while (++j < right_index)
 	{
-		if (sprite_dist[j].dist < sprite_dist[right_index].dist)
+		if (sprite_dist[j].dist > sprite_dist[right_index].dist)
 		{
 			i++;
-			swap_value(&sprite_dist[i].dist, &sprite_dist[j].dist);
+			swap_value(&sprite_dist, i, j);
 		}
 	}
-	swap_value(&sprite_dist[--j].dist, &sprite_dist[right_index].dist);
-	return (j);
+	swap_value(&sprite_dist, i + 1, right_index);
+	return (i + 1);
 }
 
 void	quick_sort(void *value, int left_index, int right_index)

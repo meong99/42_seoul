@@ -81,7 +81,6 @@ clean :
 	make -C $(LIBFT_PATH) fclean
 	$(RM_MMS_NAME)
 	make -C $(MLX_PATH) clean
-	rm $(INCS_PATH)/mlx.h
 
 fclean : clean
 	$(RM) $(NAME)
