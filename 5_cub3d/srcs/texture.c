@@ -6,17 +6,37 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:53:28 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/18 12:35:28 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/18 15:17:38 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	texture_set(t_game *game)
+void	draw_texture(t_game *game, int texture_dir, int y, int x)
 {
-	int		texture_dir;
+	int		color;
 
-	texture_dir = game->img.texture_dir;
+	game->ray.tex_y = (int)game->ray.tex_pos &\
+	(game->tex_info[texture_dir].texture_height - 1);
+	game->ray.tex_pos += game->ray.step;
+	color = game->tex_info[texture_dir].data\
+	[game->tex_info[texture_dir].texture_height *\
+	game->ray.tex_y + game->ray.tex_x];
+	game->ray.buf[y][x] = color;
+}
+
+void	texture_step_pos_set(t_game *game, int texture_dir)
+{
+	game->ray.step =\
+	1.0 * game->tex_info[texture_dir].texture_height\
+	/ game->ray.line_height;
+	game->ray.tex_pos =\
+	(game->ray.draw_start - game->info.screen_height / 2\
+	+ game->ray.line_height / 2) * game->ray.step;
+}
+
+void	texture_wall_tex_x(t_game *game, int texture_dir)
+{
 	if (game->ray.side == 0)
 		game->ray.wall_x = game->player.char_pos_y +\
 		game->ray.perp_wall_dist * game->ray.ray_dir_y;
@@ -35,26 +55,12 @@ void	texture_set(t_game *game)
 void	texture_ctrl(t_game *game, int x)
 {
 	int		y;
-	int		color;
 	int		texture_dir;
 
 	texture_dir = game->img.texture_dir;
-	texture_set(game);
-	game->ray.step =\
-	1.0 * game->tex_info[texture_dir].texture_height\
-	/ game->ray.line_height;
-	game->ray.tex_pos =\
-	(game->ray.draw_start - game->info.screen_height / 2\
-	+ game->ray.line_height / 2) * game->ray.step;
+	texture_wall_tex_x(game, texture_dir);
+	texture_step_pos_set(game, texture_dir);
 	y = game->ray.draw_start - 1;
 	while (++y < game->ray.draw_end)
-	{
-		game->ray.tex_y = (int)game->ray.tex_pos &\
-		(game->tex_info[texture_dir].texture_height - 1);
-		game->ray.tex_pos += game->ray.step;
-		color = game->tex_info[texture_dir].data\
-		[game->tex_info[texture_dir].texture_height *\
-		game->ray.tex_y + game->ray.tex_x];
-		game->ray.buf[y][x] = color;
-	}
+		draw_texture(game, texture_dir, y, x);
 }

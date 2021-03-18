@@ -6,19 +6,13 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:43 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/18 12:46:00 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/18 16:01:20 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	info_error(t_info *info, t_tex_info *tex_info)
-{
-	element_count_error(info, tex_info);
-	screen_size_error(info);
-}
-
-void	element_count_error(t_info *info, t_tex_info *tex_info)
+void	element_count_error(t_info *info)
 {
 	char	**temp;
 	int		i;
@@ -34,7 +28,6 @@ void	element_count_error(t_info *info, t_tex_info *tex_info)
 		var_free(temp, 2, 0, 1);
 		temp = 0;
 	}
-	parsing_map_info(info, tex_info);
 }
 
 void	screen_size_error(t_info *info)

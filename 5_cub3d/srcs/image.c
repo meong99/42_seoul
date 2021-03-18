@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:23:24 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/18 11:59:24 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/19 03:13:28 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	draw_image(t_info *info, t_img *img, t_ray *ray)
 	{
 		j = -1;
 		while (++j < info->screen_width)
-			img->data[(info->screen_width) * i + j] = \
+			img->data[(info->screen_width + img->padding) * i + j] = \
 			ray->buf[i][j];
 	}
 	mlx_put_image_to_window(info->mlx, info->win, img->img, 0, 0);

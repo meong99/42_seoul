@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/17 14:23:42 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/18 14:32:40 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	character_error(t_info *info, t_player *player, int character)
+void	player_error(t_info *info, t_player *player, int character)
 {
 	if (character != 1)
 		error_exit("too many players");
@@ -43,21 +43,25 @@ void	map_check(t_info *info, int j, int i)
 	map_check(info, i, j + 1);
 }
 
-void	map_init_zero(t_info *info)
+int		check_gnl(t_info *info, char *one_line)
 {
-	int		i;
-	int		j;
-
-	i = -1;
-	while (++i < info->cols)
-	{
-		j = -1;
-		while (++j < info->rows[i])
-		{
-			if (info->map[i][j] == 'X')
-				info->map[i][j] = '0';
-			else if (info->map[i][j] == 'S')
-				info->map[i][j] = '2';
-		}
-	}
+	if (!ft_strncmp(one_line, "R ", 2))
+		return (overlap_error(info, RESOLUTION));
+	else if (!ft_strncmp(one_line, "NO ", 3))
+		return (overlap_error(info, NORTH));
+	else if (!ft_strncmp(one_line, "SO ", 3))
+		return (overlap_error(info, SOUTH));
+	else if (!ft_strncmp(one_line, "WE ", 3))
+		return (overlap_error(info, WEST));
+	else if (!ft_strncmp(one_line, "EA ", 3))
+		return (overlap_error(info, EAST));
+	else if (!ft_strncmp(one_line, "S ", 2))
+		return (overlap_error(info, SPRITE));
+	else if (!ft_strncmp(one_line, "F ", 2))
+		return (overlap_error(info, FLOOR_COLOR));
+	else if (!ft_strncmp(one_line, "C ", 2))
+		return (overlap_error(info, CEILING_COLOR));
+	else
+		error_exit("invalid map info");
+	return (-1);
 }

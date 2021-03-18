@@ -27,14 +27,14 @@ SRCS_NAME =	\
 		main.c\
 		malloc_free.c\
 		map_error.c\
-		map_parsing.c\
-		map.c\
-		player_move.c\
+		parsing_info.c\
+		parsing_map.c\
 		player.c\
-		ray_init.c\
 		ray_util.c\
-		ray.c\
+		raycasting.c\
+		save.c\
 		sort.c\
+		sprite_cast.c\
 		sprite.c\
 		texture.c\
 		util.c

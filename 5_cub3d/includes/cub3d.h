@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/17 18:16:49 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/18 19:30:24 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct	s_player
 typedef struct	s_info
 {
 	int				color[2];
-	char			*map_name;
 	int				*rows;
 	int				cols;
 	char			**map;
@@ -178,8 +177,7 @@ void			draw_fl_cei(t_info *info, t_ray *ray);
 /*
 ** info_error.c
 */
-void			info_error(t_info *info, t_tex_info *tex_info);
-void			element_count_error(t_info *info, t_tex_info *tex_info);
+void			element_count_error(t_info *info);
 void			screen_size_error(t_info *info);
 int				overlap_error(t_info *info, int type);
 void			invalid_char_error(const char *info, int type);
@@ -188,8 +186,9 @@ void			invalid_char_error(const char *info, int type);
 **	init.c
 */
 void			game_init(t_game *game, char *filename);
-void			mwi_init(t_info *info, t_img *img);
-void			key_init(t_player *player);
+void			mlx_win_img_init(t_info *info, t_img *img);
+void			player_init(t_player *player);
+void			buf_init(t_info *info, t_ray *ray);
 
 /*
 ** key_set.c
@@ -202,6 +201,7 @@ int				key_release_set(int key_code, t_player *player);
 */
 int				win_close(t_game *game);
 int				main_loop(t_game *game);
+void			start_loop(t_game *game);
 
 /*
 ** malloc_free.c
@@ -213,43 +213,32 @@ void			*var_malloc(size_t size);
 ** map_error.c
 */
 void			map_check(t_info *info, int pos_x, int pos_y);
-void			character_error(t_info *info, t_player *player, int character);
-void			map_init_zero(t_info *info);
+void			player_error(t_info *info, t_player *player, int character);
+int				check_gnl(t_info *info, char *one_line);
 
 /*
-** map_parsing.c
+** parsing_info.c
 */
 void			parsing_map_info(t_info *info, t_tex_info *tex_info);
 void			parsing_color(t_info *info, int type);
 void			get_color(int *temp_color, int *color);
 
 /*
-**	map.c
+**	parsing_map.c
 */
-void			get_map(t_game *game, const char *filename);
-int				check_gnl(t_info *info, char *one_line);
-void			map_parsing(int fd, t_info *info);
-void			map_mapi(t_info *info, const char *map);
-void			find_character(t_info *info, t_player *player);
-
-/*
-** player_move.c
-*/
-void			player_move(t_game *game);
-void			player_move_back_forward(t_info *info, t_player *player);
-void			player_move_left_right(t_info *info, t_player *player);
+void			map_parsing(t_game *game, const char *filename);
+void			get_map(int fd, t_info *info);
+void			split_map_get_rows(t_info *info, const char *map);
+void			find_player(t_info *info, t_player *player);
+void			reset_map(t_info *info);
 
 /*
 ** player.c
 */
-void			player_init(t_player *player);
+void			player_move(t_game *game);
+void			player_move_back_forward(t_info *info, t_player *player);
+void			player_move_left_right(t_info *info, t_player *player);
 void			player_camera_turn(t_player *player, double angle);
-
-/*
-**	ray_init.c
-*/
-void			ray_init(t_game *game);
-void			buf_init(t_info *info, t_ray *ray);
 
 /*
 ** ray_util.c
@@ -261,12 +250,15 @@ void			perp_dist_and_texture_num(t_game *game);
 void			draw_set(t_game *game);
 
 /*
-**	ray.c
+**	raycasting.c
 */
 void			raycasting(t_game *game);
-void			ver_line(t_game *game, int x, int y1, int y2, int color);
-void			check_wall(t_game *game);
-void			distance(t_game *game);
+void			load_texture(t_game *game);
+
+/*
+** save.c
+*/
+void			save_bmp(t_game *game);
 
 /*
 ** sort.c
@@ -274,17 +266,25 @@ void			distance(t_game *game);
 void			quick_sort(void *value, int left_index, int right_index);
 
 /*
+** sprite_casting.c
+*/
+void			sprite_set(t_game *game, int i);
+void			sprite_draw_set(t_game *game);
+void			draw_sprite(t_game *game, int stripe);
+
+/*
 ** sprite.c
 */
-void			set_sprite(t_game *game);
 void			sprite_cast(t_game *game);
-void			sprite_sort(t_game *game);
+void			set_sprite_dist(t_game *game);
 
 /*
 ** texture.c
 */
-void			texture_set(t_game *game);
+void			texture_wall_tex_x(t_game *game, int texture_dir);
 void			texture_ctrl(t_game *game, int x);
+void			draw_texture(t_game *game, int texture_dir, int y, int x);
+void			texture_step_pos_set(t_game *game, int texture_dir);
 
 /*
 **	util.c

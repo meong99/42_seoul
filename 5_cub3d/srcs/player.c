@@ -1,36 +1,77 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 16:39:41 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/18 12:44:47 by mchae            ###   ########.fr       */
+/*   Created: 2021/03/14 14:46:57 by mchae             #+#    #+#             */
+/*   Updated: 2021/03/18 14:15:47 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	player_init(t_player *player)
+void	player_move(t_game *game)
 {
-	int		angle;
+	player_move_back_forward(&game->info, &game->player);
+	player_move_left_right(&game->info, &game->player);
+	if (!game->player.right_turn && game->player.left_turn)
+		player_camera_turn(&game->player, -game->player.turn_speed);
+	else if (!game->player.left_turn && game->player.right_turn)
+		player_camera_turn(&game->player, game->player.turn_speed);
+}
 
-	player->turn_speed = get_radian(3);
-	player->move_speed = 0.05;
-	player->dir_x = 1.0;
-	player->dir_y = 0.0;
-	player->plane_x = 0.0;
-	player->plane_y = 0.66;
-	if (player->char_dir == 'E')
-		angle = 0;
-	else if (player->char_dir == 'S')
-		angle = 90;
-	else if (player->char_dir == 'W')
-		angle = 180;
-	else
-		angle = 270;
-	player_camera_turn(player, get_radian(angle));
+void	player_move_back_forward(t_info *info, t_player *player)
+{
+	if (!player->back && player->forward)
+	{
+		if (info->map[(int)(player->char_pos_y)]\
+				[(int)(player->char_pos_x + \
+				player->dir_x * (player->move_speed * 2))] == '0')
+			player->char_pos_x += player->dir_x * player->move_speed;
+		if (info->map[(int)(player->char_pos_y + \
+				player->dir_y * (player->move_speed * 2))]\
+					[(int)(player->char_pos_x)] == '0')
+			player->char_pos_y += player->dir_y * player->move_speed;
+	}
+	else if (!player->forward && player->back)
+	{
+		if (info->map[(int)(player->char_pos_y)]\
+				[(int)(player->char_pos_x - \
+				player->dir_x * (player->move_speed * 2))] == '0')
+			player->char_pos_x -= player->dir_x * player->move_speed;
+		if (info->map[(int)(player->char_pos_y - \
+				player->dir_y * (player->move_speed * 2))]\
+				[(int)(player->char_pos_x)] == '0')
+			player->char_pos_y -= player->dir_y * player->move_speed;
+	}
+}
+
+void	player_move_left_right(t_info *info, t_player *player)
+{
+	if (!player->right && player->left)
+	{
+		if (info->map[(int)(player->char_pos_y - \
+				player->dir_x * (player->move_speed * 2))]\
+				[(int)(player->char_pos_x)] == '0')
+			player->char_pos_y -= player->dir_x * player->move_speed;
+		if (info->map[(int)(player->char_pos_y)]\
+				[(int)(player->char_pos_x + \
+				player->dir_y * (player->move_speed * 2))] == '0')
+			player->char_pos_x += player->dir_y * player->move_speed;
+	}
+	else if (!player->left && player->right)
+	{
+		if (info->map[(int)(player->char_pos_y + \
+				player->dir_x * (player->move_speed * 2))]\
+				[(int)(player->char_pos_x)] == '0')
+			player->char_pos_y += player->dir_x * player->move_speed;
+		if (info->map[(int)(player->char_pos_y)]\
+				[(int)(player->char_pos_x - \
+				player->dir_y * (player->move_speed * 2))] == '0')
+			player->char_pos_x -= player->dir_y * player->move_speed;
+	}
 }
 
 void	player_camera_turn(t_player *player, double radian)

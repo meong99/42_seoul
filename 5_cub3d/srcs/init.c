@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/17 16:23:31 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/18 14:26:41 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,23 @@ void	game_init(t_game *game, char *filename)
 
 	i = -1;
 	game->info.cols = 0;
-	game->info.map_name = filename;
+	game->info.sprite_num = 0;
+	game->player.forward = 0;
+	game->player.back = 0;
+	game->player.right = 0;
+	game->player.left = 0;
+	game->player.left_turn = 0;
+	game->player.right_turn = 0;
 	while (++i < 8)
 		game->info.info_check[i] = -1;
-	game->info.sprite_num = 0;
-	get_map(game, filename);
-	key_init(&game->player);
+	map_parsing(game, filename);
 }
 
-void	mwi_init(t_info *info, t_img *img)
+void	mlx_win_img_init(t_info *info, t_img *img)
 {
 	info->mlx = mlx_init();
 	info->win = mlx_new_window(info->mlx, info->screen_width,
-		info->screen_height, info->map_name);
+		info->screen_height, "cub3D");
 	img->img = \
 		mlx_new_image(info->mlx, info->screen_width, info->screen_height);
 	img->data = (int*)mlx_get_data_addr(\
@@ -38,12 +42,42 @@ void	mwi_init(t_info *info, t_img *img)
 	img->padding = (img->size_l - info->screen_width * (img->bpp / 8)) / 4;
 }
 
-void	key_init(t_player *player)
+void	player_init(t_player *player)
 {
-	player->forward = 0;
-	player->back = 0;
-	player->right = 0;
-	player->left = 0;
-	player->left_turn = 0;
-	player->right_turn = 0;
+	int		angle;
+
+	player->turn_speed = get_radian(3);
+	player->move_speed = 0.05;
+	player->dir_x = 1.0;
+	player->dir_y = 0.0;
+	player->plane_x = 0.0;
+	player->plane_y = 0.66;
+	if (player->char_dir == 'E')
+		angle = 0;
+	else if (player->char_dir == 'S')
+		angle = 90;
+	else if (player->char_dir == 'W')
+		angle = 180;
+	else
+		angle = 270;
+	player_camera_turn(player, get_radian(angle));
+}
+
+void	buf_init(t_info *info, t_ray *ray)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	ray->buf = (int**)var_malloc(sizeof(int*) * info->screen_height);
+	while (++i < info->screen_height)
+		ray->buf[i] = (int*)var_malloc(sizeof(int) * info->screen_width);
+	i = -1;
+	while (++i < info->screen_height)
+	{
+		j = -1;
+		while (++j < info->screen_width)
+			ray->buf[i][j] = 0;
+	}
+	ray->sprite_buf = (double*)var_malloc(sizeof(double) * info->screen_width);
 }
