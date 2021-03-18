@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:58:03 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/17 15:33:20 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/18 12:04:31 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	perp_dist_and_texture_num(t_game *game)
 	{
 		game->ray.perp_wall_dist =\
 		(game->ray.map_x - game->player.char_pos_x +\
-		(1 - game->ray.step_x) / 2) / game->ray.ray_dir_x;
+		((1 - game->ray.step_x) >> 1)) / game->ray.ray_dir_x;
 		if (game->ray.step_x > 0)
 			game->img.texture_dir = EAST;
 		else
@@ -94,7 +94,7 @@ void	perp_dist_and_texture_num(t_game *game)
 	{
 		game->ray.perp_wall_dist =\
 		(game->ray.map_y - game->player.char_pos_y +\
-		(1 - game->ray.step_y) / 2) / game->ray.ray_dir_y;
+		((1 - game->ray.step_y) >> 1)) / game->ray.ray_dir_y;
 		if (game->ray.step_y > 0)
 			game->img.texture_dir = SOUTH;
 		else
@@ -108,11 +108,11 @@ void	draw_set(t_game *game)
 	game->ray.line_height =\
 	(int)(game->info.screen_height / game->ray.perp_wall_dist);
 	game->ray.draw_start =\
-	-game->ray.line_height / 2 + game->info.screen_height / 2;
+	(-game->ray.line_height >> 1) + (game->info.screen_height >> 1);
 	if (game->ray.draw_start < 0)
 		game->ray.draw_start = 0;
 	game->ray.draw_end =\
-	game->ray.line_height / 2 + game->info.screen_height / 2;
+	(game->ray.line_height >> 1) + (game->info.screen_height >> 1);
 	if (game->ray.draw_end >= game->info.screen_height)
 		game->ray.draw_end = game->info.screen_height - 1;
 }

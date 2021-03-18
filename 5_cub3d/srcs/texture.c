@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:53:28 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/17 18:45:14 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/18 12:06:32 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	texture_ctrl(t_game *game, int x)
 	1.0 * game->tex_info[texture_dir].texture_height\
 	/ game->ray.line_height;
 	game->ray.tex_pos =\
-	(game->ray.draw_start - game->info.screen_height / 2\
-	+ game->ray.line_height / 2) * game->ray.step;
+	(game->ray.draw_start - (game->info.screen_height >> 1)\
+	+ (game->ray.line_height >> 1)) * game->ray.step;
 	y = game->ray.draw_start - 1;
 	while (++y < game->ray.draw_end)
 	{

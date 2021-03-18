@@ -8,7 +8,7 @@ SRCS_PATH = ./srcs
 OBJS_PATH = ./objs
 GNL_PATH = ./get_next_line
 LIBFT_PATH = ./libft
-MLX_PATH = ./mlx
+MLX_PATH = ./mms_mlx
 INCS_PATH = ./includes
 
 LIBFT = -L$(LIBFT_PATH) -lft
@@ -50,6 +50,17 @@ ifeq ($(SANITIZE), true)
 	FSANITIZE = -g -fsanitize=address
 endif
 
+ifeq ($(OPENGL), true)
+	MLX_PATH = ./opengl_mlx
+endif
+
+ifeq ($(OPENGL), false)
+	MV_MMS_NAME = mv $(MLX_PATH)/libmlx.dylib ./
+endif
+
+ifeq ($(OPENGL), false)
+	RM_MMS_NAME = $(RM) libmlx.dylib
+endif
 all : $(NAME)
 
 $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
@@ -59,7 +70,7 @@ $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
 make_path :
 	make -C $(LIBFT_PATH)
 	make -C $(MLX_PATH)
-	mv $(MLX_PATH)/libmlx.dylib ./
+	$(MV_MMS_NAME)
 	cp $(MLX_PATH)/mlx.h $(INCS_PATH)
 
 $(NAME) : make_path $(OBJS)
@@ -68,7 +79,7 @@ $(NAME) : make_path $(OBJS)
 clean :
 	$(RM) $(OBJS)
 	make -C $(LIBFT_PATH) fclean
-	$(RM) libmlx.dylib
+	$(RM_MMS_NAME)
 	make -C $(MLX_PATH) clean
 	rm $(INCS_PATH)/mlx.h
 
