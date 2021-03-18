@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:43 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/18 16:01:20 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/19 04:04:51 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,12 @@ void	element_count_error(t_info *info)
 
 void	screen_size_error(t_info *info)
 {
-	int		i;
-	int		resol_x;
-	int		resol_y;
-
-	i = -1;
-	mlx_get_screen_size(info->mlx, &resol_x, &resol_y);
-	if (info->screen_width > resol_x)
-		info->screen_width = resol_x;
-	if (info->screen_height > resol_y)
-		info->screen_height = resol_y;
+	mlx_get_screen_size(info->mlx, &info->max_screen_width, \
+		&info->max_screen_height);
+	if (info->screen_width > info->max_screen_width)
+		info->screen_width = info->max_screen_width;
+	if (info->screen_height > info->max_screen_height)
+		info->screen_height = info->max_screen_height;
 }
 
 int		overlap_error(t_info *info, int type)

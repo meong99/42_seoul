@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/18 19:30:24 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/19 03:59:46 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,9 @@ typedef struct	s_info
 	void			*mlx;
 	void			*win;
 	int				screen_width;
+	int				max_screen_width;
 	int				screen_height;
+	int				max_screen_height;
 	int				sprite_num;
 }				t_info;
 
