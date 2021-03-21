@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:53 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/18 15:20:00 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/21 22:23:57 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	raycasting(t_game *game)
 		texture_ctrl(game, x);
 		game->ray.sprite_buf[x] = game->ray.perp_wall_dist;
 	}
-	game->ray.sprite_dist =\
+	game->sprite_dist =\
 	(t_sprite_dist*)var_malloc(sizeof(t_sprite_dist) * game->info.sprite_num);
 	set_sprite_dist(game);
 	sprite_cast(game);
 	draw_image(&game->info, &game->img, &game->ray);
 	var_free(game->ray.buf, 2, game->info.screen_height, 0);
 	var_free(&game->ray.sprite_buf, 1, 0, 0);
-	var_free(&game->ray.sprite_dist, 1, 0, 0);
+	var_free(&game->sprite_dist, 1, 0, 0);
 }
 
 void	load_texture(t_game *game)

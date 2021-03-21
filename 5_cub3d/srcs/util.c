@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:54 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/13 18:42:35 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/21 23:19:47 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,24 @@ void	error_exit(char *massege)
 double	get_radian(int angle)
 {
 	return (angle * (M_PI / 180));
+}
+
+int		color_div(int color, double perp_wall_dist)
+{
+	int		red;
+	int		green;
+	int		blue;
+
+	red = color & 0xFF0000;
+	green = color & 0x00FF00;
+	blue = color & 0x0000FF;
+
+	red -= ((int)perp_wall_dist & 0xFF0000) * 10;
+	green -= ((int)perp_wall_dist & 0x00FF00) * 10;
+	blue -= ((int)perp_wall_dist & 0x0000FF) * 10;
+	color = 0;
+	color |= red;
+	color |= green;
+	color |= blue;
+	return (color);
 }

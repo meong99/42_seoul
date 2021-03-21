@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/21 22:05:30 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 01:13:24 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,6 @@ typedef struct	s_sprite_dist
 
 typedef struct	s_ray
 {
-	t_sprite		sprite;
-	t_sprite_dist	*sprite_dist;
 	int				**buf;
 	double			camera_x;
 	double			ray_dir_x;
@@ -168,12 +166,19 @@ typedef struct	s_ray
 
 typedef struct	s_game
 {
+	t_sprite_dist	*sprite_dist;
+	t_sprite		sprite;
 	t_img			img;
 	t_tex_info		tex_info[5];
 	t_ray			ray;
 	t_info			info;
 	t_player		player;
 }				t_game;
+
+/*
+** bonus.c
+*/
+void			ft_hud(t_game *game);
 
 /*
 **  image.c
@@ -300,5 +305,6 @@ void			texture_step_pos_set(t_game *game, int texture_dir);
 int				count_element(char **element);
 void			error_exit(char *massege);
 double			get_radian(int angle);
+int				color_div(int color, double perp_wall_dist);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/19 01:32:12 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/22 01:20:18 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,12 @@ void	find_player(t_info *info, t_player *player)
 		j = -1;
 		while (++j < info->rows[i])
 		{
-			if (info->map[i][j] != '0' && info->map[i][j] != '2'
-			&& ft_strchr(CHARACTER_DIRS, info->map[i][j]))
+			if (ft_strchr(CHARACTER_DIRS, info->map[i][j]))
 			{
 				character++;
 				player->char_pos_x = 0.5f + j;
 				player->char_pos_y = 0.5f + i;
 			}
-			else if (info->map[i][j] == '2')
-				info->sprite_num++;
 		}
 	}
 	player_error(info, player, character);

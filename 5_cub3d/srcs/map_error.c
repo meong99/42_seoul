@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/18 14:32:40 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/22 01:20:46 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ void	map_check(t_info *info, int j, int i)
 	if (i == -1 || i >= info->cols ||
 			j == -1 || info->map[i][j] == '\0')
 		error_exit("not closed");
-	if (info->map[i][j] == '1' ||
-		info->map[i][j] == 'X' ||
+	if (info->map[i][j] == '1' || info->map[i][j] == 'X' ||
 		info->map[i][j] == 'S')
 		return ;
-	else if (info->map[i][j] != '0' &&
-		info->map[i][j] != '2')
+	else if (info->map[i][j] != '0' && info->map[i][j] != '2')
 		error_exit("invalid char");
 	if (info->map[i][j] == '2')
+	{
+		info->sprite_num++;
 		info->map[i][j] = 'S';
+	}
 	else
 		info->map[i][j] = 'X';
 	map_check(info, i + 1, j);
