@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc_free.c                                   :+:      :+:    :+:   */
+/*   malloc_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:46:39 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/14 14:46:39 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/22 01:55:39 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*var_malloc(size_t size)
 {
 	void	*val;
 
-	val = malloc(size);
+	val = ft_calloc(1, size);
 	if (!val)
 		error_exit("malloc error");
 	return (val);

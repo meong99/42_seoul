@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 01:13:24 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 02:04:18 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct	s_info
 	int				*rows;
 	int				cols;
 	char			**map;
+	int				**map_mask;
 	char			*info_map[8];
 	int				info_check[8];
 	void			*mlx;
@@ -102,6 +103,7 @@ typedef struct	s_info
 	int				screen_height;
 	int				max_screen_height;
 	int				sprite_num;
+	int				interactive_sprite_num;
 }				t_info;
 
 typedef struct	s_sprite
