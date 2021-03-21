@@ -66,14 +66,12 @@ all : $(NAME)
 $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
 	@mkdir -p $(OBJS_PATH)
 	@$(CC) $(CFLAGS) $(CDEBUG) $(FSANITIZE) $(INCS) -c $< -o $@
-
-make_path :
+	
+$(NAME) : $(OBJS)
 	make -C $(LIBFT_PATH)
 	make -C $(MLX_PATH)
 	$(MV_MMS_NAME)
 	cp $(MLX_PATH)/mlx.h $(INCS_PATH)
-
-$(NAME) : make_path $(OBJS)
 	$(CC) $(CFLAGS) $(LIBFT) $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
 clean :
@@ -85,7 +83,11 @@ clean :
 fclean : clean
 	$(RM) $(NAME)
 
-debug : make_path $(OBJS)
+debug : $(OBJS)
+	make -C $(LIBFT_PATH)
+	make -C $(MLX_PATH)
+	$(MV_MMS_NAME)
+	cp $(MLX_PATH)/mlx.h $(INCS_PATH)
 	$(CC) $(CFLAGS) $(LIBFT) $(CDEBUG) $(FSANITIZE) $(INCS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
 re : fclean all

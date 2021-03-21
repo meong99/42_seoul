@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/19 03:59:46 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/21 22:05:30 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@
 # define CEILING_COLOR 7
 # define FLOOR 0
 # define CEILING 1
-
+# define V_DIV 2
+# define U_DIV 2
+# define V_MOVE 0.0
 typedef struct	s_tex_info
 {
 	void			*img;
@@ -120,6 +122,10 @@ typedef struct	s_sprite
 	int				sprite_tex_x;
 	int				sprite_tex_y;
 	int				d;
+	int				u_div;
+	int				v_div;
+	int				v_move_screen;
+	double			v_move;
 }				t_sprite;
 
 typedef struct	s_sprite_dist
