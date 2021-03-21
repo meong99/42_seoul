@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 02:04:51 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 03:20:05 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,20 @@ void	player_error(t_info *info, t_player *player, int character)
 void	map_check(t_info *info, int j, int i)
 {
 	if (i == -1 || i >= info->cols ||
-			j == -1 || j >= info->rows[i])
+			j == -1 || info->map[i][j] == '\0')
 		error_exit("not closed");
-	if (info->map_mask[i][j] == 1)
+	if (info->map[i][j] == '1' || info->map[i][j] == 'X' ||
+		info->map[i][j] == 'S')
 		return ;
-	else if (!(info->map[i][j] >= '0' && info->map[i][j] <= '3'))
+	else if (info->map[i][j] != '0' && info->map[i][j] != '2')
 		error_exit("invalid char");
 	if (info->map[i][j] == '2')
+	{
 		info->sprite_num++;
-	else if (info->map[i][j] == '3')
-		info->interactive_sprite_num++;
-	info->map_mask[i][j] = 1;
+		info->map[i][j] = 'S';
+	}
+	else
+		info->map[i][j] = 'X';
 	map_check(info, i + 1, j);
 	map_check(info, i - 1, j);
 	map_check(info, i, j - 1);

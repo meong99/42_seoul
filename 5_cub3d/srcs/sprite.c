@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:15:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 02:24:14 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 03:19:04 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	sprite_cast(t_game *game)
 
 	i = -1;
 	stripe = -1;
-	while (++i < game->info.sprite_num + game->info.interactive_sprite_num)
+	while (++i < game->info.sprite_num)
 	{
 		sprite_set(game, i);
 		sprite_draw_set(game);
@@ -52,8 +52,7 @@ void	set_sprite_dist(t_game *game)
 		j = -1;
 		while (++j < game->info.rows[i])
 		{
-			if (game->info.map[i][j] == '2' || \
-				game->info.map[i][j] == '3')
+			if (game->info.map[i][j] == '2')
 			{
 				game->sprite_dist[++k].x = 0.5 + j;
 				game->sprite_dist[k].y = 0.5 + i;
