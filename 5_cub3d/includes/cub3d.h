@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 03:29:19 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 03:47:02 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,6 @@ void			map_parsing(t_game *game, const char *filename);
 void			get_map(int fd, t_info *info);
 void			split_map_get_rows(t_info *info, const char *map);
 void			find_player(t_info *info, t_player *player);
-void			reset_map(t_info *info);
 
 /*
 ** player.c

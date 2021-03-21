@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 03:26:23 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 03:46:59 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	map_parsing(t_game *game, const char *filename)
 	get_map(fd, &game->info);
 	find_player(&game->info, &game->player);
 	map_check(&game->info, game->player.char_pos_x, game->player.char_pos_y);
-	reset_map(&game->info);
 	element_count_error(&game->info);
 	parsing_map_info(&game->info, game->tex_info);
 	screen_size_error(&game->info);
@@ -97,23 +96,4 @@ void	find_player(t_info *info, t_player *player)
 		}
 	}
 	player_error(info, player, character);
-}
-
-void	reset_map(t_info *info)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	while (++i < info->cols)
-	{
-		j = -1;
-		while (++j < info->rows[i])
-		{
-			if (info->map[i][j] == 'X')
-				info->map[i][j] = '0';
-			else if (info->map[i][j] == 'S')
-				info->map[i][j] = '2';
-		}
-	}
 }
