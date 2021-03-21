@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/18 14:26:41 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/22 03:28:17 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	game_init(t_game *game, char *filename)
 	i = -1;
 	game->info.cols = 0;
 	game->info.sprite_num = 0;
+	game->info.interactive_sprite_num = 0;
 	game->player.forward = 0;
 	game->player.back = 0;
 	game->player.right = 0;

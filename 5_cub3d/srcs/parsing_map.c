@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 03:19:45 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 03:26:23 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ void	split_map_get_rows(t_info *info, const char *map)
 	info->map = ft_split(map, '\n');
 	while (++i < info->cols)
 		info->rows[i] = (int)ft_strlen(info->map[i]);
+	i = -1;
+	info->map_mask = (int**)var_malloc(sizeof(int*) * info->cols);
+	while (++i < info->cols)
+		info->map_mask[i] = (int*)var_malloc(sizeof(int) * info->cols);
 }
 
 void	find_player(t_info *info, t_player *player)
