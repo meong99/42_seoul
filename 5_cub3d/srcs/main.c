@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/21 23:33:19 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 01:50:18 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		win_close(t_game *game)
 int		main_loop(t_game *game)
 {
 	raycasting(game);
-	ft_hud(game, "wow");
+	ft_hud(game);
 	return (0);
 }
 

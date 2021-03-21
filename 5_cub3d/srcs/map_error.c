@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 01:20:46 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 01:51:10 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	player_error(t_info *info, t_player *player, int character)
 void	map_check(t_info *info, int j, int i)
 {
 	if (i == -1 || i >= info->cols ||
-			j == -1 || info->map[i][j] == '\0')
+			j == -1 || j >= info->rows[i])
 		error_exit("not closed");
 	if (info->map[i][j] == '1' || info->map[i][j] == 'X' ||
 		info->map[i][j] == 'S')
