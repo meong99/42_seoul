@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:46:39 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 17:23:47 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 18:03:05 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	var_free(void *var, int pointer_num, int index, int is_char)
 
 void	*var_malloc(size_t size)
 {
-	void	*val;
+	void	*var;
 
-	val = ft_calloc(1, size);
-	if (!val)
+	var = ft_calloc(1, size);
+	if (!var)
 		error_exit("malloc error");
-	return (val);
+	return (var);
 }
