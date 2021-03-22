@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 03:46:59 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 16:20:04 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	map_parsing(t_game *game, const char *filename)
 		error_exit("map file open error");
 	get_map(fd, &game->info);
 	find_player(&game->info, &game->player);
-	map_check(&game->info, game->player.char_pos_x, game->player.char_pos_y);
+	map_check(&game->info, game->player.char_pos_y, game->player.char_pos_x);
 	element_count_error(&game->info);
 	parsing_map_info(&game->info, game->tex_info);
 	screen_size_error(&game->info);

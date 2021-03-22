@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 03:29:05 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 16:19:54 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,17 @@ void	player_error(t_info *info, t_player *player, int character)
 	info->map[(int)player->char_pos_y][(int)player->char_pos_x] = '0';
 }
 
-void	map_check(t_info *info, int j, int i)
+void	map_check(t_info *info, int i, int j)
 {
 	if (i == -1 || i >= info->cols ||
-			j == -1 || j >= info->rows[i])
+			j == -1 || j > info->rows[i])
 		error_exit("not closed");
 	if (info->map[i][j] == '1' || info->map_mask[i][j] == 1)
 		return ;
-	else if (!(info->map[i][j] >= '0' && info->map[i][j] <= '3'))
+	else if (info->map[i][j] < '0' && info->map[i][j] > '2')
 		error_exit("invalid char");
 	if (info->map[i][j] == '2')
 		info->sprite_num++;
-	else if (info->map[i][j] == '3')
-		info->interactive_sprite_num++;
 	info->map_mask[i][j] = 1;
 	map_check(info, i + 1, j);
 	map_check(info, i - 1, j);

@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:53 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 02:06:29 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 15:55:31 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	load_texture(t_game *game)
 	while (++i <= SPRITE)
 		load_xpm_image(&game->tex_info[i], &game->info);
 	i = -1;
-	while (++i < 5)
+	while (++i <= SPRITE)
 		var_free(&game->tex_info[i].texture_path, 1, 0, 1);
 }
