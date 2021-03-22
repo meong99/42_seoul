@@ -6,11 +6,11 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:53 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 16:56:09 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 16:51:37 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	raycasting(t_game *game)
 {
@@ -31,7 +31,7 @@ void	raycasting(t_game *game)
 	}
 	game->sprite_dist =\
 	(t_sprite_dist*)var_malloc(sizeof(t_sprite_dist) * \
-		game->info.sprite_num);
+		game->info.sprite_num + game->info.interactive_sprite_num);
 	set_sprite_dist(game);
 	sprite_cast(game);
 	draw_image(&game->info, &game->img, &game->ray);

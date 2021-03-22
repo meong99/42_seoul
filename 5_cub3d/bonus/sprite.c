@@ -6,11 +6,11 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:15:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 17:41:49 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 16:51:47 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	sprite_cast(t_game *game)
 {
@@ -52,7 +52,7 @@ void	set_sprite_dist(t_game *game)
 		j = -1;
 		while (++j < game->info.rows[i])
 		{
-			if (game->info.map_mask[i][j] == 2)
+			if (game->info.map[i][j] == '2')
 			{
 				game->sprite_dist[++k].x = 0.5 + j;
 				game->sprite_dist[k].y = 0.5 + i;

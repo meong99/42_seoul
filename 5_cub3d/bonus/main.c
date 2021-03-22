@@ -6,11 +6,11 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 16:52:51 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 16:51:10 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int		main(int argc, char *argv[])
 {
@@ -44,6 +44,7 @@ int		win_close(t_game *game)
 int		main_loop(t_game *game)
 {
 	raycasting(game);
+	ft_hud(game);
 	return (0);
 }
 

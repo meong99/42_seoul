@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 17:23:54 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 16:50:05 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "mlx.h"
 # include <stdio.h>
@@ -103,6 +103,7 @@ typedef struct	s_info
 	int				screen_height;
 	int				max_screen_height;
 	int				sprite_num;
+	int				interactive_sprite_num;
 }				t_info;
 
 typedef struct	s_sprite

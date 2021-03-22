@@ -6,11 +6,11 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 16:54:04 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 16:51:04 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	game_init(t_game *game, char *filename)
 {
@@ -19,6 +19,7 @@ void	game_init(t_game *game, char *filename)
 	i = -1;
 	game->info.cols = 0;
 	game->info.sprite_num = 0;
+	game->info.interactive_sprite_num = 0;
 	game->player.forward = 0;
 	game->player.back = 0;
 	game->player.right = 0;

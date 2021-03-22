@@ -6,11 +6,11 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:46:39 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 17:23:47 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 16:51:16 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	var_free(void *var, int pointer_num, int index, int is_char)
 {

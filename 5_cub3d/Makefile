@@ -18,7 +18,6 @@ SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
 
 SRCS_NAME =	\
-		bonus.c\
 		get_next_line_utils.c\
 		get_next_line.c\
 		image.c\

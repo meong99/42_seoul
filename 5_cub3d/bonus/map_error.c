@@ -6,11 +6,11 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 17:40:48 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 16:51:19 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	player_error(t_info *info, t_player *player, int character)
 {
@@ -26,18 +26,13 @@ void	map_check(t_info *info, int i, int j)
 	if (i == -1 || i >= info->cols ||
 			j == -1 || j > info->rows[i])
 		error_exit("not closed");
-	if (info->map[i][j] == '1' || info->map_mask[i][j] == 1 || \
-		info->map_mask[i][j] == 2)
+	if (info->map[i][j] == '1' || info->map_mask[i][j] == 1)
 		return ;
 	else if (info->map[i][j] < '0' && info->map[i][j] > '2')
 		error_exit("invalid char");
 	if (info->map[i][j] == '2')
-	{
-		info->map_mask[i][j] = 2;
 		info->sprite_num++;
-	}
-	else
-		info->map_mask[i][j] = 1;
+	info->map_mask[i][j] = 1;
 	map_check(info, i + 1, j);
 	map_check(info, i - 1, j);
 	map_check(info, i, j - 1);
