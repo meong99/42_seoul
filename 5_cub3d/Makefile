@@ -33,6 +33,7 @@ BSRCS_NAME = \
 		main.c\
 		malloc_free.c\
 		map_error.c\
+		more_sprite.c\
 		parsing_info.c\
 		parsing_map.c\
 		player.c\
@@ -61,7 +62,7 @@ INCS_PATH = ./includes
 LIBFT = -L$(LIBFT_PATH) -lft
 INCS = -I$(INCS_PATH)
 
-RM = rm -f
+RM = rm -rf
 
 
 SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))
@@ -112,7 +113,7 @@ bonus : $(BOBJS)
 	$(CC) $(CFLAGS) $(LIBFT) $(INCS) -o $(NAME) $(BOBJS) $(MLX_FLAGS)
 
 clean :
-	$(RM) $(OBJS)
+	$(RM) $(OBJS_PATH) $(BOBJS_PATH)
 	make -C $(LIBFT_PATH) fclean
 	$(RM_MMS_NAME)
 	make -C $(MLX_PATH) clean

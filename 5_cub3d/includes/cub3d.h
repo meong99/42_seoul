@@ -6,7 +6,7 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 17:46:32 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 18:56:37 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@
 # define CEILING_COLOR 7
 # define FLOOR 0
 # define CEILING 1
-# define V_DIV 2
-# define U_DIV 2
+# define V_DIV 1
+# define U_DIV 1
 # define V_MOVE 0.0
 typedef struct	s_tex_info
 {
