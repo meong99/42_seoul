@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/23 11:22:24 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/23 18:01:39 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	player_init(t_player *player)
 
 	player->turn_speed = get_radian(3);
 	player->move_speed = 0.05;
+	player->eye_level = 0;
 	player->dir_x = 1.0;
 	player->dir_y = 0.0;
 	player->plane_x = 0.0;
@@ -88,6 +89,6 @@ void	ray_init(t_game *game)
 {
 	game->sprite.u_div = 1;
 	game->sprite.v_div = 1;
-	game->sprite.v_move = 0;
+	game->sprite.v_move = 1;
 	game->sprite.v_move_screen = 0;
 }

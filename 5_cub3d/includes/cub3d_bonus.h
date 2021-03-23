@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/23 14:24:32 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/23 18:37:02 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct	s_player
 	double			turn_speed;
 	double			move_speed;
 	char			char_dir;
+	double			eye_level;
 }				t_player;
 
 typedef struct	s_info
@@ -183,6 +184,8 @@ typedef struct	s_game
 ** bonus.c
 */
 void			ft_hud(t_game *game);
+void	bonus_key_set(int key_code, t_player *player);
+void	bonus_move(t_game *game, int x, int y);
 
 /*
 **  image.c
@@ -258,8 +261,8 @@ void			find_player(t_info *info, t_player *player);
 ** player.c
 */
 void			player_move(t_game *game);
-void			player_move_back_forward(t_info *info, t_player *player);
-void			player_move_left_right(t_info *info, t_player *player);
+void			player_move_back_forward(t_game *game, t_info *info, t_player *player);
+void			player_move_left_right(t_game *game, t_info *info, t_player *player);
 void			player_camera_turn(t_player *player, double angle);
 
 /*

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 17:54:10 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/23 19:07:34 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	find_player(t_info *info, t_player *player)
 				player->char_pos_x = 0.5f + j;
 				player->char_pos_y = 0.5f + i;
 			}
+			else if (info->map[i][j] == '3')
+				info->interactive_sprite_num++;
 		}
 	}
 	player_error(info, player, character);

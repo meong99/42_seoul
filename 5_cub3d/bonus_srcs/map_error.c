@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 17:55:28 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/23 19:07:04 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 

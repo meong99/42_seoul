@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:11:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 16:51:07 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/23 17:03:18 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		key_press_set(int key_code, t_game *game)
 		game->player.left_turn = 1;
 	else if (key_code == K_AR_R)
 		game->player.right_turn = 1;
+	else
+		bonus_key_set(key_code, &game->player);
 	return (0);
 }
 
