@@ -6,11 +6,11 @@
 /*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:46:39 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 18:03:05 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/22 16:51:16 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	var_free(void *var, int pointer_num, int index, int is_char)
 {
@@ -39,10 +39,10 @@ void	var_free(void *var, int pointer_num, int index, int is_char)
 
 void	*var_malloc(size_t size)
 {
-	void	*var;
+	void	*val;
 
-	var = ft_calloc(1, size);
-	if (!var)
+	val = ft_calloc(1, size);
+	if (!val)
 		error_exit("malloc error");
-	return (var);
+	return (val);
 }

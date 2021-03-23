@@ -6,7 +6,11 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:15:30 by mchae             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/03/23 10:49:52 by mchae            ###   ########.fr       */
+=======
+/*   Updated: 2021/03/23 10:57:23 by mchae            ###   ########.fr       */
+>>>>>>> sprite_bonus
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +56,7 @@ void	set_sprite_dist(t_game *game)
 		j = -1;
 		while (++j < game->info.rows[i])
 		{
-			if (game->info.map[i][j] == '2')
+			if (game->info.map_mask[i][j] == 2)
 			{
 				game->sprite_dist[++k].x = 0.5 + j;
 				game->sprite_dist[k].y = 0.5 + i;

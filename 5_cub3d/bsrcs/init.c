@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 16:54:04 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/23 11:22:24 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	game_init(t_game *game, char *filename)
 {
@@ -19,6 +19,7 @@ void	game_init(t_game *game, char *filename)
 	i = -1;
 	game->info.cols = 0;
 	game->info.sprite_num = 0;
+	game->info.interactive_sprite_num = 0;
 	game->player.forward = 0;
 	game->player.back = 0;
 	game->player.right = 0;
@@ -28,6 +29,7 @@ void	game_init(t_game *game, char *filename)
 	while (++i < 8)
 		game->info.info_check[i] = -1;
 	map_parsing(game, filename);
+	ray_init(game);
 }
 
 void	mlx_win_img_init(t_info *info, t_img *img)
@@ -80,4 +82,12 @@ void	buf_init(t_info *info, t_ray *ray)
 			ray->buf[i][j] = 0;
 	}
 	ray->sprite_buf = (double*)var_malloc(sizeof(double) * info->screen_width);
+}
+
+void	ray_init(t_game *game)
+{
+	game->sprite.u_div = 1;
+	game->sprite.v_div = 1;
+	game->sprite.v_move = 0;
+	game->sprite.v_move_screen = 0;
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ray_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:58:03 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/23 11:07:28 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/22 16:51:34 by chaemyeongs      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	raycasting_set(t_game *game, int x)
 {

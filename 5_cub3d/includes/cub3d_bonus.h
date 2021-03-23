@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/03/23 10:42:29 by mchae            ###   ########.fr       */
-=======
-/*   Updated: 2021/03/23 10:51:18 by mchae            ###   ########.fr       */
->>>>>>> sprite_bonus
+/*   Updated: 2021/03/23 14:24:32 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "mlx.h"
 # include <stdio.h>
@@ -43,10 +39,11 @@
 # define RESOLUTION 5
 # define FLOOR_COLOR 6
 # define CEILING_COLOR 7
+# define BONUS_SPRITE 5
 # define FLOOR 0
 # define CEILING 1
-# define V_DIV 1
-# define U_DIV 1
+# define V_DIV 2
+# define U_DIV 2
 # define V_MOVE 0.0
 
 typedef struct	s_tex_info
@@ -108,6 +105,7 @@ typedef struct	s_info
 	int				screen_height;
 	int				max_screen_height;
 	int				sprite_num;
+	int				interactive_sprite_num;
 }				t_info;
 
 typedef struct	s_sprite
@@ -175,7 +173,7 @@ typedef struct	s_game
 	t_sprite_dist	*sprite_dist;
 	t_sprite		sprite;
 	t_img			img;
-	t_tex_info		tex_info[5];
+	t_tex_info		tex_info[6];
 	t_ray			ray;
 	t_info			info;
 	t_player		player;
@@ -208,6 +206,7 @@ void			game_init(t_game *game, char *filename);
 void			mlx_win_img_init(t_info *info, t_img *img);
 void			player_init(t_player *player);
 void			buf_init(t_info *info, t_ray *ray);
+void			ray_init(t_game *game);
 
 /*
 ** key_set.c
@@ -234,6 +233,11 @@ void			*var_malloc(size_t size);
 void			map_check(t_info *info, int pos_x, int pos_y);
 void			player_error(t_info *info, t_player *player, int character);
 int				check_gnl(t_info *info, char *one_line);
+
+/*
+** more_sprite.c
+*/
+void			load_bonus_sprite(t_game *game);
 
 /*
 ** parsing_info.c
@@ -284,11 +288,11 @@ void			save_bmp(t_game *game);
 void			quick_sort(void *value, int left_index, int right_index);
 
 /*
-** sprite_casting.c
+** sprite_cast.c
 */
 void			sprite_set(t_game *game, int i);
 void			sprite_draw_set(t_game *game);
-void			draw_sprite(t_game *game, int stripe);
+void			draw_sprite(t_game *game, int stripe, int kind);
 
 /*
 ** sprite.c
