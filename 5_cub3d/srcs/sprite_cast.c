@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_cast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:24:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/21 22:31:27 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/23 10:57:12 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	draw_sprite(t_game *game, int stripe)
 	i = game->sprite.sprite_draw_start_y - 1;
 	while (++i < game->sprite.sprite_draw_end_y)
 	{
-		game->sprite.d = (i - game->sprite.v_move_screen) * 256 - game->info.screen_height *\
+		game->sprite.d = (i - game->sprite.v_move_screen) \
+			* 256 - game->info.screen_height *\
 			128 + game->sprite.sprite_height * 128;
 		game->sprite.sprite_tex_y =\
 			((game->sprite.d *\

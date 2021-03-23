@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:53 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 17:55:43 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/23 13:24:06 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	load_texture(t_game *game)
 	i = -1;
 	while (++i <= SPRITE)
 		load_xpm_image(&game->tex_info[i], &game->info);
+	load_bonus_sprite(game);
 	i = -1;
-	while (++i <= SPRITE)
+	while (++i <= BONUS_SPRITE)
 		var_free(&game->tex_info[i].texture_path, 1, 0, 1);
 }

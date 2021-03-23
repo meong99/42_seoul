@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_cast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:24:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 16:51:45 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/23 14:23:46 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	sprite_set(t_game *game, int i)
 	game->sprite.sprite_screen_x = \
 		(int)((game->info.screen_width / 2) *\
 		(1 + game->sprite.transform_x / game->sprite.transform_y));
-	game->sprite.v_move_screen = (int)V_MOVE / game->sprite.transform_y;
+	game->sprite.v_move_screen = (int)game->sprite.v_move / game->sprite.transform_y;
 	game->sprite.sprite_height = \
-		abs((int)(game->info.screen_height / game->sprite.transform_y)) / V_DIV;
+		abs((int)(game->info.screen_height / game->sprite.transform_y)) / game->sprite.v_div;
 	game->sprite.sprite_draw_start_y = \
 		-game->sprite.sprite_height / 2 + game->info.screen_height / 2\
 		+ game->sprite.v_move_screen;
@@ -47,7 +47,7 @@ void	sprite_draw_set(t_game *game)
 	if (game->sprite.sprite_draw_end_y >= game->info.screen_height)
 		game->sprite.sprite_draw_end_y = game->info.screen_height - 1;
 	game->sprite.sprite_width = abs((int)(game->info.screen_height /\
-		game->sprite.transform_y)) / U_DIV;
+		game->sprite.transform_y)) / game->sprite.u_div;
 	game->sprite.sprite_draw_start_x = -game->sprite.sprite_width /\
 		2 + game->sprite.sprite_screen_x;
 	if (game->sprite.sprite_draw_start_x < 0)
@@ -58,7 +58,7 @@ void	sprite_draw_set(t_game *game)
 		game->sprite.sprite_draw_end_x = game->info.screen_width - 1;
 }
 
-void	draw_sprite(t_game *game, int stripe)
+void	draw_sprite(t_game *game, int stripe, int kind)
 {
 	int		color;
 	int		i;
@@ -70,10 +70,10 @@ void	draw_sprite(t_game *game, int stripe)
 			128 + game->sprite.sprite_height * 128;
 		game->sprite.sprite_tex_y =\
 			((game->sprite.d *\
-			game->tex_info[SPRITE].texture_height) /\
+			game->tex_info[kind].texture_height) /\
 			game->sprite.sprite_height) / 256;
-		color = game->tex_info[SPRITE].data\
-			[game->tex_info[SPRITE].size_l / (game->tex_info[SPRITE].bpp / 8) *\
+		color = game->tex_info[kind].data\
+			[game->tex_info[kind].size_l / (game->tex_info[kind].bpp / 8) *\
 			game->sprite.sprite_tex_y +\
 			game->sprite.sprite_tex_x];
 		if ((color & 0x00FFFFFF) != 0)

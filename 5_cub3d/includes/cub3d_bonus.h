@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 19:19:27 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/23 14:24:32 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,7 @@ void			game_init(t_game *game, char *filename);
 void			mlx_win_img_init(t_info *info, t_img *img);
 void			player_init(t_player *player);
 void			buf_init(t_info *info, t_ray *ray);
+void			ray_init(t_game *game);
 
 /*
 ** key_set.c
@@ -236,7 +237,7 @@ int				check_gnl(t_info *info, char *one_line);
 /*
 ** more_sprite.c
 */
-void	load_bonus_sprite(t_game *game);
+void			load_bonus_sprite(t_game *game);
 
 /*
 ** parsing_info.c
@@ -287,11 +288,11 @@ void			save_bmp(t_game *game);
 void			quick_sort(void *value, int left_index, int right_index);
 
 /*
-** sprite_casting.c
+** sprite_cast.c
 */
 void			sprite_set(t_game *game, int i);
 void			sprite_draw_set(t_game *game);
-void			draw_sprite(t_game *game, int stripe);
+void			draw_sprite(t_game *game, int stripe, int kind);
 
 /*
 ** sprite.c

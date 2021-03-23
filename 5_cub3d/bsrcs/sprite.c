@@ -3,39 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:15:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 17:51:53 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/23 14:23:59 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	sprite_cast(t_game *game)
+void	set_bonus_sprite(t_game *game, int *kind, int i)
 {
-	int		i;
-	int		stripe;
+	int		x;
+	int		y;
 
-	i = -1;
-	stripe = -1;
-	while (++i < game->info.sprite_num)
+	x = (int)game->sprite_dist[i].x;
+	y = (int)game->sprite_dist[i].y;
+	if (game->info.map[y][x] == '3')
 	{
-		sprite_set(game, i);
-		sprite_draw_set(game);
-		stripe = game->sprite.sprite_draw_start_x - 1;
-		while (++stripe < game->sprite.sprite_draw_end_x)
-		{
-			game->sprite.sprite_tex_x =\
-				(int)(256 * (stripe - (-game->sprite.sprite_width /\
-				2 + game->sprite.sprite_screen_x)) *\
-				game->tex_info[SPRITE].texture_width /\
-				game->sprite.sprite_width) / 256;
-			if (game->sprite.transform_y > 0 &&\
-				stripe > 0 && stripe < game->info.screen_width &&\
-				game->sprite.transform_y < game->ray.sprite_buf[stripe])
-				draw_sprite(game, stripe);
-		}
+		*kind = BONUS_SPRITE;
+		game->sprite.u_div = 2;
+		game->sprite.v_div = 2;
+		game->sprite.v_move = 0;
+	}
+	else
+	{
+		*kind = SPRITE;
+		game->sprite.u_div = 1;
+		game->sprite.v_div = 1;
+		game->sprite.v_move = 0;
 	}
 }
 
@@ -65,4 +61,33 @@ void	set_sprite_dist(t_game *game)
 		}
 	}
 	quick_sort(game->sprite_dist, 0, game->info.sprite_num - 1);
+}
+
+void	sprite_cast(t_game *game)
+{
+	int		i;
+	int		stripe;
+	int		kind;
+
+	i = -1;
+	stripe = -1;
+	while (++i < game->info.sprite_num)
+	{
+		set_bonus_sprite(game, &kind, i);
+		sprite_set(game, i);
+		sprite_draw_set(game);
+		stripe = game->sprite.sprite_draw_start_x - 1;
+		while (++stripe < game->sprite.sprite_draw_end_x)
+		{
+			game->sprite.sprite_tex_x =\
+				(int)(256 * (stripe - (-game->sprite.sprite_width /\
+				2 + game->sprite.sprite_screen_x)) *\
+				game->tex_info[kind].texture_width /\
+				game->sprite.sprite_width) / 256;
+			if (game->sprite.transform_y > 0 &&\
+				stripe > 0 && stripe < game->info.screen_width &&\
+				game->sprite.transform_y < game->ray.sprite_buf[stripe])
+				draw_sprite(game, stripe, kind);
+		}
+	}
 }
