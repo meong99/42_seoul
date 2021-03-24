@@ -37,6 +37,8 @@ SRCS_NAME =	\
 		util.c
 
 BSRCS_NAME = \
+		bonus_more_sprite.c\
+		bonus_mouse.c\
 		bonus.c\
 		get_next_line_utils.c\
 		get_next_line.c\
@@ -47,7 +49,6 @@ BSRCS_NAME = \
 		main.c\
 		malloc_free.c\
 		map_error.c\
-		more_sprite.c\
 		parsing_info.c\
 		parsing_map.c\
 		player.c\

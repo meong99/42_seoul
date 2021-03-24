@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/23 18:37:02 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/24 11:43:50 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct	s_info
 	int				screen_height;
 	int				max_screen_height;
 	int				sprite_num;
-	int				interactive_sprite_num;
+	int				bonus_sprite_num;
 }				t_info;
 
 typedef struct	s_sprite
@@ -181,11 +181,21 @@ typedef struct	s_game
 }				t_game;
 
 /*
+** bonus_more_sprite.c
+*/
+void			load_bonus_sprite(t_game *game);
+
+/*
+** bonus_mouse.c
+*/
+int	mouse_ctrl(int key_code, t_game *game);
+
+/*
 ** bonus.c
 */
 void			ft_hud(t_game *game);
 void	bonus_key_set(int key_code, t_player *player);
-void	bonus_move(t_game *game, int x, int y);
+void	bonus_move(t_game *game, int i);
 
 /*
 **  image.c
@@ -238,11 +248,6 @@ void			player_error(t_info *info, t_player *player, int character);
 int				check_gnl(t_info *info, char *one_line);
 
 /*
-** more_sprite.c
-*/
-void			load_bonus_sprite(t_game *game);
-
-/*
 ** parsing_info.c
 */
 void			parsing_map_info(t_info *info, t_tex_info *tex_info);
@@ -261,8 +266,8 @@ void			find_player(t_info *info, t_player *player);
 ** player.c
 */
 void			player_move(t_game *game);
-void			player_move_back_forward(t_game *game, t_info *info, t_player *player);
-void			player_move_left_right(t_game *game, t_info *info, t_player *player);
+void			player_move_back_forward(t_info *info, t_player *player);
+void			player_move_left_right(t_info *info, t_player *player);
 void			player_camera_turn(t_player *player, double angle);
 
 /*

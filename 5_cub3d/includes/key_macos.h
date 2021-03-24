@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_macos.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oouklich <oouklich@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:40:13 by oouklich          #+#    #+#             */
-/*   Updated: 2019/12/28 22:20:38 by oouklich         ###   ########.fr       */
+/*   Updated: 2021/03/24 12:02:11 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,42 @@
 # define M_SCR_U 4
 # define M_SCR_D 5
 
+/*
+** X11
+*/
+# define KEYPRESS 02
+# define KEYRELEASE 03
+# define BUTTONPRESS 04
+# define BUTTONRELRESE 05
+# define MOTIONNOTIFY 06
+# define ENTERNOTIFY 07
+# define LEAVENOTIFY 08
+# define FOCUSIN 09
+# define FOCUSOUT 10
+# define KEYMAPNOTIFY 11
+# define EXPOSE 12
+# define GRAPHICSEXPOSE 13
+# define NOEXPOSE 14
+# define VISIBILITYNOTIFY 15
+# define CREATENOTIFY 16
+# define DESTROYNOTIFY 17
+# define UNMAPNOTIFY 18
+# define MAPNOTIFY 19
+# define MAPREQUEST 20
+# define REPARENNOTIFY 21
+# define CONFIGURENOTIFY 22
+# define CONFIGUREREQUEST 23
+# define GRAVITYNOTIFY 24
+# define RESIZEREQUSET 25
+# define CIRCULATENOTIFY 26
+# define CIRCULATEREQUEST 27
+# define PROPERTYNOTIFY 28
+# define SELECTIONCLEAR 29
+# define SELECTIONREQUSET 29
+# define SELECTIONNOTIFT 29
+# define COLORMAPNOTIFY 32
+# define CLIENTMASSAGE 33
+# define MAPPINGNOTIFY 34
+# define GENERICEVENT 35
+# define LASTEVENT 36
 #endif

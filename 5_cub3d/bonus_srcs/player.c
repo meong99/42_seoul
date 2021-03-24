@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:46:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/23 18:37:51 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/24 11:34:17 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	player_move(t_game *game)
 {
-	player_move_back_forward(game, &game->info, &game->player);
-	player_move_left_right(game, &game->info, &game->player);
+	player_move_back_forward(&game->info, &game->player);
+	player_move_left_right(&game->info, &game->player);
 	if (!game->player.right_turn && game->player.left_turn)
 		player_camera_turn(&game->player, -game->player.turn_speed);
 	else if (!game->player.left_turn && game->player.right_turn)
 		player_camera_turn(&game->player, game->player.turn_speed);
 }
 
-void	player_move_back_forward(t_game *game, t_info *info, t_player *player)
+void	player_move_back_forward(t_info *info, t_player *player)
 {
 	double	x;
 	double	y;
@@ -35,7 +35,6 @@ void	player_move_back_forward(t_game *game, t_info *info, t_player *player)
 	y_move = player->dir_y * player->move_speed;
 	if (!player->back && player->forward)
 	{
-		bonus_move(game, (int)(y + y_move * 2), (int)(x + x_move * 2));
 		if (info->map[(int)y][(int)(x + x_move * 2)] == '0')
 			player->char_pos_x += x_move;
 		if (info->map[(int)(y + y_move * 2)][(int)x] == '0')
@@ -43,7 +42,6 @@ void	player_move_back_forward(t_game *game, t_info *info, t_player *player)
 	}
 	else if (!player->forward && player->back)
 	{
-		bonus_move(game, (int)(y - y_move * 2), (int)(x - x_move * 2));
 		if (info->map[(int)y][(int)(x - x_move * 2)] == '0')
 			player->char_pos_x -= x_move;
 		if (info->map[(int)(y - y_move * 2)][(int)x] == '0')
@@ -51,7 +49,7 @@ void	player_move_back_forward(t_game *game, t_info *info, t_player *player)
 	}
 }
 
-void	player_move_left_right(t_game *game, t_info *info, t_player *player)
+void	player_move_left_right(t_info *info, t_player *player)
 {
 	double	x;
 	double	y;
@@ -64,7 +62,6 @@ void	player_move_left_right(t_game *game, t_info *info, t_player *player)
 	y_move = player->dir_y * player->move_speed;
 	if (!player->right && player->left)
 	{
-		bonus_move(game, (int)(y - x_move * 2), (int)(x + y_move * 2));
 		if (info->map[(int)(y - x_move * 2)][(int)x] == '0')
 			player->char_pos_y -= x_move;
 		if (info->map[(int)y][(int)(x + y_move * 2)] == '0')
@@ -72,7 +69,6 @@ void	player_move_left_right(t_game *game, t_info *info, t_player *player)
 	}
 	else if (!player->left && player->right)
 	{
-		bonus_move(game, (int)(y + x_move * 2), (int)(x - y_move * 2));
 		if (info->map[(int)(y + x_move * 2)][(int)x] == '0')
 			player->char_pos_y += x_move;
 		if (info->map[(int)y][(int)(x - y_move * 2)] == '0')

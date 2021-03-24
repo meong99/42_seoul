@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/23 18:01:39 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/24 11:08:42 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	game_init(t_game *game, char *filename)
 	i = -1;
 	game->info.cols = 0;
 	game->info.sprite_num = 0;
-	game->info.interactive_sprite_num = 0;
+	game->info.bonus_sprite_num = 0;
 	game->player.forward = 0;
 	game->player.back = 0;
 	game->player.right = 0;
