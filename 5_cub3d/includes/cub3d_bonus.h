@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/24 11:43:50 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/24 16:31:37 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,14 @@ typedef struct	s_player
 	char			char_dir;
 	double			eye_level;
 }				t_player;
+
+typedef struct	s_mouse
+{
+	int	old_x;
+	double	turn;
+	int	start;
+	int	speed;
+}				t_mouse;
 
 typedef struct	s_info
 {
@@ -178,6 +186,7 @@ typedef struct	s_game
 	t_ray			ray;
 	t_info			info;
 	t_player		player;
+	t_mouse			mouse;
 }				t_game;
 
 /*
@@ -188,14 +197,16 @@ void			load_bonus_sprite(t_game *game);
 /*
 ** bonus_mouse.c
 */
-int	mouse_ctrl(int key_code, t_game *game);
+int	mouse_ctrl(int key_code, int y, int k, int a, t_game *game);
+int	mouse_press(int key_code, int y, int k, t_game *game);
+int	mouse_relrese(int key_code, int y, int k, t_game *game);
+int	mouse_move(int x, int y, t_game *game);
 
 /*
 ** bonus.c
 */
 void			ft_hud(t_game *game);
-void	bonus_key_set(int key_code, t_player *player);
-void	bonus_move(t_game *game, int i);
+void	bonus_key_set(int key_code, t_game *game);
 
 /*
 **  image.c
@@ -268,7 +279,7 @@ void			find_player(t_info *info, t_player *player);
 void			player_move(t_game *game);
 void			player_move_back_forward(t_info *info, t_player *player);
 void			player_move_left_right(t_info *info, t_player *player);
-void			player_camera_turn(t_player *player, double angle);
+void			player_camera_turn(t_player *player, double radian);
 
 /*
 ** ray_util.c

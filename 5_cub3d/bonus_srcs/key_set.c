@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:11:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/23 17:03:18 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/24 15:00:14 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		key_press_set(int key_code, t_game *game)
 	else if (key_code == K_AR_R)
 		game->player.right_turn = 1;
 	else
-		bonus_key_set(key_code, &game->player);
+		bonus_key_set(key_code, game);
 	return (0);
 }
 

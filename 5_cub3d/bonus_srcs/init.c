@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/24 11:08:42 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/24 16:28:57 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	game_init(t_game *game, char *filename)
 	game->player.left = 0;
 	game->player.left_turn = 0;
 	game->player.right_turn = 0;
+	game->mouse.start = 0;
+	game->mouse.speed = 10;
 	while (++i < 8)
 		game->info.info_check[i] = -1;
 	map_parsing(game, filename);

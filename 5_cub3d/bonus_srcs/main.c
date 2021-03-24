@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/24 11:47:57 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/24 17:00:15 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	start_loop(t_game *game)
 	mlx_hook(game->info.win, X_EVENT_KEY_RELEASE, \
 		0, key_release_set, &game->player);
 	mlx_hook(game->info.win, X_EVENT_KEY_EXIT, 0, win_close, game);
-	mlx_mouse_hook(game->info.win, mouse_ctrl, game);
+	mlx_hook(game->info.win, BUTTONPRESS, 0, mouse_press, game);
+	mlx_hook(game->info.win, BUTTONRELRESE, 0, mouse_relrese, game);
+	mlx_hook(game->info.win, MOTIONNOTIFY, 0, mouse_move, game);
 	mlx_loop_hook(game->info.mlx, main_loop, game);
 	mlx_loop(game->info.mlx);
 }
