@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 11:40:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/24 17:21:53 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/24 17:24:15 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@ int	mouse_press(int key_code, int x, int y, t_game *game)
 {
 	int	i;
 	int	sprite_dist_x;
-	int	x;
-	int	y;
 
 	i = -1;
+	key_code = 0;
 	x = game->player.char_pos_x + game->player.dir_x;
 	if (game->info.map[y][x] == '3')
 	{
-		game->info.map[y][x] == '0';
-		game->info.map_mask[y][x] == 0;
+		game->info.map[y][x] = '0';
+		game->info.map_mask[y][x] = 0;
 		while (++i < game->info.sprite_num)
 		{
 			sprite_dist_x = (int)game->sprite_dist[i].x;
@@ -32,6 +31,7 @@ int	mouse_press(int key_code, int x, int y, t_game *game)
 				game->sprite_dist[i].dist = 0;
 		}
 	}
+	return (0);
 }
 
 int	mouse_relrese(int key_code, int x, int y, t_game *game)
