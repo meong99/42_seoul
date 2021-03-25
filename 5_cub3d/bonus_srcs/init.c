@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/24 16:28:57 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/25 12:24:34 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,8 @@ void	ray_init(t_game *game)
 	game->sprite.v_div = 1;
 	game->sprite.v_move = 1;
 	game->sprite.v_move_screen = 0;
+	buf_init(&game->info, &game->ray);
+	game->sprite_dist =\
+	(t_sprite_dist*)var_malloc(sizeof(t_sprite_dist) * \
+		game->info.sprite_num);
 }

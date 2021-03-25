@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 23:30:06 by chaemyeongs       #+#    #+#             */
-/*   Updated: 2021/03/24 16:29:39 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/25 12:15:55 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	bonus_key_set(int key_code, t_game *game)
 		game->mouse.speed--;
 	else if (key_code == 30 && game->mouse.speed < 10)
 		game->mouse.speed++;
+	else if (key_code == K_SPACE)
+		bonus_attack(key_code, 0, 0, game);
 }
 
 void	bonus_move(t_game *game, int i)

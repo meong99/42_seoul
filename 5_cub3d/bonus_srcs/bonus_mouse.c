@@ -6,20 +6,20 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 11:40:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/24 17:24:15 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/25 12:25:28 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-int	mouse_press(int key_code, int x, int y, t_game *game)
+int	bonus_attack(int key_code, int x, int y, t_game *game)
 {
 	int	i;
 	int	sprite_dist_x;
 
 	i = -1;
-	key_code = 0;
-	x = game->player.char_pos_x + game->player.dir_x;
+	x = (int)(game->player.char_pos_x + game->player.dir_x);
+	y = (int)(game->player.char_pos_y + game->player.dir_y);
 	if (game->info.map[y][x] == '3')
 	{
 		game->info.map[y][x] = '0';
@@ -28,27 +28,26 @@ int	mouse_press(int key_code, int x, int y, t_game *game)
 		{
 			sprite_dist_x = (int)game->sprite_dist[i].x;
 			if (x == sprite_dist_x)
+			{
 				game->sprite_dist[i].dist = 0;
+				game->info.bonus_sprite_num--;
+			}
 		}
 	}
-	return (0);
-}
-
-int	mouse_relrese(int key_code, int x, int y, t_game *game)
-{
-	game = 0;
-	printf("%d", key_code);
-	x = 0;
-	return (y);
+	return (key_code);
 }
 
 int	mouse_move(int x, int y, t_game *game)
 {
+	double radian;
+
 	if (game->mouse.start == 0)
 		game->mouse.old_x = x;
 	game->mouse.turn = get_radian(x - game->mouse.old_x);
 	game->mouse.old_x = x;
-	player_camera_turn(&game->player, game->mouse.turn / game->mouse.speed);
+	radian = game->mouse.turn / game->mouse.speed;
+	if (radian < 10)
+		player_camera_turn(&game->player, radian);
 	game->mouse.start = 1;
 	return (y);
 }

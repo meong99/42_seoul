@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/24 16:31:37 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/25 12:10:36 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ void			load_bonus_sprite(t_game *game);
 ** bonus_mouse.c
 */
 int	mouse_ctrl(int key_code, int y, int k, int a, t_game *game);
-int	mouse_press(int key_code, int y, int k, t_game *game);
+int	bonus_attack(int key_code, int y, int k, t_game *game);
 int	mouse_relrese(int key_code, int y, int k, t_game *game);
 int	mouse_move(int x, int y, t_game *game);
 

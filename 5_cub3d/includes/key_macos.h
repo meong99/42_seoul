@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:40:13 by oouklich          #+#    #+#             */
-/*   Updated: 2021/03/24 12:28:19 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/25 12:14:43 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@
 # define K_X 7
 # define K_Y 16
 # define K_Z 6
+# define K_SPACE 49
+# define K_CTRL 256
+# define K_SHIFT 257
 
 /*
 ** Keyboard ARROWS

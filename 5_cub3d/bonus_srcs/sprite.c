@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:15:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/24 11:37:41 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/25 12:34:40 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	set_bonus_sprite(t_game *game, int *kind, int i)
+static int	set_bonus_sprite(t_game *game, int *kind, int i)
 {
 	int		x;
 	int		y;
@@ -25,14 +25,18 @@ void	set_bonus_sprite(t_game *game, int *kind, int i)
 		game->sprite.u_div = 2;
 		game->sprite.v_div = 2;
 		game->sprite.v_move = 0;
+		return (1);
 	}
-	else
+	else if (game->info.map[y][x] == '2')
 	{
 		*kind = SPRITE;
 		game->sprite.u_div = 1;
 		game->sprite.v_div = 1;
 		game->sprite.v_move = 0;
+		return (1);
 	}
+	else
+		return (0);
 }
 
 void	set_sprite_dist(t_game *game)
@@ -73,7 +77,8 @@ void	sprite_cast(t_game *game)
 	stripe = -1;
 	while (++i < game->info.sprite_num)
 	{
-		set_bonus_sprite(game, &kind, i);
+		if (!set_bonus_sprite(game, &kind, i))
+			break;
 		sprite_set(game, i);
 		sprite_draw_set(game);
 		stripe = game->sprite.sprite_draw_start_x - 1;
