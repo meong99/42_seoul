@@ -38,7 +38,6 @@ SRCS_NAME =	\
 
 BSRCS_NAME = \
 		bonus_more_sprite.c\
-		bonus_mouse.c\
 		bonus.c\
 		get_next_line_utils.c\
 		get_next_line.c\

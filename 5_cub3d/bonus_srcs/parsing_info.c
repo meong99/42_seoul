@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_info.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:50 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 16:51:22 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/25 14:34:05 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 

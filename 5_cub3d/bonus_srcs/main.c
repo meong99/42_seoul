@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/25 12:10:47 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/25 14:44:37 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		win_close(t_game *game)
 		mlx_destroy_image(game->info.mlx, game->tex_info[i].img);
 	mlx_destroy_image(game->info.mlx, game->img.img);
 	mlx_destroy_window(game->info.mlx, game->info.win);
+	system("killall afplay");
 	exit(0);
 	return (0);
 }
@@ -50,6 +51,7 @@ int		main_loop(t_game *game)
 
 void	start_loop(t_game *game)
 {
+	system("afplay -v 0.40  music/underthesea.mp3 &");
 	mlx_hook(game->info.win, X_EVENT_KEY_PRESS, 0, key_press_set, game);
 	mlx_hook(game->info.win, X_EVENT_KEY_RELEASE, \
 		0, key_release_set, &game->player);

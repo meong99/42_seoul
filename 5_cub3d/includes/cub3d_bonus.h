@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/25 12:10:36 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/25 13:27:13 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include "libft.h"
 # include <time.h>
 # include <unistd.h>
-
 # define X_EVENT_KEY_RELEASE 3
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
@@ -195,16 +194,10 @@ typedef struct	s_game
 void			load_bonus_sprite(t_game *game);
 
 /*
-** bonus_mouse.c
-*/
-int	mouse_ctrl(int key_code, int y, int k, int a, t_game *game);
-int	bonus_attack(int key_code, int y, int k, t_game *game);
-int	mouse_relrese(int key_code, int y, int k, t_game *game);
-int	mouse_move(int x, int y, t_game *game);
-
-/*
 ** bonus.c
 */
+int	bonus_attack(int key_code, int y, int k, t_game *game);
+int	mouse_move(int x, int y, t_game *game);
 void			ft_hud(t_game *game);
 void	bonus_key_set(int key_code, t_game *game);
 
