@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_macos.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oouklich <oouklich@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:40:13 by oouklich          #+#    #+#             */
-/*   Updated: 2019/12/28 22:20:38 by oouklich         ###   ########.fr       */
+/*   Updated: 2021/03/25 12:14:43 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@
 # define K_X 7
 # define K_Y 16
 # define K_Z 6
+# define K_SPACE 49
+# define K_CTRL 256
+# define K_SHIFT 257
 
 /*
 ** Keyboard ARROWS
@@ -89,4 +92,77 @@
 # define M_SCR_U 4
 # define M_SCR_D 5
 
+/*
+** X11
+*/
+
+/*
+** keybord
+*/
+# define KEYPRESS 2
+# define KEYRELEASE 3
+/*
+** Pointer events
+*/
+# define BUTTONPRESS 4
+# define BUTTONRELRESE 5
+# define MOTIONNOTIFY 6
+/*
+** Window crossing events
+*/
+# define ENTERNOTIFY 7
+# define LEAVENOTIFY 8
+/*
+** Input focus events
+*/
+# define FOCUSIN 9
+# define FOCUSOUT 10
+/*
+** Keymap state notification event
+*/
+# define KEYMAPNOTIFY 11
+/*
+** Exposure events
+*/
+# define EXPOSE 12
+# define GRAPHICSEXPOSE 13
+# define NOEXPOSE 14
+/*
+** Structure control events
+*/
+# define CIRCULATEREQUEST 27
+# define CONFIGUREREQUEST 23
+# define MAPREQUEST 20
+# define RESIZEREQUSET 25
+/*
+** color map
+*/
+# define COLORMAPNOTIFY 32
+/*
+** Client communication events
+*/
+# define PROPERTYNOTIFY 28
+# define SELECTIONCLEAR 29
+# define SELECTIONREQUSET 29
+# define SELECTIONNOTIFT 29
+# define CLIENTMASSAGE 33
+/*
+** window
+*/
+# define VISIBILITYNOTIFY 15
+# define REPARENTNOTIFY 21
+# define UNMAPNOTIFY 18
+# define MAPPINGNOTIFY 34
+# define MAPNOTIFY 19
+# define GRAVITYNOTIFY 24
+# define DESTROYNOTIFY 17
+# define CREATENOTIFY 16
+# define CONFIGURENOTIFY 22
+# define CIRCULATENOTIFY 26
+
+/*
+** ??
+*/
+# define GENERICEVENT 35
+# define LASTEVENT 36
 #endif

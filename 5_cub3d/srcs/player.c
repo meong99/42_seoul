@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_move.c                                      :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:46:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/18 14:15:47 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/23 18:07:28 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,53 +24,55 @@ void	player_move(t_game *game)
 
 void	player_move_back_forward(t_info *info, t_player *player)
 {
+	double	x;
+	double	y;
+	double	x_move;
+	double	y_move;
+
+	x = player->char_pos_x;
+	y = player->char_pos_y;
+	x_move = player->dir_x * player->move_speed;
+	y_move = player->dir_y * player->move_speed;
 	if (!player->back && player->forward)
 	{
-		if (info->map[(int)(player->char_pos_y)]\
-				[(int)(player->char_pos_x + \
-				player->dir_x * (player->move_speed * 2))] == '0')
-			player->char_pos_x += player->dir_x * player->move_speed;
-		if (info->map[(int)(player->char_pos_y + \
-				player->dir_y * (player->move_speed * 2))]\
-					[(int)(player->char_pos_x)] == '0')
-			player->char_pos_y += player->dir_y * player->move_speed;
+		if (info->map[(int)y][(int)(x + x_move * 2)] == '0')
+			player->char_pos_x += x_move;
+		if (info->map[(int)(y + y_move * 2)][(int)x] == '0')
+			player->char_pos_y += y_move;
 	}
 	else if (!player->forward && player->back)
 	{
-		if (info->map[(int)(player->char_pos_y)]\
-				[(int)(player->char_pos_x - \
-				player->dir_x * (player->move_speed * 2))] == '0')
-			player->char_pos_x -= player->dir_x * player->move_speed;
-		if (info->map[(int)(player->char_pos_y - \
-				player->dir_y * (player->move_speed * 2))]\
-				[(int)(player->char_pos_x)] == '0')
-			player->char_pos_y -= player->dir_y * player->move_speed;
+		if (info->map[(int)y][(int)(x - x_move * 2)] == '0')
+			player->char_pos_x -= x_move;
+		if (info->map[(int)(y - y_move * 2)][(int)x] == '0')
+			player->char_pos_y -= y_move;
 	}
 }
 
 void	player_move_left_right(t_info *info, t_player *player)
 {
+	double	x;
+	double	y;
+	double	x_move;
+	double	y_move;
+
+	x = player->char_pos_x;
+	y = player->char_pos_y;
+	x_move = player->dir_x * player->move_speed;
+	y_move = player->dir_y * player->move_speed;
 	if (!player->right && player->left)
 	{
-		if (info->map[(int)(player->char_pos_y - \
-				player->dir_x * (player->move_speed * 2))]\
-				[(int)(player->char_pos_x)] == '0')
-			player->char_pos_y -= player->dir_x * player->move_speed;
-		if (info->map[(int)(player->char_pos_y)]\
-				[(int)(player->char_pos_x + \
-				player->dir_y * (player->move_speed * 2))] == '0')
-			player->char_pos_x += player->dir_y * player->move_speed;
+		if (info->map[(int)(y - x_move * 2)][(int)x] == '0')
+			player->char_pos_y -= x_move;
+		if (info->map[(int)y][(int)(x + y_move * 2)] == '0')
+			player->char_pos_x += y_move;
 	}
 	else if (!player->left && player->right)
 	{
-		if (info->map[(int)(player->char_pos_y + \
-				player->dir_x * (player->move_speed * 2))]\
-				[(int)(player->char_pos_x)] == '0')
-			player->char_pos_y += player->dir_x * player->move_speed;
-		if (info->map[(int)(player->char_pos_y)]\
-				[(int)(player->char_pos_x - \
-				player->dir_y * (player->move_speed * 2))] == '0')
-			player->char_pos_x -= player->dir_y * player->move_speed;
+		if (info->map[(int)(y + x_move * 2)][(int)x] == '0')
+			player->char_pos_y += x_move;
+		if (info->map[(int)y][(int)(x - y_move * 2)] == '0')
+			player->char_pos_x -= y_move;
 	}
 }
 

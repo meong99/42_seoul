@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/23 14:24:32 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/25 13:27:13 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include "libft.h"
 # include <time.h>
 # include <unistd.h>
-
 # define X_EVENT_KEY_RELEASE 3
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
@@ -87,7 +86,16 @@ typedef struct	s_player
 	double			turn_speed;
 	double			move_speed;
 	char			char_dir;
+	double			eye_level;
 }				t_player;
+
+typedef struct	s_mouse
+{
+	int	old_x;
+	double	turn;
+	int	start;
+	int	speed;
+}				t_mouse;
 
 typedef struct	s_info
 {
@@ -105,7 +113,7 @@ typedef struct	s_info
 	int				screen_height;
 	int				max_screen_height;
 	int				sprite_num;
-	int				interactive_sprite_num;
+	int				bonus_sprite_num;
 }				t_info;
 
 typedef struct	s_sprite
@@ -177,12 +185,21 @@ typedef struct	s_game
 	t_ray			ray;
 	t_info			info;
 	t_player		player;
+	t_mouse			mouse;
 }				t_game;
+
+/*
+** bonus_more_sprite.c
+*/
+void			load_bonus_sprite(t_game *game);
 
 /*
 ** bonus.c
 */
+int	bonus_attack(int key_code, int y, int k, t_game *game);
+int	mouse_move(int x, int y, t_game *game);
 void			ft_hud(t_game *game);
+void	bonus_key_set(int key_code, t_game *game);
 
 /*
 **  image.c
@@ -235,11 +252,6 @@ void			player_error(t_info *info, t_player *player, int character);
 int				check_gnl(t_info *info, char *one_line);
 
 /*
-** more_sprite.c
-*/
-void			load_bonus_sprite(t_game *game);
-
-/*
 ** parsing_info.c
 */
 void			parsing_map_info(t_info *info, t_tex_info *tex_info);
@@ -260,7 +272,7 @@ void			find_player(t_info *info, t_player *player);
 void			player_move(t_game *game);
 void			player_move_back_forward(t_info *info, t_player *player);
 void			player_move_left_right(t_info *info, t_player *player);
-void			player_camera_turn(t_player *player, double angle);
+void			player_camera_turn(t_player *player, double radian);
 
 /*
 ** ray_util.c
