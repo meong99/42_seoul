@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/25 12:24:34 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 12:38:42 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ void	game_init(t_game *game, char *filename)
 	while (++i < 8)
 		game->info.info_check[i] = -1;
 	map_parsing(game, filename);
+	if (game->info.bonus_sprite_num > 0)
+		game->next_stage = 0;
+	else
+		game->next_stage = -1;
 	ray_init(game);
 }
 

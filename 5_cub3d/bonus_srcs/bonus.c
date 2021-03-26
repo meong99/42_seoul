@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 23:30:06 by chaemyeongs       #+#    #+#             */
-/*   Updated: 2021/03/25 13:00:35 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 12:40:09 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	bonus_attack(int key_code, int x, int y, t_game *game)
 			}
 		}
 	}
+	if (game->info.bonus_sprite_num == 0)
+		game->next_stage = 1;
 	return (key_code);
 }
 

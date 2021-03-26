@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/26 12:33:43 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 12:42:13 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,12 +186,14 @@ typedef struct	s_game
 	t_info			info;
 	t_player		player;
 	t_mouse			mouse;
+	int				next_stage;
 }				t_game;
 
 /*
 ** bonus_more_sprite.c
 */
 void			load_bonus_sprite(t_game *game);
+void	next_stage(t_game *game);
 
 /*
 ** bonus.c
