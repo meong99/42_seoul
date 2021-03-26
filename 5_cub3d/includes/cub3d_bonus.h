@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/25 21:53:25 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/26 12:33:43 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 # define FLOOR_COLOR 6
 # define CEILING_COLOR 7
 # define BONUS_SPRITE 5
-# define LIFE 6
 # define FLOOR 0
 # define CEILING 1
 # define V_DIV 2
@@ -182,7 +181,7 @@ typedef struct	s_game
 	t_sprite_dist	*sprite_dist;
 	t_sprite		sprite;
 	t_img			img;
-	t_tex_info		tex_info[7];
+	t_tex_info		tex_info[6];
 	t_ray			ray;
 	t_info			info;
 	t_player		player;
