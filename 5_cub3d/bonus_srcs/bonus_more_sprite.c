@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 18:52:46 by chaemyeongs       #+#    #+#             */
-/*   Updated: 2021/03/26 15:31:53 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 15:58:50 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	next_stage(t_game *game)
 		mlx_destroy_image(game->info.mlx, game->tex_info[i].img);
 	mlx_destroy_image(game->info.mlx, game->img.img);
 	mlx_destroy_window(game->info.mlx, game->info.win);
+	system("killall afplay");
 	if (game->stage > 2)
 		exit(0);
 	if (game->stage == 2)
