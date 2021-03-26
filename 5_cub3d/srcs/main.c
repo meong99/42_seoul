@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 16:52:51 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/26 13:15:36 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		win_close(t_game *game)
 		mlx_destroy_image(game->info.mlx, game->tex_info[i].img);
 	mlx_destroy_image(game->info.mlx, game->img.img);
 	mlx_destroy_window(game->info.mlx, game->info.win);
+	all_free(game);
 	exit(0);
 	return (0);
 }

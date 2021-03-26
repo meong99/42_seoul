@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:46:39 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 16:51:16 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/26 13:15:07 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,13 @@ void	*var_malloc(size_t size)
 	if (!val)
 		error_exit("malloc error");
 	return (val);
+}
+
+void	all_free(t_game *game)
+{
+	var_free(&game->sprite_dist, 1, game->info.sprite_num, 0);
+	var_free(game->ray.buf, 2, game->info.screen_height, 0);
+	var_free(&game->info.rows, 1, 0, 0);
+	var_free(game->info.map, 2, 0, 1);
+	var_free(game->info.map_mask, 2, game->info.cols, 0);
 }

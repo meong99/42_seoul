@@ -85,6 +85,7 @@ endif
 
 
 $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
+	@mkdir -p $(OBJS_PATH)
 	@$(CC) $(CFLAGS) $(CDEBUG) $(FSANITIZE) $(INCS) -c $< -o $@
 
 all : $(NAME)
@@ -103,7 +104,7 @@ clean :
 	make -C $(MLX_PATH) clean
 
 fclean : clean
-	$(RM) $(OBJS_PATH)/* $(NAME) screenshot.bmp
+	$(RM) $(OBJS_PATH) screenshot.bmp $(NAME)
 	$(RM_MMS_NAME)
 
 re : fclean all

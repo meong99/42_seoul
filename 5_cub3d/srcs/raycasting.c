@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:04:32 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/23 11:04:34 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/26 13:02:04 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	raycasting(t_game *game)
 
 	x = -1;
 	player_move(game);
-	buf_init(&game->info, &game->ray);
 	draw_fl_cei(&game->info, &game->ray);
 	while (++x < game->info.screen_width)
 	{
@@ -29,15 +28,9 @@ void	raycasting(t_game *game)
 		texture_ctrl(game, x);
 		game->ray.sprite_buf[x] = game->ray.perp_wall_dist;
 	}
-	game->sprite_dist =\
-	(t_sprite_dist*)var_malloc(sizeof(t_sprite_dist) * \
-		game->info.sprite_num);
 	set_sprite_dist(game);
 	sprite_cast(game);
 	draw_image(&game->info, &game->img, &game->ray);
-	var_free(game->ray.buf, 2, game->info.screen_height, 0);
-	var_free(&game->ray.sprite_buf, 1, 0, 0);
-	var_free(&game->sprite_dist, 1, 0, 0);
 }
 
 void	load_texture(t_game *game)

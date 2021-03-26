@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/03/23 10:42:29 by mchae            ###   ########.fr       */
-=======
-/*   Updated: 2021/03/23 10:51:18 by mchae            ###   ########.fr       */
->>>>>>> sprite_bonus
+/*   Created: 2021/03/26 13:04:04 by mchae             #+#    #+#             */
+/*   Updated: 2021/03/26 13:14:38 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +223,7 @@ void			start_loop(t_game *game);
 */
 void			var_free(void *val, int pointer_num, int index, int is_char);
 void			*var_malloc(size_t size);
+void	all_free(t_game *game);
 
 /*
 ** map_error.c
