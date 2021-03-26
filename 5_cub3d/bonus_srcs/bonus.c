@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 23:30:06 by chaemyeongs       #+#    #+#             */
-/*   Updated: 2021/03/26 15:38:04 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 15:47:28 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,21 @@ int	bonus_attack(int key_code, int x, int y, t_game *game)
 int	mouse_move(int x, int y, t_game *game)
 {
 	double radian;
+	double eye_level;
 
 	if (game->mouse.start == 0)
+	{
 		game->mouse.old_x = x;
+		game->mouse.old_y = y;
+	}
 	game->mouse.turn = get_radian(x - game->mouse.old_x);
+	eye_level = game->mouse.old_y - y;
+	game->player.eye_level += eye_level;
+	game->mouse.old_y = y;
 	game->mouse.old_x = x;
 	radian = game->mouse.turn / game->mouse.speed;
 	if (radian < 10)
 		player_camera_turn(&game->player, radian);
 	game->mouse.start = 1;
-	return (y);
+	return (0);
 }

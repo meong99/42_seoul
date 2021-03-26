@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/26 15:31:59 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 15:44:10 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct	s_player
 typedef struct	s_mouse
 {
 	int	old_x;
+	int	old_y;
 	double	turn;
 	int	start;
 	int	speed;
