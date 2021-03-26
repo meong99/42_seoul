@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 11:04:32 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/26 13:02:04 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 14:47:49 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void	load_texture(t_game *game)
 		load_xpm_image(&game->tex_info[i], &game->info);
 	i = -1;
 	while (++i <= SPRITE)
-		var_free(&game->tex_info[i].texture_path, 1, 0, 1);
+		free(game->tex_info[i].texture_path);
 }

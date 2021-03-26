@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:58:03 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/24 11:15:29 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 15:11:39 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,13 @@ void	draw_set(t_game *game)
 	game->ray.line_height =\
 	(int)(game->info.screen_height / game->ray.perp_wall_dist);
 	game->ray.draw_start =\
-	-game->ray.line_height / 2 + game->info.screen_height / 2;
+	-game->ray.line_height / 2 + game->info.screen_height / 2\
+	+ game->player.eye_level;
 	if (game->ray.draw_start < 0)
 		game->ray.draw_start = 0;
 	game->ray.draw_end =\
-	game->ray.line_height / 2 + game->info.screen_height / 2;
+	game->ray.line_height / 2 + game->info.screen_height / 2\
+	+ game->player.eye_level;
 	if (game->ray.draw_end >= game->info.screen_height)
 		game->ray.draw_end = game->info.screen_height - 1;
 }

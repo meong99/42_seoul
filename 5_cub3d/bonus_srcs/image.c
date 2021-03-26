@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:23:24 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 16:50:51 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/26 15:15:14 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	draw_image(t_info *info, t_img *img, t_ray *ray)
 	mlx_put_image_to_window(info->mlx, info->win, img->img, 0, 0);
 }
 
-void	draw_fl_cei(t_info *info, t_ray *ray)
+void	draw_fl_cei(t_info *info, t_ray *ray, t_player *player)
 {
 	int		i;
 	int		j;
@@ -49,7 +49,7 @@ void	draw_fl_cei(t_info *info, t_ray *ray)
 		j = -1;
 		while (++j < info->screen_width)
 		{
-			if (i < info->screen_height / 2)
+			if (i < info->screen_height / 2 + player->eye_level)
 				ray->buf[i][j] = info->color[CEILING];
 			else
 				ray->buf[i][j] = info->color[FLOOR];

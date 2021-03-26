@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 17:29:16 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/26 14:47:29 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	get_map(int fd, t_info *info)
 				map = ft_strdup(one_line);
 			else
 				map = ft_strjoin(map, one_line);
-			var_free(&temp_map, 1, 0, 1);
+			free(temp_map);
 			info->cols++;
 		}
-		var_free(&one_line, 1, 0, 1);
+		free(one_line);
 	}
 	split_map_get_rows(info, (const char*)map);
 	free(map);

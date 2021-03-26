@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:53:28 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/22 16:51:49 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/26 15:12:21 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	texture_step_pos_set(t_game *game, int texture_dir)
 	/ game->ray.line_height;
 	game->ray.tex_pos =\
 	(game->ray.draw_start - game->info.screen_height / 2\
-	+ game->ray.line_height / 2) * game->ray.step;
+	+ game->ray.line_height / 2 - game->player.eye_level) * game->ray.step;
 }
 
 void	texture_wall_tex_x(t_game *game, int texture_dir)

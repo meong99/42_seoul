@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:43 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/23 18:06:52 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 14:41:14 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	element_count_error(t_info *info)
 			error_exit("resolution count error");
 		else if (i != RESOLUTION && count_element(temp) != 2)
 			error_exit("info count error");
-		var_free(temp, 2, 0, 1);
+		var_free(temp, 0, 1);
 		temp = 0;
 	}
 }

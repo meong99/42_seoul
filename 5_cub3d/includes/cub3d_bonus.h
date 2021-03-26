@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/26 13:19:28 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 15:31:59 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ typedef struct	s_player
 	int				right;
 	int				left_turn;
 	int				right_turn;
+	int				up;
+	int				down;
 	double			char_pos_x;
 	double			char_pos_y;
 	double			dir_x;
@@ -209,7 +211,7 @@ void	bonus_key_set(int key_code, t_game *game);
 */
 void			load_xpm_image(t_tex_info *tex_info, t_info *info);
 void			draw_image(t_info *info, t_img *img, t_ray *ray);
-void			draw_fl_cei(t_info *info, t_ray *ray);
+void			draw_fl_cei(t_info *info, t_ray *ray, t_player *player);
 
 /*
 ** info_error.c
@@ -232,7 +234,7 @@ void			ray_init(t_game *game);
 ** key_set.c
 */
 int				key_press_set(int key_code, t_game *game);
-int				key_release_set(int key_code, t_player *player);
+int				key_release_set(int key_code, t_game *game);
 
 /*
 **	main.c
@@ -244,7 +246,7 @@ void			start_loop(t_game *game);
 /*
 ** malloc_free.c
 */
-void			var_free(void *val, int pointer_num, int index, int is_char);
+void			var_free(void *val, int index, int is_char);
 void			*var_malloc(size_t size);
 void	all_free(t_game *game);
 

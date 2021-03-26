@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/26 13:19:58 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 15:28:24 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ void	player_init(t_player *player)
 	player->dir_y = 0.0;
 	player->plane_x = 0.0;
 	player->plane_y = 0.66;
+	player->eye_level = 0;
+	player->up = 0;
+	player->down = 0;
 	if (player->char_dir == 'E')
 		angle = 0;
 	else if (player->char_dir == 'S')

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:53 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/25 12:24:38 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 15:16:02 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	raycasting(t_game *game)
 
 	x = -1;
 	player_move(game);
-	draw_fl_cei(&game->info, &game->ray);
+	draw_fl_cei(&game->info, &game->ray, &game->player);
 	while (++x < game->info.screen_width)
 	{
 		raycasting_set(game, x);
@@ -43,5 +43,5 @@ void	load_texture(t_game *game)
 	load_bonus_sprite(game);
 	i = -1;
 	while (++i <= BONUS_SPRITE)
-		var_free(&game->tex_info[i].texture_path, 1, 0, 1);
+		free(game->tex_info[i].texture_path);
 }

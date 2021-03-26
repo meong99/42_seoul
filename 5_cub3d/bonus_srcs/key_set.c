@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:11:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/24 15:00:14 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 15:31:49 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,23 @@ int		key_press_set(int key_code, t_game *game)
 	return (0);
 }
 
-int		key_release_set(int key_code, t_player *player)
+int		key_release_set(int key_code, t_game *game)
 {
 	if (key_code == K_W)
-		player->forward = 0;
+		game->player.forward = 0;
 	else if (key_code == K_S)
-		player->back = 0;
+		game->player.back = 0;
 	else if (key_code == K_A)
-		player->left = 0;
+		game->player.left = 0;
 	else if (key_code == K_D)
-		player->right = 0;
+		game->player.right = 0;
 	else if (key_code == K_AR_L)
-		player->left_turn = 0;
+		game->player.left_turn = 0;
 	else if (key_code == K_AR_R)
-		player->right_turn = 0;
+		game->player.right_turn = 0;
+	else if (key_code == K_AR_U)
+		game->player.up = 0;
+	else if (key_code == K_AR_D)
+		game->player.down = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 23:30:06 by chaemyeongs       #+#    #+#             */
-/*   Updated: 2021/03/26 13:24:38 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 15:38:04 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,35 @@ void	ft_hud(t_game *game)
 {
 	char	*leftover_sprite;
 	char	*mouse_speed;
+	char	*stage;
 
 	leftover_sprite = ft_itoa(game->info.bonus_sprite_num);
-	mouse_speed = ft_itoa(game->mouse.speed);
+	mouse_speed = ft_itoa(11 - game->mouse.speed);
+	stage = ft_itoa(game->stage);
 	mlx_string_put(game->info.mlx, game->info.win,\
 		10, 15, 0xFFFFFF, leftover_sprite);
-	mlx_string_put(game->info.mlx, game->info.win,\
-		35, 15, 0xFFFFFF, "sprites left");
-	mlx_string_put(game->info.mlx, game->info.win,\
-		game->info.screen_width - 30, \
-		15, 0xFFFFFF, mouse_speed);
+	mlx_string_put(game->info.mlx, game->info.win, 35, 15, 0xFFFFFF, "sprites");
+	mlx_string_put(game->info.mlx, game->info.win, 10, 35, 0xFFFFFF, "mouse speed");
+	mlx_string_put(game->info.mlx, game->info.win, 130, 35, 0xFFFFFF, mouse_speed);
+	mlx_string_put(game->info.mlx, game->info.win, 10, 55, 0xFFFFFF, "stage");
+	mlx_string_put(game->info.mlx, game->info.win, 70, 55, 0xFFFFFF, stage);
 	free(leftover_sprite);
 	free(mouse_speed);
+	free(stage);
 }
 
 void	bonus_key_set(int key_code, t_game *game)
 {
-	if (key_code == 33 && game->mouse.speed > 1)
-		game->mouse.speed--;
-	else if (key_code == 30 && game->mouse.speed < 10)
+	if (key_code == 33 && game->mouse.speed < 10)
 		game->mouse.speed++;
+	else if (key_code == 30 && game->mouse.speed > 1)
+		game->mouse.speed--;
 	else if (key_code == K_SPACE)
 		bonus_attack(key_code, 0, 0, game);
+	else if (!game->player.down && key_code == K_AR_U)
+		game->player.up = 1;
+	else if (!game->player.up && key_code == K_AR_D)
+		game->player.down = 1;
 }
 
 int	bonus_attack(int key_code, int x, int y, t_game *game)

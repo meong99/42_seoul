@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:46:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/24 11:34:17 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 15:40:06 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	player_move(t_game *game)
 		player_camera_turn(&game->player, -game->player.turn_speed);
 	else if (!game->player.left_turn && game->player.right_turn)
 		player_camera_turn(&game->player, game->player.turn_speed);
+	if (game->player.up && game->info.screen_height > game->player.eye_level)
+		game->player.eye_level += 20;
+	else if (game->player.down &&\
+		-game->info.screen_height < game->player.eye_level)
+		game->player.eye_level -= 20;
 }
 
 void	player_move_back_forward(t_info *info, t_player *player)
