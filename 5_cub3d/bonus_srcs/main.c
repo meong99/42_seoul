@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/26 12:50:31 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 13:48:03 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		main(int argc, char *argv[])
 
 	if (argc < 2 || !argv)
 		return (-1);
+	game.stage = 1;
 	game_init(&game, argv[1]);
 	mlx_win_img_init(&game.info, &game.img);
 	load_texture(&game);
@@ -37,9 +38,9 @@ int		win_close(t_game *game)
 		mlx_destroy_image(game->info.mlx, game->tex_info[i].img);
 	mlx_destroy_image(game->info.mlx, game->img.img);
 	mlx_destroy_window(game->info.mlx, game->info.win);
-	free(game->info.mlx);
 	system("killall afplay");
-	exit(0);
+	if (game->stage > 2)
+		exit(0);
 	return (0);
 }
 

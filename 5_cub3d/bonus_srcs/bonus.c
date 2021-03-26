@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 23:30:06 by chaemyeongs       #+#    #+#             */
-/*   Updated: 2021/03/26 12:40:09 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/26 13:24:38 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ int	bonus_attack(int key_code, int x, int y, t_game *game)
 			{
 				game->sprite_dist[i].dist = 0;
 				game->info.bonus_sprite_num--;
+				if (game->info.bonus_sprite_num == 0)
+					game->next_stage = 1;
 			}
 		}
 	}
-	if (game->info.bonus_sprite_num == 0)
-		game->next_stage = 1;
 	return (key_code);
 }
 
