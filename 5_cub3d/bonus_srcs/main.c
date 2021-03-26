@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaemyeongseog <chaemyeongseog@student.    +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/25 21:51:09 by chaemyeongs      ###   ########.fr       */
+/*   Updated: 2021/03/26 12:22:37 by mchae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,8 @@ int		win_close(t_game *game)
 
 int		main_loop(t_game *game)
 {
-	t_tex_info img;
-
 	raycasting(game);
 	ft_hud(game);
-	img.img = mlx_xpm_file_to_image(game->info.mlx, "./textures/heart.xpm", &img.texture_width, &img.texture_height);
-	img.data = (int*)mlx_get_data_addr(img.img, &img.bpp, &img.size_l, &img.endian);
-	mlx_put_image_to_window(game->info.mlx, game->info.win, img.img, 50, 50);
 	return (0);
 }
 

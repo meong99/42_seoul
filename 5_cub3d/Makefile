@@ -108,4 +108,6 @@ fclean : clean
 
 re : fclean all
 
+bre : fclean bonus
+
 .PHONY : all clean fclean re bonus
