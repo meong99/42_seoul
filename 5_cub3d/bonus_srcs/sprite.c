@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:15:30 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/27 20:12:01 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/27 20:38:02 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	set_bonus_sprite(t_game *game, int *kind, int i)
 		game->sprite.u_div = 2;
 		game->sprite.v_div = 2;
 		game->sprite.v_move = 0;
+		sprite_set(game, i);
 		return (1);
 	}
 	else if (game->info.map[y][x] == '2')
@@ -33,13 +34,13 @@ static int	set_bonus_sprite(t_game *game, int *kind, int i)
 		game->sprite.u_div = 1;
 		game->sprite.v_div = 1;
 		game->sprite.v_move = 0;
+		sprite_set(game, i);
 		return (1);
 	}
-	else
-		return (0);
+	return (0);
 }
 
-void	set_sprite_dist(t_game *game)
+void		set_sprite_dist(t_game *game)
 {
 	int		i;
 	int		j;
@@ -67,7 +68,7 @@ void	set_sprite_dist(t_game *game)
 	quick_sort(game->sprite_dist, 0, game->info.sprite_num - 1);
 }
 
-void	sprite_cast(t_game *game)
+void		sprite_cast(t_game *game)
 {
 	int		i;
 	int		stripe;
@@ -78,8 +79,7 @@ void	sprite_cast(t_game *game)
 	while (++i < game->info.sprite_num)
 	{
 		if (!set_bonus_sprite(game, &kind, i))
-			break;
-		sprite_set(game, i);
+			break ;
 		sprite_draw_set(game);
 		stripe = game->sprite.sprite_draw_start_x - 1;
 		while (++stripe < game->sprite.sprite_draw_end_x)

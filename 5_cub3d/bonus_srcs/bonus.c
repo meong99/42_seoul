@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 23:30:06 by chaemyeongs       #+#    #+#             */
-/*   Updated: 2021/03/27 20:10:53 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/27 20:17:36 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ void	ft_hud(t_game *game)
 	mlx_string_put(game->info.mlx, game->info.win,\
 		10, 15, 0xFFFFFF, leftover_sprite);
 	mlx_string_put(game->info.mlx, game->info.win, 35, 15, 0xFFFFFF, "sprites");
-	mlx_string_put(game->info.mlx, game->info.win, 10, 35, 0xFFFFFF, "mouse speed");
-	mlx_string_put(game->info.mlx, game->info.win, 130, 35, 0xFFFFFF, mouse_speed);
+	mlx_string_put(game->info.mlx, game->info.win, 10, 35, 0xFFFFFF,\
+		"mouse speed");
+	mlx_string_put(game->info.mlx, game->info.win, 130, 35, 0xFFFFFF,\
+		mouse_speed);
 	mlx_string_put(game->info.mlx, game->info.win, 10, 55, 0xFFFFFF, "stage");
 	mlx_string_put(game->info.mlx, game->info.win, 70, 55, 0xFFFFFF, stage);
 	free(leftover_sprite);
@@ -47,7 +49,7 @@ void	bonus_key_set(int key_code, t_game *game)
 		game->player.down = 1;
 }
 
-int	bonus_attack(int key_code, int x, int y, t_game *game)
+int		bonus_attack(int key_code, int x, int y, t_game *game)
 {
 	int	i;
 	int	sprite_dist_x;
@@ -74,7 +76,7 @@ int	bonus_attack(int key_code, int x, int y, t_game *game)
 	return (key_code);
 }
 
-int	mouse_move(int x, int y, t_game *game)
+int		mouse_move(int x, int y, t_game *game)
 {
 	double radian;
 	double eye_level;

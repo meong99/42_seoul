@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:04:04 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/26 14:46:02 by mchae            ###   ########seoul.kr  */
+/*   Updated: 2021/03/27 20:21:31 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ void			start_loop(t_game *game);
 */
 void			var_free(void *val, int index, int is_char);
 void			*var_malloc(size_t size);
-void	all_free(t_game *game);
+void			all_free(t_game *game);
 
 /*
 ** map_error.c
