@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/28 01:34:32 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/28 04:02:54 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	map_check(t_info *info, int i, int j)
 	{
 		info->sprite_num++;
 		info->map_mask[i][j] = 2;
+		if (info->map[i][j] == '3')
+			info->bonus_sprite_num++;
 	}
 	else
 		info->map_mask[i][j] = 1;
