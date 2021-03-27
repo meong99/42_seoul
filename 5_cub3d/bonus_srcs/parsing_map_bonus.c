@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/28 01:02:06 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/28 01:39:52 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	find_player(t_info *info, t_player *player)
 		j = -1;
 		while (++j < info->rows[i])
 		{
-			if (!ft_strchr("012WESN ", info->map[i][j]))
+			if (!ft_strchr("0123WESN ", info->map[i][j]))
 				error_exit("invalid char");
 			if (ft_strchr(CHARACTER_DIRS, info->map[i][j]))
 			{
