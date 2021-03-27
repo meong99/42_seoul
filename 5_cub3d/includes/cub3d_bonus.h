@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/27 22:04:27 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/28 00:36:15 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,7 @@ void			all_free(t_game *game);
 void			map_check(t_info *info, int pos_x, int pos_y);
 void			player_error(t_info *info, t_player *player, int character);
 int				check_gnl(t_info *info, char *one_line);
+void			filename_error(const char *filename);
 
 /*
 ** parsing_info.c

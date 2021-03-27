@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:46:39 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/27 22:02:16 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/27 22:28:39 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	all_free(t_game *game)
 	free(game->sprite_dist);
 	var_free(game->ray.buf, game->info.screen_height, 0);
 	free(game->info.rows);
+	free(game->ray.sprite_buf);
 	var_free(game->info.map, 0, 1);
 	var_free(game->info.map_mask, game->info.cols, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/27 22:04:42 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/28 00:36:33 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	map_parsing(t_game *game, const char *filename)
 {
 	int	fd;
 
+	filename_error(filename);
 	if ((fd = open(filename, O_RDONLY)) == -1)
 		error_exit("map file open error");
 	get_map(fd, &game->info);
