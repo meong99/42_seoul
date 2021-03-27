@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_free.c                                      :+:      :+:    :+:   */
+/*   malloc_free_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 14:46:39 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/27 20:11:34 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/27 22:24:44 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	all_free(t_game *game)
 	free(game->sprite_dist);
 	var_free(game->ray.buf, game->info.screen_height, 0);
 	free(game->info.rows);
+	free(game->ray.sprite_buf);
 	var_free(game->info.map, 0, 1);
 	var_free(game->info.map_mask, game->info.cols, 0);
 }

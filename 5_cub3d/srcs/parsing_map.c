@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/27 20:13:07 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/27 22:02:33 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	get_map(int fd, t_info *info)
 		}
 		free(one_line);
 	}
-	split_map_get_rows(info, (const char*)map);
-	free(map);
+	free(one_line);
+	split_map_get_rows(info, map);
 }
 
-void	split_map_get_rows(t_info *info, const char *map)
+void	split_map_get_rows(t_info *info, char *map)
 {
 	int	i;
 
@@ -69,6 +69,7 @@ void	split_map_get_rows(t_info *info, const char *map)
 	info->map_mask = (int**)var_malloc(sizeof(int*) * info->cols);
 	while (++i < info->cols)
 		info->map_mask[i] = (int*)var_malloc(sizeof(int) * info->rows[i]);
+	free(map);
 }
 
 void	find_player(t_info *info, t_player *player)

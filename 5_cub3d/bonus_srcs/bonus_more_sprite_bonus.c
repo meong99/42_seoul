@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_more_sprite.c                                :+:      :+:    :+:   */
+/*   bonus_more_sprite_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 18:52:46 by chaemyeongs       #+#    #+#             */
-/*   Updated: 2021/03/27 20:10:49 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/27 22:26:41 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	next_stage(t_game *game)
 	mlx_destroy_window(game->info.mlx, game->info.win);
 	system("killall afplay");
 	if (game->stage > 2)
+	{
+		while (1);
 		exit(0);
+	}
 	if (game->stage == 2)
 	{
 		game_init(game, "./maps/next_stage.cub");

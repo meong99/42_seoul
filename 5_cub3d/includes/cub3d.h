@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:04:04 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/27 20:40:20 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/27 22:02:48 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,7 +244,7 @@ void			get_color(int *temp_color, int *color);
 */
 void			map_parsing(t_game *game, const char *filename);
 void			get_map(int fd, t_info *info);
-void			split_map_get_rows(t_info *info, const char *map);
+void			split_map_get_rows(t_info *info, char *map);
 void			find_player(t_info *info, t_player *player);
 
 /*
