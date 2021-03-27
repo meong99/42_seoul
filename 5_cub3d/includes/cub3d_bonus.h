@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/28 00:36:15 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/28 03:49:31 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,7 +312,7 @@ void			quick_sort(void *value, int left_index, int right_index);
 */
 void			sprite_set(t_game *game, int i);
 void			sprite_draw_set(t_game *game);
-void			draw_sprite(t_game *game, int stripe, int kind);
+void			draw_sprite(t_game *game, int x, int kind);
 
 /*
 ** sprite.c

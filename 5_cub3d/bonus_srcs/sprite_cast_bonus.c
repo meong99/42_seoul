@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:24:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/28 01:34:56 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/28 03:49:02 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ void	sprite_draw_set(t_game *game)
 		game->sprite.sprite_draw_end_x = game->info.screen_width - 1;
 }
 
-void	draw_sprite(t_game *game, int stripe, int kind)
+void	draw_sprite(t_game *game, int x, int kind)
 {
 	int		color;
-	int		i;
+	int		y;
 
-	i = game->sprite.sprite_draw_start_y - 1;
-	while (++i < game->sprite.sprite_draw_end_y)
+	y = game->sprite.sprite_draw_start_y - 1;
+	while (++y < game->sprite.sprite_draw_end_y)
 	{
-		game->sprite.d = (i - game->player.eye_level\
+		game->sprite.d = (y - game->player.eye_level\
 			- game->sprite.v_move_screen) * 256 - game->info.screen_height \
 			* 128 + game->sprite.sprite_height * 128;
 		game->sprite.sprite_tex_y =\
@@ -80,6 +80,6 @@ void	draw_sprite(t_game *game, int stripe, int kind)
 			game->sprite.sprite_tex_y +\
 			game->sprite.sprite_tex_x];
 		if ((color & 0x00FFFFFF) != 0)
-			game->ray.buf[i][stripe] = color;
+			game->ray.buf[y][x] = color;
 	}
 }
