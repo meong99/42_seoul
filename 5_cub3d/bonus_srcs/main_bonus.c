@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/27 22:26:28 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/28 00:43:42 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		main(int argc, char *argv[])
 	t_game game;
 
 	if (argc < 2 || !argv)
-		return (-1);
+		error_exit("arg error");
 	game.stage = 1;
 	game_init(&game, argv[1]);
 	mlx_win_img_init(&game.info, &game.img);

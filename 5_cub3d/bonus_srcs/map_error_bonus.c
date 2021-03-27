@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/28 00:35:57 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/28 01:04:12 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ int		check_gnl(t_info *info, char *one_line)
 void	filename_error(const char *filename)
 {
 	int		len;
-	const char *a;
 
 	len = ft_strlen(filename);
-	a = filename + len - 4;
 	if (ft_strncmp(filename + len - 4, ".cub", 4))
 		error_exit("filename error");
 }

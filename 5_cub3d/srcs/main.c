@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/27 22:34:01 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/28 00:47:26 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		main(int argc, char *argv[])
 	t_game game;
 
 	if (argc < 2 || !argv)
-		return (-1);
+		error_exit("arg error");
 	game_init(&game, argv[1]);
 	mlx_win_img_init(&game.info, &game.img);
 	load_texture(&game);
