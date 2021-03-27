@@ -37,28 +37,28 @@ SRCS_NAME =	\
 		util.c
 
 BSRCS_NAME = \
-		bonus_more_sprite.c\
+		bonus_more_sprite_bonus.c\
 		bonus.c\
-		get_next_line_utils.c\
-		get_next_line.c\
-		image.c\
-		info_error.c\
-		init.c\
-		key_set.c\
-		main.c\
-		malloc_free.c\
-		map_error.c\
-		parsing_info.c\
-		parsing_map.c\
-		player.c\
-		ray_util.c\
-		raycasting.c\
-		save.c\
-		sort.c\
-		sprite_cast.c\
-		sprite.c\
-		texture.c\
-		util.c
+		get_next_line_utils_bonus.c\
+		get_next_line_bonus.c\
+		image_bonus.c\
+		info_error_bonus.c\
+		init_bonus.c\
+		key_set_bonus.c\
+		main_bonus.c\
+		malloc_free_bonus.c\
+		map_error_bonus.c\
+		parsing_info_bonus.c\
+		parsing_map_bonus.c\
+		player_bonus.c\
+		ray_util_bonus.c\
+		raycasting_bonus.c\
+		save_bonus.c\
+		sort_bonus.c\
+		sprite_cast_bonus.c\
+		sprite_bonus.c\
+		texture_bonus.c\
+		util_bonus.c
 
 ifeq ($(DEBUG), true)
 	CDEBUG = -g

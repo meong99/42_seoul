@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:29:48 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/27 20:13:01 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/27 20:56:57 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	map_check(t_info *info, int i, int j)
 	if (info->map[i][j] == '1' || info->map_mask[i][j] == 1 || \
 		info->map_mask[i][j] == 2)
 		return ;
-	else if (info->map[i][j] < '0' && info->map[i][j] > '2')
+	else if (info->map[i][j] < '0' || info->map[i][j] > '2')
 		error_exit("invalid char");
 	if (info->map[i][j] == '2')
 	{
 		info->map_mask[i][j] = 2;
 		info->sprite_num++;
 	}
-	else
+	else if (info->map[i][j] == '0')
 		info->map_mask[i][j] = 1;
 	map_check(info, i + 1, j);
 	map_check(info, i - 1, j);
