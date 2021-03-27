@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 23:30:06 by chaemyeongs       #+#    #+#             */
-/*   Updated: 2021/03/28 04:25:35 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/28 04:35:31 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int		bonus_attack(int key_code, int x, int y, t_game *game)
 			if (x == (int)game->sprite_dist[i].x &&\
 				y == (int)game->sprite_dist[i].y)
 			{
-				game->sprite_dist[i].dist = game->sprite_dist[game->info.sprite_num - 1].dist + 1;
+				game->sprite_dist[i].dist = \
+				game->sprite_dist[game->info.sprite_num - 1].dist + 1;
 				game->info.sprite_num--;
 				quick_sort(game->sprite_dist, 0, game->info.sprite_num - 1);
-				game->info.bonus_sprite_num--;
-				if (game->info.bonus_sprite_num == 0)
+				if (--game->info.bonus_sprite_num == 0)
 					game->next_stage = 1;
 				break ;
 			}
