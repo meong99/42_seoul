@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 19:32:08 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/27 20:21:12 by mchae            ###   ########.fr       */
+/*   Updated: 2021/03/27 20:40:27 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,6 +333,5 @@ void			texture_step_pos_set(t_game *game, int texture_dir);
 int				count_element(char **element);
 void			error_exit(char *massege);
 double			get_radian(int angle);
-int				color_div(int color, double perp_wall_dist);
 
 #endif
