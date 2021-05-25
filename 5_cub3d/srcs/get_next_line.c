@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 14:47:04 by mchae             #+#    #+#             */
-/*   Updated: 2021/03/27 20:12:32 by mchae            ###   ########.fr       */
+/*   Updated: 2021/04/11 22:04:00 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		find_new_line(char **line, t_gnl_lst *lst_buf)
 	i = 0;
 	j = 0;
 	while (lst_buf->buff[i] != '\0')
+	{
 		if (lst_buf->buff[i++] == '\n')
 		{
 			found = 1;
@@ -55,6 +56,7 @@ int		find_new_line(char **line, t_gnl_lst *lst_buf)
 			gnl_ft_strlcpy(*line, lst_buf->buff, i);
 			break ;
 		}
+	}
 	if (found)
 		gnl_ft_strlcpy(lst_buf->buff, lst_buf->buff + i,
 					gnl_ft_strlen(lst_buf->buff) + 1);
