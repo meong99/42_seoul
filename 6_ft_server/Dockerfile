@@ -1,5 +1,6 @@
 FROM debian:buster
 
+ENV AUTOINDEX 1
 MAINTAINER mchae
 
 RUN	apt-get update && apt-get install -y \
@@ -20,4 +21,4 @@ COPY ./srcs/create_wordpressDB.sql ./
 
 EXPOSE 80 443
 
-CMD bash run.sh
+ENTRYPOINT bash run.sh

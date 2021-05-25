@@ -1,8 +1,8 @@
 #!/bin/bash
 
-chmod 775 /run.sh
-chmod -R 755 /var/www/
-
+if [ ${AUTOINDEX} -eq 0 ] ; then
+	sed -i 's/autoindex on;/autoindex off;/g' default
+fi
 #nginx default
 mv default /etc/nginx/sites-available/
 
@@ -35,4 +35,6 @@ mysql < var/www/html/phpmyadmin/sql/create_tables.sql
 service php7.3-fpm start
 service nginx start
 service mysql restart
+
 bash
+
