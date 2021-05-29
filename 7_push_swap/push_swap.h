@@ -27,9 +27,9 @@ int	new_node(t_stack *stack, int num);
 /*
 ** swap_stack.c
 */
-int	swap_f_s(t_node *first, t_node *second, t_stack *stack);
-int	push_stack(t_stack *send_stack, t_stack *receive_stack);
-int	rotate_stack(t_stack *stack);
-int	reverse_rotate_stack(t_stack *stack);
+int	sa_b(t_node *first, t_node *second, t_stack *stack);
+int	pa_b(t_stack *send_stack, t_stack *receive_stack);
+int	ra_b(t_stack *stack);
+int	rra_b(t_stack *stack);
 
 #endif
