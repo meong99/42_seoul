@@ -1,15 +1,19 @@
 NAME = push_swap
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-
-SRCS = push_swap.c
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+LIBFT_PATH = ./libft
+SRCS = \
+	push_swap.c\
+	swap_stack.c
 
 OBJS = $(SRCS:.c=.o)
 
-%.o:%.c
-	$(CC) $(CFLAGS) -c $? -o $@
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJS)
+	make -C $(LIBFT_PATH)
+	$(CC) $(CFLAGS) -L$(LIBFT_PATH) -lft -o $(NAME) $(OBJS)
 
 
 all : $(NAME)

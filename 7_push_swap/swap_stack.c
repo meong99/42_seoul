@@ -1,35 +1,35 @@
 #include "push_swap.h"
 
-int	f_s_swap(t_node *first, t_node *second, t_stack *stack)
+int	swap_f_s(t_node *first, t_node *second, t_stack *stack)
 {
 	t_node *temp;
 
 	temp = first;
+	first->previous->next = second;
+	second->next->previous = first;
+	stack->top = second;
 	first->next = second->next;
 	first->previous = second;
 	second->next = first;
 	second->previous = temp->previous;
-	first->next->previous = first;
-	second->previous->next = second;
-	stack->top = second;
 	return (1);
 }
 
-int	push_stack(t_stack *stack_send, t_stack *stack_receive)
+int	push_stack(t_stack *send_stack, t_stack *receive_stack)
 {
-	t_node *temp_receive;
-	t_node *temp_send;
+	t_node *temp;
 
-	temp_receive = stack_receive->top;
-	temp_send = stack_send->top->next;
-	stack_receive->top = stack_send->top;
-	stack_receive->top->next = temp_receive;
-	stack_receive->top->previous = stack_receive->bottom;
-	stack_receive->bottom->next = stack_receive->top;
-	temp_receive->previous = stack_receive->top;
-	stack_send->top = temp_send;
-	temp_send->previous = stack_send->bottom;
-	stack_send->bottom->next = temp_send;
+	new_node(receive_stack, send_stack->top->value);
+	if (send_stack->num > 1)
+	{
+		temp = send_stack->top->next;
+		temp->previous = send_stack->top->previous;
+		send_stack->top->previous->next = temp;
+		free(send_stack->top);
+		send_stack->top = temp;
+	}
+	free(send_stack->top);
+	send_stack->num--;
 	return (1);
 }
 
