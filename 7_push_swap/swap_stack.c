@@ -15,20 +15,23 @@ int	sa_b(t_stack *stack)
 
 int	pa_b(t_stack *send_stack, t_stack *receive_stack)
 {
-	t_node *temp;
+	t_node *top;
 
-	new_node(receive_stack, send_stack->top->value);
-	if (send_stack->num > 1)
+	if (send_stack->num >= 1)
 	{
-		temp = send_stack->top->next;
-		temp->previous = send_stack->top->previous;
-		send_stack->top->previous->next = send_stack->top->next;
-		free(send_stack->top);
-		send_stack->top = temp;
+		new_node(receive_stack, send_stack->top->value);
+		if (send_stack->num > 1)
+		{
+			top = send_stack->top;
+			top->next->previous = send_stack->bottom;
+			send_stack->bottom->next = top->next;
+			send_stack->top = top->next;
+			free(top);
+		}
+		else
+			free(send_stack->top);
+		send_stack->num--;
 	}
-	else
-		free(send_stack->top);
-	send_stack->num--;
 	return (1);
 }
 
@@ -37,9 +40,11 @@ int	ra_b(t_stack *stack)
 	t_node *temp;
 
 	temp = stack->top;
-	stack->top = stack->top->next;
-	stack->bottom = temp;
-
+	if (stack->num > 1)
+	{
+		stack->top = stack->top->next;
+		stack->bottom = temp;
+	}
 	return (1);
 }
 
@@ -47,10 +52,12 @@ int	rra_b(t_stack *stack)
 {
 	t_node *temp;
 
-	temp = stack->top;
-	stack->top = stack->bottom;
-	stack->bottom = stack->bottom->previous;
-
+	temp = stack->bottom;
+	if (stack->num > 1)
+	{
+		stack->bottom = stack->bottom->previous;
+		stack->top = temp;
+	}
 	return (1);
 }
 

@@ -4,8 +4,8 @@ CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 LIBFT_PATH = ./libft
 SRCS = \
 	push_swap.c\
-	swap_stack.c
-
+	swap_stack.c\
+	ft_strncmp.c
 OBJS = $(SRCS:.c=.o)
 
 %.o : %.c

@@ -53,6 +53,36 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 	create_list(stack_a, arr_num);
 	while (1)
 	{
+		t_node *node_a = stack_a->top;
+		t_node *node_b = stack_b->top;
+		int i = -1;
+		printf("%-9s", "top = ");
+		if (stack_a->num)
+			printf("%-5d", stack_a->top->value);
+		printf("%-9s", "top = ");
+		if (stack_b->num)
+			printf("%-5d", stack_b->top->value);
+		printf("\n");
+		printf("%-9s", "bottom = ");
+		if (stack_a->num)
+			printf("%-5d", stack_a->bottom->value);
+		printf("%-9s", "bottom = ");
+		if (stack_b->num)
+			printf("%-5d", stack_b->bottom->value);
+		printf("\n");
+		printf("%-10s%-10s\n", "stack_a", "stack_b");
+		while(++i < stack_a->num || ++i < stack_b->num)
+		{
+			if (i < stack_a->num)
+				printf("  %-10d", node_a->value);
+			if (i < stack_b->num)
+				printf("  %-10d", node_b->value);
+			if (stack_a->num > 1)
+				node_a = node_a->next;
+			if (stack_b->num > 1)
+				node_b = node_b->next;
+			printf("\n");
+		}
 		scanf("%s", str);
 		printf("\n\n");
 		if (!ft_strncmp(str, "ra", 3))
@@ -117,28 +147,6 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 		{
 			printf("com = %d\n", command_num);
 			exit(0);
-		}
-		else if (!ft_strncmp(str, "p", 2))
-		{
-			t_node *node = stack_a->top;
-			int i = -1;
-			while(++i < stack_a->num)
-			{
-				printf("%d\n", node->value);
-				node = node->next;
-			}
-			printf("\n\n");
-		}
-		else if (!ft_strncmp(str, "pp", 2))
-		{
-			t_node *node = stack_b->top;
-			int i = -1;
-			while(++i < stack_b->num)
-			{
-				printf("%d\n", node->value);
-				node = node->next;
-			}
-			printf("\n\n");
 		}
 	}
 	return (0);
