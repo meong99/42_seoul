@@ -73,18 +73,18 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 		}
 		else if (!ft_strncmp(str, "sa", 3))
 		{
-			sa_b(stack_a->top, stack_a->top->next, stack_a);
+			sa_b(stack_a);
 			command_num++;
 		}
 		else if (!ft_strncmp(str, "sb", 3))
 		{
-			sa_b(stack_b->top, stack_b->top->next, stack_b);
+			sa_b(stack_b);
 			command_num++;
 		}
 		else if (!ft_strncmp(str, "ss", 3))
 		{
-			sa_b(stack_a->top, stack_a->top->next, stack_a);
-			sa_b(stack_b->top, stack_b->top->next, stack_b);
+			sa_b(stack_a);
+			sa_b(stack_b);
 			command_num++;
 		}
 		else if (!ft_strncmp(str, "pa", 3))

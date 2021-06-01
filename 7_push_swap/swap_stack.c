@@ -1,17 +1,15 @@
 #include "push_swap.h"
 
-int	sa_b(t_node *first, t_node *second, t_stack *stack)
+int	sa_b(t_stack *stack)
 {
-	t_node *temp;
+	int temp;
 
-	temp = first;
-	first->previous->next = second;
-	second->next->previous = first;
-	stack->top = second;
-	first->next = second->next;
-	first->previous = second;
-	second->next = first;
-	second->previous = temp->previous;
+	if (stack->num > 1)
+	{
+		temp = stack->top->value;
+		stack->top->value = stack->top->next->value;
+		stack->top->next->value = temp;
+	}
 	return (1);
 }
 
