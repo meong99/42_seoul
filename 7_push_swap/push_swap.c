@@ -29,28 +29,27 @@ int	new_node(t_stack *stack, int num)
 	return (0);
 }
 
-static int	create_list(t_stack *stack, char *arr_num)
+static int	create_list(t_stack *stack, int *arr_num, int num)
 {
 	int i = -1;
-	while (arr_num[++i])
-		new_node(stack, arr_num[i] - '0');
+	while (++i < num)
+		new_node(stack, arr_num[i]);
 	return (0);
 }
 
 static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 {
-	char *arr_num;
+	int *arr_num;
 	int num = 10;
-
 	char str[10];
 	int command_num = 0;
-	arr_num = malloc(num + 1);
+
+	arr_num = malloc(num);
 	for (int i = 0; i < num; i++)
 	{
-		arr_num[i] = '0' + i + 1;
+		arr_num[i] = i + 1;
 	}
-	arr_num[num] = 0;
-	create_list(stack_a, arr_num);
+	create_list(stack_a, arr_num, num);
 	while (1)
 	{
 		t_node *node_a = stack_a->top;
