@@ -1,11 +1,29 @@
-<mxfile host="app.diagrams.net" modified="2021-06-02T06:28:42.216Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" etag="DN3GE3DJ8WopU9zmGL0P" version="14.7.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-06-02T07:50:13.602Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" etag="rHMZdGOWuupGPKxkGcJ8" version="14.7.3" type="github">
   <diagram id="j3OECSAU-wYr3Q-sjVIb" name="페이지-1">
-    <mxGraphModel dx="1554" dy="795" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+    <mxGraphModel dx="364" dy="732" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="rv8AY7C-_57Soinm0CIY-1" value="get_pivot&lt;br&gt;&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="540" y="200" width="120" height="60" as="geometry" />
+        <mxCell id="rv8AY7C-_57Soinm0CIY-1" value="int get_pivot(해당 스택의 범위, 정렬된 스택)&lt;br&gt;해당 스택의 중간 값을 피봇으로 정하고 리턴한다." style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="900" y="140" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IbenPconOkfxlgIQQvgk-1" value="중복검사" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="220" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IbenPconOkfxlgIQQvgk-2" value="정렬" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="160" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IbenPconOkfxlgIQQvgk-3" value="환경변수로 들어왔을 때 스플릿" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="100" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IbenPconOkfxlgIQQvgk-5" value="int push_sort(현재 스택의 종류(1, -1), 현재 스택, 사용될 길이)&lt;br&gt;if (현재 사용될 스택의 길이 &amp;gt; 2){&lt;br&gt;우선 값이 정렬되어 있는지 확인하고 아니면&lt;br&gt;get_pivot으로 피봇을 정한 뒤 find_small_than_pivot으로 값을 다른 스택으로 옮기고&lt;br&gt;재귀&lt;br&gt;리턴값 만큼 스택에 복귀&lt;br&gt;반대쪽 재귀&lt;br&gt;}&lt;br&gt;else&lt;br&gt;sorting_stack으로 정렬.&lt;br&gt;&lt;br&gt;리턴값은 현재스택에 사용될 길이." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="910" y="250" width="230" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="IbenPconOkfxlgIQQvgk-6" value="find_small_than_pivot(현재 스택의 종류, 현재 스택, 사용될 길이)&lt;br&gt;피봇보다 작은 값을 스택의 탑에서부터 사용될 길이 내에서 찾는다.&lt;br&gt;사용될 명령어는 ra_b, pa_b인데 만약 해당 스택에 나눠진 값의 블럭이 2개이상이라면 ra_b를 통해 값을 모두 찾아서 넘긴 뒤에 rra_b로 다시 되돌려놔야 한다." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="140" width="260" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="IbenPconOkfxlgIQQvgk-7" value="sorting_stack" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="380" width="260" height="120" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
