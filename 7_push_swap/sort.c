@@ -3,17 +3,20 @@
 void	find_small_than_pivot(t_sort_mem sort_mem)
 {
 	int count_rotate;
-	int i;
+	int	count_push;
 	t_node *temp_node;
 
-	i = -1;
+	count_push = 0;
 	count_rotate = 0;
 	temp_node = sort_mem.stack->top;
-	while (++i < sort_mem.stack_range)
+	while (count_push + count_rotate < sort_mem.stack_range)
 	{
 		if ((sort_mem.stack_type == STACK_A && temp_node->value < sort_mem.pivot) ||
 		(sort_mem.stack_type == STACK_B && temp_node->value >= sort_mem.pivot))
+		{
 			pa_b(sort_mem.stack, sort_mem.other_stack);
+			count_push++;
+		}
 		else
 		{
 			ra_b(sort_mem.stack);
