@@ -36,6 +36,7 @@ typedef struct	s_stack
 {
 	int num;
 	int stack_block;
+	int stack_type;
 	t_node *top;
 	t_node *bottom;
 }	t_stack;
