@@ -14,15 +14,16 @@ static void	find_small_than_pivot(t_stack *stack, t_stack *other_stack, int stac
 	{
 		if (temp_node->value < pivot)
 		{
+			temp_node = temp_node->next;
 			pa_b(stack, other_stack);
 			count_push++;
 		}
 		else
 		{
+			temp_node = temp_node->next;
 			ra_b(stack);
 			count_rotate++;
 		}
-		temp_node = temp_node->next;
 	}
 	if (stack_block >= 2)
 	{

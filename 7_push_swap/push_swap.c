@@ -56,29 +56,8 @@ void	sort_arr_num(int *arr_num, int n)
   }
 }
 
-static int	use_commands(t_stack *stack_a, t_stack *stack_b)
+static int	use_commands(t_stack *stack_a, t_stack *stack_b, int *arr_num, int num)
 {
-	int num = 10;
-	int arr_num[num];
-	int fd = open("input.txt", O_RDWR | O_CREAT, S_IRWXU);
-	srand((unsigned int)time(NULL));
-	for (int i = 0; i < num; i++)
-	{
-		arr_num[i] = rand();
-		for (int j = 0; j < i; j++)
-		{
-			if (arr_num[j] == arr_num[i])
-			{
-				arr_num[i] = rand();
-				j = -1;
-			}
-		}
-		char *str = ft_itoa(arr_num[i]);
-		write(fd, str, ft_strlen(str));
-		write(fd, " ", 1);
-		// printf("%d ", arr_num[i]);
-	}
-	// printf("\n");
 	create_list(stack_a, arr_num, num);
 	sort_arr_num(arr_num, num);
 	push_sort(STACK_A, num, stack_a, stack_b, arr_num);
@@ -105,11 +84,22 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 	return (0);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_stack stack_a;
 	t_stack stack_b;
+	int *arr_num;
+	int i;
+	char **temp;
 
+	i = -1;
+	temp = ft_split(av[1], ' ');
+	ac = 0;
+	while (temp[ac])
+		ac++;
+	arr_num = malloc(sizeof(int) * (ac));
+	while (++i < ac)
+		arr_num[i] = ft_atoi(av[i + 1]);
 	stack_a.top = NULL;
 	stack_a.bottom = NULL;
 	stack_b.top = NULL;
@@ -118,6 +108,6 @@ int	main(void)
 	stack_b.num = 0;
 	stack_a.stack_type = STACK_A;
 	stack_b.stack_type = STACK_B;
-	use_commands(&stack_a, &stack_b);
+	use_commands(&stack_a, &stack_b, arr_num, ac - 1);
 	return (0);
 }
