@@ -30,7 +30,7 @@ int	new_node(t_stack *stack, int num)
 	return (0);
 }
 
-static int	create_list(t_stack *stack, char *arr_num, int num)
+static int	create_list(t_stack *stack, int *arr_num, int num)
 {
 	int i = -1;
 	while (++i < num)
@@ -41,7 +41,7 @@ static int	create_list(t_stack *stack, char *arr_num, int num)
 static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 {
 	int num = 10;
-	char arr_num[num];
+	int arr_num[num];
 	// int check[20] = {0};
 	char str[10];
 	int command_num = 0;
@@ -50,7 +50,6 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 	{
 		arr_num[i] = i + 1;
 	}
-	arr_num[num] = 0;
 	// srand((unsigned int)time(NULL));
 	// for (int i = 0; i < num; i++)
 	// {
@@ -85,72 +84,73 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 				node_b = node_b->next;
 			printf("\n");
 		}
-		scanf("%s", str);
-		printf("\n\n");
-		if (!ft_strncmp(str, "ra", 3))
-		{
-			ra_b(stack_a);
-			command_num++;
-		}
-		else if (!ft_strncmp(str, "rb", 3))
-		{
-			ra_b(stack_b);
-			command_num++;
-		}
-		else if (!ft_strncmp(str, "rr", 3))
-		{
-			ra_b(stack_a);
-			ra_b(stack_b);
-			command_num++;
-		}
-		else if (!ft_strncmp(str, "sa", 3))
-		{
-			sa_b(stack_a);
-			command_num++;
-		}
-		else if (!ft_strncmp(str, "sb", 3))
-		{
-			sa_b(stack_b);
-			command_num++;
-		}
-		else if (!ft_strncmp(str, "ss", 3))
-		{
-			sa_b(stack_a);
-			sa_b(stack_b);
-			command_num++;
-		}
-		else if (!ft_strncmp(str, "pa", 3))
-		{
-			pa_b(stack_b, stack_a);
-			command_num++;
-		}
-		else if (!ft_strncmp(str, "pb", 3))
-		{
-			pa_b(stack_a, stack_b);
-			command_num++;
-		}
-		else if (!ft_strncmp(str, "rra", 4))
-		{
-			rra_b(stack_a);
-			command_num++;
-		}
-		else if (!ft_strncmp(str, "rrb", 4))
-		{
-			rra_b(stack_b);
-			command_num++;
-		}
-		else if (!ft_strncmp(str, "rrr", 4))
-		{
-			rra_b(stack_a);
-			rra_b(stack_b);
-			command_num++;
-		}
-		else if (!ft_strncmp(str, "exit", 5))
-		{
-			printf("com = %d\n", command_num);
-			exit(0);
-		}
-		str[0] = 0;
+		push_sort(STACK_A, num, stack_a, stack_b, arr_num);
+		// scanf("%s", str);
+		// printf("\n\n");
+		// if (!ft_strncmp(str, "ra", 3))
+		// {
+		// 	ra_b(stack_a);
+		// 	command_num++;
+		// }
+		// else if (!ft_strncmp(str, "rb", 3))
+		// {
+		// 	ra_b(stack_b);
+		// 	command_num++;
+		// }
+		// else if (!ft_strncmp(str, "rr", 3))
+		// {
+		// 	ra_b(stack_a);
+		// 	ra_b(stack_b);
+		// 	command_num++;
+		// }
+		// else if (!ft_strncmp(str, "sa", 3))
+		// {
+		// 	sa_b(stack_a);
+		// 	command_num++;
+		// }
+		// else if (!ft_strncmp(str, "sb", 3))
+		// {
+		// 	sa_b(stack_b);
+		// 	command_num++;
+		// }
+		// else if (!ft_strncmp(str, "ss", 3))
+		// {
+		// 	sa_b(stack_a);
+		// 	sa_b(stack_b);
+		// 	command_num++;
+		// }
+		// else if (!ft_strncmp(str, "pa", 3))
+		// {
+		// 	pa_b(stack_b, stack_a);
+		// 	command_num++;
+		// }
+		// else if (!ft_strncmp(str, "pb", 3))
+		// {
+		// 	pa_b(stack_a, stack_b);
+		// 	command_num++;
+		// }
+		// else if (!ft_strncmp(str, "rra", 4))
+		// {
+		// 	rra_b(stack_a);
+		// 	command_num++;
+		// }
+		// else if (!ft_strncmp(str, "rrb", 4))
+		// {
+		// 	rra_b(stack_b);
+		// 	command_num++;
+		// }
+		// else if (!ft_strncmp(str, "rrr", 4))
+		// {
+		// 	rra_b(stack_a);
+		// 	rra_b(stack_b);
+		// 	command_num++;
+		// }
+		// else if (!ft_strncmp(str, "exit", 5))
+		// {
+		// 	printf("com = %d\n", command_num);
+		// 	exit(0);
+		// }
+		// str[0] = 0;
 	}
 	return (0);
 }

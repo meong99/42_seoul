@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
-void	find_small_than_pivot(t_stack *stack, t_stack *other_stack, int stack_block,
-	int stack_range, int stack_type, int pivot)
+static void	find_small_than_pivot(t_stack *stack, t_stack *other_stack, int stack_block,
+	int stack_range, int pivot)
 {
 	int count_rotate;
 	int	count_push;
@@ -12,8 +12,7 @@ void	find_small_than_pivot(t_stack *stack, t_stack *other_stack, int stack_block
 	temp_node = stack->top;
 	while (count_push + count_rotate < stack_range)
 	{
-		if ((stack_type == STACK_A && temp_node->value < pivot) ||
-		(stack_type == STACK_B && temp_node->value >= pivot))
+		if (temp_node->value < pivot)
 		{
 			pa_b(stack, other_stack);
 			count_push++;
@@ -31,7 +30,7 @@ void	find_small_than_pivot(t_stack *stack, t_stack *other_stack, int stack_block
 	}
 }
 
-int	get_pivot(int stack_range, int *arr_num)
+static int	*get_pivot(int stack_range, int *arr_num)
 {
 	int pivot;
 
@@ -39,10 +38,10 @@ int	get_pivot(int stack_range, int *arr_num)
 		pivot = (stack_range + 1) / 2;
 	else
 		pivot = stack_range / 2 + 1;
-	return (arr_num[pivot]);
+	return (&arr_num[pivot]);
 }
 
-int check_sorted(t_stack *stack, int stack_type)
+static int	check_sorted(t_stack *stack, int stack_type)
 {
 	int pre_val;
 	t_node *temp_node;
@@ -59,32 +58,42 @@ int check_sorted(t_stack *stack, int stack_type)
 	return (1);
 }
 
-void	sorting_stack(t_sort_mem sort_mem, int stack_range)
+static void	sorting_stack(int stack_type, int stack_range, t_stack *stack, t_stack *other_stack)
 {
+	int pre_val;
 
+	if (stack_type == STACK_B)
+	{
+		while (stack_range--)
+			pa_b(stack, other_stack);
+		stack = other_stack;
+	}
+	pre_val = stack->top->value;
+	if (stack_range >= 2 && pre_val > stack->top->next->value)
+	{
+		sa_b(stack);
+		ra_b(stack);
+	}
+	ra_b(stack);
 }
 
 int	push_sort(int stack_type, int stack_range, t_stack *stack, t_stack *other_stack, int *arr_num)
 {
-	int return_num;
-	int pivot;
+	int *pivot;
 	int i;
 
 	i = -1;
-	return_num = stack_range;
 	stack->stack_block++;
 	check_sorted(stack, stack_type);
 	if (stack_range > 2)
 	{
 		pivot = get_pivot(stack_range, arr_num);
-		find_small_than_pivot(stack, other_stack, stack->stack_block, stack_range, stack_type, pivot);
-		return_num = push_sort(stack_type * -1, (int)(stack_range / 2), other_stack, stack, arr_num);
-		push_sort(stack_type, );
-		while (++i < return_num)
-			pa_b(other_stack, stack);
+		find_small_than_pivot(stack, other_stack, stack->stack_block, stack_range, *pivot);
+		push_sort(stack_type * -1, (int)(stack_range / 2), other_stack, stack, arr_num);
+		push_sort(stack_type, (int)(stack_range / 2), stack, other_stack, pivot);
 		stack->stack_block--;
 	}
-	// else
-	// 	sorting_stack();
-	return (return_num);
+	else
+		sorting_stack(stack_type, stack_range, stack, other_stack);
+	return (0);
 }

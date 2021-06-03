@@ -47,4 +47,9 @@ int	pa_b(t_stack *send_stack, t_stack *receive_stack);
 int	ra_b(t_stack *stack);
 int	rra_b(t_stack *stack);
 
+/*
+** sort.c
+*/
+int	push_sort(int stack_type, int stack_range, t_stack *stack, t_stack *other_stack, int *arr_num);
+
 #endif

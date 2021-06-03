@@ -5,6 +5,7 @@ LIBFT_PATH = ./libft
 SRCS = \
 	push_swap.c\
 	swap_stack.c\
+	sort.c\
 	ft_strncmp.c
 OBJS = $(SRCS:.c=.o)
 
