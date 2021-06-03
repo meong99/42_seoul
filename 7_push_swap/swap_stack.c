@@ -9,6 +9,7 @@ int	sa_b(t_stack *stack)
 		temp = stack->top->value;
 		stack->top->value = stack->top->next->value;
 		stack->top->next->value = temp;
+	asd++;
 	}
 	return (1);
 }
@@ -35,6 +36,7 @@ int	pa_b(t_stack *send_stack, t_stack *receive_stack)
 			send_stack->bottom = 0;
 		}
 		send_stack->num--;
+	asd++;
 	}
 	return (1);
 }
@@ -48,6 +50,7 @@ int	ra_b(t_stack *stack)
 	{
 		stack->top = stack->top->next;
 		stack->bottom = temp;
+	asd++;
 	}
 	return (1);
 }
@@ -61,6 +64,7 @@ int	rra_b(t_stack *stack)
 	{
 		stack->bottom = stack->bottom->previous;
 		stack->top = temp;
+	asd++;
 	}
 	return (1);
 }

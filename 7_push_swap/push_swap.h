@@ -13,6 +13,8 @@
 */
 #include <stdio.h>
 #include <time.h>
+# define SWAP(x, y, temp) ( (temp)=(x), (x)=(y), (y)=(temp) )
+int asd = 0;
 /*
 **
 */

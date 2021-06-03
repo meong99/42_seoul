@@ -69,9 +69,10 @@ static void	sorting_stack(int stack_type, int stack_range, t_stack *stack, t_sta
 		stack = other_stack;
 	}
 	pre_val = stack->top->value;
-	if (stack_range >= 2 && pre_val > stack->top->next->value)
+	if (stack_range >= 2)
 	{
-		sa_b(stack);
+		if (pre_val > stack->top->next->value)
+			sa_b(stack);
 		ra_b(stack);
 	}
 	ra_b(stack);
