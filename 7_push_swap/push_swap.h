@@ -18,6 +18,7 @@ typedef struct	s_node
 typedef struct	s_stack
 {
 	int num;
+	int stack_block;
 	t_node *top;
 	t_node *bottom;
 }	t_stack;

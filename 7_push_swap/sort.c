@@ -1,6 +1,7 @@
 #include "push_swap.h"
 
-void	find_small_than_pivot(t_sort_mem sort_mem)
+void	find_small_than_pivot(t_stack *stack, t_stack *other_stack, int stack_block,
+	int stack_range, int stack_type, int pivot)
 {
 	int count_rotate;
 	int	count_push;
@@ -8,20 +9,25 @@ void	find_small_than_pivot(t_sort_mem sort_mem)
 
 	count_push = 0;
 	count_rotate = 0;
-	temp_node = sort_mem.stack->top;
-	while (count_push + count_rotate < sort_mem.stack_range)
+	temp_node = stack->top;
+	while (count_push + count_rotate < stack_range)
 	{
-		if ((sort_mem.stack_type == STACK_A && temp_node->value < sort_mem.pivot) ||
-		(sort_mem.stack_type == STACK_B && temp_node->value >= sort_mem.pivot))
+		if ((stack_type == STACK_A && temp_node->value < pivot) ||
+		(stack_type == STACK_B && temp_node->value >= pivot))
 		{
-			pa_b(sort_mem.stack, sort_mem.other_stack);
+			pa_b(stack, other_stack);
 			count_push++;
 		}
 		else
 		{
-			ra_b(sort_mem.stack);
+			ra_b(stack);
 			count_rotate++;
 		}
+	}
+	if (stack_block >= 2)
+	{
+		while (count_rotate--)
+			rra_b(stack);
 	}
 }
 
@@ -53,11 +59,32 @@ int check_sorted(t_stack *stack, int stack_type)
 	return (1);
 }
 
-int	push_sort(t_sort_mem sort_mem)
+void	sorting_stack(t_sort_mem sort_mem, int stack_range)
 {
-	check_sorted(sort_mem.stack, sort_mem.stack_type);
-	if (sort_mem.stack_range > 2)
+
+}
+
+int	push_sort(int stack_type, int stack_range, t_stack *stack, t_stack *other_stack, int *arr_num)
+{
+	int return_num;
+	int pivot;
+	int i;
+
+	i = -1;
+	return_num = stack_range;
+	stack->stack_block++;
+	check_sorted(stack, stack_type);
+	if (stack_range > 2)
 	{
-		sort_mem.pivot = get_pivot(sort_mem.stack_range, sort_mem.arr_num);
+		pivot = get_pivot(stack_range, arr_num);
+		find_small_than_pivot(stack, other_stack, stack->stack_block, stack_range, stack_type, pivot);
+		return_num = push_sort(stack_type * -1, (int)(stack_range / 2), other_stack, stack, arr_num);
+		push_sort(stack_type, );
+		while (++i < return_num)
+			pa_b(other_stack, stack);
+		stack->stack_block--;
 	}
+	// else
+	// 	sorting_stack();
+	return (return_num);
 }

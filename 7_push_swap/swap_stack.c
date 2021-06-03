@@ -29,7 +29,11 @@ int	pa_b(t_stack *send_stack, t_stack *receive_stack)
 			free(top);
 		}
 		else
+		{
 			free(send_stack->top);
+			send_stack->top = 0;
+			send_stack->bottom = 0;
+		}
 		send_stack->num--;
 	}
 	return (1);

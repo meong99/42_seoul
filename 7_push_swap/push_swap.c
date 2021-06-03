@@ -1,5 +1,6 @@
 #include "push_swap.h"
 #include <stdio.h>
+#include <time.h>
 
 int	new_node(t_stack *stack, int num)
 {
@@ -22,14 +23,14 @@ int	new_node(t_stack *stack, int num)
 		temp = stack->top;
 		stack->top = node;
 		node->next = temp;
-		node->previous = stack->bottom;
+		node->previous = temp->previous;
 		temp->previous = node;
 		stack->bottom->next = node;
 	}
 	return (0);
 }
 
-static int	create_list(t_stack *stack, int *arr_num, int num)
+static int	create_list(t_stack *stack, char *arr_num, int num)
 {
 	int i = -1;
 	while (++i < num)
@@ -39,43 +40,45 @@ static int	create_list(t_stack *stack, int *arr_num, int num)
 
 static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 {
-	int *arr_num;
 	int num = 10;
+	char arr_num[num];
+	// int check[20] = {0};
 	char str[10];
 	int command_num = 0;
 
-	arr_num = malloc(num);
 	for (int i = 0; i < num; i++)
 	{
 		arr_num[i] = i + 1;
 	}
+	arr_num[num] = 0;
+	// srand((unsigned int)time(NULL));
+	// for (int i = 0; i < num; i++)
+	// {
+	// 	int rand_num = (rand() % 20);
+	// 	while (check[rand_num])
+	// 		rand_num = (rand() % 20);
+	// 	arr_num[i] = rand_num + 1;
+	// 	check[rand_num] = 1;
+	// }
+
 	create_list(stack_a, arr_num, num);
 	while (1)
 	{
 		t_node *node_a = stack_a->top;
 		t_node *node_b = stack_b->top;
 		int i = -1;
-		printf("%-9s", "top = ");
-		if (stack_a->num)
-			printf("%-5d", stack_a->top->value);
-		printf("%-9s", "top = ");
-		if (stack_b->num)
-			printf("%-5d", stack_b->top->value);
-		printf("\n");
-		printf("%-9s", "bottom = ");
-		if (stack_a->num)
-			printf("%-5d", stack_a->bottom->value);
-		printf("%-9s", "bottom = ");
-		if (stack_b->num)
-			printf("%-5d", stack_b->bottom->value);
-		printf("\n");
+
 		printf("%-10s%-10s\n", "stack_a", "stack_b");
-		while(++i < stack_a->num || ++i < stack_b->num)
+		while(++i < stack_a->num || i < stack_b->num)
 		{
 			if (i < stack_a->num)
 				printf("  %-10d", node_a->value);
+			else if (i >= stack_a->num)
+				printf("  %-10c", ' ');
 			if (i < stack_b->num)
 				printf("  %-10d", node_b->value);
+			else if (i >= stack_b->num)
+				printf("  %-10c", ' ');
 			if (stack_a->num > 1)
 				node_a = node_a->next;
 			if (stack_b->num > 1)
@@ -147,6 +150,7 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 			printf("com = %d\n", command_num);
 			exit(0);
 		}
+		str[0] = 0;
 	}
 	return (0);
 }
