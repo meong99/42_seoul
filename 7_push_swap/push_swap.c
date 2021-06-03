@@ -43,8 +43,8 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 	int num = 10;
 	int arr_num[num];
 	// int check[20] = {0};
-	char str[10];
-	int command_num = 0;
+	// char str[10];
+	// int command_num = 0;
 
 	for (int i = 0; i < num; i++)
 	{
@@ -61,30 +61,35 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 	// }
 
 	create_list(stack_a, arr_num, num);
-	while (1)
-	{
+	// while (1)
+	// {
 		t_node *node_a = stack_a->top;
-		t_node *node_b = stack_b->top;
+		// t_node *node_b = stack_b->top;
 		int i = -1;
 
-		printf("%-10s%-10s\n", "stack_a", "stack_b");
-		while(++i < stack_a->num || i < stack_b->num)
-		{
-			if (i < stack_a->num)
-				printf("  %-10d", node_a->value);
-			else if (i >= stack_a->num)
-				printf("  %-10c", ' ');
-			if (i < stack_b->num)
-				printf("  %-10d", node_b->value);
-			else if (i >= stack_b->num)
-				printf("  %-10c", ' ');
-			if (stack_a->num > 1)
-				node_a = node_a->next;
-			if (stack_b->num > 1)
-				node_b = node_b->next;
-			printf("\n");
-		}
+		// printf("%-10s%-10s\n", "stack_a", "stack_b");
+		// while(++i < stack_a->num || i < stack_b->num)
+		// {
+		// 	if (i < stack_a->num)
+		// 		printf("  %-10d", node_a->value);
+		// 	else if (i >= stack_a->num)
+		// 		printf("  %-10c", ' ');
+		// 	if (i < stack_b->num)
+		// 		printf("  %-10d", node_b->value);
+		// 	else if (i >= stack_b->num)
+		// 		printf("  %-10c", ' ');
+		// 	if (stack_a->num > 1)
+		// 		node_a = node_a->next;
+		// 	if (stack_b->num > 1)
+		// 		node_b = node_b->next;
+		// 	printf("\n");
+		// }
 		push_sort(STACK_A, num, stack_a, stack_b, arr_num);
+		while (++i < stack_a->num)
+		{
+			printf("%d", node_a->value);
+			node_a = node_a->next;
+		}
 		// scanf("%s", str);
 		// printf("\n\n");
 		// if (!ft_strncmp(str, "ra", 3))
@@ -151,7 +156,7 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 		// 	exit(0);
 		// }
 		// str[0] = 0;
-	}
+	// }
 	return (0);
 }
 

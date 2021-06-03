@@ -34,11 +34,8 @@ static int	*get_pivot(int stack_range, int *arr_num)
 {
 	int pivot;
 
-	if (stack_range % 2 == 1)
-		pivot = (stack_range + 1) / 2;
-	else
-		pivot = stack_range / 2 + 1;
-	return (&arr_num[pivot]);
+	pivot = stack_range / 2 + 1;
+	return (&arr_num[pivot - 1]);
 }
 
 static int	check_sorted(t_stack *stack, int stack_type)
