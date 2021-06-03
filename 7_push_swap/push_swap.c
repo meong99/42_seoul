@@ -1,6 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
-#include <time.h>
 
 int	new_node(t_stack *stack, int num)
 {
@@ -63,33 +61,33 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 	create_list(stack_a, arr_num, num);
 	// while (1)
 	// {
-		t_node *node_a = stack_a->top;
-		// t_node *node_b = stack_b->top;
 		int i = -1;
 
-		// printf("%-10s%-10s\n", "stack_a", "stack_b");
-		// while(++i < stack_a->num || i < stack_b->num)
-		// {
-		// 	if (i < stack_a->num)
-		// 		printf("  %-10d", node_a->value);
-		// 	else if (i >= stack_a->num)
-		// 		printf("  %-10c", ' ');
-		// 	if (i < stack_b->num)
-		// 		printf("  %-10d", node_b->value);
-		// 	else if (i >= stack_b->num)
-		// 		printf("  %-10c", ' ');
-		// 	if (stack_a->num > 1)
-		// 		node_a = node_a->next;
-		// 	if (stack_b->num > 1)
-		// 		node_b = node_b->next;
-		// 	printf("\n");
-		// }
 		push_sort(STACK_A, num, stack_a, stack_b, arr_num);
-		while (++i < stack_a->num)
+		t_node *node_a = stack_a->top;
+		t_node *node_b = stack_b->top;
+		printf("%-10s%-10s\n", "stack_a", "stack_b");
+		while(++i < stack_a->num || i < stack_b->num)
 		{
-			printf("%d", node_a->value);
-			node_a = node_a->next;
+			if (i < stack_a->num)
+				printf("  %-10d", node_a->value);
+			else if (i >= stack_a->num)
+				printf("  %-10c", ' ');
+			if (i < stack_b->num)
+				printf("  %-10d", node_b->value);
+			else if (i >= stack_b->num)
+				printf("  %-10c", ' ');
+			if (stack_a->num > 1)
+				node_a = node_a->next;
+			if (stack_b->num > 1)
+				node_b = node_b->next;
+			printf("\n");
 		}
+		// while (++i < stack_a->num)
+		// {
+		// 	printf("%d\n", node_a->value);
+		// 	node_a = node_a->next;
+		// }
 		// scanf("%s", str);
 		// printf("\n\n");
 		// if (!ft_strncmp(str, "ra", 3))

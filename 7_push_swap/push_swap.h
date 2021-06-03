@@ -5,6 +5,21 @@
 #include <unistd.h>
 #include "libft/libft.h"
 
+/*
+**
+*/
+/*
+**
+*/
+#include <stdio.h>
+#include <time.h>
+/*
+**
+*/
+/*
+**
+*/
+
 #define STACK_A 1
 #define STACK_B -1
 
