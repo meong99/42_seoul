@@ -22,6 +22,7 @@ static void	find_small_than_pivot(t_stack *stack, t_stack *other_stack, int stac
 			ra_b(stack);
 			count_rotate++;
 		}
+		temp_node = temp_node->next;
 	}
 	if (stack_block >= 2)
 	{
