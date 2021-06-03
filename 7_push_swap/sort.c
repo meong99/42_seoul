@@ -77,6 +77,7 @@ static void	sorting_stack(int stack_type, int stack_range, t_stack *stack, t_sta
 	}
 	ra_b(stack);
 }
+
 static int get_stack_range(int stack_range)
 {
 	return (stack_range % 2 == 1) ? (stack_range / 2 + 1) : (stack_range / 2);
@@ -89,70 +90,35 @@ int	push_sort(int stack_type, int stack_range, t_stack *stack, t_stack *other_st
 
 	i = -1;
 	stack->stack_block++;
-	check_sorted(stack, stack_type);
+	if (check_sorted(stack, stack_type))
+	{
+		if (stack_type == STACK_B)
+		{
+			while (++i < stack_range)
+				pa_b(stack, other_stack);
+			while (stack_range--)
+				ra_b(other_stack);
+			return (0);
+		}
+		else
+		{
+			if (stack->stack_block > 1)
+			{
+				while (stack_range--)
+					ra_b(other_stack);
+			}
+			return (0);
+		}
+	}
 	if (stack_range > 2)
 	{
 		pivot = get_pivot(stack_range, arr_num);
 		find_small_than_pivot(stack, other_stack, stack->stack_block, stack_range, *pivot);
-		t_stack *stack_a = stack;
-		t_stack *stack_b = other_stack;
-		if (stack_type == STACK_B)
-		{
-			stack_a = other_stack;
-			stack_b = stack;
-		}
-		t_node *node_a = stack_a->top;
-		t_node *node_b = stack_b->top;
-		printf("%-10s%-10s\n", "stack_a", "stack_b");
-		while(++i < stack_a->num || i < stack_b->num)
-		{
-			if (i < stack_a->num)
-				printf("  %-10d", node_a->value);
-			else if (i >= stack_a->num)
-				printf("  %-10c", ' ');
-			if (i < stack_b->num)
-				printf("  %-10d", node_b->value);
-			else if (i >= stack_b->num)
-				printf("  %-10c", ' ');
-			if (stack_a->num > 1)
-				node_a = node_a->next;
-			if (stack_b->num > 1)
-				node_b = node_b->next;
-			printf("\n");
-		}
 		push_sort(stack_type * -1, stack_range / 2, other_stack, stack, arr_num);
 		push_sort(stack_type, get_stack_range(stack_range), stack, other_stack, pivot);
 		stack->stack_block--;
 	}
 	else
-	{
 		sorting_stack(stack_type, stack_range, stack, other_stack);
-		t_stack *stack_a = stack;
-		t_stack *stack_b = other_stack;
-		if (stack_type == STACK_B)
-		{
-			stack_a = other_stack;
-			stack_b = stack;
-		}
-		t_node *node_a = stack_a->top;
-		t_node *node_b = stack_b->top;
-		printf("%-10s%-10s\n", "stack_a", "stack_b");
-		while(++i < stack_a->num || i < stack_b->num)
-		{
-			if (i < stack_a->num)
-				printf("  %-10d", node_a->value);
-			else if (i >= stack_a->num)
-				printf("  %-10c", ' ');
-			if (i < stack_b->num)
-				printf("  %-10d", node_b->value);
-			else if (i >= stack_b->num)
-				printf("  %-10c", ' ');
-			if (stack_a->num > 1)
-				node_a = node_a->next;
-			if (stack_b->num > 1)
-				node_b = node_b->next;
-			printf("\n");
-		}
-	}
 	return (0);
 }

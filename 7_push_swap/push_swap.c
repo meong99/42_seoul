@@ -58,9 +58,9 @@ void	sort_arr_num(int *arr_num, int n)
 
 static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 {
-	int num = 10;
+	int num = 500;
 	int arr_num[num];
-	int check[20] = {0};
+	// int check[10000] = {0};
 
 	// for (int i = 0; i < num; i++)
 	// {
@@ -69,12 +69,14 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b)
 	srand((unsigned int)time(NULL));
 	for (int i = 0; i < num; i++)
 	{
-		int rand_num = (rand() % 20);
-		while (check[rand_num])
-			rand_num = (rand() % 20);
+		int rand_num = (rand());
+		// while (check[rand_num])
+			// rand_num = (rand());
 		arr_num[i] = rand_num + 1;
-		check[rand_num] = 1;
+		// check[rand_num] = 1;
+		printf("%d ", arr_num[i]);
 	}
+		printf("\n");
 	create_list(stack_a, arr_num, num);
 	// while (1)
 	// {
@@ -186,6 +188,7 @@ int	main(void)
 	stack_b.bottom = NULL;
 	stack_a.num = 0;
 	stack_b.num = 0;
+	asd = 0;
 	use_commands(&stack_a, &stack_b);
 	printf("comm = %d\n", asd);
 	return (0);
