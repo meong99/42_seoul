@@ -1,34 +1,85 @@
 #include "push_swap.h"
 
-static void	find_small_than_pivot(t_stack *stack, t_stack *other_stack,
-	int stack_range, int pivot)
+int	check_top(t_stack *stack_a, t_stack *stack_b)
 {
-	int count_rotate;
-	int	count_push;
-	t_node *temp_node;
+	//무조건 스왑 안되게 조건 걸기
+	if (stack_a->top && stack_a->top->value > stack_a->top->next->value)
+		stack_a->command = SWAP;
+	else if (stack_b->top && stack_b->top->value < stack_b->top->next->value)
+		stack_b->command = SWAP;
+	return (swap_command(stack_a, stack_b));
+}
 
-	count_push = 0;
-	count_rotate = 0;
-	temp_node = stack->top;
-	while (count_push + count_rotate < stack_range)
+static int	set_command(t_stack *stack, t_stack *other_stack)
+{
+	int swaped;
+
+	swaped = 0;
+	if (stack->stack_type == STACK_A)
+		swaped = check_top(stack, other_stack);
+	else
+		swaped = check_top(other_stack, stack);
+	if (!swaped)
 	{
-		if (temp_node->value < pivot)
+		if (other_stack->stack_block > 1)
+			stack->command = SWAP;
+		return (rotate_command(stack, other_stack));
+	}
+	return (0);
+}
+
+void check_low_val(t_stack *stack, t_stack *other_stack, int *stack_range)
+{
+	int type_b;
+
+	type_b = 0;
+	if (stack->stack_type == STACK_B)
+		type_b = 1;
+	if (stack->top->value == stack->arr_num[stack->low_num])
+	{
+		if (type_b)
 		{
-			temp_node = temp_node->next;
 			pa_b(stack, other_stack);
-			count_push++;
+			ra_b(other_stack);
+			temp_print(stack, other_stack);
+			if (stack->low_num == 0)
+				other_stack->stack_block++;
 		}
 		else
 		{
-			temp_node = temp_node->next;
 			ra_b(stack);
-			count_rotate++;
+			temp_print(stack, other_stack);
+			if (stack->low_num == 0)
+				stack->stack_block++;
 		}
+		(*stack_range)--;
+	}
+}
+
+static void	smaller_than_pivot(t_stack *stack, t_stack *other_stack,\
+	int *stack_range, int pivot)
+{
+	int count_rotate;
+	int	count_push;
+
+	count_push = 0;
+	count_rotate = 0;
+	while (count_push < *stack_range / 2)
+	{
+		check_low_val(stack, other_stack, stack_range);
+		if (stack->top->value < pivot)
+		{
+			count_push += pa_b(stack, other_stack);
+			temp_print(stack, other_stack);
+		}
+		else
+			count_rotate += set_command(stack, other_stack);
 	}
 	if (stack->stack_block >= 2)
 	{
 		while (count_rotate--)
 			rra_b(stack);
+		temp_print(stack, other_stack);
 	}
 }
 
@@ -40,28 +91,6 @@ static int	*get_pivot(int stack_range, int *arr_num)
 	return (&arr_num[pivot - 1]);
 }
 
-static void	sorting_stack(int stack_type, int stack_range, t_stack *stack, t_stack *other_stack)
-{
-	int pre_val;
-	int i;
-
-	i = -1;
-	if (stack_type == STACK_B)
-	{
-		while (++i < stack_range)
-			pa_b(stack, other_stack);
-		stack = other_stack;
-	}
-	pre_val = stack->top->value;
-	if (stack_range >= 2)
-	{
-		if (pre_val > stack->top->next->value)
-			sa_b(stack);
-		ra_b(stack);
-	}
-	ra_b(stack);
-}
-
 int	push_sort(int stack_range, t_stack *stack, t_stack *other_stack, int *arr_num)
 {
 	int *pivot;
@@ -69,15 +98,10 @@ int	push_sort(int stack_range, t_stack *stack, t_stack *other_stack, int *arr_nu
 	if (stack_range > 2)
 	{
 		pivot = get_pivot(stack_range, arr_num);
-		find_small_than_pivot(stack, other_stack, stack_range, *pivot);
+		smaller_than_pivot(stack, other_stack, &stack_range, *pivot);
 		// temp_print(stack, other_stack);
 		push_sort(stack_range / 2, other_stack, stack, arr_num);
 		push_sort(((stack_range % 2 == 1) ? (stack_range / 2 + 1) : (stack_range / 2)), stack, other_stack, pivot);
-	}
-	else
-	{
-		sorting_stack(stack->stack_type, stack_range, stack, other_stack);
-		// temp_print(stack, other_stack);
 	}
 	stack->stack_block--;
 	return (0);

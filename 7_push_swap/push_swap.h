@@ -23,9 +23,7 @@
 #define STACK_A 1
 #define STACK_B -1
 #define SWAP 1
-#define PUSH 2
-#define ROTATE 3
-#define R_ROTATE 4
+#define ROTATE 2
 
 typedef struct	s_node
 {
@@ -37,10 +35,10 @@ typedef struct	s_node
 typedef struct	s_stack
 {
 	int num;
+	int low_num;
 	int stack_block;
 	int stack_type;
 	int *arr_num;
-	int *sorting_count;
 	int command;
 	t_node *top;
 	t_node *bottom;
@@ -54,10 +52,12 @@ int	new_node(t_stack *stack, int num);
 /*
 ** swap_stack.c
 */
-int	sa_b(t_stack *stack);
+void	sa_b(t_stack *stack);
 int	pa_b(t_stack *send_stack, t_stack *receive_stack);
-int	ra_b(t_stack *stack);
-int	rra_b(t_stack *stack);
+void	ra_b(t_stack *stack);
+void	rra_b(t_stack *stack);
+int	rotate_command(t_stack *stack, t_stack *other_stack);
+int	swap_command(t_stack *stack_a, t_stack *stack_b);
 
 /*
 ** sort.c

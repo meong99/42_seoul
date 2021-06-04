@@ -61,24 +61,23 @@ static void	sort_arr_num(int *arr_num, int n)
 	}
 }
 
-static int	use_commands(t_stack *stack_a, t_stack *stack_b, int num)
+static int	start_sort(t_stack *stack_a, t_stack *stack_b, int num)
 {
 	create_list(stack_a, stack_a->arr_num, num);
 	sort_arr_num(stack_a->arr_num, num);
+	temp_print(stack_a, stack_b);
 	push_sort(num, stack_a, stack_b, stack_a->arr_num);
 	return (0);
 }
 
-void	init_stack(t_stack *stack_a, t_stack *stack_b)
+void	init_stack(t_stack *stack, int *arr_num)
 {
-	stack_a->top = NULL;
-	stack_a->bottom = NULL;
-	stack_b->top = NULL;
-	stack_b->bottom = NULL;
-	stack_a->num = 0;
-	stack_b->num = 0;
-	stack_a->stack_type = STACK_A;
-	stack_b->stack_type = STACK_B;
+	stack->top = NULL;
+	stack->bottom = NULL;
+	stack->num = 0;
+	stack->stack_type = STACK_A;
+	stack->arr_num = arr_num;
+	stack->low_num = 0;
 }
 
 static int	*arg_to_arri(int *arr_len, char *arg)
@@ -118,21 +117,15 @@ int	main(int ac, char **av)
 	t_stack stack_b;
 	int *arr_num;
 	int arr_len;
-	int sorting_count;
 
-	sorting_count = 0;
 	if (ac < 2)
 		exit(-1);
 	if (ac == 2)
 		arr_num = arg_to_arri(&arr_len, av[1]);
 	else
 		arr_num = av_to_arri(ac, av, &arr_len);
-	stack_a.arr_num = arr_num;
-	stack_b.arr_num = arr_num;
-	stack_a.sorting_count = &sorting_count;
-	stack_b.sorting_count = &sorting_count;
-	init_stack(&stack_a, &stack_b);
-	use_commands(&stack_a, &stack_b, arr_len);
-	// temp_print(&stack_a, &stack_b);
+	init_stack(&stack_a, arr_num);
+	init_stack(&stack_b, arr_num);
+	start_sort(&stack_a, &stack_b, arr_len);
 	return (0);
 }
