@@ -22,6 +22,10 @@
 
 #define STACK_A 1
 #define STACK_B -1
+#define SWAP 1
+#define PUSH 2
+#define ROTATE 3
+#define R_ROTATE 4
 
 typedef struct	s_node
 {
@@ -35,20 +39,12 @@ typedef struct	s_stack
 	int num;
 	int stack_block;
 	int stack_type;
+	int *arr_num;
+	int *sorting_count;
+	int command;
 	t_node *top;
 	t_node *bottom;
 }	t_stack;
-
-typedef struct	s_sort_mem
-{
-	int pivot;
-	int	stack_type;
-	int	stack_range;
-	int	*arr_num;
-	t_stack	*stack;
-	t_stack	*other_stack;
-}	t_sort_mem;
-
 
 /*
 ** push_swap
@@ -68,5 +64,5 @@ int	rra_b(t_stack *stack);
 */
 int	push_sort(int stack_range, t_stack *stack, t_stack *other_stack, int *arr_num);
 
-// void temp_print(t_stack *stack, t_stack *other_stack);
+void temp_print(t_stack *stack, t_stack *other_stack);
 #endif
