@@ -1,12 +1,11 @@
 NAME = push_swap
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g
 LIBFT_PATH = ./libft
 SRCS = \
 	push_swap.c\
 	swap_stack.c\
-	sort.c\
-	ft_strncmp.c
+	sort.c
 OBJS = $(SRCS:.c=.o)
 
 %.o : %.c
