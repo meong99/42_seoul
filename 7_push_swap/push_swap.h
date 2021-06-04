@@ -66,6 +66,7 @@ int	rra_b(t_stack *stack);
 /*
 ** sort.c
 */
-int	push_sort(int stack_type, int stack_range, t_stack *stack, t_stack *other_stack, int *arr_num);
+int	push_sort(int stack_range, t_stack *stack, t_stack *other_stack, int *arr_num);
 
+// void temp_print(t_stack *stack, t_stack *other_stack);
 #endif

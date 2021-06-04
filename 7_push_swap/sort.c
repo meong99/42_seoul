@@ -80,12 +80,53 @@ static void	sorting_stack(int stack_type, int stack_range, t_stack *stack, t_sta
 	ra_b(stack);
 }
 
-static int get_stack_range(int stack_range)
+static int	push_rotate_a(int stack_range, t_stack *stack, t_stack *other_stack)
 {
-	return (stack_range % 2 == 1) ? (stack_range / 2 + 1) : (stack_range / 2);
+	int i;
+
+	i = -1;
+	if (stack->stack_type == STACK_B)
+	{
+		while (++i < stack_range)
+			pa_b(stack, other_stack);
+		while (stack_range--)
+			ra_b(other_stack);
+		return (0);
+	}
+	else
+	{
+		if (stack->stack_block > 1)
+		{
+			while (stack_range--)
+				ra_b(other_stack);
+		}
+		return (0);
+	}
+}
+int	push_sort(int stack_range, t_stack *stack, t_stack *other_stack, int *arr_num)
+{
+	int *pivot;
+	stack->stack_block++;
+	if (check_sorted(stack, stack->stack_type))
+		return (push_rotate_a(stack_range, stack, other_stack));
+	if (stack_range > 2)
+	{
+		pivot = get_pivot(stack_range, arr_num);
+		find_small_than_pivot(stack, other_stack, stack->stack_block, stack_range, *pivot);
+		// temp_print(stack, other_stack);
+		push_sort(stack_range / 2, other_stack, stack, arr_num);
+		push_sort(((stack_range % 2 == 1) ? (stack_range / 2 + 1) : (stack_range / 2)), stack, other_stack, pivot);
+		stack->stack_block--;
+	}
+	else
+	{
+		sorting_stack(stack->stack_type, stack_range, stack, other_stack);
+		// temp_print(stack, other_stack);
+	}
+	return (0);
 }
 
-// static void temp_print(t_stack *stack, t_stack *other_stack)
+// void temp_print(t_stack *stack, t_stack *other_stack)
 // {
 // 	int i = -1;
 // 	t_stack *stack_a = stack;
@@ -115,47 +156,3 @@ static int get_stack_range(int stack_range)
 // 		printf("\n");
 // 	}
 // }
-
-int	push_sort(int stack_type, int stack_range, t_stack *stack, t_stack *other_stack, int *arr_num)
-{
-	int *pivot;
-	int i;
-
-	i = -1;
-	stack->stack_block++;
-	if (check_sorted(stack, stack_type))
-	{
-		if (stack_type == STACK_B)
-		{
-			while (++i < stack_range)
-				pa_b(stack, other_stack);
-			while (stack_range--)
-				ra_b(other_stack);
-			return (0);
-		}
-		else
-		{
-			if (stack->stack_block > 1)
-			{
-				while (stack_range--)
-					ra_b(other_stack);
-			}
-			return (0);
-		}
-	}
-	if (stack_range > 2)
-	{
-		pivot = get_pivot(stack_range, arr_num);
-		find_small_than_pivot(stack, other_stack, stack->stack_block, stack_range, *pivot);
-		// temp_print(stack, other_stack);
-		push_sort(stack_type * -1, stack_range / 2, other_stack, stack, arr_num);
-		push_sort(stack_type, get_stack_range(stack_range), stack, other_stack, pivot);
-		stack->stack_block--;
-	}
-	else
-	{
-		sorting_stack(stack_type, stack_range, stack, other_stack);
-		// temp_print(stack, other_stack);
-	}
-	return (0);
-}

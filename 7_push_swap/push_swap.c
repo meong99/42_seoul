@@ -65,7 +65,7 @@ static int	use_commands(t_stack *stack_a, t_stack *stack_b, int *arr_num, int nu
 {
 	create_list(stack_a, arr_num, num);
 	sort_arr_num(arr_num, num);
-	push_sort(STACK_A, num, stack_a, stack_b, arr_num);
+	push_sort(num, stack_a, stack_b, arr_num);
 	return (0);
 }
 
