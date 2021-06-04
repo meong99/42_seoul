@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mchae <mchae@student.42.fr>                +#+  +:+       +#+         #
+#    By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/09 16:16:57 by mchae             #+#    #+#              #
-#    Updated: 2020/10/25 16:02:22 by mchae            ###   ########.fr        #
+#    Updated: 2021/06/04 16:29:52 by mchae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRCS = ft_memccpy.c ft_memcmp.c ft_memmove.c ft_bzero.c ft_memchr.c \
        ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
        ft_toupper.c ft_tolower.c ft_calloc.c ft_strdup.c ft_substr.c \
        ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
-       ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
+       ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c\
+       ft_malloc.c ft_free.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 BOBJS = $(patsubst %.c,%.o,$(BSRCS))
 all : $(NAME)

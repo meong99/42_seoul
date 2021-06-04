@@ -5,7 +5,7 @@ int	new_node(t_stack *stack, int num)
 	t_node *node;
 	t_node *temp;
 
-	node = malloc(sizeof(t_node));
+	node = ft_malloc(sizeof(t_node));
 	node->value = num;
 	node->next = node;
 	node->previous = node;
@@ -92,9 +92,10 @@ int	*av_to_arri(int *arr_len, char *arg)
 	temp = ft_split(arg, ' ');
 	while (temp[*arr_len])
 		(*arr_len)++;
-	arr_num = malloc(sizeof(int) * (*arr_len));
+	arr_num = ft_malloc(sizeof(int) * (*arr_len));
 	while (++i < *arr_len)
 		arr_num[i] = ft_atoi(temp[i]);
+	ft_free(temp, 0, 1);
 	return (arr_num);
 }
 
