@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-06-04T10:48:42.405Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" etag="2HKC8-sidmRaBbmhx6v1" version="14.7.4" type="github">
+<mxfile host="app.diagrams.net" modified="2021-06-04T11:10:39.790Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" etag="YFlGqjRrHdt_h-ZVebNU" version="14.7.4" type="github">
   <diagram id="j3OECSAU-wYr3Q-sjVIb" name="페이지-1">
-    <mxGraphModel dx="1453" dy="663" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+    <mxGraphModel dx="1011" dy="553" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -12,6 +12,9 @@
         </mxCell>
         <mxCell id="RVqZaSxekMJh3eKWUX-9-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="965" y="60" width="410" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="RVqZaSxekMJh3eKWUX-9-4" value="해야할 것&lt;br&gt;- 명령어 바로 사용하지 않고 저장하기&lt;br&gt;- 다른 스택에 사용될 명령어 찾기&lt;br&gt;- 사용될 명령어 사용하기&lt;br&gt;- 진행 중 맨 위에 두 값이 정렬이 안 되어 있으면 정렬&lt;br&gt;- 작은 값 만나면 저장하기(처음에 블럭갯수 증가)&lt;br&gt;- 3개 이하일때 최적화 명령어 만들기(블럭 1개, 2개이상일때)&lt;br&gt;- 마지막 블럭이 최소 3개로 만들기&lt;br&gt;&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="490" width="370" height="250" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
