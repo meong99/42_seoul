@@ -70,14 +70,15 @@ static int	start_sort(t_stack *stack_a, t_stack *stack_b, int num)
 	return (0);
 }
 
-void	init_stack(t_stack *stack, int *arr_num)
+void	init_stack(t_stack *stack, int *arr_num, int *low_num, int type)
 {
 	stack->top = NULL;
 	stack->bottom = NULL;
 	stack->num = 0;
-	stack->stack_type = STACK_A;
+	stack->stack_type = type;
 	stack->arr_num = arr_num;
-	stack->low_num = 0;
+	stack->low_num = low_num;
+	stack->stack_block = 0;
 }
 
 static int	*arg_to_arri(int *arr_len, char *arg)
@@ -117,6 +118,7 @@ int	main(int ac, char **av)
 	t_stack stack_b;
 	int *arr_num;
 	int arr_len;
+	int low_num;
 
 	if (ac < 2)
 		exit(-1);
@@ -124,8 +126,9 @@ int	main(int ac, char **av)
 		arr_num = arg_to_arri(&arr_len, av[1]);
 	else
 		arr_num = av_to_arri(ac, av, &arr_len);
-	init_stack(&stack_a, arr_num);
-	init_stack(&stack_b, arr_num);
+	low_num = 0;
+	init_stack(&stack_a, arr_num, &low_num, STACK_A);
+	init_stack(&stack_b, arr_num, &low_num, STACK_B);
 	start_sort(&stack_a, &stack_b, arr_len);
 	return (0);
 }

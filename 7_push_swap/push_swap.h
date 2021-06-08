@@ -35,7 +35,7 @@ typedef struct	s_node
 typedef struct	s_stack
 {
 	int num;
-	int low_num;
+	int *low_num;
 	int stack_block;
 	int stack_type;
 	int *arr_num;
