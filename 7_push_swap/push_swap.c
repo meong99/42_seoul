@@ -1,40 +1,5 @@
 #include "push_swap.h"
 
-int	new_node(t_stack *stack, int num)
-{
-	t_node *node;
-	t_node *temp;
-
-	node = ft_malloc(sizeof(t_node));
-	node->value = num;
-	node->next = node;
-	node->previous = node;
-	stack->num++;
-	if (stack->top == NULL)
-	{
-		stack->top = node;
-		stack->bottom = node;
-	}
-	else
-	{
-		temp = stack->top;
-		stack->top = node;
-		node->next = temp;
-		node->previous = temp->previous;
-		temp->previous = node;
-		stack->bottom->next = node;
-	}
-	return (0);
-}
-
-static int	create_list(t_stack *stack, int *arr_num, int num)
-{
-	int i = num;
-	while (--i >= 0)
-		new_node(stack, arr_num[i]);
-	return (0);
-}
-
 static void	sort_arr_num(int *arr_num, int n)
 {
 	int	i;
@@ -61,28 +26,6 @@ static void	sort_arr_num(int *arr_num, int n)
 	}
 }
 
-static int	start_sort(t_stack *stack_a, t_stack *stack_b, int num)
-{
-	create_list(stack_a, stack_a->arr_num, num);
-	sort_arr_num(stack_a->arr_num, num);
-	// temp_print(aa, bb);
-	push_sort(num, stack_a, stack_b);
-	return (0);
-}
-
-void	init_stack(t_stack *stack, int *arr_num, int *low_num, int type)
-{
-	stack->top = NULL;
-	stack->bottom = NULL;
-	stack->num = 0;
-	stack->stack_type = type;
-	stack->arr_num = arr_num;
-	stack->low_num = low_num;
-	stack->stack_block = 0;
-	if (type == STACK_A)
-	stack->stack_block = 1;
-}
-
 static int	*arg_to_arri(int *arr_len, char *arg)
 {
 	int i;
@@ -97,7 +40,7 @@ static int	*arg_to_arri(int *arr_len, char *arg)
 	arr_num = ft_malloc(sizeof(int) * (*arr_len));
 	while (++i < *arr_len)
 		arr_num[i] = ft_atoi(temp[i]);
-	ft_free(temp, 0, 1);
+	ft_free(temp, 0, TYPE_C);
 	return (arr_num);
 }
 
@@ -112,6 +55,15 @@ static int *av_to_arri(int ac, char **av, int *arr_len)
 	while (++i < ac - 1)
 		arr_num[i] = ft_atoi(av[i + 1]);
 	return (arr_num);
+}
+
+static int	start_sort(t_stack *stack_a, t_stack *stack_b, int num)
+{
+	create_list(stack_a, stack_a->arr_num, num);
+	sort_arr_num(stack_a->arr_num, num);
+	// temp_print(aa, bb);
+	quick_sort(num, stack_a, stack_b);
+	return (0);
 }
 
 int	main(int ac, char **av)

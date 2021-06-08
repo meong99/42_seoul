@@ -6,6 +6,9 @@ SRCS = \
 	push_swap.c\
 	rotate.c\
 	swap_push.c\
+	init.c\
+	sorting.c\
+	util.c\
 	temp.c\
 	sort.c
 OBJS = $(SRCS:.c=.o)

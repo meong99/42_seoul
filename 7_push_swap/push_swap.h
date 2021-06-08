@@ -12,6 +12,8 @@
 #define CHECK_LOW 0
 #define NEXT_RANGE 1
 #define COUNT_ROTATE 2
+#define TYPE_C 1
+#define TYPE_I 0
 typedef struct	s_node
 {
 	struct s_node *previous;
@@ -32,7 +34,14 @@ typedef struct	s_stack
 }	t_stack;
 
 /*
-** push_swap
+** init.c
+*/
+int	new_node(t_stack *stack, int num);
+int	create_list(t_stack *stack, int *arr_num, int num);
+void	init_stack(t_stack *stack, int *arr_num, int *low_num, int type);
+
+/*
+** push_swap.c
 */
 int	new_node(t_stack *stack, int num);
 
@@ -45,11 +54,23 @@ int	ra_b(t_stack *stack);
 int	rra_b(t_stack *stack);
 
 /*
+** sorting.c
+*/
+void	sorting(t_stack *stack, t_stack *other_stack, int stack_range);
+int	check_sorted(t_stack *stack);
+
+/*
 ** sort.c
 */
-int	push_sort(int stack_range, t_stack *stack, t_stack *other_stack);
-
+int	quick_sort(int stack_range, t_stack *stack, t_stack *other_stack);
 void temp_print(t_stack *stack, t_stack *other_stack);
+
+/*
+** util.c
+*/
+void	push_stack_a(t_stack *stack, t_stack *other_stack, int stack_range);
+void	range_2(t_stack *stack);
+void	range_3(t_stack *stack, t_stack *other_stack, int stack_range);
 
 /*
 **
