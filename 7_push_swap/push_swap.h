@@ -5,26 +5,13 @@
 #include <unistd.h>
 #include "libft/libft.h"
 
-/*
-**
-*/
-/*
-**
-*/
-#include <stdio.h>
-#include <time.h>
-/*
-**
-*/
-/*
-**
-*/
-
 #define STACK_A 1
 #define STACK_B -1
 #define SWAP 1
 #define ROTATE 2
-
+#define CHECK_LOW 0
+#define NEXT_RANGE 1
+#define COUNT_ROTATE 2
 typedef struct	s_node
 {
 	struct s_node *previous;
@@ -52,17 +39,33 @@ int	new_node(t_stack *stack, int num);
 /*
 ** swap_stack.c
 */
-void	sa_b(t_stack *stack);
+int	sa_b(t_stack *stack);
 int	pa_b(t_stack *send_stack, t_stack *receive_stack);
-void	ra_b(t_stack *stack);
-void	rra_b(t_stack *stack);
-int	rotate_command(t_stack *stack, t_stack *other_stack);
-int	swap_command(t_stack *stack_a, t_stack *stack_b);
+int	ra_b(t_stack *stack);
+int	rra_b(t_stack *stack);
 
 /*
 ** sort.c
 */
-int	push_sort(int stack_range, t_stack *stack, t_stack *other_stack, int *arr_num);
+int	push_sort(int stack_range, t_stack *stack, t_stack *other_stack);
 
 void temp_print(t_stack *stack, t_stack *other_stack);
+
+/*
+**
+*/
+/*
+**
+*/
+#include <stdio.h>
+#include <time.h>
+t_stack *aa;
+t_stack *bb;
+/*
+**
+*/
+/*
+**
+*/
+
 #endif

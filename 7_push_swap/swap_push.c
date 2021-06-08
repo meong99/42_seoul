@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	sa_b(t_stack *stack)
+int	sa_b(t_stack *stack)
 {
 	int temp;
 
@@ -10,31 +10,12 @@ void	sa_b(t_stack *stack)
 		stack->top->value = stack->top->next->value;
 		stack->top->next->value = temp;
 	}
-}
-
-int	swap_command(t_stack *stack_a, t_stack *stack_b)
-{
-	if (stack_a->command == SWAP && stack_b->command == SWAP)
-	{
-		sa_b(stack_a);
-		sa_b(stack_b);
-		write(1, "ss\n", 3);
-		stack_a->command = 0;
-		stack_b->command = 0;
-		temp_print(stack_a, stack_b);
-	// getchar();
-		return (1);
-	}
-	else if (stack_a->command)
-	{
-		sa_b(stack_a);
-		write(1, "sa\n", 3);
-		stack_a->command = 0;
-		temp_print(stack_a, stack_b);
-	// getchar();
-		return (1);
-	}
-	return (0);
+	if (stack->stack_type == STACK_A)
+		printf("sa\n");
+	else
+		printf("sb\n");
+	// temp_print(aa, bb);
+	return (1);
 }
 
 int	pa_b(t_stack *send_stack, t_stack *receive_stack)
@@ -63,13 +44,12 @@ int	pa_b(t_stack *send_stack, t_stack *receive_stack)
 	if (receive_stack->stack_type == STACK_A)
 	{
 		printf("pa\n");
-		temp_print(send_stack, receive_stack);
+		// temp_print(send_stack, receive_stack);
 	}
 	else
 	{
 		printf("pb\n");
-		temp_print(receive_stack, send_stack);
+		// temp_print(receive_stack, send_stack);
 	}
-		// getchar();
 	return (1);
 }

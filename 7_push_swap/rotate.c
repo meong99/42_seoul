@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	ra_b(t_stack *stack)
+int	ra_b(t_stack *stack)
 {
 	t_node *temp;
 
@@ -10,27 +10,15 @@ void	ra_b(t_stack *stack)
 		stack->top = stack->top->next;
 		stack->bottom = temp;
 	}
-}
-
-int	rotate_command(t_stack *stack, t_stack *other_stack)
-{
-	ra_b(stack);
 	if (stack->stack_type == STACK_A)
-	{
-		write(1, "ra\n", 3);
-		temp_print(stack, other_stack);
-		return (1);
-	}
+		printf("ra\n");
 	else
-	{
-		write(1, "rb\n", 3);
-		temp_print(other_stack, stack);
-		return (1);
-	}
-	return (0);
+		printf("rb\n");
+	// temp_print(aa, bb);
+	return (1);
 }
 
-void	rra_b(t_stack *stack)
+int	rra_b(t_stack *stack)
 {
 	t_node *temp;
 
@@ -40,10 +28,11 @@ void	rra_b(t_stack *stack)
 		stack->bottom = stack->bottom->previous;
 		stack->top = temp;
 	}
+	// temp_print(aa, bb);
 	if (stack->stack_type == STACK_A)
 		printf("rra\n");
 	else
 		printf("rrb\n");
-	// getchar();
+	return (1);
 }
 
