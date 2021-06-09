@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 18:34:01 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 19:20:21 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int				new_node(t_stack *stack, int num);
 ** invalid_check.c
 */
 int				overlap_check(int *arr_num, int arr_len);
-
 
 /*
 ** init.c

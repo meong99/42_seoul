@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 19:18:05 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 19:20:03 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ int			main(int ac, char **av)
 	int		low_num;
 
 	if (ac < 2)
-		return(RETURN_ERROR);
+	{
+		write(1, "Error\n", 6);
+		exit(-1);
+	}
 	if (ac == 2)
 		arr_num = arg_to_arri(&arr_len, av[1]);
 	else
@@ -97,6 +100,5 @@ int			main(int ac, char **av)
 	if (overlap_check(arr_num, arr_len) == RETURN_ERROR)
 		return (RETURN_ERROR);
 	start_sort(&stack_a, &stack_b, arr_len);
-	while (1);
 	return (0);
 }
