@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap_push.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/09 17:56:21 by mchae             #+#    #+#             */
+/*   Updated: 2021/06/09 18:22:22 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int	sa_b(t_stack *stack)
+int		sa_b(t_stack *stack)
 {
 	int temp;
 
@@ -9,11 +21,10 @@ int	sa_b(t_stack *stack)
 		temp = stack->top->value;
 		stack->top->value = stack->top->next->value;
 		stack->top->next->value = temp;
-		// temp_print(aa, bb);
 		if (stack->stack_type == STACK_A)
-			printf("sa\n");
+			write(1, "sa\n", 3);
 		else
-			printf("sb\n");
+			write(1, "sb\n", 3);
 	}
 	return (1);
 }
@@ -42,19 +53,17 @@ void	link_stack(t_stack *send_stack, t_stack *receive_stack)
 	}
 }
 
-int	pa_b(t_stack *send_stack, t_stack *receive_stack)
+int		pa_b(t_stack *send_stack, t_stack *receive_stack)
 {
-
 	if (send_stack->num >= 1)
 	{
 		link_stack(send_stack, receive_stack);
 		send_stack->num--;
 		receive_stack->num++;
-		// temp_print(aa, bb);
 		if (receive_stack->stack_type == STACK_A)
-			printf("pa\n");
+			write(1, "pa\n", 3);
 		else
-			printf("pb\n");
+			write(1, "pb\n", 3);
 	}
 	return (1);
 }

@@ -6,16 +6,16 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:56:22 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 16:55:47 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 18:02:21 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	new_node(t_stack *stack, int num)
+int		new_node(t_stack *stack, int num)
 {
-	t_node *node;
-	t_node *temp;
+	t_node	*node;
+	t_node	*temp;
 
 	node = ft_malloc(sizeof(t_node));
 	node->value = num;
@@ -36,9 +36,11 @@ int	new_node(t_stack *stack, int num)
 	return (0);
 }
 
-int	create_list(t_stack *stack, int *arr_num, int num)
+int		create_list(t_stack *stack, int *arr_num, int num)
 {
-	int i = num;
+	int	i;
+
+	i = num;
 	while (--i >= 0)
 		new_node(stack, arr_num[i]);
 	return (0);
@@ -54,5 +56,5 @@ void	init_stack(t_stack *stack, int *arr_num, int *low_num, int type)
 	stack->low_num = low_num;
 	stack->stack_block = 0;
 	if (type == STACK_A)
-	stack->stack_block = 1;
+		stack->stack_block = 1;
 }

@@ -6,16 +6,16 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 20:00:34 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 15:49:59 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 18:21:51 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_sorted(t_stack *stack)
+int			check_sorted(t_stack *stack)
 {
-	int most;
-	t_node *node;
+	int		most;
+	t_node	*node;
 
 	most = stack->top->value;
 	node = stack->top->next;
@@ -59,7 +59,7 @@ static int	get_most(t_stack *stack)
 	return (ret);
 }
 
-static void one_block(t_stack *stack, t_stack *other_stack)
+static void	one_block(t_stack *stack, t_stack *other_stack)
 {
 	int most;
 
@@ -81,7 +81,22 @@ static void one_block(t_stack *stack, t_stack *other_stack)
 		one_block(other_stack, stack);
 }
 
-void	sorting(t_stack *stack, t_stack *other_stack, int stack_range)
+void		sort_by_range(t_stack *stack_a, t_stack *stack_b, int stack_range)
+{
+	if (*stack_a->low_num == 0)
+		stack_a->stack_block++;
+	if (stack_range == 1)
+	{
+		ra_b(stack_a);
+		(*stack_a->low_num)++;
+	}
+	else if (stack_range == 2)
+		range_2(stack_a);
+	else
+		range_3(stack_a, stack_b, stack_range);
+}
+
+void		sorting(t_stack *stack, t_stack *other_stack, int stack_range)
 {
 	t_stack *stack_a;
 	t_stack *stack_b;
@@ -97,18 +112,6 @@ void	sorting(t_stack *stack, t_stack *other_stack, int stack_range)
 		push_stack_a(stack, other_stack, stack_range);
 	}
 	if (!check_sorted(stack_a))
-	{
-		if (*stack_a->low_num == 0)
-			stack_a->stack_block++;
-		if (stack_range == 1)
-		{
-			ra_b(stack_a);
-			(*stack_a->low_num)++;
-		}
-		else if (stack_range == 2)
-			range_2(stack_a);
-		else
-			range_3(stack_a, stack_b, stack_range);
-	}
+		sort_by_range(stack_a, stack_b, stack_range);
 	stack->stack_block--;
 }

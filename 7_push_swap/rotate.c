@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/09 17:56:13 by mchae             #+#    #+#             */
+/*   Updated: 2021/06/09 18:18:29 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	ra_b(t_stack *stack)
@@ -9,7 +21,6 @@ int	ra_b(t_stack *stack)
 	{
 		stack->top = stack->top->next;
 		stack->bottom = temp;
-		// temp_print(aa, bb);
 		if (stack->stack_type == STACK_A)
 			printf("ra\n");
 		else
@@ -31,7 +42,6 @@ int	rra_b(t_stack *stack)
 	{
 		stack->bottom = pre_bottom;
 		stack->top = temp;
-		// temp_print(aa, bb);
 		if (stack->stack_type == STACK_A)
 			printf("rra\n");
 		else
@@ -39,4 +49,3 @@ int	rra_b(t_stack *stack)
 	}
 	return (1);
 }
-

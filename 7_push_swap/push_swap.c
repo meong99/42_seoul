@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/09 17:56:10 by mchae             #+#    #+#             */
+/*   Updated: 2021/06/09 18:24:44 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	sort_arr_num(int *arr_num, int n)
@@ -12,12 +24,12 @@ static void	sort_arr_num(int *arr_num, int n)
 	{
 		least = i;
 		j = i;
-		while(++j < n)
+		while (++j < n)
 		{
-			if(arr_num[j] < arr_num[least])
+			if (arr_num[j] < arr_num[least])
 				least = j;
 		}
-		if(i != least)
+		if (i != least)
 		{
 			temp = arr_num[i];
 			arr_num[i] = arr_num[least];
@@ -28,9 +40,9 @@ static void	sort_arr_num(int *arr_num, int n)
 
 static int	*arg_to_arri(int *arr_len, char *arg)
 {
-	int i;
-	char **temp;
-	int *arr_num;
+	int		i;
+	char	**temp;
+	int		*arr_num;
 
 	i = -1;
 	*arr_len = 0;
@@ -44,7 +56,7 @@ static int	*arg_to_arri(int *arr_len, char *arg)
 	return (arr_num);
 }
 
-static int *av_to_arri(int ac, char **av, int *arr_len)
+static int	*av_to_arri(int ac, char **av, int *arr_len)
 {
 	int i;
 	int *arr_num;
@@ -61,21 +73,18 @@ static int	start_sort(t_stack *stack_a, t_stack *stack_b, int num)
 {
 	create_list(stack_a, stack_a->arr_num, num);
 	sort_arr_num(stack_a->arr_num, num);
-	// temp_print(aa, bb);
 	quick_sort(num, stack_a, stack_b);
 	return (0);
 }
 
-int	main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	t_stack stack_a;
-	t_stack stack_b;
-	int *arr_num;
-	int arr_len;
-	int low_num;
+	t_stack	stack_a;
+	t_stack	stack_b;
+	int		*arr_num;
+	int		arr_len;
+	int		low_num;
 
-	aa = &stack_a;
-	bb = &stack_b;
 	if (ac < 2)
 		exit(-1);
 	if (ac == 2)
