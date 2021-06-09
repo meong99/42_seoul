@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 18:29:24 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 18:44:44 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 19:05:26 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	overlap_check(int *arr_num, int arr_len)
 		while (++j < arr_len)
 		{
 			if (check == arr_num[j])
-				return (RETURN_ERROR);
+			{
+				write(1, "Error\n", 6);
+				exit(-1);
+			}
 		}
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 18:25:01 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 18:25:55 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 19:17:43 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int			quick_sort(int stack_range, t_stack *stack, t_stack *other_stack)
 		quick_sort(count[NEXT_RANGE], other_stack, stack);
 		quick_sort(stack_range - (count[CHECK_LOW] + count[NEXT_RANGE]),\
 		stack, other_stack);
+		free(count);
 	}
 	else if (stack_range)
 		sorting(stack, other_stack, stack_range);

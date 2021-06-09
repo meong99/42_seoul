@@ -1,6 +1,6 @@
 NAME = push_swap
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g
 LIBFT_PATH = ./libft
 SRCS = \
 	push_swap.c\
@@ -26,8 +26,10 @@ all : $(NAME)
 
 clean :
 	rm -f $(OBJS)
+	make -C $(LIBFT_PATH) clean
 fclean : clean
 	rm -f $(NAME)
+	make -C $(LIBFT_PATH) fclean
 re : fclean all
 
 .PHONY: all clean fclean re bonus

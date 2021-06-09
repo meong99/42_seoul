@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:30:47 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/04 16:35:16 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 19:10:42 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free(void *var, int index, int is_char)
+void	*ft_free(void *var, int index, int is_char)
 {
 	int i;
 
@@ -23,6 +23,10 @@ void	ft_free(void *var, int index, int is_char)
 			;
 	}
 	while (++i < index)
+	{
 		free(((void**)var)[i]);
+		((void**)var)[i] = 0;
+	}
 	free(var);
+	return (0);
 }

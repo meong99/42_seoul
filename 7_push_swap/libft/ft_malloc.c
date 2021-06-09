@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:27:20 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 18:37:14 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 19:07:18 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	*ft_malloc(size_t size)
 
 	var = ft_calloc(1, size);
 	if (!var)
-		return (0);
+	{
+		write(1, "Error\n", 6);
+		exit(-1);
+	}
 	return (var);
 }

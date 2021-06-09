@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 18:34:22 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 19:18:05 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	*arg_to_arri(int *arr_len, char *arg)
 	arr_num = ft_malloc(sizeof(int) * (*arr_len));
 	while (++i < *arr_len)
 		arr_num[i] = ft_atoi(temp[i]);
-	ft_free(temp, 0, TYPE_C);
+	temp = ft_free(temp, 0, TYPE_C);
 	return (arr_num);
 }
 
@@ -97,5 +97,6 @@ int			main(int ac, char **av)
 	if (overlap_check(arr_num, arr_len) == RETURN_ERROR)
 		return (RETURN_ERROR);
 	start_sort(&stack_a, &stack_b, arr_len);
+	while (1);
 	return (0);
 }
