@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 20:00:34 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 15:17:25 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 15:49:59 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	sorting(t_stack *stack, t_stack *other_stack, int stack_range)
 
 	stack_a = stack;
 	stack_b = other_stack;
-	if (stack->stack_block == 1 && stack->num > 1)
+	if (stack->stack_block == 1 && stack->num > 0)
 		one_block(stack, other_stack);
 	if (stack->stack_type == STACK_B)
 	{
