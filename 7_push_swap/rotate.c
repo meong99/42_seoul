@@ -9,11 +9,12 @@ int	ra_b(t_stack *stack)
 	{
 		stack->top = stack->top->next;
 		stack->bottom = temp;
+		// temp_print(aa, bb);
+		if (stack->stack_type == STACK_A)
+			printf("ra\n");
+		else
+			printf("rb\n");
 	}
-	if (stack->stack_type == STACK_A)
-		printf("ra\n");
-	else
-		printf("rb\n");
 	return (1);
 }
 
@@ -30,11 +31,12 @@ int	rra_b(t_stack *stack)
 	{
 		stack->bottom = pre_bottom;
 		stack->top = temp;
+		// temp_print(aa, bb);
+		if (stack->stack_type == STACK_A)
+			printf("rra\n");
+		else
+			printf("rrb\n");
 	}
-	if (stack->stack_type == STACK_A)
-		printf("rra\n");
-	else
-		printf("rrb\n");
 	return (1);
 }
 
