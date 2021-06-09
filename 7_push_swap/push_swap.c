@@ -61,7 +61,6 @@ static int	start_sort(t_stack *stack_a, t_stack *stack_b, int num)
 {
 	create_list(stack_a, stack_a->arr_num, num);
 	sort_arr_num(stack_a->arr_num, num);
-	// temp_print(aa, bb);
 	quick_sort(num, stack_a, stack_b);
 	return (0);
 }

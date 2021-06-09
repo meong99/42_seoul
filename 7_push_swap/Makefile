@@ -10,7 +10,7 @@ SRCS = \
 	sorting.c\
 	util.c\
 	temp.c\
-	sort.c
+	quick_sort.c
 OBJS = $(SRCS:.c=.o)
 
 %.o : %.c

@@ -16,7 +16,6 @@
 #define TYPE_I 0
 typedef struct	s_node
 {
-	struct s_node *previous;
 	struct s_node *next;
 	int	value;
 }	t_node;

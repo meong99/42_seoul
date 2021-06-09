@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:56:22 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/08 19:57:50 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 16:55:47 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	new_node(t_stack *stack, int num)
 	node = ft_malloc(sizeof(t_node));
 	node->value = num;
 	node->next = node;
-	node->previous = node;
 	stack->num++;
 	if (stack->top == NULL)
 	{
@@ -32,8 +31,6 @@ int	new_node(t_stack *stack, int num)
 		temp = stack->top;
 		stack->top = node;
 		node->next = temp;
-		node->previous = temp->previous;
-		temp->previous = node;
 		stack->bottom->next = node;
 	}
 	return (0);
