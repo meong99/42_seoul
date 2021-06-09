@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 11:26:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/04 16:36:28 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 18:26:43 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 								void (*del)(void *));
 
-void	ft_free(void *var, int index, int is_char);
-void	*ft_malloc(size_t size);
+void				ft_free(void *var, int index, int is_char);
+void				*ft_malloc(size_t size);
 
 #endif
