@@ -18,30 +18,36 @@ int	sa_b(t_stack *stack)
 	return (1);
 }
 
-int	pa_b(t_stack *send_stack, t_stack *receive_stack)
+void	link_stack(t_stack *send_stack, t_stack *receive_stack)
 {
 	t_node *send_top;
 
 	send_top = send_stack->top->next;
+	if (receive_stack->num == 0)
+	{
+		send_stack->top->next = send_stack->top;
+		receive_stack->top = send_stack->top;
+		receive_stack->bottom = send_stack->top;
+	}
+	else
+	{
+		send_stack->top->next = receive_stack->top;
+		receive_stack->top = send_stack->top;
+		receive_stack->bottom->next = send_stack->top;
+	}
+	if (send_stack->num > 1)
+	{
+		send_stack->top = send_top;
+		send_stack->bottom->next = send_top;
+	}
+}
+
+int	pa_b(t_stack *send_stack, t_stack *receive_stack)
+{
+
 	if (send_stack->num >= 1)
 	{
-		if (receive_stack->num == 0)
-		{
-			send_stack->top->next = send_stack->top;
-			receive_stack->top = send_stack->top;
-			receive_stack->bottom = send_stack->top;
-		}
-		else
-		{
-			send_stack->top->next = receive_stack->top;
-			receive_stack->top = send_stack->top;
-			receive_stack->bottom->next = send_stack->top;
-		}
-		if (send_stack->num > 1)
-		{
-			send_stack->top = send_top;
-			send_stack->bottom->next = send_top;
-		}
+		link_stack(send_stack, receive_stack);
 		send_stack->num--;
 		receive_stack->num++;
 		// temp_print(aa, bb);
