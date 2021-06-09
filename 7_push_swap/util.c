@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 21:26:04 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/08 23:04:37 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 14:56:47 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@ void	range_3(t_stack *stack, t_stack *other_stack, int stack_range)
 			stack_range--;
 			(*stack->low_num)++;
 			swap = 0;
+			while (push)
+				push -= pa_b(other_stack, stack);
 		}
 		else if (!swap && stack->top->value > stack->top->next->value)
 			swap += sa_b(stack);
 		else if (push < 2)
 			push += pa_b(stack, other_stack);
-		else
-			while (push)
-				push -= pa_b(other_stack, stack);
 	}
 }
 

@@ -14,7 +14,7 @@ int	sa_b(t_stack *stack)
 		printf("sa\n");
 	else
 		printf("sb\n");
-	// temp_print(aa, bb);
+	temp_print(aa, bb);
 	return (1);
 }
 
@@ -44,12 +44,12 @@ int	pa_b(t_stack *send_stack, t_stack *receive_stack)
 	if (receive_stack->stack_type == STACK_A)
 	{
 		printf("pa\n");
-		// temp_print(send_stack, receive_stack);
+		temp_print(send_stack, receive_stack);
 	}
 	else
 	{
 		printf("pb\n");
-		// temp_print(receive_stack, send_stack);
+		temp_print(receive_stack, send_stack);
 	}
 	return (1);
 }
