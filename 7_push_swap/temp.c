@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 void temp_print(t_stack *stack, t_stack *other_stack)
 {

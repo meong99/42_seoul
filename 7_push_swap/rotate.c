@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:13 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 18:18:29 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 18:38:23 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	ra_b(t_stack *stack)
 		stack->top = stack->top->next;
 		stack->bottom = temp;
 		if (stack->stack_type == STACK_A)
-			printf("ra\n");
+			write(1, "ra\n", 3);
 		else
-			printf("rb\n");
+			write(1, "rb\n", 3);
 	}
 	return (1);
 }
@@ -43,9 +43,9 @@ int	rra_b(t_stack *stack)
 		stack->bottom = pre_bottom;
 		stack->top = temp;
 		if (stack->stack_type == STACK_A)
-			printf("rra\n");
+			write(1, "rra\n", 4);
 		else
-			printf("rrb\n");
+			write(1, "rrb\n", 4);
 	}
 	return (1);
 }

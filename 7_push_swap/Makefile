@@ -9,6 +9,7 @@ SRCS = \
 	init.c\
 	sorting.c\
 	util.c\
+	invalid_check.c\
 	temp.c\
 	quick_sort.c
 OBJS = $(SRCS:.c=.o)

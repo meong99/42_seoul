@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc.c                                        :+:      :+:    :+:   */
+/*   invalid_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 16:27:20 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 18:37:14 by mchae            ###   ########.fr       */
+/*   Created: 2021/06/09 18:29:24 by mchae             #+#    #+#             */
+/*   Updated: 2021/06/09 18:44:44 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_malloc(size_t size)
+int	overlap_check(int *arr_num, int arr_len)
 {
-	void	*var;
+	int check;
+	int i;
+	int j;
 
-	var = ft_calloc(1, size);
-	if (!var)
-		return (0);
-	return (var);
+	i = -1;
+	while (++i < arr_len)
+	{
+		check = arr_num[i];
+		j = i;
+		while (++j < arr_len)
+		{
+			if (check == arr_num[j])
+				return (RETURN_ERROR);
+		}
+	}
+	return (1);
 }

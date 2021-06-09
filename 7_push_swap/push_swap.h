@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 18:00:24 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/09 18:34:01 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define COUNT_ROTATE 2
 # define TYPE_C 1
 # define TYPE_I 0
+# define RETURN_ERROR -1
 
 typedef struct	s_node
 {
@@ -46,17 +47,23 @@ typedef struct	s_stack
 }				t_stack;
 
 /*
+** push_swap.c
+*/
+int				new_node(t_stack *stack, int num);
+
+/*
+** invalid_check.c
+*/
+int				overlap_check(int *arr_num, int arr_len);
+
+
+/*
 ** init.c
 */
 int				new_node(t_stack *stack, int num);
 int				create_list(t_stack *stack, int *arr_num, int num);
 void			init_stack(t_stack *stack, int *arr_num,\
 				int *low_num, int type);
-
-/*
-** push_swap.c
-*/
-int				new_node(t_stack *stack, int num);
 
 /*
 ** swap_stack.c
