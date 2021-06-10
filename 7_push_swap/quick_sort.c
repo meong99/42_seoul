@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 18:25:01 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 19:17:43 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/10 17:54:51 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			check_low_val(t_stack *stack, t_stack *other_stack)
+int			check_small_val(t_stack *stack, t_stack *other_stack)
 {
 	if (stack->top->value == stack->arr_num[*stack->low_num])
 	{
@@ -39,7 +39,7 @@ int stack_range, t_stack *stack, t_stack *other_stack)
 	{
 		if (stack->stack_type == STACK_B &&\
 		stack->top->value == stack->arr_num[*stack->low_num])
-			count[CHECK_LOW] += check_low_val(stack, other_stack);
+			count[CHECK_LOW] += check_small_val(stack, other_stack);
 		else if (stack->top->value < pivot)
 		{
 			if (!count[NEXT_RANGE])

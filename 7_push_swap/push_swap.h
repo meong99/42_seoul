@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 19:20:21 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/10 20:29:55 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct	s_stack
 	t_node	*top;
 	t_node	*bottom;
 }				t_stack;
-
 /*
 ** push_swap.c
 */
@@ -54,7 +53,7 @@ int				new_node(t_stack *stack, int num);
 /*
 ** invalid_check.c
 */
-int				overlap_check(int *arr_num, int arr_len);
+int				duplicate_check(int *arr_num, int arr_len);
 
 /*
 ** init.c
@@ -76,7 +75,7 @@ int				rra_b(t_stack *stack);
 ** sorting.c
 */
 void			sorting(t_stack *stack, t_stack *other_stack, int stack_range);
-int				check_sorted(t_stack *stack);
+int				check_aligned(t_stack *stack);
 
 /*
 ** sort.c

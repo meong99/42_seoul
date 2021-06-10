@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 19:20:03 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/10 20:34:46 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,34 +38,55 @@ static void	sort_arr_num(int *arr_num, int n)
 	}
 }
 
-static int	*arg_to_arri(int *arr_len, char *arg)
+static void	atoi_free_temp(char ***temp, int *arr_num)
 {
-	int		i;
-	char	**temp;
-	int		*arr_num;
+	int i;
+	int j;
+	int k;
 
 	i = -1;
-	*arr_len = 0;
-	temp = ft_split(arg, ' ');
-	while (temp[*arr_len])
-		(*arr_len)++;
-	arr_num = ft_malloc(sizeof(int) * (*arr_len));
-	while (++i < *arr_len)
-		arr_num[i] = ft_atoi(temp[i]);
-	temp = ft_free(temp, 0, TYPE_C);
-	return (arr_num);
+	k = -1;
+	while (temp[++i])
+	{
+		j = -1;
+		while (temp[i][++j])
+			arr_num[++k] = ft_atoi(temp[i][j]);
+	}
+	i = -1;
+	while (temp[++i])
+	{
+		ft_free(temp[i], 0, TYPE_C);
+		temp[i] = 0;
+	}
+	free(temp);
 }
 
 static int	*av_to_arri(int ac, char **av, int *arr_len)
 {
-	int i;
-	int *arr_num;
+	char	***temp;
+	int		i;
+	int		j;
+	int		*arr_num;
 
-	arr_num = ft_malloc(sizeof(int) * (ac - 1));
 	i = -1;
-	*arr_len = ac - 1;
+	*arr_len = 0;
+	temp = ft_malloc(sizeof(char**) * (ac + 1));
+	temp[ac] = 0;
 	while (++i < ac - 1)
-		arr_num[i] = ft_atoi(av[i + 1]);
+	{
+		j = -1;
+		temp[i] = ft_split(av[1 + i], ' ');
+		if (temp[i] == 0)
+		{
+			write(1, "Error\n", 6);
+			exit(-1);
+		}
+		while (temp[i][++j])
+			(*arr_len)++;
+	}
+	arr_num = ft_malloc(sizeof(int) * *arr_len);
+	atoi_free_temp(temp, arr_num);
+	temp = 0;
 	return (arr_num);
 }
 
@@ -90,14 +111,11 @@ int			main(int ac, char **av)
 		write(1, "Error\n", 6);
 		exit(-1);
 	}
-	if (ac == 2)
-		arr_num = arg_to_arri(&arr_len, av[1]);
-	else
-		arr_num = av_to_arri(ac, av, &arr_len);
+	arr_num = av_to_arri(ac, av, &arr_len);
 	low_num = 0;
 	init_stack(&stack_a, arr_num, &low_num, STACK_A);
 	init_stack(&stack_b, arr_num, &low_num, STACK_B);
-	if (overlap_check(arr_num, arr_len) == RETURN_ERROR)
+	if (duplicate_check(arr_num, arr_len) == RETURN_ERROR)
 		return (RETURN_ERROR);
 	start_sort(&stack_a, &stack_b, arr_len);
 	return (0);

@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 18:29:24 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/09 19:05:26 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/10 20:29:54 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	overlap_check(int *arr_num, int arr_len)
+int	duplicate_check(int *arr_num, int arr_len)
 {
 	int check;
 	int i;
