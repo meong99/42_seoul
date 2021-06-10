@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/10 20:29:55 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/10 22:36:37 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,6 @@ typedef struct	s_stack
 	t_node	*top;
 	t_node	*bottom;
 }				t_stack;
-/*
-** push_swap.c
-*/
-int				new_node(t_stack *stack, int num);
-
-/*
-** invalid_check.c
-*/
-int				duplicate_check(int *arr_num, int arr_len);
 
 /*
 ** init.c
@@ -64,10 +55,19 @@ void			init_stack(t_stack *stack, int *arr_num,\
 				int *low_num, int type);
 
 /*
-** swap_stack.c
+** invalid_check.c
 */
-int				sa_b(t_stack *stack);
-int				pa_b(t_stack *send_stack, t_stack *receive_stack);
+int				duplicate_check(int *arr_num, int arr_len);
+
+/*
+** quick_sort.c
+*/
+int				quick_sort(int stack_range, t_stack *stack,\
+				t_stack *other_stack);
+
+/*
+** rotate.c
+*/
 int				ra_b(t_stack *stack);
 int				rra_b(t_stack *stack);
 
@@ -75,14 +75,12 @@ int				rra_b(t_stack *stack);
 ** sorting.c
 */
 void			sorting(t_stack *stack, t_stack *other_stack, int stack_range);
-int				check_aligned(t_stack *stack);
 
 /*
-** sort.c
+** swap_push.c
 */
-int				quick_sort(int stack_range, t_stack *stack,\
-				t_stack *other_stack);
-void			temp_print(t_stack *stack, t_stack *other_stack);
+int				sa_b(t_stack *stack);
+int				pa_b(t_stack *send_stack, t_stack *receive_stack);
 
 /*
 ** util.c

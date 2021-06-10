@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 18:25:01 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/10 17:54:51 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/10 22:34:44 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			check_small_val(t_stack *stack, t_stack *other_stack)
+static int	check_small_val(t_stack *stack, t_stack *other_stack)
 {
 	if (stack->top->value == stack->arr_num[*stack->low_num])
 	{

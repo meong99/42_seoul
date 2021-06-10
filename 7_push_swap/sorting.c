@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 20:00:34 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/10 20:56:01 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/10 22:35:59 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			check_aligned(t_stack *stack)
+static int	check_aligned(t_stack *stack)
 {
 	int		most;
 	t_node	*node;
@@ -82,7 +82,7 @@ static void	one_block(t_stack *stack, t_stack *other_stack)
 		one_block(other_stack, stack);
 }
 
-void		sort_by_range(t_stack *stack_a, t_stack *stack_b, int stack_range)
+static void	sort_by_range(t_stack *stack_a, t_stack *stack_b, int stack_range)
 {
 	if (*stack_a->low_num == 0)
 		stack_a->stack_block++;

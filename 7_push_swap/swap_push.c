@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:21 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/10 20:26:21 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/10 22:36:23 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		sa_b(t_stack *stack)
+int			sa_b(t_stack *stack)
 {
 	int temp;
 
@@ -29,7 +29,7 @@ int		sa_b(t_stack *stack)
 	return (1);
 }
 
-void	link_stack(t_stack *send_stack, t_stack *receive_stack)
+static void	link_stack(t_stack *send_stack, t_stack *receive_stack)
 {
 	t_node *send_top;
 
@@ -53,7 +53,7 @@ void	link_stack(t_stack *send_stack, t_stack *receive_stack)
 	}
 }
 
-int		pa_b(t_stack *send_stack, t_stack *receive_stack)
+int			pa_b(t_stack *send_stack, t_stack *receive_stack)
 {
 	if (send_stack->num >= 1)
 	{
