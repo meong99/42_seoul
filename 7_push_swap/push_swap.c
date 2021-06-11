@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/11 16:37:33 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/11 17:07:07 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,7 @@ int			main(int ac, char **av)
 	int		low_num;
 
 	if (ac < 2)
-	{
-		write(1, "Error\n", 6);
-		exit(-1);
-	}
+		reutrn (0);
 	arr_num = av_to_arri(ac, av, &arr_len);
 	low_num = 0;
 	init_stack(&stack_a, arr_num, &low_num, STACK_A);
