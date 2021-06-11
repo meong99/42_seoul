@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/10 20:34:46 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/11 14:55:23 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ int			main(int ac, char **av)
 	low_num = 0;
 	init_stack(&stack_a, arr_num, &low_num, STACK_A);
 	init_stack(&stack_b, arr_num, &low_num, STACK_B);
-	if (duplicate_check(arr_num, arr_len) == RETURN_ERROR)
-		return (RETURN_ERROR);
+	duplicate_check(arr_num, arr_len);
+	empty_num_check(arr_len);
 	start_sort(&stack_a, &stack_b, arr_len);
 	return (0);
 }

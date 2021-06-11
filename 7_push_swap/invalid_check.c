@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 18:29:24 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/10 20:29:54 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/11 14:54:14 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	duplicate_check(int *arr_num, int arr_len)
+void	duplicate_check(int *arr_num, int arr_len)
 {
 	int check;
 	int i;
@@ -32,5 +32,13 @@ int	duplicate_check(int *arr_num, int arr_len)
 			}
 		}
 	}
-	return (1);
+}
+
+void	empty_num_check(int arr_len)
+{
+	if (arr_len == 0)
+	{
+		write(1, "Error\n", 6);
+		exit(-1);
+	}
 }

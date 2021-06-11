@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/10 22:36:37 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/11 14:54:27 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void			init_stack(t_stack *stack, int *arr_num,\
 /*
 ** invalid_check.c
 */
-int				duplicate_check(int *arr_num, int arr_len);
+void			duplicate_check(int *arr_num, int arr_len);
+void			empty_num_check(int arr_len);
 
 /*
 ** quick_sort.c
