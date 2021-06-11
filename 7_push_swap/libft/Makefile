@@ -6,7 +6,7 @@
 #    By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/09 16:16:57 by mchae             #+#    #+#              #
-#    Updated: 2021/06/04 16:29:52 by mchae            ###   ########.fr        #
+#    Updated: 2021/06/11 16:38:26 by mchae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,14 @@ SRCS = ft_memccpy.c ft_memcmp.c ft_memmove.c ft_bzero.c ft_memchr.c \
        ft_malloc.c ft_free.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 BOBJS = $(patsubst %.c,%.o,$(BSRCS))
+
+ifeq ($(DEBUG), true)
+	CDEBUG = -g
+endif
+
 all : $(NAME)
 %.o : %.c
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) $(CDEBUG) -c $< -o $@
 $(NAME) : $(OBJS)
 	ar rcs $@ $^
 bonus: $(BOBJS)

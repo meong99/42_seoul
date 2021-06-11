@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/11 16:11:57 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/11 16:37:33 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ static int	*av_to_arri(int ac, char **av, int *arr_len)
 
 	i = -1;
 	*arr_len = 0;
-	temp = ft_malloc(sizeof(char**) * (ac + 1));
-	temp[ac] = 0;
+	temp = ft_malloc(sizeof(char**) * (ac));
+	temp[ac - 1] = 0;
 	while (++i < ac - 1)
 	{
 		j = -1;
