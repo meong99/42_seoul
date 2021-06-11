@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 18:29:24 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/11 14:54:14 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/11 16:09:04 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,5 @@ void	duplicate_check(int *arr_num, int arr_len)
 				exit(-1);
 			}
 		}
-	}
-}
-
-void	empty_num_check(int arr_len)
-{
-	if (arr_len == 0)
-	{
-		write(1, "Error\n", 6);
-		exit(-1);
 	}
 }

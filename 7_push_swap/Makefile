@@ -18,11 +18,11 @@ ifeq ($(DEBUG), true)
 endif
 
 %.o : %.c
-	$(CC) $(CFLAGS) $(DEBUG) -c $< -o $@
+	$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
 
 $(NAME) : $(OBJS)
 	make -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) $(DEBUG) -L$(LIBFT_PATH) -lft -o $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) $(CDEBUG) -L$(LIBFT_PATH) -lft -o $(NAME) $(OBJS)
 
 
 all : $(NAME)
