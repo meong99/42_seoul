@@ -1,6 +1,6 @@
 NAME = ft_server
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 LIBFT_PATH = ./libft
 SRCS = \
 	server.c

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 21:58:22 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/12 22:33:04 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/12 23:05:20 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,16 @@ void	save_bit(int sigusr)
 		signal = 0;
 	if (!strlen)
 		strlen = get_strlen(signal);
-	else if (!saved && !str)
+	else if (!str)
 		str = ft_malloc(strlen);
 	if (str && saved != strlen)
 		save_str(signal, str, &saved);
 	if (strlen && saved == strlen)
 	{
 		write(1, str, strlen);
+		write(1, "\n", 1);
 		free(str);
+		str = 0;
 		strlen = 0;
 		saved = 0;
 	}
