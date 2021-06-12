@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 20:00:34 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/10 22:35:59 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/12 16:01:06 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ static void	one_block(t_stack *stack, t_stack *other_stack)
 		one_block(other_stack, stack);
 }
 
-static void	sort_by_range(t_stack *stack_a, t_stack *stack_b, int stack_range)
+static void	sorting_by_range(t_stack *stack_a,\
+t_stack *stack_b, int stack_range)
 {
 	if (*stack_a->low_num == 0)
 		stack_a->stack_block++;
@@ -113,6 +114,6 @@ void		sorting(t_stack *stack, t_stack *other_stack, int stack_range)
 		push_stack_a(stack, other_stack, stack_range);
 	}
 	if (!check_aligned(stack_a))
-		sort_by_range(stack_a, stack_b, stack_range);
+		sorting_by_range(stack_a, stack_b, stack_range);
 	stack->stack_block--;
 }

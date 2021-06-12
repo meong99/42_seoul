@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/11 17:07:07 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/12 16:01:37 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	sort_arr_num(int *arr_num, int n)
 	}
 }
 
-static void	atoi_free_temp(char ***temp, int *arr_num)
+static void	atoi_freetemp(char ***temp, int *arr_num)
 {
 	int i;
 	int j;
@@ -85,12 +85,12 @@ static int	*av_to_arri(int ac, char **av, int *arr_len)
 			(*arr_len)++;
 	}
 	arr_num = ft_malloc(sizeof(int) * *arr_len);
-	atoi_free_temp(temp, arr_num);
+	atoi_freetemp(temp, arr_num);
 	temp = 0;
 	return (arr_num);
 }
 
-static int	start_sort(t_stack *stack_a, t_stack *stack_b, int num)
+static int	start_sorting(t_stack *stack_a, t_stack *stack_b, int num)
 {
 	create_list(stack_a, stack_a->arr_num, num);
 	sort_arr_num(stack_a->arr_num, num);
@@ -107,12 +107,12 @@ int			main(int ac, char **av)
 	int		low_num;
 
 	if (ac < 2)
-		reutrn (0);
+		return (0);
 	arr_num = av_to_arri(ac, av, &arr_len);
 	low_num = 0;
 	init_stack(&stack_a, arr_num, &low_num, STACK_A);
 	init_stack(&stack_b, arr_num, &low_num, STACK_B);
 	duplicate_check(arr_num, arr_len);
-	start_sort(&stack_a, &stack_b, arr_len);
+	start_sorting(&stack_a, &stack_b, arr_len);
 	return (0);
 }

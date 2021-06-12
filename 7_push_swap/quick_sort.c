@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 18:25:01 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/10 22:34:44 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/12 15:51:15 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	check_small_val(t_stack *stack, t_stack *other_stack)
+static int	save_small_val(t_stack *stack, t_stack *other_stack)
 {
 	if (stack->top->value == stack->arr_num[*stack->low_num])
 	{
@@ -25,7 +25,7 @@ static int	check_small_val(t_stack *stack, t_stack *other_stack)
 	return (0);
 }
 
-static int	*command_count(int pivot,\
+static int	*command_counting(int pivot,\
 int stack_range, t_stack *stack, t_stack *other_stack)
 {
 	int		*count;
@@ -39,7 +39,7 @@ int stack_range, t_stack *stack, t_stack *other_stack)
 	{
 		if (stack->stack_type == STACK_B &&\
 		stack->top->value == stack->arr_num[*stack->low_num])
-			count[CHECK_LOW] += check_small_val(stack, other_stack);
+			count[CHECK_LOW] += save_small_val(stack, other_stack);
 		else if (stack->top->value < pivot)
 		{
 			if (!count[NEXT_RANGE])
@@ -62,7 +62,7 @@ t_stack *other_stack, int stack_range, int pivot)
 		stack_a = stack;
 	else
 		stack_a = other_stack;
-	count = command_count(pivot, stack_range, stack, other_stack);
+	count = command_counting(pivot, stack_range, stack, other_stack);
 	if (stack->stack_block >= 2)
 	{
 		while (count[COUNT_ROTATE]--)
