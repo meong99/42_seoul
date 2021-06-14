@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:34:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/15 01:43:22 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/15 01:50:56 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	get_strlen(int signal, t_static *static_var)
 		static_var->str = ft_malloc(static_var->strlen);
 		static_var->step = GET_STR;
 		index = 0;
-		static_var->strlen = 0;
 	}
 }
 
