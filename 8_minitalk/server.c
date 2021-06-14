@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 21:58:22 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/14 14:14:22 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/14 15:51:23 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdio.h>
-int		print_pid()
+
+int		print_pid(void)
 {
 	int		pid;
 	char	*pid_str;
@@ -46,7 +46,7 @@ size_t	get_strlen(int signal, char **str)
 		index = 0;
 		ret = strlen;
 		strlen = 0;
-		*str = malloc(ret);
+		*str = ft_malloc(ret);
 		return (ret);
 	}
 	return (0);

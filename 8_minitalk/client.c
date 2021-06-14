@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 19:12:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/14 14:20:10 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/14 15:49:57 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	send_strlen(char *str, int server_pid)
+int		send_strlen(char *str, int server_pid)
 {
 	size_t	strlen;
 	size_t	bit;
@@ -35,6 +35,7 @@ int	send_strlen(char *str, int server_pid)
 void	send_str(char *str, int server_pid)
 {
 	unsigned char	bit;
+
 	bit = 1;
 	bit <<= 7;
 	while (*str)
@@ -58,10 +59,12 @@ void	send_str(char *str, int server_pid)
 	}
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	int	server_pid;
 
+	if (ac < 3)
+		exit(-1);
 	server_pid = ft_atoi(av[1]);
 	send_strlen(av[2], server_pid);
 	send_str(av[2], server_pid);
