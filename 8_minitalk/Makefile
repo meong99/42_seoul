@@ -4,7 +4,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT_PATH = ./libft
 SRCS = \
-	server.c
+	server.c\
+	server_util.c
 CLIENT_SRCS = \
 	client.c
 OBJS = $(SRCS:.c=.o)
