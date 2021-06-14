@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 19:12:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/12 22:15:10 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/14 14:20:10 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	send_strlen(char *str, int server_pid)
 		else
 			kill(server_pid, SIGUSR2);
 		bit >>= 1;
-		usleep(10);
+		usleep(100);
 	}
 	return (1);
 }
@@ -50,7 +50,7 @@ void	send_str(char *str, int server_pid)
 				kill(server_pid, SIGUSR2);
 			}
 			bit >>= 1;
-			usleep(10);
+			usleep(100);
 		}
 		str++;
 		bit = 1;

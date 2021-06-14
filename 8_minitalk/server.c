@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 21:58:22 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/12 23:05:20 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/14 14:14:22 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ int		print_pid()
 	write(1, "PID : ", 6);
 	write(1, pid_str, strlen);
 	write(1, "\n", 1);
+	free(pid_str);
+	pid_str = 0;
 	return (1);
 }
 
-size_t	get_strlen(int signal)
+size_t	get_strlen(int signal, char **str)
 {
 	static int		index;
 	static size_t	strlen;
@@ -44,6 +46,7 @@ size_t	get_strlen(int signal)
 		index = 0;
 		ret = strlen;
 		strlen = 0;
+		*str = malloc(ret);
 		return (ret);
 	}
 	return (0);
@@ -81,10 +84,8 @@ void	save_bit(int sigusr)
 	else
 		signal = 0;
 	if (!strlen)
-		strlen = get_strlen(signal);
-	else if (!str)
-		str = ft_malloc(strlen);
-	if (str && saved != strlen)
+		strlen = get_strlen(signal, &str);
+	else if (saved != strlen)
 		save_str(signal, str, &saved);
 	if (strlen && saved == strlen)
 	{
