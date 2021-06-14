@@ -6,7 +6,7 @@
 #    By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/09 16:16:57 by mchae             #+#    #+#              #
-#    Updated: 2021/06/11 16:38:26 by mchae            ###   ########.fr        #
+#    Updated: 2021/06/14 17:05:00 by mchae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,9 @@ BOBJS = $(patsubst %.c,%.o,$(BSRCS))
 ifeq ($(DEBUG), true)
 	CDEBUG = -g
 endif
-
+ifeq ($(SANI), true)
+	CDEBUG = -g -fsanitize=address
+endif
 all : $(NAME)
 %.o : %.c
 	$(CC) $(FLAGS) $(CDEBUG) -c $< -o $@
