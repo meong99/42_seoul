@@ -6,25 +6,27 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 21:58:22 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/14 17:45:05 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/15 01:37:32 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	arrange_bit(t_staitc *static_var, int signal)
+void	arrange_bit(t_static *static_var, int signal)
 {
-	if (!static_var->strlen)
-		static_var->strlen = get_strlen(signal, static_var);
-	else if (static_var->saved != static_var->strlen)
+	if (static_var->step == GET_PID)
+		get_client_pid(static_var, signal);
+	else if (static_var->step == GET_LEN)
+		get_strlen(signal, static_var);
+	else if (static_var->step == GET_STR)
 		save_str(signal, static_var);
-	if (static_var->strlen && static_var->saved == static_var->strlen)
+	if (static_var->step == PRINT_FREE)
 		print_and_free(static_var);
 }
 
 void	save_bit(int sigusr)
 {
-	static t_staitc	static_var;
+	static t_static	static_var;
 	int				signal;
 
 	if (sigusr == SIGUSR1)

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:34:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/14 17:43:49 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/15 01:43:22 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int		print_pid(void)
 {
-	int		pid;
+	int		server_pid;
 	char	*pid_str;
 	int		strlen;
 
-	pid = getpid();
-	pid_str = ft_itoa(pid);
+	server_pid = getpid();
+	pid_str = ft_itoa(server_pid);
 	strlen = ft_strlen(pid_str);
 	write(1, "PID : ", 6);
 	write(1, pid_str, strlen);
@@ -29,50 +29,62 @@ int		print_pid(void)
 	return (1);
 }
 
-size_t	get_strlen(int signal, t_staitc *static_var)
+void	get_client_pid(t_static *static_var, int signal)
+{
+	static int	index;
+
+	if (index < 32)
+	{
+		static_var->client_pid <<= 1;
+		static_var->client_pid |= signal;
+		index++;
+	}
+	if (index == 32)
+	{
+		index = 0;
+		static_var->step = GET_LEN;
+	}
+}
+
+void	get_strlen(int signal, t_static *static_var)
 {
 	static int		index;
-	static size_t	strlen;
-	size_t			ret;
 
-	if (index != 64)
+	if (index < 64)
 	{
-		strlen <<= 1;
-		strlen |= signal;
+		static_var->strlen <<= 1;
+		static_var->strlen |= signal;
 		index++;
 	}
 	if (index == 64)
 	{
+		static_var->str = ft_malloc(static_var->strlen);
+		static_var->step = GET_STR;
 		index = 0;
-		ret = strlen;
-		strlen = 0;
-		static_var->str = ft_malloc(ret);
-		return (ret);
+		static_var->strlen = 0;
 	}
-	return (0);
 }
 
-size_t	save_str(int signal, t_staitc *static_var)
+void	save_str(int signal, t_static *static_var)
 {
 	static int		index;
-	static char		character;
 
-	if (index != 8)
+	if (index < 8)
 	{
-		character <<= 1;
-		character |= signal;
+		static_var->str[static_var->saved] <<= 1;
+		static_var->str[static_var->saved] |= signal;
 		index++;
 	}
 	if (index == 8)
 	{
-		static_var->str[static_var->saved] = character;
 		static_var->saved++;
 		index = 0;
+		if(static_var->saved == static_var->strlen)
+			static_var->step = PRINT_FREE;
 	}
-	return (1);
 }
 
-void	print_and_free(t_staitc *static_var)
+void	print_and_free(t_static *static_var)
 {
 	write(1, static_var->str, static_var->strlen);
 	write(1, "\n", 1);
@@ -80,4 +92,6 @@ void	print_and_free(t_staitc *static_var)
 	static_var->str = 0;
 	static_var->strlen = 0;
 	static_var->saved = 0;
+	static_var->client_pid = 0;
+	static_var->step = 0;
 }
