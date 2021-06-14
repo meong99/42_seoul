@@ -13,18 +13,21 @@ CLIENT_OBJS = $(CLIENT_SRCS:.c=.o)
 ifeq ($(DEBUG), true)
 	CDEBUG = -g
 endif
+ifeq ($(SANI), true)
+	CDEBUG = -g -fsanitize=address
+endif
 
 %.o : %.c
 	$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
 
-$(NAME) : $(OBJS)
-	make -C $(LIBFT_PATH)
+$(NAME) : $(OBJS) $(CLIENT)
 	$(CC) $(CFLAGS) $(CDEBUG) -L$(LIBFT_PATH) -lft -o $(NAME) $(OBJS)
 $(CLIENT) : $(CLIENT_OBJS)
+	make -C $(LIBFT_PATH)
 	$(CC) $(CFLAGS) $(CDEBUG) -L$(LIBFT_PATH) -lft -o $(CLIENT) $(CLIENT_OBJS)
 
 
-all : $(NAME) $(CLIENT)
+all : $(NAME)
 
 clean :
 	rm -f $(OBJS) $(CLIENT_OBJS)

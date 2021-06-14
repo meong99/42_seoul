@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 19:12:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/14 15:49:57 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/14 16:18:24 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ int		main(int ac, char **av)
 	int	server_pid;
 
 	if (ac < 3)
+	{
+		write(1, av[0], ft_strlen(av[0]));
+		write(1, " [server PID] [send msg]\n", 25);
 		exit(-1);
+	}
 	server_pid = ft_atoi(av[1]);
 	send_strlen(av[2], server_pid);
 	send_str(av[2], server_pid);
