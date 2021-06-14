@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/11 16:09:01 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/14 18:28:28 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int				rra_b(t_stack *stack);
 ** sorting.c
 */
 void			sorting(t_stack *stack, t_stack *other_stack, int stack_range);
+int				check_aligned(t_stack *stack);
 
 /*
 ** swap_push.c

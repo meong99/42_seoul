@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 20:00:34 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/12 16:01:06 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/14 18:27:26 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	check_aligned(t_stack *stack)
+int	check_aligned(t_stack *stack)
 {
 	int		most;
 	t_node	*node;
