@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/14 18:29:27 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/14 19:01:29 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static int	start_sorting(t_stack *stack_a, t_stack *stack_b, int num)
 {
 	create_list(stack_a, stack_a->arr_num, num);
 	sort_arr_num(stack_a->arr_num, num);
-	if (check_aligned(stack_a))
+	if (check_aligned(stack_a, num))
 		return (0);
 	quick_sort(num, stack_a, stack_b);
 	return (0);

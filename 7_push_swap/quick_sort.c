@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 18:25:01 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/12 15:51:15 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/14 19:01:50 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int			quick_sort(int stack_range, t_stack *stack, t_stack *other_stack)
 	int	pivot;
 	int	*count;
 
-	if (stack_range > 3)
+	if (stack_range > 3 && !check_aligned(stack, stack_range))
 	{
 		pivot = get_pivot(stack_range, stack->arr_num, *stack->low_num);
 		count = smaller_than_pivot(stack, other_stack, stack_range, pivot);

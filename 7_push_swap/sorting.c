@@ -6,20 +6,20 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 20:00:34 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/14 18:33:14 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/14 19:04:16 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			check_aligned(t_stack *stack)
+int			check_aligned(t_stack *stack, int range)
 {
 	int		most;
 	t_node	*node;
 
 	most = stack->top->value;
 	node = stack->top->next;
-	while (node != stack->top)
+	while (node != stack->top && --range)
 	{
 		if (stack->stack_type == STACK_A)
 		{
@@ -64,7 +64,7 @@ static void	one_block(t_stack *stack, t_stack *other_stack)
 	int most;
 
 	most = get_most(stack);
-	while (!check_aligned(stack))
+	while (!check_aligned(stack, 3))
 	{
 		if (stack->top->value == most)
 			ra_b(stack);
@@ -78,7 +78,7 @@ static void	one_block(t_stack *stack, t_stack *other_stack)
 			rra_b(stack);
 	}
 	if (other_stack->num && other_stack->num <= 3 &&\
-	!check_aligned(other_stack))
+	!check_aligned(other_stack, 3))
 		one_block(other_stack, stack);
 }
 
@@ -113,7 +113,7 @@ void		sorting(t_stack *stack, t_stack *other_stack, int stack_range)
 		stack_b = stack;
 		push_stack_a(stack, other_stack, stack_range);
 	}
-	if (!check_aligned(stack_a))
+	if (!check_aligned(stack_a, stack_a->num))
 		sorting_by_range(stack_a, stack_b, stack_range);
 	stack->stack_block--;
 }
