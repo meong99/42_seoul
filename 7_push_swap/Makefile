@@ -16,13 +16,16 @@ OBJS = $(SRCS:.c=.o)
 ifeq ($(DEBUG), true)
 	CDEBUG = -g
 endif
+ifeq ($(SANI), true)
+	CDEBUG = -g -fsanitize=address
+endif
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
 
 $(NAME) : $(OBJS)
 	make -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) -L$(LIBFT_PATH) -lft -o $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) $(CDEBUG) -L$(LIBFT_PATH) -lft -o $(NAME) $(OBJS)
 
 
 all : $(NAME)

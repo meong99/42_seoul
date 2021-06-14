@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/12 16:01:37 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/14 16:43:14 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ int			main(int ac, char **av)
 	init_stack(&stack_b, arr_num, &low_num, STACK_B);
 	duplicate_check(arr_num, arr_len);
 	start_sorting(&stack_a, &stack_b, arr_len);
+	while (1);
 	return (0);
 }
