@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/14 19:00:57 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/16 22:21:10 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "libft.h"
 
 # define STACK_A 1
 # define STACK_B -1

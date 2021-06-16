@@ -1,7 +1,12 @@
 NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-LIBFT_PATH = ./libft
+
+LIBFT_PATH = libft
+INCLUDES = -I includes
+OBJS_PATH = objs
+SRCS_PATH = srcs
+
 SRCS = \
 	push_swap.c\
 	rotate.c\
@@ -11,7 +16,9 @@ SRCS = \
 	util.c\
 	invalid_check.c\
 	quick_sort.c
-OBJS = $(SRCS:.c=.o)
+
+OBJS_NAME = $(SRCS:.c=.o)
+OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
 
 ifeq ($(DEBUG), true)
 	CDEBUG = -g
@@ -20,8 +27,8 @@ ifeq ($(SANI), true)
 	CDEBUG = -g -fsanitize=address
 endif
 
-%.o : %.c
-	$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
+$(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
+	$(CC) $(CFLAGS) $(INCLUDES) $(CDEBUG) -c $< -o $@
 
 $(NAME) : $(OBJS)
 	make -C $(LIBFT_PATH)
@@ -32,10 +39,9 @@ all : $(NAME)
 
 clean :
 	rm -f $(OBJS)
-	make -C $(LIBFT_PATH) clean
+	make -C $(LIBFT_PATH) fclean
 fclean : clean
 	rm -f $(NAME)
-	make -C $(LIBFT_PATH) fclean
 re : fclean all
 
 .PHONY: all clean fclean re bonus
