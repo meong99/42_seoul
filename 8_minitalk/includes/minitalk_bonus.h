@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:49:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/16 22:44:02 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/16 23:42:56 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 
 # include <signal.h>
 # include <unistd.h>
@@ -45,5 +45,13 @@ void			save_str(int signal, t_static *static_var);
 void			print_and_free(t_static *static_var);
 void			get_client_pid(int *step,\
 int *client_pid, int signal, int *index);
+
+/*
+** client_util.c
+*/
+void			kill_to_server(int server_pid, int signal);
+void			send_client_pid(int server_pid);
+void			send_strlen(char *str, int server_pid);
+void			send_str(char *str, int server_pid);
 
 #endif

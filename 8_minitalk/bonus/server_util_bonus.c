@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_util.c                                      :+:      :+:    :+:   */
+/*   server_util_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:34:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/16 22:43:12 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/17 00:05:54 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 int		print_pid(void)
 {
@@ -83,6 +83,8 @@ void	print_and_free(t_static *static_var)
 	{
 		write(1, static_var->str, static_var->strlen);
 		write(1, "\n", 1);
+		usleep(100);
+		kill(static_var->client_pid, SIGUSR1);
 	}
 	else
 	{

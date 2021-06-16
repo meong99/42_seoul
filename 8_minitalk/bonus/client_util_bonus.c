@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_util_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/12 19:12:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/16 23:41:01 by mchae            ###   ########.fr       */
+/*   Created: 2021/06/16 23:35:16 by mchae             #+#    #+#             */
+/*   Updated: 2021/06/16 23:42:28 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
-static void	kill_to_server(int server_pid, int signal)
+void	kill_to_server(int server_pid, int signal)
 {
 	if (kill(server_pid, signal) == -1)
 	{
@@ -21,7 +21,7 @@ static void	kill_to_server(int server_pid, int signal)
 	}
 }
 
-static void	send_client_pid(int server_pid)
+void	send_client_pid(int server_pid)
 {
 	int				client_pid;
 	unsigned int	bit;
@@ -40,7 +40,7 @@ static void	send_client_pid(int server_pid)
 	}
 }
 
-static void	send_strlen(char *str, int server_pid)
+void	send_strlen(char *str, int server_pid)
 {
 	size_t	strlen;
 	size_t	bit;
@@ -59,7 +59,7 @@ static void	send_strlen(char *str, int server_pid)
 	}
 }
 
-static void	send_str(char *str, int server_pid)
+void	send_str(char *str, int server_pid)
 {
 	unsigned char	bit;
 
@@ -80,22 +80,4 @@ static void	send_str(char *str, int server_pid)
 		bit = 1;
 		bit <<= 7;
 	}
-}
-
-int			main(int ac, char **av)
-{
-	int	server_pid;
-
-	if (ac != 3)
-	{
-		write(1, av[0], ft_strlen(av[0]));
-		write(1, " [server PID] [send msg]\n", 25);
-		exit(-1);
-	}
-	server_pid = ft_atoi(av[1]);
-	send_client_pid(server_pid);
-	send_strlen(av[2], server_pid);
-	send_str(av[2], server_pid);
-	send_client_pid(server_pid);
-	return (0);
 }
