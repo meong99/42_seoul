@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:34:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/15 01:50:56 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/16 21:47:22 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ int		print_pid(void)
 	return (1);
 }
 
-void	get_client_pid(t_static *static_var, int signal)
+void	get_client_pid(int *step, int *client_pid, int signal)
 {
 	static int	index;
 
 	if (index < 32)
 	{
-		static_var->client_pid <<= 1;
-		static_var->client_pid |= signal;
+		*client_pid <<= 1;
+		*client_pid |= signal;
 		index++;
 	}
 	if (index == 32)
 	{
 		index = 0;
-		static_var->step = GET_LEN;
+		(*step)++;
 	}
 }
 
@@ -78,19 +78,28 @@ void	save_str(int signal, t_static *static_var)
 	{
 		static_var->saved++;
 		index = 0;
-		if(static_var->saved == static_var->strlen)
-			static_var->step = PRINT_FREE;
+		if (static_var->saved == static_var->strlen)
+			static_var->step = GET_PID_LAST;
 	}
 }
 
 void	print_and_free(t_static *static_var)
 {
-	write(1, static_var->str, static_var->strlen);
-	write(1, "\n", 1);
+	if (static_var->client_pid == static_var->client_pid_last)
+	{
+		write(1, static_var->str, static_var->strlen);
+		write(1, "\n", 1);
+	}
+	else
+	{
+		write(1, "Error\nSignal lost\n", 18);
+		exit(-1);
+	}
 	free(static_var->str);
 	static_var->str = 0;
 	static_var->strlen = 0;
 	static_var->saved = 0;
 	static_var->client_pid = 0;
+	static_var->client_pid_last = 0;
 	static_var->step = 0;
 }

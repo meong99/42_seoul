@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 19:12:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/16 13:41:26 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/16 21:34:10 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	send_client_pid(int server_pid)
 {
-	int	client_pid;
-	int	bit;
+	int				client_pid;
+	unsigned int	bit;
 
 	bit = 1;
 	bit <<= 31;
