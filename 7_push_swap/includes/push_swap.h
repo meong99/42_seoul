@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/16 22:21:10 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/17 19:32:46 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ typedef struct	s_stack
 	t_node	*top;
 	t_node	*bottom;
 }				t_stack;
+t_stack *aa;
+t_stack *bb;
+void temp_print(t_stack *stack, t_stack *other_stack);
 
 /*
 ** init.c

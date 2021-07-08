@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:34:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/17 00:05:54 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/17 14:59:30 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	print_and_free(t_static *static_var)
 	{
 		write(1, static_var->str, static_var->strlen);
 		write(1, "\n", 1);
-		usleep(100);
+		usleep(200);
 		kill(static_var->client_pid, SIGUSR1);
 	}
 	else

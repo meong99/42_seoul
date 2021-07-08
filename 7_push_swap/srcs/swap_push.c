@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:21 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/14 19:01:10 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/17 19:33:09 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int			sa_b(t_stack *stack)
 		temp = stack->top->value;
 		stack->top->value = stack->top->next->value;
 		stack->top->next->value = temp;
+	temp_print(aa, bb);
 		if (stack->stack_type == STACK_A)
 			write(1, "sa\n", 3);
 		else
@@ -60,6 +61,7 @@ int			pa_b(t_stack *send_stack, t_stack *receive_stack)
 		link_stack(send_stack, receive_stack);
 		send_stack->num--;
 		receive_stack->num++;
+	temp_print(aa, bb);
 		if (receive_stack->stack_type == STACK_A)
 			write(1, "pa\n", 3);
 		else

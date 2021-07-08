@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/14 19:18:45 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/17 19:32:52 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ static int	start_sorting(t_stack *stack_a, t_stack *stack_b, int num)
 {
 	create_list(stack_a, stack_a->arr_num, num);
 	sort_arr_num(stack_a->arr_num, num);
+	temp_print(aa, bb);
 	if (check_aligned(stack_a, num))
 		return (0);
 	quick_sort(num, stack_a, stack_b);
@@ -108,6 +109,8 @@ int			main(int ac, char **av)
 	int		arr_len;
 	int		low_num;
 
+	aa = &stack_a;
+	bb = &stack_b;
 	if (ac < 2)
 		return (0);
 	arr_num = av_to_arri(ac, av, &arr_len);

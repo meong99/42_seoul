@@ -15,6 +15,7 @@ SRCS = \
 	sorting.c\
 	util.c\
 	invalid_check.c\
+	temp.c\
 	quick_sort.c
 
 OBJS_NAME = $(SRCS:.c=.o)
@@ -28,6 +29,7 @@ ifeq ($(SANI), true)
 endif
 
 $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
+	@mkdir -p $(OBJS_PATH)
 	$(CC) $(CFLAGS) $(INCLUDES) $(CDEBUG) -c $< -o $@
 
 $(NAME) : $(OBJS)
@@ -38,10 +40,10 @@ $(NAME) : $(OBJS)
 all : $(NAME)
 
 clean :
-	rm -f $(OBJS)
+	rm -rf $(OBJS)
 	make -C $(LIBFT_PATH) fclean
 fclean : clean
-	rm -f $(NAME)
+	rm -rf $(NAME) $(OBJS_PATH)
 re : fclean all
 
 .PHONY: all clean fclean re bonus

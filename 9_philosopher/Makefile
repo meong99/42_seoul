@@ -1,0 +1,52 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/07/08 18:33:31 by mchae             #+#    #+#              #
+#    Updated: 2021/07/08 18:34:25 by mchae            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = philo
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+
+LIBFT_PATH = libft
+INCLUDES = -I includes
+OBJS_PATH = objs
+SRCS_PATH = srcs
+
+SRCS = \
+	test.c
+
+OBJS_NAME = $(SRCS:.c=.o)
+OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
+
+ifeq ($(DEBUG), true)
+	CFLAGS = -g
+endif
+ifeq ($(SANI), true)
+	CFLAGS = -g -fsanitize=address
+endif
+
+$(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
+	mkdir -p $(OBJS_PATH)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(NAME) : $(OBJS)
+	make -C $(LIBFT_PATH)
+	$(CC) $(CFLAGS) -L$(LIBFT_PATH) -lft -o $(NAME) $(OBJS)
+
+all : $(NAME)
+
+clean :
+	rm -rf $(OBJS_PATH)
+	make -C $(LIBFT_PATH) fclean
+fclean : clean
+	rm -f $(NAME)
+re : fclean all
+
+.PHONY: all clean fclean re bonus

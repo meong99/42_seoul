@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:56:13 by mchae             #+#    #+#             */
-/*   Updated: 2021/06/14 19:01:16 by mchae            ###   ########.fr       */
+/*   Updated: 2021/06/17 19:33:04 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ra_b(t_stack *stack)
 	{
 		stack->top = stack->top->next;
 		stack->bottom = temp;
+	temp_print(aa, bb);
 		if (stack->stack_type == STACK_A)
 			write(1, "ra\n", 3);
 		else
@@ -42,6 +43,7 @@ int	rra_b(t_stack *stack)
 	{
 		stack->bottom = pre_bottom;
 		stack->top = temp;
+	temp_print(aa, bb);
 		if (stack->stack_type == STACK_A)
 			write(1, "rra\n", 4);
 		else
