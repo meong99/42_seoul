@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+         #
+#    By: sohelee <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/11 15:27:51 by sohelee           #+#    #+#              #
-#    Updated: 2021/07/08 16:22:29 by mchae            ###   ########.fr        #
+#    Updated: 2021/05/11 16:57:39 by sohelee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJS	= $(SRCS:.s=.o)
 
 TEST	= test
 
-%.o : %.s
+%.o		: %.s
 		nasm -f macho64 $<
 
 all		: $(NAME)
