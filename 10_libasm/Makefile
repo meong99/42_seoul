@@ -6,7 +6,7 @@
 #    By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 16:36:08 by mchae             #+#    #+#              #
-#    Updated: 2021/07/09 15:12:17 by mchae            ###   ########.fr        #
+#    Updated: 2021/07/16 18:05:20 by mchae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,6 @@ fclean : clean
 re : fclean all
 
 test : re
-	gcc -Wall -Wextra -Werror $(SRCS_PATH)/main.c -o test -L. -lasm
+	gcc $(SRCS_PATH)/main.c -o test -L. -lasm
 
 .PHONY: all clean fclean re bonus
