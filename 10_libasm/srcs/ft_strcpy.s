@@ -6,9 +6,9 @@ _ft_strcpy:
 		jmp loop
 
 loop:
-		mov cl, [rsi + rax]
-		mov [rdi + rax], cl
-		cmp cl, 0
+		mov bl, [rsi + rax]
+		mov [rdi + rax], bl
+		cmp bl, 0
 		je end
 		inc rax
 		jmp loop
