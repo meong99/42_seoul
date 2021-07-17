@@ -2,8 +2,8 @@ segment .text
 		global _ft_strcmp
 
 _ft_strcmp:
-		mov	al, BYTE [rdi]
-		mov	bl, BYTE [rsi]
+		mov	al, [rdi]
+		mov	bl, [rsi]
 		cmp	al, 0
 		je	exit
 		cmp	bl, 0
