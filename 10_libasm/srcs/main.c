@@ -56,8 +56,8 @@ int		main(void)
 	printf("[string] strcpy = %s\n", strcpy(s, "sohelee!"));
 	printf("[libasm] ft_strcpy = %s\n\n", ft_strcpy(s, "sohelee!"));
 	printf("______TESTING <ft_strcmp>______\n");
-	printf("[string] strcmp = %d\n", strcmp("a", "b"));
-	printf("[libasm] ft_strcmp = %d\n\n", ft_strcmp("a", "b"));
+	printf("[string] strcmp = %d\n", strcmp("abcde", "abcd"));
+	printf("[libasm] ft_strcmp = %d\n\n", ft_strcmp("abcde", "abcd"));
 	printf("______TESTING <ft_write>______\n");
 	write_test();
 	printf("______TESTING <ft_read>______\n");

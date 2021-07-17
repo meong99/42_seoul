@@ -4,18 +4,29 @@ segment .text
 _ft_strcmp:
 		mov	al, [rdi]
 		mov	bl, [rsi]
-		cmp	al, 0
-		je	exit
-		cmp	bl, 0
-		je	exit
+		cmp al, 0
+		je	end
+		cmp bl, 0
+		je	end
 		cmp	al, bl
-		jne	exit
+		jl	diff_less
+		cmp al, bl
+		jg	diff_greater
 		inc	rdi
 		inc	rsi
 		jmp	_ft_strcmp
 
-exit:
-		movzx	rax, al
-		movzx	rbx, bl
-		sub		rax, rbx
+diff_less:
+		mov rax, -1
+		ret
+
+diff_greater:
+		mov rax, 1
+		ret
+end:
+		cmp al, bl
+		jl	diff_less
+		cmp al, bl
+		jg	diff_greater
+		mov rax, 0
 		ret
