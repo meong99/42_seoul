@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 18:09:04 by mchae             #+#    #+#             */
-/*   Updated: 2021/07/17 18:09:06 by mchae            ###   ########.fr       */
+/*   Updated: 2021/07/21 17:22:58 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <errno.h>
 
 size_t	ft_strlen(const char *s);
 ssize_t	ft_read(int fd, void *buf, size_t count);

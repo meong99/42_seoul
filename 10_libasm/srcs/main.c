@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 17:41:05 by mchae             #+#    #+#             */
-/*   Updated: 2021/07/17 17:41:06 by mchae            ###   ########.fr       */
+/*   Updated: 2021/07/21 17:27:42 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	write_test(void)
 {
-	printf("[unistd] write = %zd\n", write(1, "mchae!", 9));
-	printf("[libasm] ft_write = %zd\n", ft_write(1, "mchae!", 9));
+	printf("[unistd] write = %zd\n", write(1, "mchae!", 6));
+	printf("[libasm] ft_write = %zd\n", ft_write(1, "mchae!", 6));
 	printf("\n");
 }
 
