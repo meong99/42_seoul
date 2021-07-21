@@ -45,9 +45,9 @@ void	read_test(void)
 	printf("\n");
 }
 
-int		main(void)
+int	main(void)
 {
-	char s[50];
+	char	s[50];
 
 	printf("______TESTING <ft_strlen>______\n");
 	printf("[string] strlen = %zu\n", strlen("mchae!"));
