@@ -6,12 +6,12 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 17:41:05 by mchae             #+#    #+#             */
-/*   Updated: 2021/07/21 17:27:42 by mchae            ###   ########.fr       */
+/*   Updated: 2021/07/21 17:48:03 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libasm.h"
-
+#include <stdlib.h>
 void	write_test(void)
 {
 	printf("[unistd] write = %zd\n", write(1, "mchae!", 6));
@@ -48,6 +48,8 @@ void	read_test(void)
 int		main(void)
 {
 	char s[50];
+	char *tmp;
+	char *tmp_2;
 
 	printf("______TESTING <ft_strlen>______\n");
 	printf("[string] strlen = %zu\n", strlen("mchae!"));
@@ -63,7 +65,12 @@ int		main(void)
 	printf("______TESTING <ft_read>______\n");
 	read_test();
 	printf("______TESTING <ft_strdup>______\n");
-	printf("[string] strdup = %s\n", strdup("HelloWorld!"));
-	printf("[libasm] ft_strdup = %s\n\n", ft_strdup("HelloWorld!"));
+	tmp = strdup("HelloWorld!");
+	tmp_2 = ft_strdup("HelloWorld!");
+	printf("[string] strdup = %s\n", tmp);
+	printf("[libasm] ft_strdup = %s\n\n", tmp_2);
+	free(tmp);
+	free(tmp_2);
+	system("leaks test");
 	return (0);
 }
