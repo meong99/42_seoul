@@ -6,7 +6,7 @@
 #    By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/08 18:33:31 by mchae             #+#    #+#              #
-#    Updated: 2021/07/08 18:34:25 by mchae            ###   ########.fr        #
+#    Updated: 2021/07/23 17:58:28 by mchae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,11 @@ OBJS_PATH = objs
 SRCS_PATH = srcs
 
 SRCS = \
-	test.c
+	main.c\
+	error_check.c\
+	init_all.c\
+	thread_philo.c\
+	free_all.c
 
 OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
