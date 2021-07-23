@@ -3,11 +3,12 @@
 
 # include <stdio.h>
 # include <pthread.h>
-# include <unistd.h>
 # include <time.h>
 # include "libft.h"
 
 # define RET_ERROR -1
+# define TRUE 1
+# define FALSE 0
 
 typedef struct	s_philo
 {
@@ -23,15 +24,25 @@ typedef struct	s_mutex
 	pthread_mutex_t	*mutex_fork;
 }	t_mutex;
 
+typedef struct	s_variable
+{
+	time_t	first_meal_time;
+	time_t	time_to_die;
+	time_t	time_to_eat;
+	time_t	time_to_sleep;
+	int	must_eat;
+	int	philo_num;
+}	t_varialbe;
+
 typedef struct	s_main_struct
 {
 	t_philo	*philo;
 	t_mutex	mutex;
-	time_t	first_meal_time;
+	t_varialbe	varialbe;
 }	t_main_struct;
 
 int	error_check(int ac, char **av);
-void	init_all(void);
+int	init_all(int ac, char **av, t_main_struct *all_struct);
 void	free_all(void);
 void	thread_philo(void);
 

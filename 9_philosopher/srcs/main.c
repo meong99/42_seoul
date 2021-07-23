@@ -2,6 +2,10 @@
 
 int main(int ac, char **av)
 {
-	error_check(ac, av);
+	t_main_struct all_struct;
+
+	if (error_check(ac, av) == RET_ERROR)
+		return (RET_ERROR);
+	init_all(ac, av, &all_struct);
 	return (0);
 }
