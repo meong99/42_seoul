@@ -9,6 +9,8 @@
 # define RET_ERROR -1
 # define TRUE 1
 # define FALSE 0
+# define ODD 1
+# define EVEN 0
 
 typedef struct	s_philo
 {
