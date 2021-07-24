@@ -32,7 +32,8 @@ static int	init_philos(t_main_struct *all_struct)
 	int	i;
 
 	i = -1;
-	all_struct->philo = malloc(sizeof(t_philo) * all_struct->variable.philo_nums);
+	all_struct->philo = malloc(sizeof(t_philo) * \
+		all_struct->variable.philo_nums);
 	if (all_struct->philo == NULL)
 		return (RET_ERROR);
 	while (++i < all_struct->variable.philo_nums)
@@ -44,6 +45,7 @@ static int	init_philos(t_main_struct *all_struct)
 		all_struct->philo[i].mutex = &all_struct->mutex;
 		all_struct->philo[i].variable = &all_struct->variable;
 	}
+	all_struct->philo[0].variable->first_meal_time.tv_usec = 0;
 }
 
 int	init_all(int ac, char **av, t_main_struct *all_struct)

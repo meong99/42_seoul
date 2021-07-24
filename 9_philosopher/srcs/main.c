@@ -2,12 +2,13 @@
 
 static int	check_end_conditions(t_main_struct *all_struct)
 {
-
+	all_struct = 0;
+	return (0);
 }
 
 static int	create_thread(t_main_struct *all_struct, int num)
 {
-	int i;
+	int	i;
 
 	if (num == ODD)
 		i = 1;
@@ -24,10 +25,10 @@ static int	create_thread(t_main_struct *all_struct, int num)
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int	i;
-	t_main_struct all_struct;
+	int				i;
+	t_main_struct	all_struct;
 
 	i = -1;
 	if (error_check(ac, av) == RET_ERROR)

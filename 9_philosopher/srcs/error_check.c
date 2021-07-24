@@ -1,6 +1,6 @@
 #include "philo.h"
 
-static int parameter_num(int ac)
+static int	parameter_num(int ac)
 {
 	if (ac != 5 && ac != 6)
 	{
@@ -13,7 +13,7 @@ static int parameter_num(int ac)
 	return (0);
 }
 
-static int parameter_str(char *str)
+static int	parameter_str(char *str)
 {
 	while (*str)
 	{
@@ -24,9 +24,9 @@ static int parameter_str(char *str)
 	return (0);
 }
 
-int error_check(int ac, char **av)
+int	error_check(int ac, char **av)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (parameter_num(ac) == RET_ERROR)
