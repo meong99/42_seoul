@@ -14,7 +14,7 @@ typedef struct	s_philo
 {
 	int	philo_alive;
 	int	philo_forks[2];
-	int	philo_tid;
+	pthread_t	philo_tid;
 	time_t	philo_taken_time;
 }	t_philo;
 
@@ -44,6 +44,6 @@ typedef struct	s_main_struct
 int	error_check(int ac, char **av);
 int	init_all(int ac, char **av, t_main_struct *all_struct);
 void	free_all(void);
-void	thread_philo(void);
+void	thread_philo(t_main_struct *all_struct);
 
 #endif
