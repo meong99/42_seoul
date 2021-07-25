@@ -19,7 +19,6 @@ static int	create_thread(t_main_struct *all_struct, int num)
 		all_struct->philo[i].philo_number == i;
 		pthread_create(&all_struct->philo[i].philo_tid, NULL, \
 			thread_philo, &all_struct->philo[i]);
-		pthread_detach(&all_struct->philo[i].philo_tid);
 		i += 2;
 	}
 	return (0);

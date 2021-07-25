@@ -24,7 +24,8 @@ SRCS = \
 	error_check.c\
 	init_all.c\
 	thread_philo.c\
-	free_all.c
+	free_all.c\
+	util.c
 
 OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))

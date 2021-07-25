@@ -7,9 +7,9 @@ static void	init_varialbe(int ac, char **av, t_variable *variable)
 	else
 		variable->must_eat = ft_atoi(av[5]);
 	variable->philo_nums = ft_atoi(av[0]);
-	variable->time_to_die = ft_atoi(av[1]);
-	variable->time_to_eat = ft_atoi(av[2]);
-	variable->time_to_sleep = ft_atoi(av[3]);
+	variable->time_to_die = ft_atoi(av[1]) * 1000;
+	variable->time_to_eat = ft_atoi(av[2]) * 1000;
+	variable->time_to_sleep = ft_atoi(av[3]) * 1000;
 }
 
 static int	init_mutex(t_mutex *mutex, t_variable *variable)
@@ -45,7 +45,7 @@ static int	init_philos(t_main_struct *all_struct)
 		all_struct->philo[i].mutex = &all_struct->mutex;
 		all_struct->philo[i].variable = &all_struct->variable;
 	}
-	all_struct->philo[0].variable->first_meal_time.tv_usec = 0;
+	all_struct->philo[0].variable->first_meal_time = 0;
 }
 
 int	init_all(int ac, char **av, t_main_struct *all_struct)
