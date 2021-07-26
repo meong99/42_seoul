@@ -31,20 +31,20 @@ typedef struct s_variable
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	must_eat;
-	int	philo_nums;
-	int	num_finished_meal;
+	int	num_of_philos;
+	int	finished_meal;
+	int	philo_alive;
 }	t_variable;
 
 typedef struct s_philo
 {
-	int			philo_alive;
 	int			philo_forks[2];
-	pthread_t	philo_tid;
-	int			last_meal_time;
 	int			philo_number;
+	int			last_meal_time;
 	int			have_meal;
-	t_mutex		*mutex;
-	t_variable	*variable;
+	pthread_t	philo_tid;
+	t_mutex		mutex;
+	t_variable	variable;
 }	t_philo;
 
 int		error_check(int ac, char **av);
