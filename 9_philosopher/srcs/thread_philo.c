@@ -18,6 +18,11 @@ static int	philo_eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->mutex->mutex_forks[i - 1]);
 	pthread_mutex_unlock(&philo->mutex->mutex_forks[i]);
 	philo->have_meal++;
+	if (philo->have_meal == philo->variable->must_eat)
+	{
+		philo->variable->num_finished_meal++;
+		pthread_mutex_lock(&philo->mutex->mutex_pause);
+	}
 	return (0);
 }
 

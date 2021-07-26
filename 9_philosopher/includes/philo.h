@@ -33,7 +33,7 @@ typedef struct s_mutex
 {
 	pthread_mutex_t	mutex_print;
 	pthread_mutex_t	*mutex_forks;
-	pthread_mutex_t	mutex_dead;
+	pthread_mutex_t	mutex_pause;
 }	t_mutex;
 
 typedef struct s_variable
@@ -44,17 +44,11 @@ typedef struct s_variable
 	int	time_to_sleep;
 	int	must_eat;
 	int	philo_nums;
+	int	num_finished_meal;
 }	t_variable;
 
-typedef struct s_main_struct
-{
-	t_philo		*philo;
-	t_mutex		mutex;
-	t_variable	variable;
-}	t_main_struct;
-
 int		error_check(int ac, char **av);
-int		init_all(int ac, char **av, t_main_struct *all_struct);
+int		init_all(int ac, char **av, t_philo **philo);
 void	free_all(void);
 void	thread_philo(t_philo *philo);
 int		get_current_time(t_philo *philo);
