@@ -17,18 +17,6 @@
 # define STATUS_DEAD 3
 # define STATUS_FORKS 4
 
-typedef struct s_philo
-{
-	int			philo_alive;
-	int			philo_forks[2];
-	pthread_t	philo_tid;
-	int			last_meal_time;
-	int			philo_number;
-	int			have_meal;
-	t_mutex		*mutex;
-	t_variable	*variable;
-}	t_philo;
-
 typedef struct s_mutex
 {
 	pthread_mutex_t	mutex_print;
@@ -47,10 +35,22 @@ typedef struct s_variable
 	int	num_finished_meal;
 }	t_variable;
 
+typedef struct s_philo
+{
+	int			philo_alive;
+	int			philo_forks[2];
+	pthread_t	philo_tid;
+	int			last_meal_time;
+	int			philo_number;
+	int			have_meal;
+	t_mutex		*mutex;
+	t_variable	*variable;
+}	t_philo;
+
 int		error_check(int ac, char **av);
 int		init_all(int ac, char **av, t_philo **philo);
 void	free_all(void);
-void	thread_philo(t_philo *philo);
+void	*thread_philo(void *start_routine);
 int		get_current_time(t_philo *philo);
 int		print_status(t_philo *philo, char *str, int status);
 

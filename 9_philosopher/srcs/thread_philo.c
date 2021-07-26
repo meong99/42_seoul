@@ -39,8 +39,11 @@ static int	philo_think(t_philo *philo)
 	return (0);
 }
 
-void	thread_philo(t_philo *philo)
+void	*thread_philo(void *start_routine)
 {
+	t_philo *philo;
+
+	philo = (t_philo *)start_routine;
 	while (philo->have_meal != philo->variable->must_eat)
 	{
 		if (philo_eat(philo) == RET_ERROR)
@@ -50,5 +53,5 @@ void	thread_philo(t_philo *philo)
 		if (philo_think(philo) == RET_ERROR)
 			return (RET_ERROR);
 	}
-	return (0);
+	return (NULL);
 }

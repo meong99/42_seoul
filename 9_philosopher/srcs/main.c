@@ -21,9 +21,9 @@ static int	create_thread(t_philo *philo, int num)
 		i = 0;
 	while (i < philo->variable->philo_nums)
 	{
-		philo[i].philo_number == i;
+		philo[i].philo_number = i;
 		pthread_create(&philo[i].philo_tid, NULL, \
-			thread_philo, &philo[i]);
+			thread_philo, philo + i);
 		i += 2;
 	}
 	return (0);
