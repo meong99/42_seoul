@@ -7,9 +7,9 @@ static void	init_varialbe(int ac, char **av, t_variable *variable)
 	else
 		variable->must_eat = ft_atoi(av[5]);
 	variable->philo_nums = ft_atoi(av[0]);
-	variable->time_to_die = ft_atoi(av[1]) * 1000;
-	variable->time_to_eat = ft_atoi(av[2]) * 1000;
-	variable->time_to_sleep = ft_atoi(av[3]) * 1000;
+	variable->time_to_die = ft_atoi(av[1]);
+	variable->time_to_eat = ft_atoi(av[2]);
+	variable->time_to_sleep = ft_atoi(av[3]);
 }
 
 static int	init_mutex(t_mutex *mutex, t_variable *variable)

@@ -14,7 +14,9 @@ static int	philo_eat(t_philo *philo)
 		return (RET_ERROR);
 	if (print_status(philo, "is eating", STATUS_EAT) == RET_ERROR)
 		return (RET_ERROR);
-	usleep(philo->variable->time_to_eat);
+	usleep(philo->variable->time_to_eat * 1000);
+	pthread_mutex_unlock(&philo->mutex->mutex_forks[i - 1]);
+	pthread_mutex_unlock(&philo->mutex->mutex_forks[i]);
 	philo->have_meal++;
 	return (0);
 }
