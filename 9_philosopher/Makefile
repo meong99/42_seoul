@@ -30,11 +30,11 @@ SRCS = \
 OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
 
-ifeq ($(DEBUG), true)
-	CFLAGS = -g
+ifeq ($(DEBUG), 1)
+	CFLAGS = -g -Wall -Wextra -Werror
 endif
-ifeq ($(SANI), true)
-	CFLAGS = -g -fsanitize=address
+ifeq ($(SANI), 1)
+	CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
 endif
 
 $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
