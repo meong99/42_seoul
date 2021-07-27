@@ -38,17 +38,18 @@ typedef struct s_variable
 
 typedef struct s_philo
 {
-	int			philo_forks[2];
 	int			philo_number;
 	int			last_meal_time;
 	int			have_meal;
 	pthread_t	philo_tid;
-	t_mutex		mutex;
-	t_variable	variable;
+	t_mutex		*mutex;
+	t_variable	*variable;
 }	t_philo;
 
 int		error_check(int ac, char **av);
-int		init_all(int ac, char **av, t_philo **philo);
+void	init_varialbe(int ac, char **av, t_variable *variable);
+int		init_mutex(t_mutex *mutex, t_variable *variable);
+t_philo	*init_philos(t_variable *variable, t_mutex *mutex);
 void	free_all(void);
 void	*thread_philo(void *start_routine);
 int		get_current_time(t_philo *philo);

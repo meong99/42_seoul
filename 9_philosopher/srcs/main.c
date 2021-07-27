@@ -5,7 +5,7 @@ static int	check_end_conditions(t_philo *philo, t_variable *variable)
 	int	current_time;
 	int	i;
 
-	while (variable->finished_meal < variable->must_eat)
+	while (variable->finished_meal != variable->must_eat)
 	{
 		i = -1;
 		while (++i < variable->num_of_philos)
@@ -32,7 +32,7 @@ static int	create_thread(t_philo *philo, int num)
 		i = 1;
 	else
 		i = 0;
-	while (i < philo->variable.num_of_philos)
+	while (i < philo->variable->num_of_philos)
 	{
 		philo[i].philo_number = i;
 		pthread_create(&philo[i].philo_tid, NULL, \
@@ -44,17 +44,22 @@ static int	create_thread(t_philo *philo, int num)
 
 int	main(int ac, char **av)
 {
-	int		i;
-	t_philo	*philo;
+	int			i;
+	t_philo		*philo;
+	t_variable	variable;
+	t_mutex		mutex;
 
 	i = -1;
 	if (error_check(ac, av) == RET_ERROR)
 		return (RET_ERROR);
-	if (init_all(ac, av, &philo) == RET_ERROR)
-		return (RET_ERROR);
+	init_varialbe(ac, av, &variable);
+	init_mutex(&mutex, &variable);
+	philo = init_philos(&variable, &mutex);
+	if (philo == NULL)
+		return (0);
 	create_thread(philo, ODD);
-	usleep(philo->variable.time_to_eat * 500);
+	usleep(variable.time_to_eat * 500);
 	create_thread(philo, EVEN);
-	check_end_conditions(philo, &philo->variable);
+	check_end_conditions(philo, &variable);
 	return (0);
 }

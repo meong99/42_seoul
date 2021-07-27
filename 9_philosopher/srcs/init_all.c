@@ -1,19 +1,19 @@
 #include "philo.h"
 
-static void	init_varialbe(int ac, char **av, t_variable *variable)
+void	init_varialbe(int ac, char **av, t_variable *variable)
 {
 	if (ac == 5)
 		variable->must_eat = -1;
 	else
 		variable->must_eat = ft_atoi(av[5]);
-	variable->num_of_philos = ft_atoi(av[0]);
-	variable->time_to_die = ft_atoi(av[1]);
-	variable->time_to_eat = ft_atoi(av[2]);
-	variable->time_to_sleep = ft_atoi(av[3]);
+	variable->num_of_philos = ft_atoi(av[1]);
+	variable->time_to_die = ft_atoi(av[2]);
+	variable->time_to_eat = ft_atoi(av[3]);
+	variable->time_to_sleep = ft_atoi(av[4]);
 	variable->finished_meal = 0;
 }
 
-static int	init_mutex(t_mutex *mutex, t_variable *variable)
+int	init_mutex(t_mutex *mutex, t_variable *variable)
 {
 	int	i;
 
@@ -29,32 +29,21 @@ static int	init_mutex(t_mutex *mutex, t_variable *variable)
 	return (0);
 }
 
-static int	init_philos(t_philo *philo)
+t_philo	*init_philos(t_variable *variable, t_mutex *mutex)
 {
 	int	i;
+	t_philo *philo;
 
 	i = -1;
-	while (++i < philo->variable.num_of_philos)
-	{
-		philo[i].philo_forks[0] = FALSE;
-		philo[i].philo_forks[1] = FALSE;
-		philo[i].have_meal = 0;
-	}
-	philo->variable.philo_alive = TRUE;
-	philo[0].variable.first_meal_time = 0;
-	return (0);
-}
-
-int	init_all(int ac, char **av, t_philo **philo)
-{
-	*philo = malloc(sizeof(t_philo) * \
-		(*philo)->variable.num_of_philos);
+	philo = malloc(sizeof(t_philo) * \
+		variable->num_of_philos);
 	if (philo == NULL)
-		return (RET_ERROR);
-	init_varialbe(ac, av, &(*philo)->variable);
-	if (init_mutex(&(*philo)->mutex, &(*philo)->variable) == RET_ERROR)
-		return (RET_ERROR);
-	if (init_philos(*philo) == RET_ERROR)
-		return (RET_ERROR);
-	return (0);
+		return (NULL);
+	philo->mutex = mutex;
+	philo->variable = variable;
+	while (++i < variable->num_of_philos)
+		philo[i].have_meal = 0;
+	variable->philo_alive = TRUE;
+	variable->first_meal_time = 0;
+	return (philo);
 }
