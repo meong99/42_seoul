@@ -11,6 +11,8 @@ void	init_varialbe(int ac, char **av, t_variable *variable)
 	variable->time_to_eat = ft_atoi(av[3]);
 	variable->time_to_sleep = ft_atoi(av[4]);
 	variable->finished_meal = 0;
+	variable->philo_alive = TRUE;
+	variable->first_meal_time = 0;
 }
 
 int	init_mutex(t_mutex *mutex, t_variable *variable)
@@ -39,11 +41,13 @@ t_philo	*init_philos(t_variable *variable, t_mutex *mutex)
 		variable->num_of_philos);
 	if (philo == NULL)
 		return (NULL);
-	philo->mutex = mutex;
-	philo->variable = variable;
+	while (++i < variable->num_of_philos)
+	{
+		philo[i].mutex = mutex;
+		philo[i].variable = variable;
+	}
+	i = -1;
 	while (++i < variable->num_of_philos)
 		philo[i].have_meal = 0;
-	variable->philo_alive = TRUE;
-	variable->first_meal_time = 0;
 	return (philo);
 }

@@ -8,7 +8,7 @@
       // 현재 workspace를 기준으로 test.out 프로그램을 실행
       "program": "${workspaceFolder}/philo",
       "args": ["4", "410", "200", "200"],
-      "stopAtEntry": true,
+      "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],
       "externalConsole": false,

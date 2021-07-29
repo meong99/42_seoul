@@ -24,7 +24,7 @@ static int	check_end_conditions(t_philo *philo, t_variable *variable)
 	return (0);
 }
 
-static int	create_thread(t_philo *philo, int num)
+static int	create_thread(t_philo *philo, int num, int num_of_philos)
 {
 	int	i;
 
@@ -32,11 +32,11 @@ static int	create_thread(t_philo *philo, int num)
 		i = 1;
 	else
 		i = 0;
-	while (i < philo->variable->num_of_philos)
+	while (i < num_of_philos)
 	{
 		philo[i].philo_number = i;
 		pthread_create(&philo[i].philo_tid, NULL, \
-			thread_philo, philo + i);
+			thread_philo, &philo[i]);
 		i += 2;
 	}
 	return (0);
@@ -57,9 +57,9 @@ int	main(int ac, char **av)
 	philo = init_philos(&variable, &mutex);
 	if (philo == NULL)
 		return (0);
-	create_thread(philo, ODD);
+	create_thread(philo, ODD, variable.num_of_philos);
 	usleep(variable.time_to_eat * 500);
-	create_thread(philo, EVEN);
+	create_thread(philo, EVEN, variable.num_of_philos);
 	check_end_conditions(philo, &variable);
 	return (0);
 }
