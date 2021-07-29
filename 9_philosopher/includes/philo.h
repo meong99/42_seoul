@@ -26,7 +26,6 @@ typedef struct s_mutex
 
 typedef struct s_variable
 {
-	int	first_meal_time;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
@@ -39,6 +38,7 @@ typedef struct s_variable
 typedef struct s_philo
 {
 	int			philo_number;
+	int			first_meal_time;
 	int			last_meal_time;
 	int			have_meal;
 	pthread_t	philo_tid;

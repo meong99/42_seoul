@@ -6,8 +6,11 @@ int	get_current_time(t_philo *philo)
 	int				current_time;
 
 	gettimeofday(&get_time, NULL);
-	current_time = (int)(get_time.tv_usec / 1000) - \
-		philo->variable->first_meal_time;
+	if (philo->first_meal_time == 0)
+		philo->first_meal_time = \
+			get_time.tv_usec / 1000 + get_time.tv_sec * 1000;
+	current_time = get_time.tv_usec / 1000 + get_time.tv_sec * 1000 - \
+		philo->first_meal_time;
 	return (current_time);
 }
 
