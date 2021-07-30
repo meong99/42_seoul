@@ -37,22 +37,40 @@ typedef struct s_variable
 
 typedef struct s_philo
 {
-	int			philo_number;
-	int			first_meal_time;
+	long		first_meal_time;
 	int			last_meal_time;
+	int			philo_number;
 	int			have_meal;
 	pthread_t	philo_tid;
 	t_mutex		*mutex;
 	t_variable	*variable;
 }	t_philo;
-
+/*
+** error_check.c
+*/
 int		error_check(int ac, char **av);
+
+/*
+** free_all.c 
+*/
+void	free_all(void);
+
+/*
+**  init_all.c
+*/
 void	init_varialbe(int ac, char **av, t_variable *variable);
 int		init_mutex(t_mutex *mutex, t_variable *variable);
 t_philo	*init_philos(t_variable *variable, t_mutex *mutex);
-void	free_all(void);
-void	*thread_philo(void *start_routine);
-int		get_current_time(t_philo *philo);
-int		print_status(t_philo *philo, char *str, int status);
 
+/*
+** thread_philo.c 
+*/
+void	*thread_philo(void *start_routine);
+
+/*
+** util.c 
+*/
+int		get_current_time(t_philo *philo);
+int		print_status(t_philo *philo, char *str);
+int		ft_usleep(int time);
 #endif

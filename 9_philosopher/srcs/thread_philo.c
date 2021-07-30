@@ -6,14 +6,11 @@ static int	philo_eat(t_philo *philo)
 
 	i = philo->philo_number;
 	pthread_mutex_lock(&philo->mutex->mutex_forks[i - 1]);
-	if (print_status(philo, "has taken a fork", STATUS_FORKS) == RET_ERROR)
-		return (RET_ERROR);
+	print_status(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->mutex->mutex_forks[i]);
-	if (print_status(philo, "has taken a fork", STATUS_FORKS) == RET_ERROR)
-		return (RET_ERROR);
-	if (print_status(philo, "is eating", STATUS_EAT) == RET_ERROR)
-		return (RET_ERROR);
-	usleep(philo->variable->time_to_eat * 1000);
+	print_status(philo, "has taken a fork");
+	print_status(philo, "is eating");
+	ft_usleep(philo->variable->time_to_eat);
 	pthread_mutex_unlock(&philo->mutex->mutex_forks[i - 1]);
 	pthread_mutex_unlock(&philo->mutex->mutex_forks[i]);
 	philo->have_meal++;
@@ -27,14 +24,13 @@ static int	philo_eat(t_philo *philo)
 
 static int	philo_sleep(t_philo *philo)
 {
-	print_status(philo, "is sleeping", STATUS_SLEEP);
-	usleep(philo->variable->time_to_sleep * 1000);
-	return (0);
-}
+	int	current_time;
 
-static int	philo_think(t_philo *philo)
-{
-	print_status(philo, "is thinking", STATUS_THINK);
+	pthread_mutex_lock(&philo->mutex->mutex_print);
+	current_time = get_current_time(philo);
+	printf("%d philo_%d is sleeping\n", current_time, philo->philo_number);
+	pthread_mutex_unlock(&philo->mutex->mutex_print);
+	ft_usleep(philo->variable->time_to_sleep);
 	return (0);
 }
 
@@ -45,12 +41,9 @@ void	*thread_philo(void *start_routine)
 	philo = (t_philo *)start_routine;
 	while (philo->have_meal != philo->variable->must_eat)
 	{
-		if (philo_eat(philo) == RET_ERROR)
-			break ;
-		if (philo_sleep(philo) == RET_ERROR)
-			break ;
-		if (philo_think(philo) == RET_ERROR)
-			break ;
+		philo_eat(philo);
+		philo_sleep(philo);
+		print_status(philo, "is thinking");
 	}
-	return (NULL);
+	return (0);
 }

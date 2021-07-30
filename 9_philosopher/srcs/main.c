@@ -14,7 +14,6 @@ static int	check_end_conditions(t_philo *philo, t_variable *variable)
 			if (current_time - philo[i].last_meal_time >= \
 				variable->time_to_die)
 			{
-				printf("cur = %d, last = %d\n", current_time, philo[i].last_meal_time);
 				variable->philo_alive = FALSE;
 				printf("%d philo_%d died\n", current_time, i);
 				return (0);
@@ -59,7 +58,7 @@ int	main(int ac, char **av)
 	if (philo == NULL)
 		return (0);
 	create_thread(philo, ODD, variable.num_of_philos);
-	usleep(1);
+	usleep(variable.time_to_die);
 	create_thread(philo, EVEN, variable.num_of_philos);
 	check_end_conditions(philo, &variable);
 	return (0);
