@@ -26,18 +26,18 @@ typedef struct s_mutex
 
 typedef struct s_variable
 {
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	must_eat;
-	int	num_of_philos;
-	int	finished_meal;
-	int	philo_alive;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		must_eat;
+	int		num_of_philos;
+	int		finished_meal;
+	int		philo_alive;
+	long	first_meal_time;
 }	t_variable;
 
 typedef struct s_philo
 {
-	long		first_meal_time;
 	int			last_meal_time;
 	int			philo_number;
 	int			have_meal;

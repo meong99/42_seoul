@@ -3,15 +3,15 @@
 int	get_current_time(t_philo *philo)
 {
 	struct timeval	get_time;
-	long			current_time;
+	int 			current_time;
 
 	gettimeofday(&get_time, NULL);
-	if (philo->first_meal_time == 0)
-		philo->first_meal_time = \
+	if (philo->variable->first_meal_time == 0)
+		philo->variable->first_meal_time = \
 			get_time.tv_usec / 1000 + get_time.tv_sec * 1000;
 	current_time = get_time.tv_usec / 1000 + get_time.tv_sec * 1000 - \
-		philo->first_meal_time;
-	return ((int)current_time);
+		philo->variable->first_meal_time;
+	return (current_time);
 }
 
 int	print_status(t_philo *philo, char *str)
@@ -37,7 +37,7 @@ int	ft_usleep(int time)
 	time_taken = 0;
 	gettimeofday(&get_time, NULL);
 	start_time = get_time.tv_usec / 1000 + get_time.tv_sec * 1000;
-	while (time_taken >= time)
+	while (time_taken <= time)
 	{
 		usleep(time);
 		gettimeofday(&get_time, NULL);
