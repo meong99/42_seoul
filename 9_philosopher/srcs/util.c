@@ -4,7 +4,7 @@ int	ret_timestamp(t_philo *philo)
 {
 	struct timeval	get_time;
 	struct timeval	first_meal_time;
-	int 			timestamp;
+	int				timestamp;
 
 	first_meal_time = philo->variable->first_meal_time;
 	gettimeofday(&get_time, NULL);

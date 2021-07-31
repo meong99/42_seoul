@@ -2,10 +2,12 @@
 
 static int	philo_eat(t_philo *philo)
 {
-	if (pthread_mutex_lock(&philo->mutex->mutex_forks[philo->fork_number[0]]) != RET_OK)
+	if (pthread_mutex_lock(&philo->mutex->mutex_forks[philo->fork_number[0]]) \
+		!= RET_OK)
 		pthread_mutex_lock(&philo->mutex->mutex_pause);
 	print_status(philo, "has taken a fork");
-	if (pthread_mutex_lock(&philo->mutex->mutex_forks[philo->fork_number[1]]) != RET_OK)
+	if (pthread_mutex_lock(&philo->mutex->mutex_forks[philo->fork_number[1]]) \
+		!= RET_OK)
 		pthread_mutex_lock(&philo->mutex->mutex_pause);
 	print_status(philo, "has taken a fork");
 	print_status(philo, "is eating");
@@ -32,7 +34,7 @@ static int	philo_sleep(t_philo *philo)
 
 void	*thread_philo(void *start_routine)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)start_routine;
 	if (philo->variable->first_meal_time.tv_sec == 0)

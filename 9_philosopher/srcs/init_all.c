@@ -34,8 +34,8 @@ int	init_mutex(t_mutex *mutex, t_variable *variable)
 
 t_philo	*init_philos(t_variable *variable, t_mutex *mutex)
 {
-	int	i;
-	t_philo *philo;
+	int		i;
+	t_philo	*philo;
 
 	i = -1;
 	philo = malloc(sizeof(t_philo) * \
