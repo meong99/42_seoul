@@ -18,6 +18,8 @@ static int	check_end_conditions(t_philo *philo, t_variable *variable)
 				printf("%d philo_%d died\n", timestamp / 1000, i);
 				return (0);
 			}
+			else if (variable->finished_meal == variable->must_eat)
+				break ;
 		}
 	}
 	printf("Finished eating\n");

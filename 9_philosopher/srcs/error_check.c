@@ -4,7 +4,7 @@ static int	parameter_num(int ac)
 {
 	if (ac != 5 && ac != 6)
 	{
-		printf("Error\ntoo many parameters\n");
+		printf("Error\n");
 		printf("./philo [Numver_of_philosophers] ");
 		printf("[Time_to_die] [Time_to_eat] [Time_to_sleep] ");
 		printf("(Number_of_times_each_philosophers_must_eat)\n");

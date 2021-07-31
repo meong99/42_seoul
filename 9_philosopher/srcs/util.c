@@ -15,24 +15,26 @@ int	ret_timestamp(t_philo *philo)
 
 int	print_status(t_philo *philo, char *str)
 {
-	int	current_time;
+	int	timestamp;
 
 	pthread_mutex_lock(&philo->mutex->mutex_print);
-	current_time = ret_timestamp(philo);
+	timestamp = ret_timestamp(philo);
 	if (philo->variable->philo_alive == FALSE)
 		pthread_mutex_lock(&philo->mutex->mutex_pause);
-	printf("%d philo_%d %s\n", current_time / 1000, philo->philo_number, str);
-	philo->last_meal_time = current_time;
+	printf("%d philo_%d %s\n", timestamp / 1000, philo->philo_number, str);
+	philo->last_meal_time = timestamp;
 	pthread_mutex_unlock(&philo->mutex->mutex_print);
 	return (0);
 }
 
 int	ft_usleep(t_philo *philo, int time)
 {
-	int				time_taken;
+	int	time_taken;
+	int	current_time;
 
 	time_taken = 0;
-	while (time_taken <= philo->last_meal_time + time * 1000)
+	current_time = ret_timestamp(philo);
+	while (time_taken <= current_time + time * 1000)
 	{
 		usleep(time);
 		time_taken = ret_timestamp(philo);
