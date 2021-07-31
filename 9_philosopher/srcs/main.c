@@ -58,7 +58,7 @@ int	main(int ac, char **av)
 	if (philo == NULL)
 		return (0);
 	create_thread(philo, ODD, variable.num_of_philos);
-	usleep(100);
+	usleep(variable.time_to_eat);
 	create_thread(philo, EVEN, variable.num_of_philos);
 	check_end_conditions(philo, &variable);
 	return (0);

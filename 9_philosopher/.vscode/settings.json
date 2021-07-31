@@ -29,5 +29,8 @@
         // task.json에서 정의된 label 이름을 설정
         "preLaunchTask": "C/C++: gcc build active file"
       }
-    ]
+    ],
+    "files.associations": {
+      "locale": "c"
+    }
   }

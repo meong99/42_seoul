@@ -28,21 +28,21 @@ int	print_status(t_philo *philo, char *str)
 	return (0);
 }
 
-int	ft_usleep(int time)
+int	ft_usleep(t_philo *philo, int time)
 {
 	struct timeval	get_time;
+	struct timeval	start_time;
 	int				time_taken;
-	int				start_time;
 
 	time_taken = 0;
-	gettimeofday(&get_time, NULL);
-	start_time = get_time.tv_usec / 1000 + get_time.tv_sec * 1000;
+	philo = 0;
+	gettimeofday(&start_time, NULL);
 	while (time_taken <= time)
 	{
-		usleep(time);
+		usleep(10);
 		gettimeofday(&get_time, NULL);
-		time_taken = (get_time.tv_usec / 1000 + get_time.tv_sec * 1000) - \
-			start_time;
+		time_taken = (get_time.tv_usec - start_time.tv_usec + \
+		(get_time.tv_sec - start_time.tv_sec) * 1000000) / 1000;
 	}
 	return (0);
 }

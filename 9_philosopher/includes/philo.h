@@ -38,7 +38,7 @@ typedef struct s_variable
 
 typedef struct s_philo
 {
-	int			last_meal_time;
+	long		last_meal_time;
 	int			philo_number;
 	int			have_meal;
 	pthread_t	philo_tid;
@@ -72,5 +72,5 @@ void	*thread_philo(void *start_routine);
 */
 int		get_current_time(t_philo *philo);
 int		print_status(t_philo *philo, char *str);
-int		ft_usleep(int time);
+int		ft_usleep(t_philo *philo, int time);
 #endif

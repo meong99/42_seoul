@@ -2,17 +2,14 @@
 
 static int	philo_eat(t_philo *philo)
 {
-	int	i;
-
-	i = philo->philo_number;
-	pthread_mutex_lock(&philo->mutex->mutex_forks[i - 1]);
+	pthread_mutex_lock(&philo->mutex->mutex_forks[philo->philo_number - 1]);
 	print_status(philo, "has taken a fork");
-	pthread_mutex_lock(&philo->mutex->mutex_forks[i]);
+	pthread_mutex_lock(&philo->mutex->mutex_forks[philo->philo_number]);
 	print_status(philo, "has taken a fork");
 	print_status(philo, "is eating");
-	ft_usleep(philo->variable->time_to_eat);
-	pthread_mutex_unlock(&philo->mutex->mutex_forks[i - 1]);
-	pthread_mutex_unlock(&philo->mutex->mutex_forks[i]);
+	ft_usleep(philo, philo->variable->time_to_eat);
+	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->philo_number - 1]);
+	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->philo_number]);
 	philo->have_meal++;
 	if (philo->have_meal == philo->variable->must_eat)
 	{
@@ -30,7 +27,7 @@ static int	philo_sleep(t_philo *philo)
 	current_time = get_current_time(philo);
 	printf("%d philo_%d is sleeping\n", current_time, philo->philo_number);
 	pthread_mutex_unlock(&philo->mutex->mutex_print);
-	ft_usleep(philo->variable->time_to_sleep);
+	ft_usleep(philo, philo->variable->time_to_sleep);
 	return (0);
 }
 
