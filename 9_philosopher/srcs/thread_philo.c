@@ -2,10 +2,10 @@
 
 static int	philo_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->mutex->mutex_forks[philo->philo_number - 1]);
-	print_status(philo, "has taken a fork");
-	pthread_mutex_lock(&philo->mutex->mutex_forks[philo->philo_number]);
-	print_status(philo, "has taken a fork");
+	if (pthread_mutex_lock(&philo->mutex->mutex_forks[philo->philo_number]) != RET_OK)
+		pthread_mutex_lock(&philo->mutex->mutex_pause);
+	if (pthread_mutex_lock(&philo->mutex->mutex_forks[philo->philo_number - 1]) != RET_OK)
+		pthread_mutex_lock(&philo->mutex->mutex_pause);
 	print_status(philo, "is eating");
 	ft_usleep(philo, philo->variable->time_to_eat);
 	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->philo_number - 1]);

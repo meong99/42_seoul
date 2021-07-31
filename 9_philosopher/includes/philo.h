@@ -16,6 +16,7 @@
 # define STATUS_THINK 2
 # define STATUS_DEAD 3
 # define STATUS_FORKS 4
+# define RET_OK 0
 
 typedef struct s_mutex
 {
