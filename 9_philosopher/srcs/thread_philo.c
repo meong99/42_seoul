@@ -21,11 +21,11 @@ static int	philo_eat(t_philo *philo)
 
 static int	philo_sleep(t_philo *philo)
 {
-	int	current_time;
+	int	timestamp;
 
 	pthread_mutex_lock(&philo->mutex->mutex_print);
-	current_time = get_current_time(philo);
-	printf("%d philo_%d is sleeping\n", current_time, philo->philo_number);
+	timestamp = ret_timestamp(philo);
+	printf("%d philo_%d is sleeping\n", timestamp / 1000, philo->philo_number);
 	pthread_mutex_unlock(&philo->mutex->mutex_print);
 	ft_usleep(philo, philo->variable->time_to_sleep);
 	return (0);
@@ -36,6 +36,8 @@ void	*thread_philo(void *start_routine)
 	t_philo *philo;
 
 	philo = (t_philo *)start_routine;
+	if (philo->variable->first_meal_time.tv_sec == 0)
+		gettimeofday(&philo->variable->first_meal_time, NULL);
 	while (philo->have_meal != philo->variable->must_eat)
 	{
 		philo_eat(philo);

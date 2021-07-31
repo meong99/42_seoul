@@ -26,19 +26,19 @@ typedef struct s_mutex
 
 typedef struct s_variable
 {
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		must_eat;
-	int		num_of_philos;
-	int		finished_meal;
-	int		philo_alive;
-	long	first_meal_time;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat;
+	int				num_of_philos;
+	int				finished_meal;
+	int				philo_alive;
+	struct timeval	first_meal_time;
 }	t_variable;
 
 typedef struct s_philo
 {
-	long		last_meal_time;
+	int			last_meal_time;
 	int			philo_number;
 	int			have_meal;
 	pthread_t	philo_tid;
@@ -70,7 +70,7 @@ void	*thread_philo(void *start_routine);
 /*
 ** util.c 
 */
-int		get_current_time(t_philo *philo);
+int		ret_timestamp(t_philo *philo);
 int		print_status(t_philo *philo, char *str);
 int		ft_usleep(t_philo *philo, int time);
 #endif

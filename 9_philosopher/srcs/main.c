@@ -2,7 +2,7 @@
 
 static int	check_end_conditions(t_philo *philo, t_variable *variable)
 {
-	int	current_time;
+	int	timestamp;
 	int	i;
 
 	while (variable->finished_meal != variable->must_eat)
@@ -10,12 +10,12 @@ static int	check_end_conditions(t_philo *philo, t_variable *variable)
 		i = -1;
 		while (++i < variable->num_of_philos)
 		{
-			current_time = get_current_time(philo);
-			if (current_time - philo[i].last_meal_time >= \
+			timestamp = ret_timestamp(philo);
+			if ((timestamp - philo[i].last_meal_time) / 1000 >= \
 				variable->time_to_die)
 			{
 				variable->philo_alive = FALSE;
-				printf("%d philo_%d died\n", current_time, i);
+				printf("%d philo_%d died\n", timestamp / 1000, i);
 				return (0);
 			}
 		}
