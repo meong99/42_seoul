@@ -46,9 +46,12 @@ t_philo	*init_philos(t_variable *variable, t_mutex *mutex)
 	{
 		philo[i].mutex = mutex;
 		philo[i].variable = variable;
-	}
-	i = -1;
-	while (++i < variable->num_of_philos)
 		philo[i].have_meal = 0;
+		philo[i].fork_number[0] = i;
+		if (i + 1 == variable->num_of_philos)
+			philo[i].fork_number[1] = 0;
+		else
+			philo[i].fork_number[1] = i + 1;
+	}
 	return (philo);
 }

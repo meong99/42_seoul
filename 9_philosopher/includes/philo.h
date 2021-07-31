@@ -39,6 +39,7 @@ typedef struct s_variable
 
 typedef struct s_philo
 {
+	int			fork_number[2];
 	int			last_meal_time;
 	int			philo_number;
 	int			have_meal;

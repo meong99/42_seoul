@@ -5,7 +5,7 @@ static int	check_end_conditions(t_philo *philo, t_variable *variable)
 	int	timestamp;
 	int	i;
 
-	while (variable->finished_meal != variable->must_eat)
+	while (variable->finished_meal != variable->num_of_philos)
 	{
 		i = -1;
 		while (++i < variable->num_of_philos)
@@ -18,11 +18,13 @@ static int	check_end_conditions(t_philo *philo, t_variable *variable)
 				printf("%d philo_%d died\n", timestamp / 1000, i);
 				return (0);
 			}
-			else if (variable->finished_meal == variable->must_eat)
+			else if (variable->finished_meal == variable->num_of_philos)
+			{
+				printf("%d End of meal\n", timestamp / 1000);
 				break ;
+			}
 		}
 	}
-	printf("Finished eating\n");
 	return (0);
 }
 
@@ -58,9 +60,9 @@ int	main(int ac, char **av)
 	init_mutex(&mutex, &variable);
 	philo = init_philos(&variable, &mutex);
 	if (philo == NULL)
-		return (0);
+		return (RET_ERROR);
 	create_thread(philo, EVEN, variable.num_of_philos);
-	usleep(variable.time_to_eat);
+	usleep(variable.time_to_eat * 800);
 	create_thread(philo, ODD, variable.num_of_philos);
 	check_end_conditions(philo, &variable);
 	return (0);
