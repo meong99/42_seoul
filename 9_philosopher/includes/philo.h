@@ -11,18 +11,16 @@
 # define FALSE 0
 # define ODD 1
 # define EVEN 0
-# define STATUS_EAT 0
-# define STATUS_SLEEP 1
-# define STATUS_THINK 2
-# define STATUS_DEAD 3
-# define STATUS_FORKS 4
 # define RET_OK 0
+# define FINISHED_MEAL 2
+# define RET_DEAD 3
+# define RIGHT 0
+# define LEFT 1
 
 typedef struct s_mutex
 {
 	pthread_mutex_t	mutex_print;
 	pthread_mutex_t	*mutex_forks;
-	pthread_mutex_t	mutex_pause;
 }	t_mutex;
 
 typedef struct s_variable
@@ -55,7 +53,7 @@ int		error_check(int ac, char **av);
 /*
 ** free_all.c 
 */
-void	free_all(void);
+void	free_all(t_philo *philo, t_mutex *mutex, t_variable *variable);
 
 /*
 **  init_all.c

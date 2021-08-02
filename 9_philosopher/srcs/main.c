@@ -5,27 +5,28 @@ static int	check_end_conditions(t_philo *philo, t_variable *variable)
 	int	timestamp;
 	int	i;
 
-	while (variable->finished_meal != variable->num_of_philos)
+	i = -1;
+	while (++i < variable->num_of_philos)
 	{
-		i = -1;
-		while (++i < variable->num_of_philos)
+		timestamp = ret_timestamp(philo);
+		if ((timestamp - philo[i].last_meal_time) / 1000 >= \
+			variable->time_to_die)
 		{
-			timestamp = ret_timestamp(philo);
-			if ((timestamp - philo[i].last_meal_time) / 1000 >= \
-				variable->time_to_die)
-			{
-				variable->philo_alive = FALSE;
-				printf("%d philo_%d died\n", timestamp / 1000, i);
-				return (0);
-			}
-			else if (variable->finished_meal == variable->num_of_philos)
-			{
-				printf("%d End of meal\n", timestamp / 1000);
-				break ;
-			}
+			variable->philo_alive = FALSE;
+			printf("%d philo_%d died\n", timestamp / 1000, i);
+			free_all(philo, philo->mutex, philo->variable);
+			return (RET_OK);
 		}
+		else if (variable->finished_meal == variable->num_of_philos)
+		{
+			printf("%d End of meal\n", timestamp / 1000);
+			free_all(philo, philo->mutex, philo->variable);
+			return (RET_OK);
+		}
+		if (i == variable->num_of_philos - 1)
+			i = -1;
 	}
-	return (0);
+	return (RET_OK);
 }
 
 static int	create_thread(t_philo *philo, int num, int num_of_philos)
@@ -43,7 +44,7 @@ static int	create_thread(t_philo *philo, int num, int num_of_philos)
 			thread_philo, &philo[i]);
 		i += 2;
 	}
-	return (0);
+	return (RET_OK);
 }
 
 int	main(int ac, char **av)
@@ -65,5 +66,5 @@ int	main(int ac, char **av)
 	usleep(variable.time_to_eat * 800);
 	create_thread(philo, ODD, variable.num_of_philos);
 	check_end_conditions(philo, &variable);
-	return (0);
+	return (RET_OK);
 }

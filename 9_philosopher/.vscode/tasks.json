@@ -13,7 +13,8 @@
 			"cwd": "/usr/bin",
 			// 환경 변수로 DEBUG: ture로 설정함
 			"env": {
-			  "DEBUG": "1"
+			//   "DEBUG": "1",
+			  "SANI": "1"
 			}
 		  },
 		  "problemMatcher": ["$gcc"],

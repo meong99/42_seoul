@@ -20,11 +20,11 @@ int	print_status(t_philo *philo, char *str)
 	pthread_mutex_lock(&philo->mutex->mutex_print);
 	timestamp = ret_timestamp(philo);
 	if (philo->variable->philo_alive == FALSE)
-		pthread_mutex_lock(&philo->mutex->mutex_pause);
+		return (RET_DEAD);
 	printf("%d philo_%d %s\n", timestamp / 1000, philo->philo_number, str);
 	philo->last_meal_time = timestamp;
 	pthread_mutex_unlock(&philo->mutex->mutex_print);
-	return (0);
+	return (RET_OK);
 }
 
 int	ft_usleep(t_philo *philo, int time)
@@ -39,5 +39,5 @@ int	ft_usleep(t_philo *philo, int time)
 		usleep(time);
 		time_taken = ret_timestamp(philo);
 	}
-	return (0);
+	return (RET_OK);
 }

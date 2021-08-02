@@ -2,22 +2,28 @@
 
 static int	philo_eat(t_philo *philo)
 {
-	if (pthread_mutex_lock(&philo->mutex->mutex_forks[philo->fork_number[0]]) \
-		!= RET_OK)
-		pthread_mutex_lock(&philo->mutex->mutex_pause);
-	print_status(philo, "has taken a fork");
-	if (pthread_mutex_lock(&philo->mutex->mutex_forks[philo->fork_number[1]]) \
-		!= RET_OK)
-		pthread_mutex_lock(&philo->mutex->mutex_pause);
-	print_status(philo, "has taken a fork");
-	print_status(philo, "is eating");
+	if (pthread_mutex_lock(\
+		&philo->mutex->mutex_forks[philo->fork_number[RIGHT]]) != RET_OK)
+		return (RET_ERROR);
+	if (print_status(philo, "has taken a fork") == RET_DEAD)
+		return (RET_DEAD);
+	if (pthread_mutex_lock(\
+		&philo->mutex->mutex_forks[philo->fork_number[LEFT]]) != RET_OK)
+		return (RET_ERROR);
+	if (print_status(philo, "has taken a fork") == RET_DEAD)
+		return (RET_DEAD);
+	if (print_status(philo, "is eating") == RET_DEAD)
+		return (RET_DEAD);
 	ft_usleep(philo, philo->variable->time_to_eat);
-	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->fork_number[0]]);
-	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->fork_number[1]]);
+	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->fork_number[RIGHT]]);
+	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->fork_number[LEFT]]);
 	philo->have_meal++;
 	if (philo->have_meal == philo->variable->must_eat)
+	{
 		philo->variable->finished_meal++;
-	return (0);
+		return (FINISHED_MEAL);
+	}
+	return (RET_OK);
 }
 
 static int	philo_sleep(t_philo *philo)
@@ -26,10 +32,12 @@ static int	philo_sleep(t_philo *philo)
 
 	pthread_mutex_lock(&philo->mutex->mutex_print);
 	timestamp = ret_timestamp(philo);
+	if (philo->variable->philo_alive == FALSE)
+		return (RET_DEAD);
 	printf("%d philo_%d is sleeping\n", timestamp / 1000, philo->philo_number);
 	pthread_mutex_unlock(&philo->mutex->mutex_print);
 	ft_usleep(philo, philo->variable->time_to_sleep);
-	return (0);
+	return (RET_OK);
 }
 
 void	*thread_philo(void *start_routine)
@@ -41,10 +49,12 @@ void	*thread_philo(void *start_routine)
 		gettimeofday(&philo->variable->first_meal_time, NULL);
 	while (TRUE)
 	{
-		philo_eat(philo);
-		if (philo->have_meal == philo->variable->must_eat)
-			pthread_mutex_lock(&philo->mutex->mutex_pause);
-		philo_sleep(philo);
+		if (philo_eat(philo) != RET_OK)
+			return (NULL);
+		if (philo_sleep(philo) != RET_OK)
+			return (NULL);
+		if (philo->variable->philo_alive == FALSE)
+			return (NULL);
 		print_status(philo, "is thinking");
 	}
 	return (0);
