@@ -24,6 +24,25 @@ static int	parameter_str(char *str)
 	return (RET_OK);
 }
 
+int	invalid_param_check(t_variable *variable)
+{
+	if (variable->num_of_philos >= 200)
+	{
+		printf("Error\n");
+		printf("The philosophers must be less than 200\n");
+		return (RET_ERROR);
+	}
+	if (variable->time_to_die < 60 || variable->time_to_eat < 60 \
+		|| variable->time_to_sleep < 60)
+	{
+		printf("Error\n");
+		printf("\"time_to_die, time_to_eat, time_to_sleep\" ");
+		printf("must be greater than or equal to 60 ms\n");
+		return (RET_ERROR);
+	}
+	return (RET_OK);
+}
+
 int	error_check(int ac, char **av)
 {
 	int	i;

@@ -6,7 +6,7 @@ void	free_all(t_philo *philo, t_mutex *mutex, t_variable *variable)
 
 	i = -1;
 	while (++i < variable->num_of_philos)
-		pthread_detach(philo[i].philo_tid);
+		pthread_join(philo[i].philo_tid, NULL);
 	i = -1;
 	pthread_mutex_destroy(&mutex->mutex_print);
 	while (++i < variable->num_of_philos)

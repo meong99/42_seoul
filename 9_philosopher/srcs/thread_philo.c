@@ -32,7 +32,7 @@ void	*thread_philo(void *start_routine)
 	philo = (t_philo *)start_routine;
 	if (philo->variable->first_meal_time.tv_sec == 0)
 		gettimeofday(&philo->variable->first_meal_time, NULL);
-	while (TRUE)
+	while (philo->variable->philo_alive == TRUE)
 	{
 		if (philo_eat(philo) != RET_OK)
 			return (NULL);

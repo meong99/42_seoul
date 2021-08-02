@@ -5,7 +5,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include "libft.h"
-
+# include <errno.h>
 # define RET_ERROR -1
 # define TRUE 1
 # define FALSE 0
@@ -53,6 +53,7 @@ typedef struct s_philo
 ** error_check.c
 */
 int		error_check(int ac, char **av);
+int		invalid_param_check(t_variable *variable);
 
 /*
 ** free_all.c 

@@ -21,6 +21,8 @@ int	print_status(t_philo *philo, char *str, int status)
 		return (RET_DEAD);
 	pthread_mutex_lock(&philo->mutex->mutex_print);
 	timestamp = ret_timestamp(philo);
+	if (philo->variable->philo_alive == FALSE)
+		return (RET_DEAD);
 	printf("%d philo_%d %s\n", timestamp / 1000, philo->philo_number, str);
 	pthread_mutex_unlock(&philo->mutex->mutex_print);
 	if (status == STATUS_EAT)
@@ -30,8 +32,6 @@ int	print_status(t_philo *philo, char *str, int status)
 	}
 	if (status == STATUS_SLEEP)
 		ft_usleep(philo, philo->variable->time_to_sleep, timestamp);
-	if (philo->variable->philo_alive == FALSE)
-		return (RET_DEAD);
 	return (RET_OK);
 }
 
