@@ -27,7 +27,7 @@ int	init_mutex(t_mutex *mutex, t_variable *variable)
 	while (++i < variable->num_of_philos)
 		pthread_mutex_init(&mutex->mutex_forks[i], NULL);
 	pthread_mutex_init(&mutex->mutex_print, NULL);
-	return (0);
+	return (RET_OK);
 }
 
 t_philo	*init_philos(t_variable *variable, t_mutex *mutex)

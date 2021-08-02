@@ -13,5 +13,4 @@ void	free_all(t_philo *philo, t_mutex *mutex, t_variable *variable)
 		pthread_mutex_destroy(&mutex->mutex_forks[i]);
 	free(mutex->mutex_forks);
 	free(philo);
-	return ;
 }

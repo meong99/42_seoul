@@ -16,6 +16,10 @@
 # define RET_DEAD 3
 # define RIGHT 0
 # define LEFT 1
+# define STATUS_EAT 0
+# define STATUS_THINK 1
+# define STATUS_SLEEP 2
+# define STATUS_FORK 3
 
 typedef struct s_mutex
 {
@@ -71,6 +75,6 @@ void	*thread_philo(void *start_routine);
 ** util.c 
 */
 int		ret_timestamp(t_philo *philo);
-int		print_status(t_philo *philo, char *str);
-int		ft_usleep(t_philo *philo, int time);
+int		print_status(t_philo *philo, char *str, int status);
+int		ft_usleep(t_philo *philo, int time, int timestamp);
 #endif

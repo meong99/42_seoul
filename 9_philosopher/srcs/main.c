@@ -63,7 +63,7 @@ int	main(int ac, char **av)
 	if (philo == NULL)
 		return (RET_ERROR);
 	create_thread(philo, EVEN, variable.num_of_philos);
-	usleep(variable.time_to_eat * 800);
+	usleep(variable.time_to_eat * 1000);
 	create_thread(philo, ODD, variable.num_of_philos);
 	check_end_conditions(philo, &variable);
 	return (RET_OK);

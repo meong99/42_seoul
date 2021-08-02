@@ -10,7 +10,7 @@ static int	parameter_num(int ac)
 		printf("(Number_of_times_each_philosophers_must_eat)\n");
 		return (RET_ERROR);
 	}
-	return (0);
+	return (RET_OK);
 }
 
 static int	parameter_str(char *str)
@@ -21,7 +21,7 @@ static int	parameter_str(char *str)
 			return (RET_ERROR);
 		str++;
 	}
-	return (0);
+	return (RET_OK);
 }
 
 int	error_check(int ac, char **av)
@@ -39,5 +39,5 @@ int	error_check(int ac, char **av)
 			return (RET_ERROR);
 		}
 	}
-	return (0);
+	return (RET_OK);
 }
