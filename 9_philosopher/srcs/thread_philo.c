@@ -41,5 +41,8 @@ void	*thread_philo(void *start_routine)
 		if (print_status(philo, "is thinking", STATUS_THINK) != RET_OK)
 			break ;
 	}
+	pthread_mutex_unlock(&philo->mutex->mutex_print);
+	pthread_mutex_unlock(&philo->mutex->mutex_forks[RIGHT]);
+	pthread_mutex_unlock(&philo->mutex->mutex_forks[LEFT]);
 	return (RET_OK);
 }
