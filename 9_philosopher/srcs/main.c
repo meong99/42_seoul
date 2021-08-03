@@ -47,12 +47,29 @@ static int	create_thread(t_philo *philo, int num, int num_of_philos)
 	return (RET_OK);
 }
 
+static int	sleep_until_even_eat(t_variable variable)
+{
+	struct timeval	get_time;
+	struct timeval	timestamp;
+
+	gettimeofday(&get_time, NULL);
+	while (TRUE)
+	{
+		gettimeofday(&timestamp, NULL);
+		if ((get_time.tv_usec - timestamp.tv_usec + \
+			(get_time.tv_sec - timestamp.tv_sec) * 1000000) > \
+			variable.time_to_eat * 900)
+			break ;
+	}
+	return (RET_OK);
+}
+
 int	main(int ac, char **av)
 {
-	int			i;
-	t_philo		*philo;
-	t_variable	variable;
-	t_mutex		mutex;
+	int				i;
+	t_philo			*philo;
+	t_variable		variable;
+	t_mutex			mutex;
 
 	i = -1;
 	if (error_check(ac, av) == RET_ERROR)
@@ -65,7 +82,7 @@ int	main(int ac, char **av)
 	if (philo == NULL)
 		return (RET_ERROR);
 	create_thread(philo, EVEN, variable.num_of_philos);
-	usleep(variable.time_to_eat * 1000);
+	sleep_until_even_eat(variable);
 	create_thread(philo, ODD, variable.num_of_philos);
 	check_end_conditions(philo, &variable);
 	return (RET_OK);
