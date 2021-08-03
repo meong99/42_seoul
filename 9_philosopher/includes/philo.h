@@ -35,6 +35,7 @@ typedef struct s_variable
 	int				num_of_philos;
 	int				finished_meal;
 	int				philo_alive;
+	int				living_thread;
 	struct timeval	first_meal_time;
 }	t_variable;
 

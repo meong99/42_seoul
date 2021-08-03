@@ -56,8 +56,8 @@ static int	sleep_until_even_eat(t_variable variable)
 	while (TRUE)
 	{
 		gettimeofday(&timestamp, NULL);
-		if ((get_time.tv_usec - timestamp.tv_usec + \
-			(get_time.tv_sec - timestamp.tv_sec) * 1000000) > \
+		if ((timestamp.tv_usec - get_time.tv_usec + \
+			(timestamp.tv_sec - get_time.tv_sec) * 1000000) > \
 			variable.time_to_eat * 900)
 			break ;
 	}

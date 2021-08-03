@@ -3,13 +3,13 @@
 static int	philo_eat(t_philo *philo)
 {
 	if (pthread_mutex_lock(\
+		&philo->mutex->mutex_forks[philo->fork_number[LEFT]]) != RET_OK)
+		return (RET_ERROR);
+	if (pthread_mutex_lock(\
 		&philo->mutex->mutex_forks[philo->fork_number[RIGHT]]) != RET_OK)
 		return (RET_ERROR);
 	if (print_status(philo, "has taken a fork", STATUS_FORK) == RET_DEAD)
 		return (RET_DEAD);
-	if (pthread_mutex_lock(\
-		&philo->mutex->mutex_forks[philo->fork_number[LEFT]]) != RET_OK)
-		return (RET_ERROR);
 	if (print_status(philo, "has taken a fork", STATUS_FORK) == RET_DEAD)
 		return (RET_DEAD);
 	if (print_status(philo, "is eating", STATUS_EAT) == RET_DEAD)
@@ -42,7 +42,7 @@ void	*thread_philo(void *start_routine)
 			break ;
 	}
 	pthread_mutex_unlock(&philo->mutex->mutex_print);
-	pthread_mutex_unlock(&philo->mutex->mutex_forks[RIGHT]);
-	pthread_mutex_unlock(&philo->mutex->mutex_forks[LEFT]);
+	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->fork_number[RIGHT]]);
+	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->fork_number[LEFT]]);
 	return (RET_OK);
 }
