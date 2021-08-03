@@ -39,7 +39,10 @@ int	ft_usleep(t_philo *philo, int time, int timestamp)
 
 	time_taken = 0;
 	while (time_taken <= timestamp + time * 1000)
+	{
 		time_taken = ret_timestamp(philo);
+		usleep(time);
+	}
 	return (RET_OK);
 }
 

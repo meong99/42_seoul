@@ -60,6 +60,7 @@ static int	sleep_until_even_eat(t_variable variable)
 			(timestamp.tv_sec - get_time.tv_sec) * 1000000) > \
 			variable.time_to_eat * 900)
 			break ;
+		usleep(variable.time_to_eat);
 	}
 	return (RET_OK);
 }

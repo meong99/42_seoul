@@ -5,6 +5,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 # define RET_ERROR -1
 # define TRUE 1
