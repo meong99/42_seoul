@@ -35,11 +35,11 @@ void	*thread_philo(void *start_routine)
 	while (philo->variable->philo_alive == TRUE)
 	{
 		if (philo_eat(philo) != RET_OK)
-			return (NULL);
+			break ;
 		if (print_status(philo, "is sleeping", STATUS_SLEEP) != RET_OK)
-			return (NULL);
+			break ;
 		if (print_status(philo, "is thinking", STATUS_THINK) != RET_OK)
-			return (NULL);
+			break ;
 	}
 	return (RET_OK);
 }

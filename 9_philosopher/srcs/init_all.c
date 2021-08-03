@@ -21,7 +21,7 @@ int	init_mutex(t_mutex *mutex, t_variable *variable)
 	int	i;
 
 	i = -1;
-	mutex->mutex_forks = malloc(sizeof(t_mutex) * variable->num_of_philos);
+	mutex->mutex_forks = malloc(sizeof(pthread_mutex_t) * variable->num_of_philos);
 	if (mutex == NULL)
 		return (RET_ERROR);
 	while (++i < variable->num_of_philos)
@@ -45,12 +45,13 @@ t_philo	*init_philos(t_variable *variable, t_mutex *mutex)
 		philo[i].mutex = mutex;
 		philo[i].variable = variable;
 		philo[i].have_meal = 0;
-		philo[i].fork_number[RIGHT] = i;
 		philo[i].last_meal_time = 0;
-		if (i + 1 == variable->num_of_philos)
-			philo[i].fork_number[LEFT] = 0;
-		else
+		philo[i].fork_number[RIGHT] = i;
+		philo[i].fork_number[LEFT] = -1;
+		if (i + 1 != variable->num_of_philos)
 			philo[i].fork_number[LEFT] = i + 1;
+		else if (i != 0)
+			philo[i].fork_number[LEFT] = 0;
 	}
 	return (philo);
 }
