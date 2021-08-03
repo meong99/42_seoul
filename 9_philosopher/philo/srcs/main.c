@@ -14,18 +14,17 @@ static int	check_end_conditions(t_philo *philo, t_variable *variable)
 		{
 			variable->philo_alive = FALSE;
 			printf("%d philo_%d died\n", timestamp / 1000, i);
-			free_all(philo, philo->mutex, philo->variable);
-			return (RET_OK);
+			break ;
 		}
 		else if (variable->finished_meal == variable->num_of_philos)
 		{
 			printf("%d End of meal\n", timestamp / 1000);
-			free_all(philo, philo->mutex, philo->variable);
-			return (RET_OK);
+			break ;
 		}
 		if (i == variable->num_of_philos - 1)
 			i = -1;
 	}
+	free_all(philo, philo->mutex, philo->variable);
 	return (RET_OK);
 }
 
@@ -86,5 +85,6 @@ int	main(int ac, char **av)
 	sleep_until_even_eat(variable);
 	create_thread(philo, ODD, variable.num_of_philos);
 	check_end_conditions(philo, &variable);
+	system("leaks philo");
 	return (RET_OK);
 }
