@@ -4,7 +4,8 @@
 # include <stdio.h>
 # include <pthread.h>
 # include <sys/time.h>
-# include "libft.h"
+# include <stdlib.h>
+
 # define RET_ERROR -1
 # define TRUE 1
 # define FALSE 0
@@ -77,4 +78,7 @@ void	*thread_philo(void *start_routine);
 int		ret_timestamp(t_philo *philo);
 int		print_status(t_philo *philo, char *str, int status);
 int		ft_usleep(t_philo *philo, int time, int timestamp);
+int		ft_isdigit(int num);
+int		ft_atoi(const char *str);
+
 #endif

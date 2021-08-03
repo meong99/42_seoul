@@ -2,7 +2,6 @@ NAME = philo
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-LIBFT_PATH = libft
 INCLUDES = -I includes
 OBJS_PATH = objs
 SRCS_PATH = srcs
@@ -30,14 +29,12 @@ $(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME) : $(OBJS)
-	make -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) -L$(LIBFT_PATH) -lft -o $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 all : $(NAME)
 
 clean :
 	rm -rf $(OBJS_PATH)
-	make -C $(LIBFT_PATH) fclean
 fclean : clean
 	rm -f $(NAME)
 re : fclean all
