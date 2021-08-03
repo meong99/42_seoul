@@ -50,14 +50,15 @@ static int	sleep_until_even_eat(t_variable variable)
 {
 	struct timeval	get_time;
 	struct timeval	timestamp;
+	int				time_taken;
 
 	gettimeofday(&get_time, NULL);
 	while (TRUE)
 	{
 		gettimeofday(&timestamp, NULL);
-		if ((timestamp.tv_usec - get_time.tv_usec + \
-			(timestamp.tv_sec - get_time.tv_sec) * 1000000) > \
-			variable.time_to_eat * 900)
+		time_taken = timestamp.tv_usec - get_time.tv_usec + \
+			(timestamp.tv_sec - get_time.tv_sec) * 1000000;
+		if (time_taken > variable.time_to_eat * 900)
 			break ;
 		usleep(variable.time_to_eat);
 	}
@@ -85,6 +86,5 @@ int	main(int ac, char **av)
 	sleep_until_even_eat(variable);
 	create_thread(philo, ODD, variable.num_of_philos);
 	check_end_conditions(philo, &variable);
-	system("leaks philo");
 	return (RET_OK);
 }
