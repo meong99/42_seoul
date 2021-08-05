@@ -18,7 +18,7 @@ int	print_status(t_philo *philo, char *str, int status)
 	int	timestamp;
 
 	pthread_mutex_lock(&philo->mutex->mutex_print);
-	if (philo->variable->philo_alive == FALSE)
+	if (status != STATUS_END && philo->variable->philo_alive == FALSE)
 		return (RET_DEAD);
 	timestamp = ret_timestamp(philo);
 	printf("%d philo_%d %s\n", timestamp / 1000, philo->philo_number, str);
