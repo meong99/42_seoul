@@ -6,8 +6,8 @@
       "type": "cppdbg",
       "request": "launch",
       // 현재 workspace를 기준으로 test.out 프로그램을 실행
-      "program": "${workspaceFolder}/philo",
-      "args": ["1", "310", "200", "200"],
+      "program": "${workspaceFolder}/philo/philo",
+      "args": ["4", "410", "200", "200"],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],

@@ -8,7 +8,7 @@
 		  // make 명령어를 실행!
 		  "command": "/usr/bin/make",
 		  // 현재 workspace를 기준으로 re, debug_make 작업을 수행함
-		  "args": ["-C", "${workspaceFolder}", "re", "all"],
+		  "args": ["-C", "${workspaceFolder}/philo", "re", "all"],
 		  "options": {
 			"cwd": "/usr/bin",
 			// 환경 변수로 DEBUG: ture로 설정함

@@ -55,7 +55,6 @@ typedef struct s_philo
 ** error_check.c
 */
 int		error_check(int ac, char **av);
-int		invalid_param_check(t_variable *variable);
 
 /*
 ** free_all.c 

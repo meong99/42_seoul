@@ -76,8 +76,6 @@ int	main(int ac, char **av)
 	if (error_check(ac, av) == RET_ERROR)
 		return (RET_ERROR);
 	init_varialbe(ac, av, &variable);
-	if (invalid_param_check(&variable) == RET_ERROR)
-		return (RET_ERROR);
 	init_mutex(&mutex, &variable);
 	philo = init_philos(&variable, &mutex);
 	if (philo == NULL)
