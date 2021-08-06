@@ -21,7 +21,7 @@ int	print_status(t_philo *philo, char *str, int status)
 	if (status != STATUS_END && philo->variable->philo_alive == FALSE)
 		return (RET_DEAD);
 	timestamp = ret_timestamp(philo);
-	printf("%d philo_%d %s\n", timestamp / 1000, philo->philo_number, str);
+	printf("%d philo_%d %s\n", timestamp / 1000, philo->philo_number + 1, str);
 	pthread_mutex_unlock(&philo->mutex->mutex_print);
 	if (status == STATUS_EAT)
 	{

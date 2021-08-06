@@ -33,9 +33,9 @@ static int	create_thread(t_philo *philo, int num, int num_of_philos)
 	int	i;
 
 	if (num == ODD)
-		i = 1;
-	else
 		i = 0;
+	else
+		i = 1;
 	while (i < num_of_philos)
 	{
 		philo[i].philo_number = i;
