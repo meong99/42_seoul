@@ -23,7 +23,7 @@ int	init_mutex(t_mutex *mutex, t_variable *variable)
 	i = -1;
 	mutex->mutex_forks = malloc(sizeof(pthread_mutex_t) * \
 		variable->num_of_philos);
-	if (mutex == NULL)
+	if (mutex->mutex_forks == NULL)
 		return (RET_ERROR);
 	while (++i < variable->num_of_philos)
 		pthread_mutex_init(&mutex->mutex_forks[i], NULL);
