@@ -77,7 +77,7 @@ void	*thread_philo(void *start_routine);
 ** util.c 
 */
 int		ret_timestamp(t_philo *philo);
-int		print_status(t_philo *philo, char *str, int status);
+int		print_status(t_philo *philo, char *str, int status, int philo_num);
 int		ft_usleep(t_philo *philo, int time, int timestamp);
 int		ft_isdigit(int num);
 int		ft_atoi(const char *str);

@@ -13,12 +13,12 @@ static int	check_end_conditions(t_philo *philo, t_variable *variable)
 			variable->time_to_die)
 		{
 			variable->philo_alive = FALSE;
-			print_status(philo, "died", STATUS_END);
+			print_status(philo, "died", STATUS_END, i + 1);
 			break ;
 		}
 		else if (variable->finished_meal == variable->num_of_philos)
 		{
-			print_status(philo, "End of meal", STATUS_END);
+			print_status(philo, "End of meal", STATUS_END, i + 1);
 			break ;
 		}
 		if (i == variable->num_of_philos - 1)

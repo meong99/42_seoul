@@ -5,14 +5,17 @@ static int	philo_eat(t_philo *philo)
 	if (pthread_mutex_lock(\
 		&philo->mutex->mutex_forks[philo->fork_number[LEFT]]) != RET_OK)
 		return (RET_ERROR);
-	if (print_status(philo, "has taken a fork", STATUS_FORK) == RET_DEAD)
+	if (print_status(philo, "has taken a fork", STATUS_FORK, \
+		philo->philo_number + 1) == RET_DEAD)
 		return (RET_DEAD);
 	if (pthread_mutex_lock(\
 		&philo->mutex->mutex_forks[philo->fork_number[RIGHT]]) != RET_OK)
 		return (RET_ERROR);
-	if (print_status(philo, "has taken a fork", STATUS_FORK) == RET_DEAD)
+	if (print_status(philo, "has taken a fork", STATUS_FORK, \
+		philo->philo_number + 1) == RET_DEAD)
 		return (RET_DEAD);
-	if (print_status(philo, "is eating", STATUS_EAT) == RET_DEAD)
+	if (print_status(philo, "is eating", STATUS_EAT, \
+		philo->philo_number + 1) == RET_DEAD)
 		return (RET_DEAD);
 	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->fork_number[RIGHT]]);
 	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->fork_number[LEFT]]);
@@ -36,9 +39,11 @@ void	*thread_philo(void *start_routine)
 	{
 		if (philo_eat(philo) != RET_OK)
 			break ;
-		if (print_status(philo, "is sleeping", STATUS_SLEEP) != RET_OK)
+		if (print_status(philo, "is sleeping", STATUS_SLEEP, \
+			philo->philo_number + 1) != RET_OK)
 			break ;
-		if (print_status(philo, "is thinking", STATUS_THINK) != RET_OK)
+		if (print_status(philo, "is thinking", STATUS_THINK, \
+			philo->philo_number + 1) != RET_OK)
 			break ;
 	}
 	pthread_mutex_unlock(&philo->mutex->mutex_print);
