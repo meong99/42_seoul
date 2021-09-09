@@ -1,7 +1,7 @@
 NAME = minishell
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-LINK_RDLINE = $(LDFLAGS) $(CPPFLAGS) -lreadline
+LINK_RDLINE = -L/usr/local/opt/readline/lib -I/usr/local/opt/readline/include -lreadline
 INC = -I includes
 OBJS_PAHT = objs
 SRCS_PAHT = srcs
@@ -14,10 +14,10 @@ OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PAHT)/, $(OBJS_NAME))
 
 ifeq ($(DEBUG), 1)
-	CFLAGS = -g $(CFLAGS)
+	CFLAGS = -g -Wall -Wextra -Werror
 endif
 ifeq ($(SANI), 1)
-	CFLAGS = -fsanitize=address $(CFLAGS)
+	CFLAGS = -fsanitize=address -Wall -Wextra -Werror
 endif
 
 $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c

@@ -6,7 +6,7 @@
       "type": "cppdbg",
       "request": "launch",
       // 현재 workspace를 기준으로 test.out 프로그램을 실행
-      "program": "${workspaceFolder}/",
+      "program": "${workspaceFolder}/minishell",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",

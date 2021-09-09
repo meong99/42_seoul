@@ -14,11 +14,10 @@
 #include <fcntl.h>
 
 extern int rl_replace_line();
+struct termios	term;
 
 void	sigg(int signo)
 {
-	write(1, "\b\b", 2);
-	write(1, "  ", 2);
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
@@ -32,24 +31,28 @@ void	quit(int signo)
 	exit(0);
 }
 
+void	ft_echo(char *str, int option)
+{
+	if (option)
+		printf("%s", str + 5);
+	else
+		printf("%s\n", str + 5);
+}
+
+// void	ft_cd(char *path)
+// {
+	
+// }
+
 int	main(void)
 {
 	char	*str;
-	int		fd;
-	struct termios	term;
 
 	signal(SIGINT, sigg);
 	signal(SIGQUIT, quit);
-	printf("slot = %d\n", ttyslot());
-	fd = open("test.txt", O_RDONLY);
-	if (fd == -1)
+	if (tcgetattr(0, &term) == -1)
 	{
-		printf("fd error\n");
-		exit(errno);
-	}
-	if ((fd = tcgetattr(0, &term)) == -1)
-	{
-		printf("termios error, fd = %d\n", fd);
+		printf("termios error\n");
 		exit(errno);
 	}
 	term.c_lflag &= (~ECHOCTL);
@@ -58,10 +61,22 @@ int	main(void)
 	{
 		str = readline("minishell > ");
 		add_history(str);
-		if (strncmp(str, "exit", 5) == 0)
+		if (str == 0)
 			exit(0);
 		else if (strncmp("pp", str, 3) == 0)
 			printf("ok\n");
+		else if (strncmp("echo ", str, 5) == 0)
+			ft_echo(str, 0);
+		else if (strncmp("ls", str, 2) == 0)
+		{
+			char *asd[2];
+
+			asd[0] = "/bin/ls";
+			asd[1] = NULL;
+			execve(asd[0], asd, NULL);
+			printf("errno = %d\n", errno);
+		}
+		free(str);
 	}
 	return (0);
 }
