@@ -1,7 +1,7 @@
 NAME = minishell
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-LINK_RDLINE = -lreadline
+LINK_RDLINE = $(LDFLAGS) $(CPPFLAGS) -lreadline
 INC = -I includes
 OBJS_PAHT = objs
 SRCS_PAHT = srcs
@@ -20,9 +20,9 @@ ifeq ($(SANI), 1)
 	CFLAGS = -fsanitize=address $(CFLAGS)
 endif
 
-$(OBJS_PAHT)/%.o : $(SRCS_PAHT)/%.c
+$(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
 	mkdir -p $(OBJS_PAHT)
-	$(CC) $(CFLAGS) $(LINK_RDLINE) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJS)
 	make -C libft

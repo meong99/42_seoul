@@ -2,12 +2,12 @@
     "version": "0.2.0",
   "configurations": [
     {
-      "name": "debug pihlo_test",
+      "name": "debug minishell_test",
       "type": "cppdbg",
       "request": "launch",
       // 현재 workspace를 기준으로 test.out 프로그램을 실행
-      "program": "${workspaceFolder}/philo/philo",
-      "args": ["4", "410", "200", "200"],
+      "program": "${workspaceFolder}/",
+      "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],
@@ -18,7 +18,7 @@
       "linux": {
         "MIMode": "gdb"
       },
-      "preLaunchTask": "Build philo_test"
+      "preLaunchTask": "Build minishell_test"
     }
   ]
 }
