@@ -33,7 +33,7 @@ void	get_client_pid(int *step, int *client_pid, int signal, int *index)
 {
 	if (*index < 32)
 	{
-		*client_pid <<= 1;
+		signal <<= *index;
 		*client_pid |= signal;
 		(*index)++;
 	}

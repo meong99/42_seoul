@@ -27,7 +27,6 @@ static void	send_client_pid(int server_pid)
 	unsigned int	bit;
 
 	bit = 1;
-	bit <<= 31;
 	client_pid = getpid();
 	while (bit)
 	{
@@ -35,7 +34,7 @@ static void	send_client_pid(int server_pid)
 			kill_to_server(server_pid, SIGUSR1);
 		else
 			kill_to_server(server_pid, SIGUSR2);
-		bit >>= 1;
+		bit <<= 1;
 		usleep(100);
 	}
 }
