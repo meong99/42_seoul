@@ -67,13 +67,11 @@ int	main(void)
 			printf("ok\n");
 		else if (strncmp("echo ", str, 5) == 0)
 			ft_echo(str, 0);
-		else if (strncmp("ls", str, 2) == 0)
+		else// if (strncmp("ls", str, 2) == 0)
 		{
-			char *asd[2];
+			char *asd[4] = {"echo", "-n", "asd", NULL};
 
-			asd[0] = "/bin/ls";
-			asd[1] = NULL;
-			execve(asd[0], asd, NULL);
+			execve("/bin/echo", asd, NULL);
 			printf("errno = %d\n", errno);
 		}
 		free(str);
