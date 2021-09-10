@@ -71,6 +71,22 @@ int	main(void)
 		}
 		else if (strncmp("pp", str, 3) == 0)
 			printf("ok\n");
+		else if (strncmp(">>", str, 2) == 0)
+		{
+			int fd;
+			fd = open("text.txt", O_RDWR | O_APPEND);
+			char *str = "fdsadf";
+			write(fd, str, 6);
+			close(fd);
+		}
+		else if (strncmp(">", str, 1) == 0)
+		{
+			int fd;
+			fd = open("text.txt", O_RDWR | O_TRUNC);
+			char *str = "fdsadf";
+			write(fd, str, 6);
+			close(fd);
+		}
 		else if (strncmp("echo ", str, 5) == 0)
 			ft_echo(str, 0);
 		else// if (strncmp("ls", str, 2) == 0)

@@ -32,6 +32,14 @@ SRCS = ft_memccpy.c ft_memcmp.c ft_memmove.c ft_bzero.c ft_memchr.c \
        ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 BOBJS = $(patsubst %.c,%.o,$(BSRCS))
+
+ifeq ($(DEBUG), 1)
+	FLAGS = -g -Wall -Wextra -Werror
+endif
+ifeq ($(SANI), 1)
+	FLAGS = -fsanitize=address -Wall -Wextra -Werror
+endif
+
 all : $(NAME)
 %.o : %.c
 	$(CC) $(FLAGS) -c $< -o $@
