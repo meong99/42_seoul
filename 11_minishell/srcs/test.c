@@ -20,7 +20,7 @@ void	sigg(int signo)
 {
 	printf("\n");
 	rl_on_new_line();
-	rl_replace_line("", 0);
+	rl_replace_line("asd", 0);
 	rl_redisplay();
 	signo = 0;
 }
@@ -62,7 +62,13 @@ int	main(void)
 		str = readline("minishell > ");
 		add_history(str);
 		if (str == 0)
+		{
+			rl_on_new_line();
+			rl_replace_line("", 0);
+			rl_redisplay();
+			printf("exit\n");
 			exit(0);
+		}
 		else if (strncmp("pp", str, 3) == 0)
 			printf("ok\n");
 		else if (strncmp("echo ", str, 5) == 0)
