@@ -7,6 +7,7 @@ int		main(void)
 	char		*str;
 	t_commands	command;
 	
+	init_all(&command);
 	make_pipe(fd_for_c, fd_for_p);
 	pid = fork();
 	if (pid != C_PROCESS)
@@ -15,7 +16,8 @@ int		main(void)
 		{
 			str = readline("minishell >");
 			add_history(str);
-			command.arg = 0;
+			split_and_parsing(str, &command);
+			free(str);
 		}
 	}
 }

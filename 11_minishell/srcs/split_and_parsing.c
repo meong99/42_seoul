@@ -1,0 +1,20 @@
+#include "minishell.h"
+
+char	**split_and_parsing(char *str, t_commands *commands)
+{
+	char	**result;
+	int		i;
+
+	i = -1;
+	result = ft_split_f(str, ' ', inside_quote);
+	while (result[++i])
+	{
+		if (ft_strnstr("<<><>>", result[i], 6))
+			commands->redirections = result[i];
+		else if (commands->com == NULL)
+			commands->com = result[i];
+		else
+			ft_lstadd_back(&commands->arg, ft_lstnew(result[i]));
+	}
+	return (result);
+}

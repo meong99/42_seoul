@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 11:26:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/07/08 18:04:16 by mchae            ###   ########.fr       */
+/*   Updated: 2021/09/15 20:42:53 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_itoa(int n);
+char	**ft_split_f(char const *s, char c, int (*f)(char *, char *));
 char	**ft_split(char const *s, char c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strjoin(char const *s1, char const *s2);

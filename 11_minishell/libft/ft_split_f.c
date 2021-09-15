@@ -6,19 +6,21 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:52:16 by mchae             #+#    #+#             */
-/*   Updated: 2021/09/15 16:52:18 by mchae            ###   ########.fr       */
+/*   Updated: 2021/09/15 21:28:20 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	get_arr_size(const char *s, char c, int (*f)(char *, char *))
+static size_t	get_arr_size(const char *str, char c, int (*f)(char *, char *))
 {
 	size_t	num;
 	size_t	i;
+	char	*s;
 
 	i = 0;
 	num = 0;
+	s = (char *)str;
 	while (s[i])
 	{
 		if (s[i] != c)
@@ -33,11 +35,14 @@ static size_t	get_arr_size(const char *s, char c, int (*f)(char *, char *))
 	return (num);
 }
 
-static size_t	get_alloc_size(char const *s, char c, int (*f)(char *, char *))
+static size_t	get_alloc_size(char const *str, char c, \
+int (*f)(char *, char *))
 {
 	size_t	i;
+	char	*s;
 
 	i = 0;
+	s = (char *)str;
 	while (s[i] && (s[i] != c || f(s, &s[i])))
 		i++;
 	return (i);
@@ -58,7 +63,7 @@ static void	*free_arr(char **double_str, size_t index)
 	return (NULL);
 }
 
-void	*copy_str(t_split *split, char *str, char c, int (*f)(char *, char *))
+static void	*copy_str(t_split *split, char *str, char c, int (*f)(char *, char *))
 {
 	char	*tmp;
 
@@ -75,12 +80,13 @@ void	*copy_str(t_split *split, char *str, char c, int (*f)(char *, char *))
 		while (1)
 		{
 			tmp = ft_strchr(tmp, c);
-			if (f(str, tmp))
+			if (tmp && f(str, tmp))
 				tmp++;
 			else
 				break ;
 		}
 	}
+	return (str);
 }
 
 char	**ft_split_f(char const *s, char c, int (*f)(char *, char *))
@@ -94,7 +100,8 @@ char	**ft_split_f(char const *s, char c, int (*f)(char *, char *))
 	split.double_str = (char **)malloc(sizeof(char *) * (split.arr_size + 1));
 	if (!split.double_str)
 		return (NULL);
-	copy_str(&split, s, c, f);
+	if (copy_str(&split, (char *)s, c, f) == NULL)
+		return (NULL);
 	split.double_str[split.index] = NULL;
 	return (split.double_str);
 }

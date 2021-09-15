@@ -9,9 +9,11 @@ LIBFT_PATH = libft
 
 SRCS = \
 	error.c\
+	init_all.c\
 	main.c\
 	pipe.c\
-	quotation_mark.c
+	quotation_mark.c\
+	split_and_parsing.c
 
 OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PAHT)/, $(OBJS_NAME))
@@ -24,7 +26,7 @@ ifeq ($(SANI), 1)
 endif
 
 $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
-	mkdir -p $(OBJS_PAHT)
+	@mkdir -p $(OBJS_PAHT)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(NAME) : $(OBJS)

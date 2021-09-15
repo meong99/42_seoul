@@ -12,24 +12,39 @@
 # define RET_ERR_CHAR 0
 # define C_PROCESS 0
 
-typedef struct	s_commands
+typedef struct s_commands
 {
 	char				*com;
-	char				*arg;
+	t_list				*arg;
 	char				*redirections;
 	char				*filename;
 	struct s_commands	*next;
-}				t_commands;
+}	t_commands;
 
 extern int rl_replace_line();
+
 /*
-** quotatio_mark.c 
+** error.c 
 */
-int			inside_quote(char *str, char *pointer);
+
+/*
+** init_all.c
+*/
+void	init_all(t_commands *commands);
 
 /*
 ** pipe.c 
 */
 void	make_pipe(int fd_for_c[2], int fd_for_p[2]);
+
+/*
+** quotatio_mark.c 
+*/
+int		inside_quote(char *str, char *pointer);
+
+/*
+** split_and_parsing.c 
+*/
+char	**split_and_parsing(char *str, t_commands *commands);
 
 #endif
