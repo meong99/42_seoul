@@ -47,6 +47,7 @@
       "random": "c",
       "_pid_t.h": "c",
       "_types.h": "c",
-      "errno.h": "c"
+      "errno.h": "c",
+      "minishell.h": "c"
     }
   }

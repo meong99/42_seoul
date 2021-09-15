@@ -8,7 +8,9 @@ SRCS_PAHT = srcs
 LIBFT_PATH = libft
 
 SRCS = \
-	test.c
+	error.c\
+	main.c\
+	quotation_mark.c
 
 OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PAHT)/, $(OBJS_NAME))
@@ -22,7 +24,7 @@ endif
 
 $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
 	mkdir -p $(OBJS_PAHT)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(NAME) : $(OBJS)
 	make -C libft
