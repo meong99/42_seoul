@@ -3,22 +3,12 @@
 int		main(void)
 {
 	int			pid;
-	int			fd[2];
+	int			fd_for_c[2], fd_for_p[2];
 	char		*str;
 	t_commands	command;
 	
-	pid = 1;
-	if (pipe(fd) == RET_ERR_INT)
-	{
-		printf("pipe error\n");
-		exit(errno);
-	}
-	// pid = fork();
-	// if (pid == RET_ERR_INT)
-	// {
-	// 	printf("fork error\n");
-	// 	exit(errno);
-	// }
+	make_pipe(fd_for_c, fd_for_p);
+	pid = fork();
 	if (pid != C_PROCESS)
 	{
 		while (true)

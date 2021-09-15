@@ -6,11 +6,17 @@
 
 char	get_mark(char *str)
 {
-	while (*str)
+	int	i;
+
+	i = -1;
+	while (str[++i])
 	{
-		if (*str == '\'' || *str == '\"')
-			return (*str);
-		str++;
+		if (str[i] == '\'' || str[i] == '\"')
+		{
+			if (i == 0 || str[i - 1] == '\\')	
+				continue ;
+			return (str[i]);
+		}
 	}
 	return (-1);
 }

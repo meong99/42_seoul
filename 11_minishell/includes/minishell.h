@@ -22,5 +22,14 @@ typedef struct	s_commands
 }				t_commands;
 
 extern int rl_replace_line();
+/*
+** quotatio_mark.c 
+*/
+int			inside_quote(char *str, char *pointer);
+
+/*
+** pipe.c 
+*/
+void	make_pipe(int fd_for_c[2], int fd_for_p[2]);
 
 #endif

@@ -10,6 +10,7 @@ LIBFT_PATH = libft
 SRCS = \
 	error.c\
 	main.c\
+	pipe.c\
 	quotation_mark.c
 
 OBJS_NAME = $(SRCS:.c=.o)
