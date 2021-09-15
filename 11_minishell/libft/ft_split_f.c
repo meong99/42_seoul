@@ -1,52 +1,16 @@
-#include <stdio.h>
-#include <unistd.h>
-#include "libft/libft.h"
-#include <stdbool.h>
-# include <readline/readline.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_f.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/15 16:52:16 by mchae             #+#    #+#             */
+/*   Updated: 2021/09/15 16:52:18 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char	get_mark(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] == '\'' || str[i] == '\"')
-		{
-			if (i == 0 || str[i - 1] == '\\')	
-				continue ;
-			return (str[i]);
-		}
-	}
-	return (-1);
-}
-
-int	inside_quote(char *str, char *pointer)
-{
-	char	mark;
-	char	*front;
-	char	*back;
-
-	if (str == NULL || pointer == NULL)
-		return (false);
-	front = str;
-	back = str;
-	while (front && back)
-	{
-		mark = get_mark(front);
-		if (mark == -1)
-			return (false);
-		front = ft_strchr(front, mark);
-		back = ft_strchr(front + 1, mark);
-		if (front && back)
-		{
-			if (front < pointer && pointer < back)
-				return (true);
-		}
-		front = back + 1;
-	}
-	return (false);
-}
+#include "libft.h"
 
 static size_t	get_arr_size(const char *s, char c, int (*f)(char *, char *))
 {
@@ -59,7 +23,7 @@ static size_t	get_arr_size(const char *s, char c, int (*f)(char *, char *))
 	{
 		if (s[i] != c)
 		{
-			while (s[i] && (s[i] != c || f(s, &s[i]) == true))
+			while (s[i] && (s[i] != c || f(s, &s[i]) == 1))
 				i++;
 			num++;
 		}
@@ -96,7 +60,7 @@ static void	*free_arr(char **double_str, size_t index)
 
 void	*copy_str(t_split *split, char *str, char c, int (*f)(char *, char *))
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = str;
 	while (split->arr_size--)
@@ -108,7 +72,7 @@ void	*copy_str(t_split *split, char *str, char c, int (*f)(char *, char *))
 		if (!split->double_str[split->index])
 			return (free_arr(split->double_str, split->index));
 		ft_strlcpy(split->double_str[split->index++], tmp, split->alloc_size);
-		while (true)
+		while (1)
 		{
 			tmp = ft_strchr(tmp, c);
 			if (f(str, tmp))
@@ -119,7 +83,7 @@ void	*copy_str(t_split *split, char *str, char c, int (*f)(char *, char *))
 	}
 }
 
-char	**my_split(char const *s, char c, int (*f)(char *, char *))
+char	**ft_split_f(char const *s, char c, int (*f)(char *, char *))
 {
 	t_split	split;
 
@@ -133,18 +97,4 @@ char	**my_split(char const *s, char c, int (*f)(char *, char *))
 	copy_str(&split, s, c, f);
 	split.double_str[split.index] = NULL;
 	return (split.double_str);
-}
-
-int main(void)
-{
-	char *str;
-	char **spl;
-
-	str = readline("in >");
-	spl = my_split(str, ' ', inside_quote);
-	while (*spl)
-	{
-		printf("%s\n", *spl);
-		spl++;
-	}
 }
