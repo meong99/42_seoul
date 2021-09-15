@@ -23,6 +23,11 @@ int			inside_quote(char *str, char *pointer)
 	char	*front;
 	char	*back;
 
+	if (str == NULL || pointer == NULL)
+	{
+		printf("Can't using NULL pointer in inside_quote()");
+		exit(0);
+	}
 	front = str;
 	back = str;
 	while (front && back)
