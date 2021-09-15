@@ -1,5 +1,10 @@
 #include "minishell.h"
 
+void	delon(void *asd)
+{
+	free(asd);
+}
+
 int		main(void)
 {
 	int			pid;
@@ -18,6 +23,12 @@ int		main(void)
 			add_history(str);
 			split_and_parsing(str, &command);
 			free(str);
+			ft_lstclear(&command.arg, delon);
+			free(command.com);
+			free(command.delimiter);
+			free(command.filename);
+			free(command.redirections);
+			init_all(&command);
 		}
 	}
 }

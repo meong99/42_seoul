@@ -9,6 +9,7 @@ LIBFT_PATH = libft
 
 SRCS = \
 	error.c\
+	heredoc.c\
 	init_all.c\
 	main.c\
 	pipe.c\

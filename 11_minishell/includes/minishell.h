@@ -18,6 +18,7 @@ typedef struct s_commands
 	t_list				*arg;
 	char				*redirections;
 	char				*filename;
+	char				*delimiter;
 	struct s_commands	*next;
 }	t_commands;
 
@@ -26,6 +27,11 @@ extern int rl_replace_line();
 /*
 ** error.c 
 */
+
+/*
+** heredoc.c 
+*/
+char	*get_hererdocs_input(t_commands *commands);
 
 /*
 ** init_all.c

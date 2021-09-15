@@ -48,6 +48,7 @@
       "_pid_t.h": "c",
       "_types.h": "c",
       "errno.h": "c",
-      "minishell.h": "c"
+      "minishell.h": "c",
+      "functional": "c"
     }
   }
