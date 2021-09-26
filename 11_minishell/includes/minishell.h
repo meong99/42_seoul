@@ -17,9 +17,9 @@ typedef struct s_commands
 {
 	char	*com;
 	t_list	*arg;
-	char	*redirections;
-	char	*filename;
-	char	*delimiter;
+	t_list	*redirections;
+	t_list	*filename;
+	t_list	*delimiter;
 	int		index;
 	int		total_index;
 }	t_commands;

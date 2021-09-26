@@ -26,14 +26,15 @@ void	split_space(char *str, t_commands *commands)
 	result = ft_split_f(str, ' ', inside_quote);
 	while (result[++i])
 	{
-		if (ft_strnstr("><>>", result[i], 4))
-			commands->redirections = ft_strdup(result[i]);
+		if (ft_strnstr("<<><>>", result[i], 4))
+			ft_lstadd_back(&commands->redirections, \
+				ft_lstnew(ft_strdup(result[i])));
 		else if (i > 0 && ft_strnstr("><>>", result[i - 1], 4))
-			commands->filename = ft_strdup(result[i]);
-		else if (ft_strncmp("<<", result[i], 2) == 0)
-			commands->redirections = ft_strdup(result[i]);
+			ft_lstadd_back(&commands->filename, \
+				ft_lstnew(ft_strdup(result[i])));
 		else if (i > 0 && ft_strncmp("<<", result[i - 1], 2) == 0)
-			commands->delimiter = ft_strdup(result[i]);
+			ft_lstadd_back(&commands->delimiter, \
+				ft_lstnew(ft_strdup(result[i])));
 		else if (commands->com == NULL)
 			commands->com = ft_strdup(result[i]);
 		else
@@ -55,6 +56,7 @@ t_commands	*split_pipe(char *str)
 	while (tmp[com_count])
 		com_count++;
 	commands = malloc(sizeof(t_commands) * com_count);
+	init_all(commands);
 	while (++i < com_count)
 	{
 		split_space(tmp[i], &commands[i]);
