@@ -16,7 +16,7 @@
 typedef struct s_commands
 {
 	char	*com;
-	char	**arg;
+	t_list	*arg;
 	char	*redirections;
 	char	*filename;
 	char	*delimiter;
@@ -33,11 +33,11 @@ typedef struct s_fd
 extern int rl_replace_line();
 
 /*
-** error.c 
+** error.c
 */
 
 /*
-** heredoc.c 
+** heredoc.c
 */
 char		*get_hererdocs_input(t_commands *commands);
 
@@ -47,12 +47,12 @@ char		*get_hererdocs_input(t_commands *commands);
 void		init_all(t_commands *commands);
 
 /*
-** pipe.c 
+** pipe.c
 */
 void		make_pipe(t_fd *fd);
 
 /*
-** quotatio_mark.c 
+** quotatio_mark.c
 */
 int			inside_quote(char *str, char *pointer);
 
@@ -67,7 +67,7 @@ void		run_c_process(t_commands *commands, t_fd *fd);
 void		run_p_process(t_commands *commands, t_fd *fd);
 
 /*
-** split_and_parsing.c 
+** split_and_parsing.c
 */
 char		**split_before_char(char *str, char c);
 void		split_space(char *str, t_commands *commands);

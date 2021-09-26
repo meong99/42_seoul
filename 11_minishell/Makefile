@@ -1,7 +1,7 @@
 NAME = minishell
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-LINK_RDLINE = -L/usr/local/opt/readline/lib -I/usr/local/opt/readline/include -lreadline
+LINK_RDLINE = $(CPPFLAGS) $(LDFLAGS) -lreadline
 INC = -I includes
 OBJS_PAHT = objs
 SRCS_PAHT = srcs
@@ -17,7 +17,7 @@ SRCS = \
 	quotation_mark.c\
 	run_c_process.c\
 	run_p_process.c\
-	split_and_parsing.c
+	split_and_pars.c
 
 OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PAHT)/, $(OBJS_NAME))
