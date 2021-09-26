@@ -21,15 +21,9 @@ void	split_space(char *str, t_commands *commands)
 {
 	char	**result;
 	int		i;
-	int		j;
 
 	i = -1;
-	j = 0;
 	result = ft_split_f(str, ' ', inside_quote);
-	while (result[j])
-		j++;
-	commands->arg = malloc(sizeof(char*) * j + 1);
-	j = -1;
 	while (result[++i])
 	{
 		if (ft_strnstr("><>>", result[i], 4))
@@ -43,9 +37,8 @@ void	split_space(char *str, t_commands *commands)
 		else if (commands->com == NULL)
 			commands->com = ft_strdup(result[i]);
 		else
-			commands->arg[++j] = ft_strdup(result[i]);
+			ft_lstadd_back(&commands->arg, ft_lstnew(ft_strdup(result[i])));
 	}
-	commands->arg[++j] = NULL;
 	ft_free(result, 0, true);
 }
 
