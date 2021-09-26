@@ -9,11 +9,14 @@ LIBFT_PATH = libft
 
 SRCS = \
 	error.c\
+	exe_commands.c\
 	heredoc.c\
 	init_all.c\
 	main.c\
 	pipe.c\
 	quotation_mark.c\
+	run_c_process.c\
+	run_p_process.c\
 	split_and_parsing.c
 
 OBJS_NAME = $(SRCS:.c=.o)

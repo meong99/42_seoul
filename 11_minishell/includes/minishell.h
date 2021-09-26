@@ -2,25 +2,33 @@
 # define MINISEHLL_H
 
 # include <stdio.h>
-# include <unistd.h>
 # include <errno.h>
 # include <readline/readline.h>
-# include <stdbool.h>
 # include "libft.h"
+# include <stdbool.h>
 
 # define RET_ERR_INT -1
 # define RET_ERR_CHAR 0
 # define C_PROCESS 0
+# define FOR_READ 0
+# define FOR_WRITE 1
 
 typedef struct s_commands
 {
-	char				*com;
-	t_list				*arg;
-	char				*redirections;
-	char				*filename;
-	char				*delimiter;
-	struct s_commands	*next;
+	char	*com;
+	char	**arg;
+	char	*redirections;
+	char	*filename;
+	char	*delimiter;
+	int		index;
+	int		total_index;
 }	t_commands;
+
+typedef struct s_fd
+{
+	int	fd_to_c[2];
+	int	fd_to_p[2];
+}	t_fd;
 
 extern int rl_replace_line();
 
@@ -31,26 +39,38 @@ extern int rl_replace_line();
 /*
 ** heredoc.c 
 */
-char	*get_hererdocs_input(t_commands *commands);
+char		*get_hererdocs_input(t_commands *commands);
 
 /*
 ** init_all.c
 */
-void	init_all(t_commands *commands);
+void		init_all(t_commands *commands);
 
 /*
 ** pipe.c 
 */
-void	make_pipe(int fd_for_c[2], int fd_for_p[2]);
+void		make_pipe(t_fd *fd);
 
 /*
 ** quotatio_mark.c 
 */
-int		inside_quote(char *str, char *pointer);
+int			inside_quote(char *str, char *pointer);
+
+/*
+** run_c_process.c
+*/
+void		run_c_process(t_commands *commands, t_fd *fd);
+
+/*
+** run_p_process.c
+*/
+void		run_p_process(t_commands *commands, t_fd *fd);
 
 /*
 ** split_and_parsing.c 
 */
-char	**split_and_parsing(char *str, t_commands *commands);
+char		**split_before_char(char *str, char c);
+void		split_space(char *str, t_commands *commands);
+t_commands	*split_pipe(char *str);
 
 #endif

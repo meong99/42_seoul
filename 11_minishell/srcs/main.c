@@ -1,34 +1,33 @@
 #include "minishell.h"
 
-void	delon(void *asd)
+void	prt(void *str)
 {
-	free(asd);
+	printf("%s ", (char*)str);
 }
 
 int		main(void)
 {
-	int			pid;
-	int			fd_for_c[2], fd_for_p[2];
+	t_commands	*commands;
 	char		*str;
-	t_commands	command;
+
+	str = readline("minishell >");
+	commands = split_pipe(str);
 	
-	init_all(&command);
-	make_pipe(fd_for_c, fd_for_p);
-	pid = fork();
-	if (pid != C_PROCESS)
+	for (int i = 0; i < commands[i].total_index; i++)
 	{
-		while (true)
-		{
-			str = readline("minishell >");
-			add_history(str);
-			split_and_parsing(str, &command);
-			free(str);
-			ft_lstclear(&command.arg, delon);
-			free(command.com);
-			free(command.delimiter);
-			free(command.filename);
-			free(command.redirections);
-			init_all(&command);
-		}
+		printf("com=%s ", commands[i].com);
+		for (int j = 0; commands[i].arg[j]; j++)
+			printf("arg=%s ", commands[i].arg[j]);
+		printf("re=%s ", commands[i].redirections);
+		printf("file=%s ", commands[i].filename);
+		printf("del=%s ", commands[i].delimiter);
+		printf("\n");
 	}
+		
+	// make_pipe(&fd);
+	// while (true)
+	// {
+	// 	run_p_process(&commands, &fd);
+	// }
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:18:07 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/22 20:06:28 by mchae            ###   ########.fr       */
+/*   Updated: 2021/09/16 14:38:52 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 	if (!del)
 		return ;
 	(*del)(lst->content);
+	lst->content = 0;
 }

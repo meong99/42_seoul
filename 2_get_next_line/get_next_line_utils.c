@@ -6,16 +6,16 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 14:47:01 by mchae             #+#    #+#             */
-/*   Updated: 2020/10/29 08:00:40 by mchae            ###   ########.fr       */
+/*   Updated: 2021/09/16 21:12:51 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	free_buff(t_list **head, int fd)
+void	free_buff(t_gnl **head, int fd)
 {
-	t_list	*temp;
-	t_list	*free_list;
+	t_gnl	*temp;
+	t_gnl	*free_list;
 
 	temp = *head;
 	if (temp->fd == fd)
@@ -33,7 +33,7 @@ void	free_buff(t_list **head, int fd)
 	free(free_list);
 }
 
-t_list	*find_buff(t_list *lst_buff, int fd)
+t_gnl	*find_buff(t_gnl *lst_buff, int fd)
 {
 	while (lst_buff)
 	{
@@ -47,11 +47,11 @@ t_list	*find_buff(t_list *lst_buff, int fd)
 	return (lst_buff);
 }
 
-t_list	*new_buff(int fd)
+t_gnl	*new_buff(int fd)
 {
-	t_list *new;
+	t_gnl *new;
 
-	if (!(new = malloc(sizeof(t_list))))
+	if (!(new = malloc(sizeof(t_gnl))))
 		return (0);
 	if (!(new->buff = malloc(1)))
 		return (0);
@@ -61,7 +61,7 @@ t_list	*new_buff(int fd)
 	return (new);
 }
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+size_t	gnl_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t i;
 
@@ -80,7 +80,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	return (i);
 }
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+size_t	gnl_strlcat(char *dest, const char *src, size_t size)
 {
 	size_t j;
 	size_t i;

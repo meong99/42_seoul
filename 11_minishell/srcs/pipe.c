@@ -1,15 +1,20 @@
 #include "minishell.h"
 
-void	make_pipe(int fd_for_c[2], int fd_for_p[2])
+void	make_pipe(t_fd *fd)
 {
-	if (pipe(fd_for_c) == RET_ERR_INT)
+	int	*fd_to_c;
+	int	*fd_to_p;
+
+	fd_to_c = fd->fd_to_c;
+	fd_to_p = fd->fd_to_p;
+	if (pipe(fd_to_c) == RET_ERR_INT)
 	{
-		printf("child pipe error\n");
+		printf("error occurred when sending value to child process\n");
 		exit(errno);
 	}
-	if (pipe(fd_for_p) == RET_ERR_INT)
+	if (pipe(fd_to_p) == RET_ERR_INT)
 	{
-		printf("parent pipe error\n");
+		printf("error occurred when sending value to parent process\n");
 		exit(errno);
 	}
 }

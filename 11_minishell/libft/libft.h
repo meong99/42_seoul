@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 11:26:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/09/15 20:42:34 by mchae            ###   ########.fr       */
+/*   Updated: 2021/09/16 15:57:17 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		ft_isascii(int num);
 int		ft_isdigit(int num);
 int		ft_isprint(int num);
 
+char	*ft_strchr_f(const char *s, int c, int (*f)(char *, char *));
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
