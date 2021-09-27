@@ -3,11 +3,15 @@
 int	ret_timestamp(t_philo *philo)
 {
 	struct timeval	get_time;
+	struct timeval	first_meal;
 	int				timestamp;
 
+	first_meal = philo->variable->first_meal_time;
+	if (first_meal.tv_sec == 0)
+		return (0);
 	gettimeofday(&get_time, NULL);
-	timestamp = get_time.tv_usec - philo->variable->first_meal_time.tv_usec + \
-		(get_time.tv_sec - philo->variable->first_meal_time.tv_sec) * 1000000;
+	timestamp = (get_time.tv_sec * 1000000 + get_time.tv_usec) - \
+		(first_meal.tv_sec * 1000000 + first_meal.tv_usec);
 	return (timestamp);
 }
 
