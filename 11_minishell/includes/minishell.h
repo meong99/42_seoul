@@ -22,7 +22,7 @@ typedef struct s_commands
 	t_list	*filename;
 	t_list	*delimiter;
 	int		index;
-	int		total_index;
+	int		count_pipe;
 }	t_commands;
 
 typedef struct s_fd

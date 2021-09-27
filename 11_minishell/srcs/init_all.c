@@ -9,5 +9,5 @@ void	init_all(t_commands *commands)
 	commands->com = NULL;
 	commands->delimiter = NULL;
 	commands->index = 0;
-	commands->total_index = 0;
+	commands->count_pipe = 0;
 }

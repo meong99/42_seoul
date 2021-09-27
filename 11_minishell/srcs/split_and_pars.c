@@ -46,22 +46,22 @@ void	split_space(char *str, t_commands *commands)
 t_commands	*split_pipe(char *str)
 {
 	char		**tmp;
-	int			com_count;
+	int			count_pipe;
 	int			i;
 	t_commands	*commands;
 
 	i = -1;
-	com_count = 0;
+	count_pipe = 0;
 	tmp = ft_split_f(str, '|', inside_quote);
-	while (tmp[com_count])
-		com_count++;
-	commands = malloc(sizeof(t_commands) * com_count);
+	while (tmp[count_pipe])
+		count_pipe++;
+	commands = malloc(sizeof(t_commands) * count_pipe);
 	init_all(commands);
-	while (++i < com_count)
+	while (++i < count_pipe)
 	{
 		split_space(tmp[i], &commands[i]);
 		commands[i].index = i;
-		commands[i].total_index = com_count;
+		commands[i].count_pipe = count_pipe;
 	}
 	return (commands);
 }

@@ -18,7 +18,7 @@ int		main(void)
 		add_history(str);
 		commands = split_pipe(str);
 
-		for (int i = 0; i < commands[i].total_index; i++)
+		for (int i = 0; i < commands[i].count_pipe; i++)
 		{
 			printf("com=%s ", commands[i].com);
 			ft_lstiter(commands->arg, arg);
