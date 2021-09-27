@@ -17,7 +17,8 @@ SRCS = \
 	quotation_mark.c\
 	run_c_process.c\
 	run_p_process.c\
-	split_and_pars.c
+	split_and_pars.c\
+	temp.c
 
 OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PAHT)/, $(OBJS_NAME))

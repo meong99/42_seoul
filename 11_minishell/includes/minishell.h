@@ -6,6 +6,7 @@
 # include <readline/readline.h>
 # include "libft.h"
 # include <stdbool.h>
+# include <signal.h>
 
 # define RET_ERR_INT -1
 # define RET_ERR_CHAR 0
