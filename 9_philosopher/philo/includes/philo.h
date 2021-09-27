@@ -71,13 +71,13 @@ t_philo	*init_philos(t_variable *variable, t_mutex *mutex);
 /*
 ** thread_philo.c 
 */
+int		ret_timestamp(t_philo *philo);
+int		print_status(t_philo *philo, char *str, int status, int philo_num);
 void	*thread_philo(void *start_routine);
 
 /*
 ** util.c 
 */
-int		ret_timestamp(t_philo *philo);
-int		print_status(t_philo *philo, char *str, int status, int philo_num);
 int		ft_usleep(t_philo *philo, int time, int timestamp);
 int		ft_isdigit(int num);
 int		ft_atoi(const char *str);
