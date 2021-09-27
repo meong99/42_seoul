@@ -6,7 +6,7 @@ size_t	ret_timestamp(void)
 	size_t			timestamp;
 
 	gettimeofday(&get_time, NULL);
-	timestamp = get_time.tv_sec * 1000 + get_time.tv_usec / 1000;
+	timestamp = get_time.tv_sec * 1000000 + get_time.tv_usec;
 	return (timestamp);
 }
 
@@ -19,7 +19,7 @@ int	print_status(t_philo *philo, char *str, int status, int philo_number)
 		return (RET_DEAD);
 	timestamp = ret_timestamp();
 	printf("%zu philo_%d %s\n", \
-		timestamp - philo->variable->start_time, philo_number, str);
+		(timestamp - philo->variable->start_time) / 1000, philo_number, str);
 	pthread_mutex_unlock(&philo->mutex->mutex_print);
 	if (status == STATUS_EAT)
 	{
@@ -36,10 +36,10 @@ int	ft_usleep(size_t time, size_t timestamp)
 	size_t			time_taken;
 
 	time_taken = 0;
-	while (time_taken <= time)
+	while (time_taken <= time * 1000)
 	{
 		time_taken = ret_timestamp() - timestamp;
-		usleep(time);
+		usleep(1);
 	}
 	return (RET_OK);
 }

@@ -10,7 +10,7 @@ static int	check_end_conditions(t_philo *philo, t_variable *variable)
 	{
 		timestamp = ret_timestamp();
 		if (timestamp - philo[i].last_meal_time >= \
-			variable->time_to_die && philo[i].last_meal_time)
+			variable->time_to_die * 1000 && philo[i].last_meal_time)
 		{
 			variable->philo_alive = FALSE;
 			print_status(philo, "died", STATUS_END, i + 1);
