@@ -1,6 +1,6 @@
 #include "philo.h"
 
-static int	philo_eat(t_philo *philo)
+static int	taken_fork(t_philo *philo)
 {
 	if (pthread_mutex_lock(\
 		&philo->mutex->mutex_forks[philo->fork_number[LEFT]]) != RET_OK)
@@ -19,6 +19,13 @@ static int	philo_eat(t_philo *philo)
 		return (RET_DEAD);
 	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->fork_number[RIGHT]]);
 	pthread_mutex_unlock(&philo->mutex->mutex_forks[philo->fork_number[LEFT]]);
+	return (RET_OK);
+}
+
+static int	philo_eat(t_philo *philo)
+{
+	if (taken_fork(philo) != RET_OK)
+		return (RET_ERROR);
 	philo->have_meal++;
 	if (philo->have_meal == philo->variable->must_eat)
 	{
@@ -33,8 +40,11 @@ void	*thread_philo(void *start_routine)
 	t_philo	*philo;
 
 	philo = (t_philo *)start_routine;
-	if (philo->variable->first_meal_time.tv_sec == 0)
-		gettimeofday(&philo->variable->first_meal_time, NULL);
+	if (philo->variable->start_time == 0)
+	{
+		philo->variable->start_time = ret_timestamp();
+		philo->last_meal_time = philo->variable->start_time;
+	}
 	while (philo->variable->philo_alive == TRUE)
 	{
 		if (philo_eat(philo) != RET_OK)

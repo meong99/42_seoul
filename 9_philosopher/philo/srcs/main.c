@@ -2,15 +2,15 @@
 
 static int	check_end_conditions(t_philo *philo, t_variable *variable)
 {
-	int	timestamp;
+	size_t	timestamp;
 	int	i;
 
 	i = -1;
 	while (++i < variable->num_of_philos)
 	{
-		timestamp = ret_timestamp(philo);
-		if ((timestamp - philo[i].last_meal_time) / 1000 >= \
-			variable->time_to_die)
+		timestamp = ret_timestamp();
+		if (timestamp - philo[i].last_meal_time >= \
+			variable->time_to_die && philo[i].last_meal_time)
 		{
 			variable->philo_alive = FALSE;
 			print_status(philo, "died", STATUS_END, i + 1);
@@ -46,25 +46,6 @@ static int	create_thread(t_philo *philo, int num, int num_of_philos)
 	return (RET_OK);
 }
 
-static int	sleep_until_even_eat(t_variable variable)
-{
-	struct timeval	get_time;
-	struct timeval	timestamp;
-	int				time_taken;
-
-	gettimeofday(&get_time, NULL);
-	while (TRUE)
-	{
-		gettimeofday(&timestamp, NULL);
-		time_taken = timestamp.tv_usec - get_time.tv_usec + \
-			(timestamp.tv_sec - get_time.tv_sec) * 1000000;
-		if (time_taken > variable.time_to_eat * 900)
-			break ;
-		usleep(variable.time_to_eat);
-	}
-	return (RET_OK);
-}
-
 int	main(int ac, char **av)
 {
 	int				i;
@@ -81,7 +62,7 @@ int	main(int ac, char **av)
 	if (philo == NULL)
 		return (RET_ERROR);
 	create_thread(philo, EVEN, variable.num_of_philos);
-	sleep_until_even_eat(variable);
+	ft_usleep(philo->variable->time_to_eat, ret_timestamp());
 	create_thread(philo, ODD, variable.num_of_philos);
 	check_end_conditions(philo, &variable);
 	return (RET_OK);

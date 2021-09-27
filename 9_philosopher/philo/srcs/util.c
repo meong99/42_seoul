@@ -1,44 +1,44 @@
 #include "philo.h"
 
-int	ret_timestamp(t_philo *philo)
+size_t	ret_timestamp(void)
 {
 	struct timeval	get_time;
-	int				timestamp;
+	size_t			timestamp;
 
 	gettimeofday(&get_time, NULL);
-	timestamp = get_time.tv_usec - philo->variable->first_meal_time.tv_usec + \
-		(get_time.tv_sec - philo->variable->first_meal_time.tv_sec) * 1000000;
+	timestamp = get_time.tv_sec * 1000 + get_time.tv_usec / 1000;
 	return (timestamp);
 }
 
 int	print_status(t_philo *philo, char *str, int status, int philo_number)
 {
-	int	timestamp;
+	size_t	timestamp;
 
-	pthread_mutex_lock(&philo->mutex->mutex_print);
-	if (status != STATUS_END && philo->variable->philo_alive == FALSE)
+	if (!pthread_mutex_lock(&philo->mutex->mutex_print) && \
+		status != STATUS_END && philo->variable->philo_alive == FALSE)
 		return (RET_DEAD);
-	timestamp = ret_timestamp(philo);
-	printf("%d philo_%d %s\n", timestamp / 1000, philo_number, str);
+	timestamp = ret_timestamp();
+	printf("%zu philo_%d %s\n", \
+		timestamp - philo->variable->start_time, philo_number, str);
 	pthread_mutex_unlock(&philo->mutex->mutex_print);
 	if (status == STATUS_EAT)
 	{
 		philo->last_meal_time = timestamp;
-		ft_usleep(philo, philo->variable->time_to_eat, timestamp);
+		ft_usleep(philo->variable->time_to_eat, timestamp);
 	}
 	if (status == STATUS_SLEEP)
-		ft_usleep(philo, philo->variable->time_to_sleep, timestamp);
+		ft_usleep(philo->variable->time_to_sleep, timestamp);
 	return (RET_OK);
 }
 
-int	ft_usleep(t_philo *philo, int time, int timestamp)
+int	ft_usleep(size_t time, size_t timestamp)
 {
-	int	time_taken;
+	size_t			time_taken;
 
 	time_taken = 0;
-	while (time_taken <= timestamp + time * 1000)
+	while (time_taken <= time)
 	{
-		time_taken = ret_timestamp(philo);
+		time_taken = ret_timestamp() - timestamp;
 		usleep(time);
 	}
 	return (RET_OK);

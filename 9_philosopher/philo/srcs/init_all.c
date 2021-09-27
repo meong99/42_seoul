@@ -12,8 +12,7 @@ void	init_varialbe(int ac, char **av, t_variable *variable)
 	variable->time_to_sleep = ft_atoi(av[4]);
 	variable->finished_meal = 0;
 	variable->philo_alive = TRUE;
-	variable->first_meal_time.tv_sec = 0;
-	variable->first_meal_time.tv_usec = 0;
+	variable->start_time = 0;
 }
 
 int	init_mutex(t_mutex *mutex, t_variable *variable)

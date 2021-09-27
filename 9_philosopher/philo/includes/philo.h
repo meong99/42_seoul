@@ -31,22 +31,22 @@ typedef struct s_mutex
 
 typedef struct s_variable
 {
-	struct timeval	first_meal_time;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				must_eat;
-	int				num_of_philos;
-	int				finished_meal;
-	int				philo_alive;
+	size_t	start_time;
+	size_t	time_to_die;
+	size_t	time_to_eat;
+	size_t	time_to_sleep;
+	int		must_eat;
+	int		num_of_philos;
+	int		finished_meal;
+	int		philo_alive;
 }	t_variable;
 
 typedef struct s_philo
 {
 	int			fork_number[2];
-	int			last_meal_time;
 	int			philo_number;
 	int			have_meal;
+	size_t		last_meal_time;
 	pthread_t	philo_tid;
 	t_mutex		*mutex;
 	t_variable	*variable;
@@ -76,9 +76,9 @@ void	*thread_philo(void *start_routine);
 /*
 ** util.c 
 */
-int		ret_timestamp(t_philo *philo);
+size_t	ret_timestamp(void);
 int		print_status(t_philo *philo, char *str, int status, int philo_num);
-int		ft_usleep(t_philo *philo, int time, int timestamp);
+int		ft_usleep(size_t time, size_t timestamp);
 int		ft_isdigit(int num);
 int		ft_atoi(const char *str);
 
