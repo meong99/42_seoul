@@ -5,7 +5,7 @@ void	delon(void *asd)
 	free(asd);
 }
 
-void	run_p_process(t_commands *commands, t_fd *fd)
+void	run_p_process(t_commands *commands)
 {
 	char	*str;
 	char	**split;
@@ -32,8 +32,6 @@ void	run_p_process(t_commands *commands, t_fd *fd)
 		}
 		if (pid[i])
 		{
-			write(fd->fd_to_c[FOR_WRITE], split[i], ft_strlen(split[i]));
-			write(fd->fd_to_c[FOR_WRITE], "\n", 1);
 			if (wait(&wstatus) == -1)
 			{
 				printf("wait error\n");
@@ -41,8 +39,6 @@ void	run_p_process(t_commands *commands, t_fd *fd)
 			}
 			printf("parent working\n");
 		}
-		else
-			run_c_process(commands, fd);
 	}
 	free(str);
 	ft_free(split, 0, true);

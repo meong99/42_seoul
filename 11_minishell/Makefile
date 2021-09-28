@@ -8,6 +8,7 @@ SRCS_PAHT = srcs
 LIBFT_PATH = libft
 
 SRCS = \
+	com_cd.c com_env.c com_exit.c com_export.c com_pwd.c com_unset.c\
 	error.c\
 	exe_commands.c\
 	heredoc.c\

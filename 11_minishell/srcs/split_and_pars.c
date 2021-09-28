@@ -57,6 +57,7 @@ t_commands	*split_pipe(char *str)
 		count_pipe++;
 	commands = malloc(sizeof(t_commands) * count_pipe);
 	init_all(commands);
+	commands->fd = make_pipe(commands);
 	while (++i < count_pipe)
 	{
 		split_space(tmp[i], &commands[i]);
