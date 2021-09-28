@@ -18,6 +18,7 @@ static int	check_end_conditions(t_philo *philo, t_variable *variable)
 		}
 		else if (variable->finished_meal == variable->num_of_philos)
 		{
+			variable->philo_alive = FALSE;
 			print_status(philo, "End of meal", STATUS_END, i + 1);
 			break ;
 		}
