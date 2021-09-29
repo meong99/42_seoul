@@ -9,6 +9,9 @@ void	print_err(int err_code)
 {
 	char	*str;
 
-	str = strerror(err_code);
+	if (err_code == 0)
+		return ;
+	str = strerror(errno);
 	printf("minishell: %s\n", str);
+	free(str);
 }

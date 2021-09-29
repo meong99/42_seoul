@@ -47,5 +47,4 @@ void	run_p_process(t_commands *commands)
 	free(commands->delimiter);
 	free(commands->filename);
 	free(commands->redirections);
-	init_all(commands);
 }

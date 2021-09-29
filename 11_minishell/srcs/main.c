@@ -5,11 +5,15 @@ void	file(void *str);
 void	del(void *str);
 void	delete(void *str);
 
-int		main(void)
+int		main(int ac, char **av, char **envp)
 {
 	t_commands	*commands;
+	t_env		*env;
 	char		*str;
 
+	ac = 0;
+	av = 0;
+	env = init_env(envp);
 	while (1)
 	{
 		str = readline("minishell >");
@@ -27,6 +31,7 @@ int		main(void)
 			ft_lstiter(commands->delimiter, del);
 			printf("\n");
 		}
+		exe_commands(commands);
 		free(commands->com);
 		ft_lstclear(&commands->arg, delete);
 		ft_lstclear(&commands->redirections, delete);

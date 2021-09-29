@@ -13,11 +13,14 @@ static char	*join_arg(t_list *arg)
 	while (temp)
 	{
 		tmp_str = str;
-		str = ft_strjoin(tmp_str, " ");
-		free(tmp_str);
-		tmp_str = str;
 		str = ft_strjoin(tmp_str, (char*)temp->content);
 		free(tmp_str);
+		if (temp->next != NULL)
+		{
+			tmp_str = str;
+			str = ft_strjoin(tmp_str, " ");
+			free(tmp_str);
+		}
 		temp = temp->next;
 	}
 	return (str);
@@ -31,5 +34,8 @@ void		exe_cd(t_commands *commands)
 
 	pwd = getcwd(NULL, 0);
 	str = join_arg(commands->arg);
+	printf("%s\n", str);
 	err_code = chdir(str);
+	print_err(err_code);
+	free(str);
 }

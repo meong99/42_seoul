@@ -15,6 +15,13 @@
 # define FOR_READ 0
 # define FOR_WRITE 1
 
+typedef struct s_env
+{
+	char			*key;
+	char			*value;
+	struct s_env	*next;
+}	t_env;
+
 typedef struct s_commands
 {
 	char	*com;
@@ -25,6 +32,7 @@ typedef struct s_commands
 	int		index;
 	int		count_pipe;
 	int		**fd;
+	t_env	*env;
 }	t_commands;
 
 extern int rl_replace_line();
@@ -32,7 +40,8 @@ extern int rl_replace_line();
 /*
 ** init_all.c
 */
-void		init_all(t_commands *commands);
+t_env		*init_env(char **envp);
+void		init_commands(t_commands *commands, t_env *env);
 
 /*
 ** pipe.c
@@ -50,6 +59,8 @@ t_commands	*split_pipe(char *str);
 ** com*.c
 */
 void	exe_cd(t_commands *commands);
+void	exe_pwd();
+void	exe_export(t_commands *commands, t_env *env);
 
 /*
 ** error.c
@@ -57,6 +68,7 @@ void	exe_cd(t_commands *commands);
 void	print_err(int err_code);
 
 
+void	exe_commands(t_commands *commands);
 
 
 
