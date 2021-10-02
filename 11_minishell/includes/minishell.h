@@ -14,6 +14,7 @@
 # define C_PROCESS 0
 # define FOR_READ 0
 # define FOR_WRITE 1
+# define NOT_FOUND NULL
 
 typedef struct s_env
 {
@@ -58,20 +59,22 @@ void		split_space(char *str, t_commands *commands);
 t_commands	*split_pipe(char *str);
 
 /*
+** com_export*.c
+*/
+int		exe_export(t_commands *commands);
+void	sorting_export();
+int		check_export_error(char *key, char *arg);
+
+
+/*
 ** com*.c
 */
 void	exe_cd(t_commands *commands);
 void	exe_pwd();
-/*
-** com_export*.c
-*/
-void	exe_export(t_commands *commands);
-void	sorting_export();
 
 /*
 ** error.c
 */
-void	print_err(int err_code);
 
 
 void	exe_commands(t_commands *commands);

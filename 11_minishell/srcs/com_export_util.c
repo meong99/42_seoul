@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static t_env	*ret_befor(t_env *criteria)
+static t_env		*ret_befor(t_env *criteria)
 {
 	t_env	*head;
 
@@ -14,7 +14,7 @@ static t_env	*ret_befor(t_env *criteria)
 	return (NULL);
 }
 
-static void	swap_node(t_env *set, t_env *compare)
+static void			swap_node(t_env *set, t_env *compare)
 {
 	t_env	*befor_set;
 	t_env	*befor_com;
@@ -32,7 +32,15 @@ static void	swap_node(t_env *set, t_env *compare)
 	compare->next = temp;
 }
 
-void		sorting_export()
+static size_t		ret_longer(char *str_1, char *str_2)
+{
+	if (ft_strlen(str_1) > ft_strlen(str_2))
+		return (ft_strlen(str_1));
+	else
+		return (ft_strlen(str_2));
+}
+
+void				sorting_export()
 {
 	t_env	*set;
 	t_env	*compare;
@@ -45,10 +53,7 @@ void		sorting_export()
 		compare = set->next;
 		while (compare)
 		{
-			if (ft_strlen(compare->key) > ft_strlen(set->key))
-				len = ft_strlen(compare->key);
-			else
-				len = ft_strlen(set->key);
+			len = ret_longer(set->key, compare->key);
 			if (ft_strncmp(set->key, compare->key, len) > 0)
 			{
 				swap_node(set, compare);

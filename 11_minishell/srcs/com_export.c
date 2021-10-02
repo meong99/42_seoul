@@ -38,7 +38,7 @@ static void		ft_putenv(char *key, char *value)
 	temp->next = new_node(key, value);
 }
 
-static void		print_env()
+static int		print_env()
 {
 	t_env	*temp;
 
@@ -48,9 +48,10 @@ static void		print_env()
 		printf("declare -x %s=\"%s\"\n", temp->key, temp->value);
 		temp = temp->next;
 	}
+	return (0);
 }
 
-void			exe_export(t_commands *commands)
+int				exe_export(t_commands *commands)
 {
 	char	*str;
 	char	**split_var;
@@ -59,20 +60,19 @@ void			exe_export(t_commands *commands)
 	node = commands->arg;
 	sorting_export();
 	if (node == NULL)
-	{
-		print_env();
-		return ;
-	}
+		return(print_env());
 	while (node)
 	{
 		split_var = ft_split((char*)node->content, '=');
 		str = getenv(split_var[0]);
-		if (str == NULL)
+		if (str == NOT_FOUND && !check_export_error(split_var[0], \
+			(char*)node->content))
 			ft_putenv(split_var[0], split_var[1]);
-		else
+		else if (str)
 			mapping_value(split_var[0], split_var[1]);
 		sorting_export();
 		ft_free(split_var, 0, true);
 		node = node->next;
 	}
+	return (0);
 }

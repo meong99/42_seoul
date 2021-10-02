@@ -9,7 +9,9 @@ int		main(int ac, char **av, char **envp)
 {
 	t_commands	*commands;
 	char		*str;
+	int			pid;
 
+	pid = 1;
 	ac = 0;
 	av = 0;
 	init_env(envp);
@@ -31,6 +33,8 @@ int		main(int ac, char **av, char **envp)
 			printf("\n");
 		}
 		exe_commands(commands);
+		if (pid == 0)
+			break ;
 		free(commands->com);
 		ft_lstclear(&commands->arg, delete);
 		ft_lstclear(&commands->redirections, delete);

@@ -1,5 +1,17 @@
 #include "minishell.h"
 
+static void	print_err(int err_code)
+{
+	char	*str;
+
+	if (err_code == 0)
+		return ;
+	str = strerror(errno);
+	//표준에러로 출력해야 한다.
+	printf("minishell: %s\n", str);
+	free(str);
+}
+
 static char	*join_arg(t_list *arg)
 {
 	t_list	*temp;
