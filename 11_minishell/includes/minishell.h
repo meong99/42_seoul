@@ -59,12 +59,16 @@ void		split_space(char *str, t_commands *commands);
 t_commands	*split_pipe(char *str);
 
 /*
-** com_export*.c
+** export
 */
 int		exe_export(t_commands *commands);
 void	sorting_export();
 int		check_export_error(char *key, char *arg);
 
+/*
+** unset
+*/
+int	exe_unset(t_commands *commands);
 
 /*
 ** com*.c

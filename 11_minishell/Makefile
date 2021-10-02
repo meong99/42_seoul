@@ -18,8 +18,6 @@ SRCS = \
 	main.c\
 	pipe.c\
 	quotation_mark.c\
-	run_c_process.c\
-	run_p_process.c\
 	split_and_pars.c\
 	temp.c
 

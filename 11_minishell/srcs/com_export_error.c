@@ -1,13 +1,13 @@
 #include "minishell.h"
 
-static void		print_err(int err_num, char *arg, char *err_mag)
+static void	print_err(int err_num, char *arg, char *err_mag)
 {
 	errno = err_num;
 	//표쥰에러 출력
 	printf("minishell: export: `%s': %s\n", arg, err_mag);
 }
 
-int				check_export_error(char *key, char *arg)
+int	check_export_error(char *key, char *arg)
 {
 	int		is_err;
 

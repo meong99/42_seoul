@@ -14,7 +14,7 @@ static t_env	*find_key(char *key)
 	return (NULL);
 }
 
-static void		mapping_value(char *key, char *value)
+static void	mapping_value(char *key, char *value)
 {
 	t_env	*node;
 
@@ -28,7 +28,7 @@ static void		mapping_value(char *key, char *value)
 	node->key = ft_strdup(value);
 }
 
-static void		ft_putenv(char *key, char *value)
+static void	ft_putenv(char *key, char *value)
 {
 	t_env	*temp;
 
@@ -38,7 +38,7 @@ static void		ft_putenv(char *key, char *value)
 	temp->next = new_node(key, value);
 }
 
-static int		print_env()
+static int	print_env()
 {
 	t_env	*temp;
 
@@ -51,7 +51,7 @@ static int		print_env()
 	return (0);
 }
 
-int				exe_export(t_commands *commands)
+int	exe_export(t_commands *commands)
 {
 	char	*str;
 	char	**split_var;

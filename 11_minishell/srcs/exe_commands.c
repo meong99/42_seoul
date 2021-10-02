@@ -12,7 +12,7 @@ void	exe_commands(t_commands *commands)
 	else if (ft_strncmp(command, "export", 6) == 0)
 		exe_export(commands);
 	else if (ft_strncmp(command, "unset", 5) == 0)
-	;
+		exe_unset(command);
 	else if (ft_strncmp(command, "env", 3) == 0)
 	;
 	else if (ft_strncmp(command, "exit", 4) == 0)

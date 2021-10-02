@@ -16,5 +16,5 @@ int	**make_pipe(t_commands *commands)
 			exit(errno);
 		}
 	}
-	return(fd);
+	return (fd);
 }
