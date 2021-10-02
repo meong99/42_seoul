@@ -21,7 +21,7 @@ int		main(int ac, char **av, char **envp)
 			exit(0);
 		add_history(str);
 		commands = split_pipe(str);
-		commands->env = env;
+		commands->env = *env->head;
 
 		for (int i = 0; i < commands[i].count_pipe; i++)
 		{

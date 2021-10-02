@@ -14,7 +14,7 @@ static t_env	*find_key(t_env *env, char *key)
 	return (NULL);
 }
 
-static void	mapping_value(t_env *env, char *key, char *value)
+static void		mapping_value(t_env *env, char *key, char *value)
 {
 	t_env	*node;
 
@@ -23,7 +23,7 @@ static void	mapping_value(t_env *env, char *key, char *value)
 	node->key = value;
 }
 
-static void	ft_putenv(t_env *env, char *key, char *value)
+static void		ft_putenv(t_env *env, char *key, char *value)
 {
 	while (env->next)
 		env = env->next;
@@ -32,34 +32,37 @@ static void	ft_putenv(t_env *env, char *key, char *value)
 	env->next->value = value;
 }
 
-void	print_env(t_env *env)
+static void		print_env(t_env *env)
 {
 	while (env)
 	{
-		printf("declare -x %s=\"%s\"", env->key, env->value);
+		printf("declare -x %s=\"%s\"\n", env->key, env->value);
 		env = env->next;
 	}
 }
 
-void	exe_export(t_commands *commands, t_env *env)
+void			exe_export(t_commands *commands, t_env *env)
 {
 	char	*str;
 	char	**split_var;
 	t_list	*node;
 
 	node = commands->arg;
+	sorting_export(*env->head);
 	if (node == NULL)
 	{
-		print_env(env);
+		print_env(*env->head);
+		return ;
 	}
 	while (node)
 	{
 		split_var = ft_split((char*)node->content, '=');
 		str = getenv(split_var[0]);
 		if (str == NULL)
-			ft_putenv(env, split_var[0], split_var[1]);
+			ft_putenv(*env->head, split_var[0], split_var[1]);
 		else
-			mapping_value(env, split_var[0], split_var[1]);
+			mapping_value(*env->head, split_var[0], split_var[1]);
+		sorting_export(*env->head);
 		node = node->next;
 	}
 }

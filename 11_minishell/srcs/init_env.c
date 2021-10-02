@@ -26,6 +26,7 @@ static void		append_node(t_env *env, char **envp)
 		spl_envp = ft_split(*envp, '=');
 		node = new_node(spl_envp[0], spl_envp[1]);
 		env->next = node;
+		node->head = env->head;
 		env = env->next;
 		envp++;
 	}
@@ -38,21 +39,9 @@ t_env			*init_env(char **envp)
 
 	spl_envp = ft_split(*envp, '=');
 	env = new_node(spl_envp[0], spl_envp[1]);
+	env->head = &env;
 	envp++;
 	ft_free(spl_envp, 0, true);
 	append_node(env, envp);
 	return (env);
-}
-
-void			init_commands(t_commands *commands, t_env *env)
-{
-	commands->arg = NULL;
-	commands->com = NULL;
-	commands->filename = NULL;
-	commands->redirections = NULL;
-	commands->com = NULL;
-	commands->delimiter = NULL;
-	commands->index = 0;
-	commands->count_pipe = 0;
-	commands->env = env;
 }

@@ -59,6 +59,7 @@ t_commands	*split_pipe(char *str)
 	commands->fd = make_pipe(commands);
 	while (++i < count_pipe)
 	{
+		init_commands(commands);
 		split_space(tmp[i], &commands[i]);
 		commands[i].index = i;
 		commands[i].count_pipe = count_pipe;
