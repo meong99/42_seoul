@@ -20,7 +20,6 @@ typedef struct s_env
 	char			*key;
 	char			*value;
 	struct s_env	*next;
-	struct s_env	**head;
 }	t_env;
 
 typedef struct s_commands
@@ -33,16 +32,18 @@ typedef struct s_commands
 	int		index;
 	int		count_pipe;
 	int		**fd;
-	t_env	*env;
 }	t_commands;
 
-extern int rl_replace_line();
+t_env		*g_env;
+
+extern int	rl_replace_line();
 
 /*
 ** init_all.c
 */
-t_env		*init_env(char **envp);
+void		init_env(char **envp);
 void		init_commands(t_commands *commands);
+t_env		*new_node(char *key, char *value);
 
 /*
 ** pipe.c
@@ -64,8 +65,8 @@ void	exe_pwd();
 /*
 ** com_export*.c
 */
-void	exe_export(t_commands *commands, t_env *env);
-void	sorting_export(t_env *env);
+void	exe_export(t_commands *commands);
+void	sorting_export();
 
 /*
 ** error.c

@@ -51,6 +51,7 @@
       "minishell.h": "c",
       "functional": "c",
       "get_next_line.h": "c",
-      "libft.h": "c"
+      "libft.h": "c",
+      "bitset": "c"
     }
   }

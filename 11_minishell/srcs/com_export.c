@@ -1,10 +1,10 @@
 #include "minishell.h"
 
-static t_env	*find_key(t_env *env, char *key)
+static t_env	*find_key(char *key)
 {
 	t_env	*node;
 
-	node = env;
+	node = g_env;
 	while (node)
 	{
 		if (ft_strncmp(node->key, key, ft_strlen(key)) == 0)
@@ -14,44 +14,53 @@ static t_env	*find_key(t_env *env, char *key)
 	return (NULL);
 }
 
-static void		mapping_value(t_env *env, char *key, char *value)
+static void		mapping_value(char *key, char *value)
 {
 	t_env	*node;
 
-	node = find_key(env, key);
-	free(node->key);
-	node->key = value;
-}
-
-static void		ft_putenv(t_env *env, char *key, char *value)
-{
-	while (env->next)
-		env = env->next;
-	env->next = malloc(sizeof(t_env));
-	env->next->key = key;
-	env->next->value = value;
-}
-
-static void		print_env(t_env *env)
-{
-	while (env)
+	node = find_key(key);
+	if (node == NULL)
 	{
-		printf("declare -x %s=\"%s\"\n", env->key, env->value);
-		env = env->next;
+		printf("env mapping error\n");
+		exit(0);
+	}
+	free(node->key);
+	node->key = ft_strdup(value);
+}
+
+static void		ft_putenv(char *key, char *value)
+{
+	t_env	*temp;
+
+	temp = g_env;
+	while (temp->next)
+		temp = temp->next;
+	temp->next = new_node(key, value);
+}
+
+static void		print_env()
+{
+	t_env	*temp;
+
+	temp = g_env;
+	while (temp)
+	{
+		printf("declare -x %s=\"%s\"\n", temp->key, temp->value);
+		temp = temp->next;
 	}
 }
 
-void			exe_export(t_commands *commands, t_env *env)
+void			exe_export(t_commands *commands)
 {
 	char	*str;
 	char	**split_var;
 	t_list	*node;
 
 	node = commands->arg;
-	sorting_export(*env->head);
+	sorting_export();
 	if (node == NULL)
 	{
-		print_env(*env->head);
+		print_env();
 		return ;
 	}
 	while (node)
@@ -59,10 +68,11 @@ void			exe_export(t_commands *commands, t_env *env)
 		split_var = ft_split((char*)node->content, '=');
 		str = getenv(split_var[0]);
 		if (str == NULL)
-			ft_putenv(*env->head, split_var[0], split_var[1]);
+			ft_putenv(split_var[0], split_var[1]);
 		else
-			mapping_value(*env->head, split_var[0], split_var[1]);
-		sorting_export(*env->head);
+			mapping_value(split_var[0], split_var[1]);
+		sorting_export();
+		ft_free(split_var, 0, true);
 		node = node->next;
 	}
 }

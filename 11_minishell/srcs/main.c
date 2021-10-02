@@ -8,12 +8,11 @@ void	delete(void *str);
 int		main(int ac, char **av, char **envp)
 {
 	t_commands	*commands;
-	t_env		*env;
 	char		*str;
 
 	ac = 0;
 	av = 0;
-	env = init_env(envp);
+	init_env(envp);
 	while (1)
 	{
 		str = readline("minishell >");
@@ -21,7 +20,6 @@ int		main(int ac, char **av, char **envp)
 			exit(0);
 		add_history(str);
 		commands = split_pipe(str);
-		commands->env = *env->head;
 
 		for (int i = 0; i < commands[i].count_pipe; i++)
 		{
