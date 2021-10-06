@@ -19,7 +19,7 @@ static t_env	*deep_copy(void)
 	return (env);
 }
 
-void	print_env(void)
+void	print_export_env(void)
 {
 	t_env	*temp;
 

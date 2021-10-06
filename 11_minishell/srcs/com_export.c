@@ -66,7 +66,7 @@ int	exe_export(t_commands *commands)
 
 	node = commands->arg;
 	if (node == NULL)
-		print_env();
+		print_export_env();
 	else
 		export_internal(node);
 	return (0);

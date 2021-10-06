@@ -64,7 +64,7 @@ t_commands	*split_pipe(char *str);
 int			exe_export(t_commands *commands);
 int			check_export_error(char *key, char *arg);
 int			check_first_char(char *str);
-void		print_env(void);
+void		print_export_env(void);
 void		sorting_export(t_env *set, t_env *compare, t_env **head);
 
 /*

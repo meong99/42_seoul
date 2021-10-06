@@ -7,10 +7,8 @@ void	exe_env(t_commands *commands)
 	temp = g_env;
 	while (temp)
 	{
-		printf("declare -x %s", temp->key);
 		if (temp->value)
-			printf("=\"%s\"", temp->value);
-		printf("\n");
+			printf("%s=%s\n", temp->key, temp->value);
 		temp = temp->next;
 	}
 	commands = 0;
