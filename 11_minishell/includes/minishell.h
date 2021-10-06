@@ -40,9 +40,9 @@ t_env		*g_env;
 extern int	rl_replace_line(void);
 
 /*
-** init_all.c
+** init.c
 */
-void		init_env(char **envp);
+void		init_env_var(char **envp);
 void		init_commands(t_commands *commands);
 t_env		*new_node(char *key, char *value);
 

@@ -32,7 +32,7 @@ static void	append_node(char **envp)
 	}
 }
 
-void		init_env(char **envp)
+void		init_env_var(char **envp)
 {
 	char	**spl_envp;
 

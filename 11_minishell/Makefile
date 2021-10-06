@@ -12,7 +12,7 @@ SRCS = \
 	com_export.c com_export_util.c com_export_error.c\
 	com_pwd.c\
 	com_unset.c com_unset_error.c\
-	init_commands.c init_env.c\
+	init_commands.c init_env_variable.c\
 	error.c\
 	exe_commands.c\
 	heredoc.c\

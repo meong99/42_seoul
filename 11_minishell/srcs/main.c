@@ -14,7 +14,7 @@ int		main(int ac, char **av, char **envp)
 	pid = 1;
 	ac = 0;
 	av = 0;
-	init_env(envp);
+	init_env_var(envp);
 	while (1)
 	{
 		str = readline("minishell >");
