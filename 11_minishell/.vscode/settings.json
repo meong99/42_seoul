@@ -59,6 +59,7 @@
       "string_view": "c",
       "vector": "c",
       "__node_handle": "c",
-      "complex": "c"
+      "complex": "c",
+      "sstream": "c"
     }
   }

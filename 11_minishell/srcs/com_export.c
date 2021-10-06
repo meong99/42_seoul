@@ -24,8 +24,8 @@ static void	mapping_value(char *key, char *value)
 		printf("env mapping error\n");
 		exit(0);
 	}
-	free(node->key);
-	node->key = ft_strdup(value);
+	free(node->value);
+	node->value = ft_strdup(value);
 }
 
 static void	ft_putenv(char *key, char *value)
@@ -41,18 +41,18 @@ static void	ft_putenv(char *key, char *value)
 static void	export_internal(t_list *node)
 {
 	char	**split_var;
-	char	*str;
+	t_env	*check_key;
 
 	while (node)
 	{
 		if (check_first_char((char*)node->content) != RET_ERR_INT)
 		{
 			split_var = ft_split((char*)node->content, '=');
-			str = getenv(split_var[0]);
-			if (str == NOT_FOUND && !check_export_error(split_var[0], \
+			check_key = find_key(split_var[0]);
+			if (check_key == NOT_FOUND && !check_export_error(split_var[0], \
 				(char*)node->content))
 				ft_putenv(split_var[0], split_var[1]);
-			else if (str)
+			else if (check_key)
 				mapping_value(split_var[0], split_var[1]);
 			sorting_export();
 			ft_free(split_var, 0, true);
