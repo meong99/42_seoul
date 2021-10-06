@@ -1,5 +1,5 @@
-#ifndef MINISEHLL_H
-# define MINISEHLL_H
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
 # include <stdio.h>
 # include <errno.h>
@@ -37,7 +37,7 @@ typedef struct s_commands
 
 t_env		*g_env;
 
-extern int	rl_replace_line();
+extern int	rl_replace_line(void);
 
 /*
 ** init_all.c
@@ -61,27 +61,27 @@ t_commands	*split_pipe(char *str);
 /*
 ** export
 */
-int		exe_export(t_commands *commands);
-void	sorting_export();
-int		check_export_error(char *key, char *arg);
+int			exe_export(t_commands *commands);
+void		sorting_export(void);
+int			check_export_error(char *key, char *arg);
 
 /*
 ** unset
 */
-int	exe_unset(t_commands *commands);
+int			exe_unset(t_commands *commands);
+int			check_unset_error(char *key);
 
 /*
 ** com*.c
 */
-void	exe_cd(t_commands *commands);
-void	exe_pwd();
+void		exe_cd(t_commands *commands);
+void		exe_pwd(void);
 
 /*
 ** error.c
 */
 
-
-void	exe_commands(t_commands *commands);
+void		exe_commands(t_commands *commands);
 
 
 

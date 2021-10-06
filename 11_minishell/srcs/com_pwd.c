@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	exe_pwd()
+void	exe_pwd(void)
 {
 	char	*str;
 
