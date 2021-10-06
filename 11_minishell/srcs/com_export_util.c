@@ -2,14 +2,14 @@
 
 static t_env	*ret_befor(t_env *criteria)
 {
-	t_env	*head;
+	t_env	*node;
 
-	head = g_env;
-	while (head)
+	node = g_env;
+	while (node)
 	{
-		if (head->next == criteria)
-			return (head);
-		head = head->next;
+		if (node->next == criteria)
+			return (node);
+		node = node->next;
 	}
 	return (NULL);
 }

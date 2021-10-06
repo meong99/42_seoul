@@ -2,14 +2,14 @@
 
 static t_env	*ret_befor(t_env *criteria)
 {
-	t_env	*head;
+	t_env	*node;
 
-	head = g_env;
-	while (head)
+	node = g_env;
+	while (node)
 	{
-		if (head->next == criteria)
-			return (head);
-		head = head->next;
+		if (node->next == criteria || node == criteria)
+			return (node);
+		node = node->next;
 	}
 	return (NULL);
 }
@@ -34,6 +34,8 @@ static void	remove_env(char *key)
 	t_env	*before;
 
 	node = find_key(key);
+	if (node == NULL)
+		return ;
 	before = ret_befor(node);
 	before->next = node->next;
 	free(node->key);
@@ -48,8 +50,8 @@ int	exe_unset(t_commands *commands)
 	node = commands->arg;
 	while (node)
 	{
-		if (check_unset_error((char *)commands->arg->content) != RET_ERR_INT)
-			remove_env((char *)commands->arg->content);
+		if (check_unset_error((char *)node->content) != RET_ERR_INT)
+			remove_env((char *)node->content);
 		node = node->next;
 	}
 	return (0);
