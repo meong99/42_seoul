@@ -38,41 +38,38 @@ static void	ft_putenv(char *key, char *value)
 	temp->next = new_node(key, value);
 }
 
-static int	print_env()
+static void	export_internal(t_list *node)
 {
-	t_env	*temp;
+	char	**split_var;
+	char	*str;
 
-	temp = g_env;
-	while (temp)
+	while (node)
 	{
-		printf("declare -x %s=\"%s\"\n", temp->key, temp->value);
-		temp = temp->next;
+		if (check_first_char((char*)node->content) != RET_ERR_INT)
+		{
+			split_var = ft_split((char*)node->content, '=');
+			str = getenv(split_var[0]);
+			if (str == NOT_FOUND && !check_export_error(split_var[0], \
+				(char*)node->content))
+				ft_putenv(split_var[0], split_var[1]);
+			else if (str)
+				mapping_value(split_var[0], split_var[1]);
+			sorting_export();
+			ft_free(split_var, 0, true);
+		}
+		node = node->next;
 	}
-	return (0);
 }
 
 int	exe_export(t_commands *commands)
 {
-	char	*str;
-	char	**split_var;
 	t_list	*node;
 
 	node = commands->arg;
 	sorting_export();
 	if (node == NULL)
 		return(print_env());
-	while (node)
-	{
-		split_var = ft_split((char*)node->content, '=');
-		str = getenv(split_var[0]);
-		if (str == NOT_FOUND && !check_export_error(split_var[0], \
-			(char*)node->content))
-			ft_putenv(split_var[0], split_var[1]);
-		else if (str)
-			mapping_value(split_var[0], split_var[1]);
-		sorting_export();
-		ft_free(split_var, 0, true);
-		node = node->next;
-	}
+	else
+		export_internal(node);
 	return (0);
 }

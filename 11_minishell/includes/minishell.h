@@ -64,7 +64,8 @@ t_commands	*split_pipe(char *str);
 int			exe_export(t_commands *commands);
 void		sorting_export(void);
 int			check_export_error(char *key, char *arg);
-
+int			check_first_char(char *str);
+int			print_env(void);
 /*
 ** unset
 */

@@ -40,7 +40,7 @@ static size_t	ret_longer(char *str_1, char *str_2)
 		return (ft_strlen(str_2));
 }
 
-void	sorting_export()
+void	sorting_export(void)
 {
 	t_env	*set;
 	t_env	*compare;
@@ -65,4 +65,25 @@ void	sorting_export()
 		}
 		set = set->next;
 	}
+}
+
+int	print_env(void)
+{
+	t_env	*temp;
+
+	temp = g_env;
+	while (temp)
+	{
+		printf("declare -x ");
+		printf("%s", temp->key);
+		if (temp->value)
+		{
+			printf("=");
+			printf("\"%s\"\n", temp->value);
+		}
+		else
+			printf("\n");
+		temp = temp->next;
+	}
+	return (0);
 }
