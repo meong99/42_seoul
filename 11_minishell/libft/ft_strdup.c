@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 12:10:24 by mchae             #+#    #+#             */
-/*   Updated: 2021/07/08 18:10:07 by mchae            ###   ########.fr       */
+/*   Updated: 2021/10/06 18:15:43 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strdup(const char *s)
 	char	*result;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	result = (char *)malloc(ft_strlen(s) + 1);
 	if (!result)
 		return (NULL);

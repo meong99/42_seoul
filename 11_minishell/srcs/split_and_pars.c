@@ -53,8 +53,6 @@ t_commands	*split_pipe(char *str)
 	i = -1;
 	count_pipe = 0;
 	tmp = ft_split_f(str, '|', inside_quote);
-	if (!tmp)
-		count_pipe = 1;
 	while (tmp[count_pipe])
 		count_pipe++;
 	commands = malloc(sizeof(t_commands) * count_pipe);

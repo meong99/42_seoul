@@ -20,18 +20,9 @@ int		main(int ac, char **av, char **envp)
 		str = readline("minishell >");
 		if (str == NULL)
 			exit(0);
-		add_history(str);
+		if (*str)
+			add_history(str);
 		commands = split_pipe(str);
-
-		for (int i = 0; i < commands[i].count_pipe; i++)
-		{
-			printf("com=%s ", commands[i].com);
-			ft_lstiter(commands->arg, arg);
-			ft_lstiter(commands->redirections, re);
-			ft_lstiter(commands->filename, file);
-			ft_lstiter(commands->delimiter, del);
-			printf("\n");
-		}
 		exe_commands(commands);
 		if (pid == 0)
 			break ;
@@ -40,6 +31,7 @@ int		main(int ac, char **av, char **envp)
 		ft_lstclear(&commands->redirections, delete);
 		ft_lstclear(&commands->filename, delete);
 		ft_lstclear(&commands->delimiter, delete);
+		// free(commands);
 		free(str);
 	}
 
