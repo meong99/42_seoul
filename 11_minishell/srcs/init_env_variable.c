@@ -12,7 +12,7 @@ t_env		*new_node(char *key, char *value)
 	}
 	node->key = ft_strdup(key);
 	node->next = NULL;
-	node->value = ft_strtrim(value, "'\"");
+	node->value = ft_strtrim(value, "'");
 	return (node);
 }
 

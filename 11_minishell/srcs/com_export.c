@@ -54,7 +54,6 @@ static void	export_internal(t_list *node)
 				ft_putenv(split_var[0], split_var[1]);
 			else if (check_key)
 				mapping_value(split_var[0], split_var[1]);
-			sorting_export();
 			ft_free(split_var, 0, true);
 		}
 		node = node->next;
@@ -66,9 +65,8 @@ int	exe_export(t_commands *commands)
 	t_list	*node;
 
 	node = commands->arg;
-	sorting_export();
 	if (node == NULL)
-		return(print_env());
+		print_env();
 	else
 		export_internal(node);
 	return (0);

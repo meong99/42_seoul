@@ -62,15 +62,21 @@ t_commands	*split_pipe(char *str);
 ** export
 */
 int			exe_export(t_commands *commands);
-void		sorting_export(void);
 int			check_export_error(char *key, char *arg);
 int			check_first_char(char *str);
-int			print_env(void);
+void		print_env(void);
+void		sorting_export(t_env *set, t_env *compare, t_env **head);
+
 /*
 ** unset
 */
 int			exe_unset(t_commands *commands);
 int			check_unset_error(char *key);
+
+/*
+** env
+*/
+void		exe_env(t_commands *commands);
 
 /*
 ** com*.c

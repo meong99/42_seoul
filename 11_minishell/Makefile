@@ -8,8 +8,10 @@ SRCS_PAHT = srcs
 LIBFT_PATH = libft
 
 SRCS = \
-	com_cd.c com_env.c com_exit.c\
-	com_export.c com_export_util.c com_export_error.c\
+	com_cd.c\
+	com_env.c\
+	com_exit.c\
+	com_export.c com_export_print.c com_export_error.c com_export_sorting.c\
 	com_pwd.c\
 	com_unset.c com_unset_error.c\
 	init_commands.c init_env_variable.c\

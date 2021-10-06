@@ -60,6 +60,19 @@
       "vector": "c",
       "__node_handle": "c",
       "complex": "c",
-      "sstream": "c"
+      "sstream": "c",
+      "__bit_reference": "c",
+      "__functional_base": "c",
+      "algorithm": "c",
+      "chrono": "c",
+      "__memory": "c",
+      "iterator": "c",
+      "limits": "c",
+      "memory": "c",
+      "optional": "c",
+      "ratio": "c",
+      "system_error": "c",
+      "tuple": "c",
+      "type_traits": "c"
     }
   }

@@ -1,10 +1,10 @@
 #include "minishell.h"
 
-static t_env	*ret_befor(t_env *criteria)
+static t_env	*ret_befor(t_env *criteria, t_env **head)
 {
 	t_env	*node;
 
-	node = g_env;
+	node = *head;
 	while (node)
 	{
 		if (node->next == criteria)
@@ -14,16 +14,16 @@ static t_env	*ret_befor(t_env *criteria)
 	return (NULL);
 }
 
-static void	swap_node(t_env *set, t_env *compare)
+static void	swap_node(t_env *set, t_env *compare, t_env **head)
 {
 	t_env	*befor_set;
 	t_env	*befor_com;
 	t_env	*temp;
 
-	befor_set = ret_befor(set);
-	befor_com = ret_befor(compare);
+	befor_set = ret_befor(set, head);
+	befor_com = ret_befor(compare, head);
 	if (befor_set == NULL)
-		g_env = compare;
+		*head = compare;
 	else
 		befor_set->next = compare;
 	befor_com->next = set;
@@ -40,14 +40,11 @@ static size_t	ret_longer(char *str_1, char *str_2)
 		return (ft_strlen(str_2));
 }
 
-void	sorting_export(void)
+void	sorting_export(t_env *set, t_env *compare, t_env **head)
 {
-	t_env	*set;
-	t_env	*compare;
 	t_env	*temp;
 	size_t	len;
 
-	set = g_env;
 	while (set->next)
 	{
 		compare = set->next;
@@ -56,7 +53,7 @@ void	sorting_export(void)
 			len = ret_longer(set->key, compare->key);
 			if (ft_strncmp(set->key, compare->key, len) > 0)
 			{
-				swap_node(set, compare);
+				swap_node(set, compare, head);
 				temp = set;
 				set = compare;
 				compare = temp;
@@ -67,23 +64,3 @@ void	sorting_export(void)
 	}
 }
 
-int	print_env(void)
-{
-	t_env	*temp;
-
-	temp = g_env;
-	while (temp)
-	{
-		printf("declare -x ");
-		printf("%s", temp->key);
-		if (temp->value)
-		{
-			printf("=");
-			printf("\"%s\"\n", temp->value);
-		}
-		else
-			printf("\n");
-		temp = temp->next;
-	}
-	return (0);
-}

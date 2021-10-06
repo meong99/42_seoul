@@ -14,7 +14,7 @@ void	exe_commands(t_commands *commands)
 	else if (ft_strncmp(com, "unset", 5) == 0)
 		exe_unset(commands);
 	else if (ft_strncmp(com, "env", 3) == 0)
-	;
+		exe_env(commands);
 	else if (ft_strncmp(com, "exit", 4) == 0)
 	;
 	else

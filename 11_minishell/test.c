@@ -7,15 +7,19 @@
 #include <string.h>
 #include <errno.h>
 
+
+typedef struct s_env
+{
+	char			*key;
+	char			*value;
+	struct s_env	*next;
+}	t_env;
+
+
 int main(void)
 {
-	char *str;
-	int	a = 0;
+	t_env *env;
 
-	// str = strerror(2);
-	str = 0;
-	if (str != NULL && a++)
-		printf("asd\n");
-	printf("%d\n", a);
-	// printf("%s\n", str);
+	env = malloc(sizeof(t_env) * 10);
+	printf("%zu\n", sizeof(env));
 }
