@@ -44,7 +44,7 @@ extern int	rl_replace_line(void);
 */
 void		init_env_var(char **envp);
 void		init_commands(t_commands *commands);
-t_env		*new_node(char *key, char *value);
+t_env		*new_env_node(char *key, char *value);
 
 /*
 ** pipe.c

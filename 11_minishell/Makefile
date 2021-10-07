@@ -7,6 +7,9 @@ OBJS_PAHT = objs
 SRCS_PAHT = srcs
 LIBFT_PATH = libft
 
+NO_COLOR = \033[1;36m
+KILL_COLOR	= \033[0m
+
 SRCS = \
 	commands/com_bin.c\
 	commands/com_cd.c\
@@ -39,21 +42,29 @@ endif
 $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
 	@mkdir -p $(OBJS_PAHT)/commands
 	@mkdir -p $(OBJS_PAHT)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(NAME) : $(OBJS)
-	make -C libft
-	$(CC) $(CFLAGS) $(LINK_RDLINE) $(INC) -o $(NAME) $(OBJS) -L $(LIBFT_PATH) -lft
+	@echo "$(NO_COLOR)making objects$(KILL_COLOR)"
+	@make -C libft
+	@$(CC) $(CFLAGS) $(LINK_RDLINE) $(INC) -o $(NAME) $(OBJS) -L $(LIBFT_PATH) -lft
+	@echo "$(NO_COLOR)making done$(KILL_COLOR)"
 all : $(NAME)
 
 clean :
-	make -C $(LIBFT_PATH) clean
-	rm -rf $(OBJS_PAHT)
+	@echo "$(NO_COLOR)cleaning libft$(KILL_COLOR)"
+	@make -C $(LIBFT_PATH) clean
+	@echo "$(NO_COLOR)cleaning$(KILL_COLOR)"
+	@rm -rf $(OBJS_PAHT)
+	@echo "$(NO_COLOR)cleaning done$(KILL_COLOR)"
 
 fclean :
-	make -C $(LIBFT_PATH) fclean
-	rm -rf $(OBJS_PAHT)
-	rm -f $(NAME)
+	@echo "$(NO_COLOR)fcleaning libft$(KILL_COLOR)"
+	@make -C $(LIBFT_PATH) fclean
+	@echo "$(NO_COLOR)fcleaning$(KILL_COLOR)"
+	@rm -rf $(OBJS_PAHT)
+	@rm -f $(NAME)
+	@echo "$(NO_COLOR)fcleaning done$(KILL_COLOR)"
 
 re : fclean all
 

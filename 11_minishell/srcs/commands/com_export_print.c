@@ -7,12 +7,12 @@ static t_env	*deep_copy(void)
 	t_env	*env;
 
 	index = g_env;
-	env = new_node(index->key, index->value);
+	env = new_env_node(index->key, index->value);
 	temp = env;
 	index = index->next;
 	while (index)
 	{
-		temp->next = new_node(index->key, index->value);
+		temp->next = new_env_node(index->key, index->value);
 		temp = temp->next;
 		index = index->next;
 	}

@@ -35,7 +35,7 @@ static void	ft_putenv(char *key, char *value)
 	temp = g_env;
 	while (temp->next)
 		temp = temp->next;
-	temp->next = new_node(key, value);
+	temp->next = new_env_node(key, value);
 }
 
 static void	export_internal(t_list *node)

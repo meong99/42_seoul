@@ -6,7 +6,7 @@
 #    By: mchae <mchae@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/09 16:16:57 by mchae             #+#    #+#              #
-#    Updated: 2021/09/16 17:02:52 by mchae            ###   ########.fr        #
+#    Updated: 2021/10/07 17:19:34 by mchae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,12 @@ SRCS = \
        ft_toupper.c ft_tolower.c ft_calloc.c ft_strdup.c ft_substr.c ft_free.c\
        ft_strjoin.c ft_strtrim.c ft_split_f.c ft_split.c ft_itoa.c ft_strmapi.c \
        ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
+
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 BOBJS = $(patsubst %.c,%.o,$(BSRCS))
+
+NO_COLOR = \033[1;36m
+KILL_COLOR	= \033[0m
 
 ifeq ($(DEBUG), 1)
 	FLAGS = -g -Wall -Wextra -Werror
@@ -43,14 +47,23 @@ ifeq ($(SANI), 1)
 	FLAGS = -fsanitize=address -Wall -Wextra -Werror
 endif
 
-all : $(NAME) bonus
-%.o : %.c
-	$(CC) $(FLAGS) -c $< -o $@
 $(NAME) : $(OBJS)
-	ar rcs $@ $^
+	@ar rcs $@ $^
+	@echo "$(NO_COLOR)libft making done$(KILL_COLOR)"
+all : $(NAME)
+
+%.o : %.c
+	@$(CC) $(FLAGS) -c $< -o $@
+
 clean :
-	rm -f $(BOBJS) $(OBJS)
-fclean : clean
-	rm -f $(NAME)
+	@rm -f $(BOBJS) $(OBJS)
+	@echo "$(NO_COLOR)libft cleaning done$(KILL_COLOR)"
+
+fclean :
+	@rm -f $(NAME)
+	@rm -f $(BOBJS) $(OBJS)
+	@echo "$(NO_COLOR)libft fcleaning done$(KILL_COLOR)"
+
 re : fclean all
-.PHONY: all clean fclean re bonus
+
+.PHONY: all clean fclean re
