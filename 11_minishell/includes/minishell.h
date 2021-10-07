@@ -21,6 +21,7 @@ typedef struct s_env
 	char			*key;
 	char			*value;
 	struct s_env	*next;
+	int				*env_num;
 }	t_env;
 
 typedef struct s_commands
@@ -44,7 +45,7 @@ extern int	rl_replace_line(void);
 */
 void		init_env_var(char **envp);
 void		init_commands(t_commands *commands);
-t_env		*new_env_node(char *key, char *value);
+t_env		*new_env_node(char *key, char *value, int *env_num);
 
 /*
 ** pipe.c
@@ -94,14 +95,16 @@ void		exe_bin(t_commands *commands);
 void		exe_cd(t_commands *commands);
 void		exe_pwd(void);
 void		exe_exit(t_commands *commands);
+
 /*
 ** error.c
 */
+void		print_err(char *com, t_list *arg_list);
 
+/*
+** exe_commands.c
+*/
 void		exe_commands(t_commands *commands);
-
-
-
 
 
 /*

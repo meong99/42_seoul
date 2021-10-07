@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static void	print_err(int err_num, char *arg, char *err_mag)
+static void	print_err_export(int err_num, char *arg, char *err_mag)
 {
 	errno = err_num;
 	//표쥰에러 출력
@@ -13,7 +13,7 @@ static int	check_key(char *key, char *arg)
 	{
 		if (ft_isalnum(*key) == 0 && *key != '_')
 		{
-			print_err(1, arg, "not a valid identifier");
+			print_err_export(1, arg, "not a valid identifier");
 			return (RET_ERR_INT);
 		}
 	}
@@ -24,7 +24,7 @@ int	check_first_char(char *str)
 {
 	if (!ft_isalpha(*str) && *str != '_')
 	{
-		print_err(1, str, "not a valid identifier");
+		print_err_export(1, str, "not a valid identifier");
 		return (RET_ERR_INT);
 	}
 	return (0);

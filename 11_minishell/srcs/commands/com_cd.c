@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static void	print_err(int err_code, char *arg)
+static void	print_err_cd(int err_code, char *arg)
 {
 	char	*str;
 
@@ -20,5 +20,5 @@ void		exe_cd(t_commands *commands)
 	pwd = getcwd(NULL, 0);
 	str = (char *)commands->arg->content;
 	err_code = chdir(str);
-	print_err(err_code, str);
+	print_err_cd(err_code, str);
 }

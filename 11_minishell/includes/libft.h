@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 11:26:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/09/16 15:57:27 by mchae            ###   ########.fr       */
+/*   Updated: 2021/10/07 18:44:11 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+typedef struct s_split
+{
+	char	**double_str;
+	size_t	arr_size;
+	size_t	alloc_size;
+	size_t	index;
+}	t_split;
 
 int		ft_atoi(const char *str);
 int		ft_isalnum(int c);
@@ -63,6 +71,7 @@ char	**ft_split_f(char const *s, char c, int (*f)(char *, char *));
 char	**ft_split(char const *s, char c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_free(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 t_list	*ft_lstnew(void *content);

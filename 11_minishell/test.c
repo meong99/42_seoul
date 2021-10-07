@@ -17,5 +17,10 @@ typedef struct s_env
 
 int main(void)
 {
-	printf("%d\n", ft_strncmp("echo", "echo0", 5));
+	char **argv;
+
+	argv = malloc(sizeof(char *) * 2);
+	argv[0] = "-q";
+	argv[0] = NULL;
+	execve("/bin/ls", argv, NULL);
 }

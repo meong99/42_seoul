@@ -41,6 +41,7 @@ static void	remove_env(char *key)
 	free(node->key);
 	free(node->value);
 	free(node);
+	(*g_env->env_num)--;
 }
 
 int	exe_unset(t_commands *commands)
