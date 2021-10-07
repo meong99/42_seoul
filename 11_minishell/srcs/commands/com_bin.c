@@ -63,10 +63,21 @@ void	exe_bin(t_commands *commands)
 	char	**envp;
 	char	**argv;
 	char	*path;
+	int		pid;
+	int		fd[2];
+	int		wstatus;
 
 	envp = make_envp();
 	argv = make_argv(commands);
 	path = ft_strjoin("/bin/", commands->com);
 	argv[0] = path;
-	execve(path, argv, envp);
+	pipe(fd);
+	pid = fork();
+	if (pid == C_PROCESS)
+	{
+		if (execve(path, argv, envp) == -1)
+			check_bin_error(commands->com);
+	}
+	else
+		wait(&wstatus);
 }

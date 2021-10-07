@@ -8,7 +8,7 @@ void	print_err(char *com, t_list *arg_list)
 	if (errno == 0)
 		return ;
 	str = strerror(errno);
-	if (errno == 127)
+	if (errno == 2)
 		printf("minishell: %s: %s\n",com, str);
 	else
 	{
