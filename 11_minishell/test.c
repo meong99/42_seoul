@@ -15,12 +15,15 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-int main(void)
+int main(int ac, char **av, char **envp)
 {
 	char **argv;
 
+	av = 0;
+	ac = 0;
 	argv = malloc(sizeof(char *) * 2);
-	argv[0] = "-q";
-	argv[0] = NULL;
-	execve("/bin/ls", argv, NULL);
+	argv[0] = "ls";
+	argv[1] = NULL;
+	execve("/bin/ls", argv, envp);
+	printf("%s\n", strerror(errno));
 }

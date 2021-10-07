@@ -64,14 +64,16 @@ void	exe_bin(t_commands *commands)
 	char	**argv;
 	char	*path;
 	int		pid;
-	int		fd[2];
 	int		wstatus;
+	struct stat	buf;
 
 	envp = make_envp();
 	argv = make_argv(commands);
-	path = ft_strjoin("/bin/", commands->com);
+	if (stat(commands->com, &buf) == 0)
+		path = commands->com;
+	else
+		path = ft_strjoin("/bin/", commands->com);
 	argv[0] = path;
-	pipe(fd);
 	pid = fork();
 	if (pid == C_PROCESS)
 	{

@@ -8,6 +8,7 @@
 # include <stdbool.h>
 # include <signal.h>
 # include <string.h>
+# include <sys/stat.h>
 
 # define RET_ERR_INT -1
 # define RET_ERR_NULL 0
