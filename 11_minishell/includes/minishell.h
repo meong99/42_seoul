@@ -79,11 +79,21 @@ int			check_unset_error(char *key);
 void		exe_env(t_commands *commands);
 
 /*
+** echo
+*/
+void		exe_echo(t_commands *commands);
+
+/*
+** bin
+*/
+void		exe_bin(t_commands *commands);
+
+/*
 ** com*.c
 */
 void		exe_cd(t_commands *commands);
 void		exe_pwd(void);
-
+void		exe_exit(t_commands *commands);
 /*
 ** error.c
 */

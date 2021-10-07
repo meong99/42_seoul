@@ -15,11 +15,7 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-
 int main(void)
 {
-	t_env *env;
-
-	env = malloc(sizeof(t_env) * 10);
-	printf("%zu\n", sizeof(env));
+	printf("%d\n", ft_strncmp("echo", "echo0", 5));
 }

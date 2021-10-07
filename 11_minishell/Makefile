@@ -8,12 +8,14 @@ SRCS_PAHT = srcs
 LIBFT_PATH = libft
 
 SRCS = \
-	com_cd.c\
-	com_env.c\
-	com_exit.c\
-	com_export.c com_export_print.c com_export_error.c com_export_sorting.c\
-	com_pwd.c\
-	com_unset.c com_unset_error.c\
+	commands/com_bin.c\
+	commands/com_cd.c\
+	commands/com_env.c\
+	commands/com_exit.c\
+	commands/com_export.c commands/com_export_print.c commands/com_export_error.c commands/com_export_sorting.c\
+	commands/com_echo.c\
+	commands/com_pwd.c\
+	commands/com_unset.c commands/com_unset_error.c\
 	init_commands.c init_env_variable.c\
 	error.c\
 	exe_commands.c\
@@ -35,6 +37,7 @@ ifeq ($(SANI), 1)
 endif
 
 $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
+	@mkdir -p $(OBJS_PAHT)/commands
 	@mkdir -p $(OBJS_PAHT)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
