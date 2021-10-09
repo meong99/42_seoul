@@ -9,6 +9,10 @@ void	check_bin_error(char *com)
 	else
 		err_msg = "No such file or directory";
 	errno = 127;
-	printf("minishell: %s: %s\n", com, err_msg);
+	write(2, "minishell: ", 11);
+	write(2, com, ft_strlen(com));
+	write(2, ": ", 2);
+	write(2, err_msg, ft_strlen(err_msg));
+	write(2, "\n", 1);
 	exit(errno);
 }

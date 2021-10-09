@@ -11,7 +11,7 @@ NO_COLOR = \033[1;36m
 KILL_COLOR	= \033[0m
 
 SRCS = \
-	commands/com_bin.c commands/com_bin_error.c commands/com_bin_set.c\
+	commands/com_bin.c commands/com_bin_error.c\
 	commands/com_cd.c\
 	commands/com_env.c\
 	commands/com_exit.c\
@@ -28,6 +28,7 @@ SRCS = \
 	quotation_mark.c\
 	split_and_pars.c\
 	temp.c
+	# redirection/redir_append.c redirection/redir_heredoc.c redirection/redir_input.c redirection/redir_output.c\
 
 OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PAHT)/, $(OBJS_NAME))
@@ -41,6 +42,7 @@ endif
 
 $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
 	@mkdir -p $(OBJS_PAHT)/commands
+	@mkdir -p $(OBJS_PAHT)/redirection
 	@mkdir -p $(OBJS_PAHT)
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 

@@ -12,6 +12,7 @@ int	**make_pipe(t_commands *commands)
 		fd[i] = malloc(sizeof(int) * 2);
 		if (pipe(fd[i]) == RET_ERR_INT)
 		{
+			//err
 			printf("error occurred when sending value to child process\n");
 			exit(errno);
 		}

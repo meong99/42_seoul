@@ -1,12 +1,13 @@
 #include "minishell.h"
 
-t_env		*new_env_node(char *key, char *value, int *env_num)
+t_env	*new_env_node(char *key, char *value, int *env_num)
 {
 	t_env	*node;
 
 	node = malloc(sizeof(t_env));
 	if (node == NULL)
 	{
+		//err
 		printf("%s", strerror(errno));
 		exit(errno);
 	}
@@ -37,12 +38,18 @@ static int	append_node(char **envp)
 	return (env_num);
 }
 
-void		init_env_var(char **envp)
+void	init_env_var(char **envp)
 {
 	char	**spl_envp;
 	int		*env_num;
 
 	env_num = malloc(sizeof(int));
+	if (env_num == NULL)
+	{
+		//err
+		printf("asd\n");
+		exit(errno);
+	}
 	spl_envp = ft_split(*envp, '=');
 	g_env = new_env_node(spl_envp[0], spl_envp[1], env_num);
 	envp++;

@@ -4,11 +4,12 @@
 # include <stdio.h>
 # include <errno.h>
 # include <readline/readline.h>
-# include "libft.h"
 # include <stdbool.h>
 # include <signal.h>
 # include <string.h>
 # include <sys/stat.h>
+# include <fcntl.h>
+# include "libft.h"
 
 # define RET_ERR_INT -1
 # define RET_ERR_NULL 0
@@ -100,15 +101,17 @@ void		exe_pwd(void);
 void		exe_exit(t_list *arg);
 
 /*
-** error.c
-*/
-void		print_err(char *com, t_list *arg_list);
-
-/*
 ** exe_commands.c
 */
 void		exe_commands(t_commands *commands);
 
+/*
+** redirection
+*/
+char		*redir_input(t_list *redir, t_list *filename);
+void		redir_output(char *output, char *filename);
+void		redir_append(void);
+void		redir_heredoc(void);
 
 /*
 ** quotatio_mark.c

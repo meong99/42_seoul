@@ -3,8 +3,11 @@
 static void	print_err_export(int err_num, char *arg, char *err_mag)
 {
 	errno = err_num;
-	//표쥰에러 출력
-	printf("minishell: export: `%s': %s\n", arg, err_mag);
+	write(2, "minishell: export: `", 20);
+	write(2, arg, ft_strlen(arg));
+	write(2, "': ", 3);
+	write(2, err_mag, ft_strlen(err_mag));
+	write(2, "\n", 1);
 }
 
 static int	check_key(char *key, char *arg)

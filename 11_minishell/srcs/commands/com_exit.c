@@ -2,7 +2,7 @@
 
 static void	print_err_exit(void)
 {
-	printf("Too many arg\n");
+	write(2, "Too many arg\n", 14);
 	errno = 1;
 	exit(errno);
 }

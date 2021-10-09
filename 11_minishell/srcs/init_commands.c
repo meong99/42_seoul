@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void			init_commands(t_commands *commands)
+void	init_commands(t_commands *commands)
 {
 	commands->arg = NULL;
 	commands->com = NULL;

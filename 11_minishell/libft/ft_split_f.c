@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:52:16 by mchae             #+#    #+#             */
-/*   Updated: 2021/09/15 21:28:20 by mchae            ###   ########.fr       */
+/*   Updated: 2021/10/09 18:42:58 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ static void	*free_arr(char **double_str, size_t index)
 	return (NULL);
 }
 
-static void	*copy_str(t_split *split, char *str, char c, int (*f)(char *, char *))
+static void	*copy_str(t_split *split, char *str, \
+	char c, int (*f)(char *, char *))
 {
 	char	*tmp;
 

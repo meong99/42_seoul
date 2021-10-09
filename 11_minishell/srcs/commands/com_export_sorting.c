@@ -63,4 +63,3 @@ void	sorting_export(t_env *set, t_env *compare, t_env **head)
 		set = set->next;
 	}
 }
-

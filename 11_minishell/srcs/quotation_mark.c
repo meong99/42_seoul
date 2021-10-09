@@ -42,6 +42,7 @@ int	inside_quote(char *str, char *pointer)
 {
 	if (str == NULL || pointer == NULL)
 	{
+		//err
 		printf("Can't using NULL pointer in inside_quote()");
 		exit(0);
 	}

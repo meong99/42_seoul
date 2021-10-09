@@ -18,9 +18,11 @@ typedef struct s_env
 int main(void)
 {
 	char **av;
-	av = malloc(sizeof(char *) * 2);
-	av[0] = NULL;
-	av[1] = NULL;
-	execve(NULL, av, NULL);
-	printf("%s\n", strerror(errno));
+	av = malloc(sizeof(char *) * 5);
+	av[0] = "/bin/cp";
+	av[1] = "-r";
+	av[2] = "asd";
+	av[3] = "srcs";
+	av[4] = NULL;
+	execve("/bin/cp", av, NULL);
 }

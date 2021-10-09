@@ -3,8 +3,11 @@
 static void	print_err_unset(int err_num, char *arg, char *err_mag)
 {
 	errno = err_num;
-	//표쥰에러 출력
-	printf("minishell: export: `%s': %s\n", arg, err_mag);
+	write(2, "minishell: unset: `", 19);
+	write(2, arg, ft_strlen(arg));
+	write(2, "': ", 3);
+	write(2, err_mag, ft_strlen(err_mag));
+	write(2, "\n", 1);
 }
 
 int	check_unset_error(char *key)
