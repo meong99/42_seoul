@@ -65,14 +65,10 @@ void	exe_bin(t_commands *commands)
 	char	*path;
 	int		pid;
 	int		wstatus;
-	struct stat	buf;
 
 	envp = make_envp();
 	argv = make_argv(commands);
-	if (stat(commands->com, &buf) == 0)
-		path = commands->com;
-	else
-		path = ft_strjoin("/bin/", commands->com);
+	path = set_path(commands);
 	argv[0] = path;
 	pid = fork();
 	if (pid == C_PROCESS)

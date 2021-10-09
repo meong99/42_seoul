@@ -15,32 +15,12 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-int main(int ac, char **av, char **envp)
+int main(void)
 {
-	int	fd[2];
-	char	buf[2];
-
-	int	eof = -1;
-
-	pipe(fd);
-	int	pid = fork();
-	if (pid == 0)
-	{
-		char **av;
-		av = malloc(sizeof(char *) * 3);
-		av[0] = "/usr/bin/grep";
-		av[1] = "hi";
-		av[2] = NULL;
-		read(fd[0], buf, 2);
-		write(0, buf, 2);
-		write(0, &eof, 2);
-		execve("/usr/bin/grep", av, NULL);
-	}
-	else
-	{
-		int a;
-		write(fd[1], "hi", 2);
-		wait(&a);
-		printf("end\n");
-	}
+	char **av;
+	av = malloc(sizeof(char *) * 2);
+	av[0] = NULL;
+	av[1] = NULL;
+	execve(NULL, av, NULL);
+	printf("%s\n", strerror(errno));
 }

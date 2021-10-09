@@ -90,6 +90,7 @@ void		exe_echo(t_commands *commands);
 */
 void		exe_bin(t_commands *commands);
 void		check_bin_error(char *com);
+char		*set_path(t_commands *commands);
 
 /*
 ** com*.c

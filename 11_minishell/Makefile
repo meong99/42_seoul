@@ -11,7 +11,7 @@ NO_COLOR = \033[1;36m
 KILL_COLOR	= \033[0m
 
 SRCS = \
-	commands/com_bin.c commands/com_bin_error.c\
+	commands/com_bin.c commands/com_bin_error.c commands/com_bin_set.c\
 	commands/com_cd.c\
 	commands/com_env.c\
 	commands/com_exit.c\
