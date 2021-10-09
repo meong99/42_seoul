@@ -16,7 +16,7 @@ void	exe_commands(t_commands *commands)
 	else if (ft_strncmp(com, "env", 4) == 0)
 		exe_env(commands);
 	else if (ft_strncmp(com, "exit", 5) == 0)
-		exe_exit(commands);
+		exe_exit(commands->arg);
 	else if (ft_strncmp(com, "echo", 5) == 0)
 		exe_echo(commands);
 	else

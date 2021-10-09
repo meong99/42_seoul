@@ -96,7 +96,7 @@ void		check_bin_error(char *com);
 */
 void		exe_cd(t_commands *commands);
 void		exe_pwd(void);
-void		exe_exit(t_commands *commands);
+void		exe_exit(t_list *arg);
 
 /*
 ** error.c
