@@ -32,7 +32,6 @@ typedef struct s_commands
 	t_list	*arg;
 	t_list	*redirections;
 	t_list	*filename;
-	t_list	*delimiter;
 	int		index;
 	int		count_pipe;
 	int		**fd;
@@ -109,9 +108,9 @@ void		exe_commands(t_commands *commands);
 ** redirection
 */
 char		*redir_input(t_list *redir, t_list *filename);
-void		redir_output(char *output, char *filename);
+void		redir_output(char *output, t_list *filename);
 void		redir_append(void);
-void		redir_heredoc(void);
+void		redir_heredoc(char *delimiter);
 
 /*
 ** quotatio_mark.c

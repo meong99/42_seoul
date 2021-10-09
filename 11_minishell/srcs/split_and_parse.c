@@ -29,11 +29,8 @@ void	split_space(char *str, t_commands *commands)
 		if (ft_strnstr("<<><>>", result[i], 4))
 			ft_lstadd_back(&commands->redirections, \
 				ft_lstnew(ft_strdup(result[i])));
-		else if (i > 0 && ft_strnstr("><>>", result[i - 1], 4))
+		else if (i > 0 && ft_strnstr("<<><>>", result[i - 1], 4))
 			ft_lstadd_back(&commands->filename, \
-				ft_lstnew(ft_strdup(result[i])));
-		else if (i > 0 && ft_strncmp("<<", result[i - 1], 2) == 0)
-			ft_lstadd_back(&commands->delimiter, \
 				ft_lstnew(ft_strdup(result[i])));
 		else if (commands->com == NULL)
 			commands->com = ft_strdup(result[i]);
