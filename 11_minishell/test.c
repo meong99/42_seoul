@@ -17,13 +17,30 @@ typedef struct s_env
 
 int main(int ac, char **av, char **envp)
 {
-	char **argv;
+	int	fd[2];
+	char	buf[2];
 
-	av = 0;
-	ac = 0;
-	argv = malloc(sizeof(char *) * 2);
-	argv[0] = "ls";
-	argv[1] = NULL;
-	execve("/bin/ls", argv, envp);
-	printf("%s\n", strerror(errno));
+	int	eof = -1;
+
+	pipe(fd);
+	int	pid = fork();
+	if (pid == 0)
+	{
+		char **av;
+		av = malloc(sizeof(char *) * 3);
+		av[0] = "/usr/bin/grep";
+		av[1] = "hi";
+		av[2] = NULL;
+		read(fd[0], buf, 2);
+		write(0, buf, 2);
+		write(0, &eof, 2);
+		execve("/usr/bin/grep", av, NULL);
+	}
+	else
+	{
+		int a;
+		write(fd[1], "hi", 2);
+		wait(&a);
+		printf("end\n");
+	}
 }
