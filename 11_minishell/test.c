@@ -18,11 +18,17 @@ typedef struct s_env
 int main(void)
 {
 	char **av;
-	av = malloc(sizeof(char *) * 5);
-	av[0] = "/bin/cp";
-	av[1] = "-r";
-	av[2] = "asd";
-	av[3] = "srcs";
-	av[4] = NULL;
-	execve("/bin/cp", av, NULL);
+	int	fd[2],fd_2[2], fd_3[2];
+
+	pipe(fd);
+	pipe(fd_2);
+	pipe(fd_3);
+	dup2(fd[0], STDIN_FILENO);
+	av = malloc(sizeof(char *) * 2);
+	av[0] = NULL;
+	av[1] = NULL;
+	close(fd[0]);
+	write(fd[1], "asd", 3);
+	close(fd[1]);
+	execve("asd", av, NULL);
 }

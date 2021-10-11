@@ -110,7 +110,7 @@ void		exe_commands(t_commands *commands);
 char		*redir_input(t_list *redir, t_list *filename);
 void		redir_output(char *output, t_list *filename);
 void		redir_append(void);
-void		redir_heredoc(char *delimiter);
+char		*redir_heredoc(char *delimiter);
 
 /*
 ** quotatio_mark.c
