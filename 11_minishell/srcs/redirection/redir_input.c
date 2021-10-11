@@ -15,11 +15,7 @@ static char	*ret_input(char *redir, char *filename)
 			return (NULL);
 		str = ft_strdup("");
 		while (read(fd, buf, 10) != 0)
-		{
-			if (errno != 0)
-				return (NULL);
 			str = ft_strjoin_free(str, buf);
-		}
 		close(fd);
 	}
 	return (str);

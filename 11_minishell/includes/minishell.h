@@ -34,7 +34,7 @@ typedef struct s_commands
 	t_list	*filename;
 	int		index;
 	int		count_pipe;
-	int		**fd;
+	int		*fd;
 }	t_commands;
 
 t_env		*g_env;

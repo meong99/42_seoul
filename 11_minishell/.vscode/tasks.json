@@ -8,7 +8,6 @@
                 "-C",
                 "${workspaceFolder}",
                 "re",
-                "all"
             ],
             "options": {
                 "cwd": "/usr/bin",

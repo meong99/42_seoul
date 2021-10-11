@@ -11,24 +11,23 @@ NO_COLOR = \033[1;36m
 KILL_COLOR	= \033[0m
 
 SRCS = \
-	commands/com_bin.c commands/com_bin_error.c\
-	commands/com_cd.c\
-	commands/com_env.c\
-	commands/com_exit.c\
-	commands/com_export.c commands/com_export_print.c commands/com_export_error.c commands/com_export_sorting.c\
-	commands/com_echo.c\
-	commands/com_pwd.c\
-	commands/com_unset.c commands/com_unset_error.c\
+	command/com_bin.c command/com_bin_error.c command/com_bin_set.c\
+	command/com_cd.c\
+	command/com_env.c\
+	command/com_exit.c\
+	command/com_export.c command/com_export_print.c command/com_export_error.c command/com_export_sorting.c\
+	command/com_echo.c\
+	command/com_pwd.c\
+	command/com_unset.c command/com_unset_error.c\
+	redirection/redir_append.c redirection/redir_heredoc.c redirection/redir_input.c redirection/redir_output.c\
 	init_commands.c init_env_variable.c\
-	error.c\
 	exe_commands.c\
 	heredoc.c\
 	main.c\
 	pipe.c\
 	quotation_mark.c\
-	split_and_pars.c\
+	split_and_parse.c\
 	temp.c
-	# redirection/redir_append.c redirection/redir_heredoc.c redirection/redir_input.c redirection/redir_output.c\
 
 OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PAHT)/, $(OBJS_NAME))
@@ -41,7 +40,7 @@ ifeq ($(SANI), 1)
 endif
 
 $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
-	@mkdir -p $(OBJS_PAHT)/commands
+	@mkdir -p $(OBJS_PAHT)/command
 	@mkdir -p $(OBJS_PAHT)/redirection
 	@mkdir -p $(OBJS_PAHT)
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@

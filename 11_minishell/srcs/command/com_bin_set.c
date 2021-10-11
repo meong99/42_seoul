@@ -14,7 +14,7 @@ static t_env	*find_key(char *key)
 	return (NULL);
 }
 
-static char	*ret_path(t_commands *commands, char *path_arr[])
+static char	*ret_path(t_commands *commands, char **path_arr)
 {
 	char		*path;
 	struct stat	buf;
@@ -27,7 +27,8 @@ static char	*ret_path(t_commands *commands, char *path_arr[])
 		i = -1;
 		while (path_arr[++i])
 		{
-			path = ft_strjoin(path_arr[i], commands->com);
+			path = ft_strjoin(path_arr[i], "/");
+			path = ft_strjoin_free(path, commands->com);
 			if (stat(path, &buf) == 0)
 				return (path);
 			free(path);
@@ -43,5 +44,6 @@ char	*set_path(t_commands *commands)
 
 	path_arr = ft_split(find_key("PATH")->value, ':');
 	path = ret_path(commands, path_arr);
+	ft_free(path_arr, 0, true);
 	return (path);
 }

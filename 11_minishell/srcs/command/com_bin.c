@@ -65,6 +65,7 @@ void	exe_bin(t_commands *commands)
 	char	*path;
 	int		pid;
 	int		wstatus;
+	char	*tmp;
 
 	envp = make_envp();
 	argv = make_argv(commands);
@@ -73,9 +74,17 @@ void	exe_bin(t_commands *commands)
 	pid = fork();
 	if (pid == C_PROCESS)
 	{
+		dup2(commands->fd[0], STDIN_FILENO);
+		close(commands->fd[0]);
+		close(commands->fd[1]);
 		if (execve(path, argv, envp) == -1)
 			check_bin_error(commands->com);
 	}
 	else
+	{
+		tmp = redir_input(commands->redirections, commands->filename);
+		write(commands->fd[1], tmp, ft_strlen(tmp));
+		close(commands->fd[1]);
 		wait(&wstatus);
+	}
 }
