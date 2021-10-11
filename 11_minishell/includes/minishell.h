@@ -108,7 +108,7 @@ void		exe_commands(t_commands *commands);
 ** redirection
 */
 char		*redir_input(t_list *redir, t_list *filename);
-void		redir_output(char *output, t_list *filename);
+void		redir_output(char *output, t_list *redir,  t_list *filename);
 void		redir_append(void);
 char		*redir_heredoc(char *delimiter);
 

@@ -1,5 +1,19 @@
 #include "minishell.h"
 
+static t_env	*find_key(char *key)
+{
+	t_env	*node;
+
+	node = g_env;
+	while (node)
+	{
+		if (ft_strncmp(node->key, key, ft_strlen(key)) == 0)
+			return (node);
+		node = node->next;
+	}
+	return (NULL);
+}
+
 static char	*ret_path(t_commands *commands, char *path_arr[])
 {
 	char		*path;
@@ -25,14 +39,9 @@ static char	*ret_path(t_commands *commands, char *path_arr[])
 char	*set_path(t_commands *commands)
 {
 	char	*path;
-	char	*path_arr[6];
+	char	**path_arr;
 
-	path_arr[0] = "/bin/";
-	path_arr[1] = "/usr/bin/";
-	path_arr[2] = "/usr/local/bin/";
-	path_arr[3] = "/sbin/";
-	path_arr[4] = "/usr/sbin/";
-	path_arr[5] = NULL;
+	path_arr = ft_split(find_key("PATH")->value, ':');
 	path = ret_path(commands, path_arr);
 	return (path);
 }
