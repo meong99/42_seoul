@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	exe_commands(t_commands *commands)
+static void	zxczcx(t_commands *commands)
 {
 	char	*com;
 
@@ -21,4 +21,28 @@ void	exe_commands(t_commands *commands)
 		exe_echo(commands);
 	else
 		exe_bin(commands);
+}
+
+static void	make_process(t_commands *commands)
+{
+	int	*pid;
+	int	i;
+
+
+	pid = malloc(sizeof(int) * commands->count_pipe);
+	i = -1;
+	while (++i < commands->count_pipe)
+	{
+		pid[i] = fork();
+		if (pid[i] == 0)
+			break ;
+	}
+}
+
+void	exe_commands(t_commands *commands)
+{
+	if (commands->count_pipe > 1)
+		make_process(commands);
+	else
+		zxczcx(commands);
 }
