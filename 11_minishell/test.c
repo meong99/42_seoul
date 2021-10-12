@@ -17,12 +17,7 @@ typedef struct s_env
 
 int main(void)
 {
-	int	**fd;
+	int	fd = 45;
 
-	fd = malloc(sizeof(int*) * 10);
-	for (int i = 0; i < 10; i++)
-	{
-		fd[i] = malloc(sizeof(int) * 2);
-		pipe(fd[i]);
-	}
+	close(fd);
 }

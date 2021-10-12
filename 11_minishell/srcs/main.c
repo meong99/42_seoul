@@ -5,6 +5,17 @@ void	file(void *str);
 void	del(void *str);
 void	delete(void *str);
 
+static void	free_all(t_commands *commands, char *str, int **fd)
+{
+	free(commands->com);
+	ft_lstclear(&commands->arg, delete);
+	ft_lstclear(&commands->redirections, delete);
+	ft_lstclear(&commands->filename, delete);
+	free(str);
+	ft_free(fd, commands->count_pipe + 1, false);
+	free(commands);
+}
+
 int		main(int ac, char **av, char **envp)
 {
 	t_commands	*commands;
@@ -16,7 +27,6 @@ int		main(int ac, char **av, char **envp)
 	init_env_var(envp);
 	while (1)
 	{
-		pipe(fd);
 		str = readline("minishell >");
 		if (str == NULL)
 			exit(0);
@@ -31,18 +41,7 @@ int		main(int ac, char **av, char **envp)
 			commands[i].fd = fd[i];
 		}
 		exe_commands(commands);
-		free(commands->com);
-		ft_lstclear(&commands->arg, delete);
-		ft_lstclear(&commands->redirections, delete);
-		ft_lstclear(&commands->filename, delete);
-		// free(commands);
-		free(str);
+		free_all(commands, str, fd);
 	}
-
-	// make_pipe(&fd);
-	// while (true)
-	// {
-	// 	run_p_process(&commands, &fd);
-	// }
 	return (0);
 }

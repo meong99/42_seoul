@@ -1,22 +1,5 @@
 #include "minishell.h"
 
-char	**split_before_char(char *str, char c)
-{
-	char	**result;
-	char	*tmp;
-	size_t	size;
-
-	result = malloc(sizeof(char *) * 3);
-	tmp = ft_strchr_f(str, c, inside_quote);
-	size = tmp - str;
-	result[0] = malloc(size + 1);
-	result[1] = malloc(ft_strlen(tmp) + 1);
-	ft_strlcpy(result[0], str, size + 1);
-	ft_strlcpy(result[1], tmp, ft_strlen(tmp) + 1);
-	result[2] = NULL;
-	return (result);
-}
-
 void	split_space(char *str, t_commands *commands)
 {
 	char	**result;
@@ -60,5 +43,6 @@ t_commands	*split_pipe(char *str)
 		commands[i].index = i;
 		commands[i].count_pipe = count_pipe;
 	}
+	ft_free(tmp, 0, true);
 	return (commands);
 }

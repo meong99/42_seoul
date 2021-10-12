@@ -6,8 +6,8 @@ int	**make_pipe(t_commands *commands)
 	int	i;
 
 	i = -1;
-	fd = malloc(sizeof(int *) * (commands->count_pipe - 1));
-	while (++i < commands->count_pipe - 1)
+	fd = malloc(sizeof(int *) * (commands->count_pipe));
+	while (++i < commands->count_pipe)
 	{
 		fd[i] = malloc(sizeof(int) * 2);
 		if (pipe(fd[i]) == RET_ERR_INT)

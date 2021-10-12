@@ -4,6 +4,8 @@ void	check_bin_error(char *com)
 {
 	char	*err_msg;
 
+	if (com == NULL)
+		return ;
 	if (ft_strchr(com, '/') == NULL)
 		err_msg = "command not found";
 	else

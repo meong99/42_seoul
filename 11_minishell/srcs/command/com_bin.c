@@ -63,16 +63,11 @@ void	exe_bin(t_commands *commands)
 	char	**envp;
 	char	**argv;
 	char	*path;
-	int		wstatus;
-	char	*tmp;
 
 	envp = make_envp();
 	argv = make_argv(commands);
 	path = set_path(commands);
 	argv[0] = path;
-	dup2(commands->fd[0], STDIN_FILENO);
-	close(commands->fd[0]);
-	close(commands->fd[1]);
 	if (execve(path, argv, envp) == -1)
 		check_bin_error(commands->com);
 }

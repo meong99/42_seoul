@@ -13,10 +13,11 @@
 
 # define RET_ERR_INT -1
 # define RET_ERR_NULL 0
-# define C_PROCESS 0
+# define CHILD 0
 # define FOR_READ 0
 # define FOR_WRITE 1
 # define NOT_FOUND NULL
+# define ALL_CHILD -1
 
 typedef struct s_env
 {
@@ -56,7 +57,6 @@ int			**make_pipe(t_commands *commands);
 /*
 ** split_and_parsing.c
 */
-char		**split_before_char(char *str, char c);
 void		split_space(char *str, t_commands *commands);
 t_commands	*split_pipe(char *str);
 

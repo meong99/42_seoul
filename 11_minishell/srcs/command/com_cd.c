@@ -23,4 +23,5 @@ void	exe_cd(t_commands *commands)
 	str = (char *)commands->arg->content;
 	err_code = chdir(str);
 	print_err_cd(err_code, str);
+	free(pwd);
 }
