@@ -32,6 +32,8 @@ int		main(int ac, char **av, char **envp)
 			exit(0);
 		if (*str)
 			add_history(str);
+		else if (*str == '\0')
+			continue ;
 		commands = split_pipe(str);
 		fd = malloc(sizeof(int *) * commands->count_pipe);
 		for (int i = 0; i < commands->count_pipe; i++)
@@ -42,6 +44,7 @@ int		main(int ac, char **av, char **envp)
 		}
 		exe_commands(commands);
 		free_all(commands, str, fd);
+		system("leaks minishell");
 	}
 	return (0);
 }

@@ -2,68 +2,68 @@
 
 static t_env	*find_key(char *key)
 {
-	t_env	*node;
+	t_env	*index;
 
-	node = g_env;
-	while (node)
+	index = g_env;
+	while (index)
 	{
-		if (ft_strncmp(node->key, key, ft_strlen(key)) == 0)
-			return (node);
-		node = node->next;
+		if (ft_strncmp(index->key, key, ft_strlen(key)) == 0)
+			return (index);
+		index = index->next;
 	}
 	return (NULL);
 }
 
 static void	mapping_value(char *key, char *value)
 {
-	t_env	*node;
+	t_env	*mapping;
 
-	node = find_key(key);
-	free(node->value);
-	node->value = ft_strdup(value);
+	mapping = find_key(key);
+	free(mapping->value);
+	mapping->value = ft_strdup(value);
 }
 
 static void	ft_putenv(char *key, char *value)
 {
-	t_env	*temp;
+	t_env	*index;
 
-	temp = g_env;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = new_env_node(key, value, g_env->env_num);
+	index = g_env;
+	while (index->next)
+		index = index->next;
+	index->next = new_env_node(key, value, g_env->env_num);
 	(*g_env->env_num)++;
 }
 
-static void	export_internal(t_list *node)
+static void	export_internal(t_list *arg)
 {
 	char	**split_var;
 	t_env	*check_key;
 
-	while (node)
+	while (arg)
 	{
-		if (check_first_char((char *)node->content) != RET_ERR_INT)
+		if (check_first_char((char *)arg->content) != RET_ERR_INT)
 		{
-			split_var = ft_split((char *)node->content, '=');
+			split_var = ft_split((char *)arg->content, '=');
 			check_key = find_key(split_var[0]);
 			if (check_key == NOT_FOUND && !check_export_error(split_var[0], \
-				(char *)node->content))
+				(char *)arg->content))
 				ft_putenv(split_var[0], split_var[1]);
 			else if (check_key)
 				mapping_value(split_var[0], split_var[1]);
 			ft_free(split_var, 0, true);
 		}
-		node = node->next;
+		arg = arg->next;
 	}
 }
 
 int	exe_export(t_commands *commands)
 {
-	t_list	*node;
+	t_list	*arg;
 
-	node = commands->arg;
-	if (node == NULL)
+	arg = commands->arg;
+	if (arg == NULL)
 		print_export_env();
 	else
-		export_internal(node);
+		export_internal(arg);
 	return (0);
 }

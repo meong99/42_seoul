@@ -70,4 +70,7 @@ void	exe_bin(t_commands *commands)
 	argv[0] = path;
 	if (execve(path, argv, envp) == -1)
 		check_bin_error(commands->com);
+	free(path);
+	ft_free(envp, 0, true);
+	ft_free(argv, 0, true);
 }

@@ -5,17 +5,14 @@ static t_env	*deep_copy(void)
 	t_env	*index;
 	t_env	*temp;
 	t_env	*env;
-	int		*env_num;
 
 	index = g_env;
-	env_num = malloc(sizeof(int));
-	*env_num = *g_env->env_num;
-	env = new_env_node(index->key, index->value, g_env->env_num);
+	env = new_env_node(index->key, index->value, NULL);
 	temp = env;
 	index = index->next;
 	while (index)
 	{
-		temp->next = new_env_node(index->key, index->value, env_num);
+		temp->next = new_env_node(index->key, index->value, NULL);
 		temp = temp->next;
 		index = index->next;
 	}
@@ -38,7 +35,6 @@ void	print_export_env(void)
 		printf("\n");
 		temp = temp->next;
 	}
-	free(node->env_num);
 	while (node)
 	{
 		temp = node->next;
