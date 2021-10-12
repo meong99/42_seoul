@@ -44,7 +44,6 @@ int		main(int ac, char **av, char **envp)
 		}
 		exe_commands(commands);
 		free_all(commands, str, fd);
-		system("leaks minishell");
 	}
 	return (0);
 }

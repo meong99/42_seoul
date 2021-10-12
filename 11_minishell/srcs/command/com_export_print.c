@@ -40,6 +40,7 @@ void	print_export_env(void)
 		temp = node->next;
 		free(node->key);
 		free(node->value);
+		free(node);
 		node = temp;
 	}
 }
