@@ -1,9 +1,9 @@
 #include "minishell.h"
-void	arg(void *str);
-void	re(void *str);
-void	file(void *str);
-void	del(void *str);
-void	delete(void *str);
+
+static void	delete(void *str)
+{
+	free(str);
+}
 
 static void	free_all(t_commands *commands, char *str, int **fd)
 {

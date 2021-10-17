@@ -43,12 +43,16 @@ static void	run_commands(t_commands *commands)
 		exe_bin(commands);
 }
 
-static void	make_process(t_commands *commands)
+static void	dup_fd(t_commands *commands)
+{
+
+}
+
+static int	make_process(t_commands *commands)
 {
 	int		*pid;
 	int		wstatus;
 	int		i;
-	char	*output;
 
 	pid = malloc(sizeof(int) * commands->count_pipe);
 	i = -1;
@@ -57,30 +61,21 @@ static void	make_process(t_commands *commands)
 		pid[i] = fork();
 		if (pid[i] != CHILD)
 		{
-			output = redir_input(commands->redirections, commands->filename);
-			write(commands[i].fd[FOR_WRITE], output, ft_strlen(output));
-			close(commands[i].fd[FOR_WRITE]);
-			close(commands[i].fd[FOR_READ]);
-			free(output);
-		}
-		else
-		{
-			dup2(commands[i].fd[FOR_READ], STDIN_FILENO);
-			close(commands[i].fd[FOR_READ]);
-			close(commands[i].fd[FOR_WRITE]);
+			dup_fd(&commands[i]);
 			run_commands(&commands[i]);
-			break ;
+			return (CHILD);
 		}
 	}
-	if (i == commands->count_pipe)
-		waitpid(ALL_CHILD, &wstatus, 0);
+	waitpid(ALL_CHILD, &wstatus, 0);
 	free(pid);
+	return (PARENTS);
 }
 
-void	exe_commands(t_commands *commands)
+int	exe_commands(t_commands *commands)
 {
 	if (commands->count_pipe > 1 || is_nonbuilt(commands->com))
-		make_process(commands);
+		return (make_process(commands));
 	else
 		run_commands(commands);
+	return (PARENTS);
 }

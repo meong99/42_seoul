@@ -14,6 +14,7 @@
 # define RET_ERR_INT -1
 # define RET_ERR_NULL 0
 # define CHILD 0
+# define PARENTS 1
 # define FOR_READ 0
 # define FOR_WRITE 1
 # define NOT_FOUND NULL
@@ -48,11 +49,6 @@ extern int	rl_replace_line(void);
 void		init_env_var(char **envp);
 void		init_commands(t_commands *commands);
 t_env		*new_env_node(char *key, char *value, int *env_num);
-
-/*
-** pipe.c
-*/
-int			**make_pipe(t_commands *commands);
 
 /*
 ** split_and_parsing.c
@@ -102,7 +98,7 @@ void		exe_exit(t_list *arg);
 /*
 ** exe_commands.c
 */
-void		exe_commands(t_commands *commands);
+int		exe_commands(t_commands *commands);
 
 /*
 ** redirection
@@ -116,20 +112,5 @@ char		*redir_heredoc(char *delimiter);
 ** quotatio_mark.c
 */
 int			inside_quote(char *str, char *pointer);
-
-/*
-** run_c_process.c
-*/
-void		run_c_process(t_commands *commands);
-
-/*
-** run_p_process.c
-*/
-void		run_p_process(t_commands *commands);
-
-/*
-** heredoc.c
-*/
-char		*get_hererdocs_input(t_commands *commands);
 
 #endif
