@@ -29,18 +29,15 @@ char	*redir_input(t_list *redir, t_list *filename)
 	input = ft_strdup("");
 	while (redir && filename)
 	{
-		if (ft_strnstr("<<", (char *)redir->content, 2))
+		tmp = ret_input((char *)redir->content, (char *)filename->content);
+		if (tmp == NULL)
 		{
-			tmp = ret_input((char *)redir->content, (char *)filename->content);
-			if (tmp == NULL)
-			{
-				free(input);
-				free(tmp);
-				return ((char *)filename->content);
-			}
-			input = ft_strjoin_free(input, tmp);
+			free(input);
 			free(tmp);
+			return ((char *)filename->content);
 		}
+		input = ft_strjoin_free(input, tmp);
+		free(tmp);
 		redir = redir->next;
 		filename = filename->next;
 	}

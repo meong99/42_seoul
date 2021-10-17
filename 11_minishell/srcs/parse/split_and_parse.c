@@ -1,6 +1,36 @@
 #include "minishell.h"
 
-void	split_space(char *str, t_commands *commands)
+static void	parse_input(char **result, t_commands *commands)
+{
+	char	*redir_mark;
+	char	*filename;
+	t_list	*redir_in;
+	t_list	*redir_file;
+
+	redir_mark = *result++;
+	filename = *result;
+	redir_in = commands->redir_in;
+	redir_file = commands->filename_in;
+	ft_lstadd_back(&redir_in, ft_lstnew(ft_strdup(redir_mark)));
+	ft_lstadd_back(&redir_file, ft_lstnew(ft_strdup(filename)));
+}
+
+static void	parse_output(char **result, t_commands *commands)
+{
+	char	*redir_mark;
+	char	*filename;
+	t_list	*redir_out;
+	t_list	*redir_file;
+
+	redir_mark = *result++;
+	filename = *result;
+	redir_out = commands->redir_out;
+	redir_file = commands->filename_out;
+	ft_lstadd_back(&redir_out, ft_lstnew(ft_strdup(redir_mark)));
+	ft_lstadd_back(&redir_file, ft_lstnew(ft_strdup(filename)));
+}
+
+static void	split_space(char *str, t_commands *commands)
 {
 	char	**result;
 	int		i;
@@ -9,12 +39,10 @@ void	split_space(char *str, t_commands *commands)
 	result = ft_split_f(str, ' ', inside_quote);
 	while (result[++i])
 	{
-		if (ft_strnstr("<<><>>", result[i], 4))
-			ft_lstadd_back(&commands->redirections, \
-				ft_lstnew(ft_strdup(result[i])));
-		else if (i > 0 && ft_strnstr("<<><>>", result[i - 1], 4))
-			ft_lstadd_back(&commands->filename, \
-				ft_lstnew(ft_strdup(result[i])));
+		if (ft_strnstr("<<", result[i], 3))
+			parse_input(result + i, commands);
+		else if (ft_strnstr(">>", result[i], 3))
+			parse_output(result + i, commands);
 		else if (commands->com == NULL)
 			commands->com = ft_strdup(result[i]);
 		else

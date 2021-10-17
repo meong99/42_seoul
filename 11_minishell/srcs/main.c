@@ -9,8 +9,10 @@ static void	free_all(t_commands *commands, char *str, int **fd)
 {
 	free(commands->com);
 	ft_lstclear(&commands->arg, delete);
-	ft_lstclear(&commands->redirections, delete);
-	ft_lstclear(&commands->filename, delete);
+	ft_lstclear(&commands->redir_in, delete);
+	ft_lstclear(&commands->redir_out, delete);
+	ft_lstclear(&commands->filename_in, delete);
+	ft_lstclear(&commands->filename_out, delete);
 	free(str);
 	ft_free(fd, commands->count_pipe + 1, false);
 	free(commands);
@@ -40,7 +42,7 @@ int		main(int ac, char **av, char **envp)
 		{
 			fd[i] = malloc(sizeof(int) * 2);
 			pipe(fd[i]);
-			commands[i].fd = fd[i];
+			commands[i].fd = fd;
 		}
 		exe_commands(commands);
 		free_all(commands, str, fd);

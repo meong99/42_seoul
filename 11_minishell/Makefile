@@ -19,11 +19,10 @@ SRCS = \
 	command/com_echo.c\
 	command/com_pwd.c\
 	command/com_unset.c command/com_unset_error.c\
-	\
 	redirection/redir_append.c redirection/redir_heredoc.c redirection/redir_input.c redirection/redir_output.c\
 	init/init_commands.c init/init_env_variable.c\
-	parse/quotation_mark.c parse/split_and_parse.c
-	exe_commands.c\
+	parse/quotation_mark.c parse/split_and_parse.c\
+	set_command/exe_commands.c set_command/dup_fd.c\
 	main.c\
 
 OBJS_NAME = $(SRCS:.c=.o)
@@ -41,6 +40,7 @@ $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
 	@mkdir -p $(OBJS_PAHT)/redirection
 	@mkdir -p $(OBJS_PAHT)/init
 	@mkdir -p $(OBJS_PAHT)/parse
+	@mkdir -p $(OBJS_PAHT)/set_command
 	@mkdir -p $(OBJS_PAHT)
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 

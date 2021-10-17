@@ -32,11 +32,13 @@ typedef struct s_commands
 {
 	char	*com;
 	t_list	*arg;
-	t_list	*redirections;
-	t_list	*filename;
+	t_list	*redir_in;
+	t_list	*redir_out;
+	t_list	*filename_in;
+	t_list	*filename_out;
 	int		index;
 	int		count_pipe;
-	int		*fd;
+	int		**fd;
 }	t_commands;
 
 t_env		*g_env;
@@ -44,20 +46,7 @@ t_env		*g_env;
 extern int	rl_replace_line(void);
 
 /*
-** init.c
-*/
-void		init_env_var(char **envp);
-void		init_commands(t_commands *commands);
-t_env		*new_env_node(char *key, char *value, int *env_num);
-
-/*
-** split_and_parsing.c
-*/
-void		split_space(char *str, t_commands *commands);
-t_commands	*split_pipe(char *str);
-
-/*
-** export
+** command
 */
 int			exe_export(t_commands *commands);
 int			check_export_error(char *key, char *arg);
@@ -65,40 +54,35 @@ int			check_first_char(char *str);
 void		print_export_env(void);
 void		sorting_export(t_env *set, t_env *compare, t_env **head);
 
-/*
-** unset
-*/
 int			exe_unset(t_commands *commands);
 int			check_unset_error(char *key);
 
-/*
-** env
-*/
 void		exe_env(t_commands *commands);
 
-/*
-** echo
-*/
 void		exe_echo(t_commands *commands);
 
-/*
-** bin
-*/
 void		exe_bin(t_commands *commands);
 void		check_bin_error(char *com);
 char		*set_path(t_commands *commands);
 
-/*
-** com*.c
-*/
 void		exe_cd(t_commands *commands);
+
 void		exe_pwd(void);
+
 void		exe_exit(t_list *arg);
 
 /*
-** exe_commands.c
+** init
 */
-int		exe_commands(t_commands *commands);
+void		init_env_var(char **envp);
+void		init_commands(t_commands *commands);
+t_env		*new_env_node(char *key, char *value, int *env_num);
+
+/*
+** parse
+*/
+t_commands	*split_pipe(char *str);
+int			inside_quote(char *str, char *pointer);
 
 /*
 ** redirection
@@ -109,8 +93,9 @@ void		redir_append(void);
 char		*redir_heredoc(char *delimiter);
 
 /*
-** quotatio_mark.c
+** set_command
 */
-int			inside_quote(char *str, char *pointer);
+int			exe_commands(t_commands *commands);
+void		dup_fd(t_commands *commands);
 
 #endif

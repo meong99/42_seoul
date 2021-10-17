@@ -43,11 +43,6 @@ static void	run_commands(t_commands *commands)
 		exe_bin(commands);
 }
 
-static void	dup_fd(t_commands *commands)
-{
-
-}
-
 static int	make_process(t_commands *commands)
 {
 	int		*pid;

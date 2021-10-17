@@ -22,13 +22,10 @@ void	redir_output(char *output, t_list *redir, t_list *filename)
 {
 	while (redir && filename)
 	{
-		if (ft_strnstr(">>", (char *)redir->content, 2))
-		{
-			if (ft_strncmp(">", (char *)redir->content, 2) == 0)
-				overwrite(output, (char *)filename->content);
-			else
-				append(output, (char *)filename->content);
-		}
+		if (ft_strncmp(">", (char *)redir->content, 2) == 0)
+			overwrite(output, (char *)filename->content);
+		else
+			append(output, (char *)filename->content);
 		redir = redir->next;
 		filename = filename->next;
 	}
