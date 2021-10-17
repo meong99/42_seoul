@@ -14,7 +14,7 @@ static void	free_all(t_commands *commands, char *str, int **fd)
 	ft_lstclear(&commands->filename_in, delete);
 	ft_lstclear(&commands->filename_out, delete);
 	free(str);
-	ft_free(fd, commands->count_pipe + 1, false);
+	ft_free(fd, commands->count_pipe, false);
 	free(commands);
 }
 
@@ -29,7 +29,7 @@ int		main(int ac, char **av, char **envp)
 	init_env_var(envp);
 	while (1)
 	{
-		str = readline("minishell >");
+		str = readline("minishell> ");
 		if (str == NULL)
 			exit(0);
 		if (*str)
