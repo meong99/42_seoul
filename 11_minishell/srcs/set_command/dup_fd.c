@@ -35,6 +35,6 @@ void	dup_fd(t_commands *commands)
 		handle_redir(commands);
 	else if (commands->index != 0)
 		dup_input(commands);
-	if (commands->index != commands->count_pipe)
+	if (commands->index + 1 != commands->count_pipe)
 		dup_output(commands);
 }

@@ -54,7 +54,7 @@ static int	make_process(t_commands *commands)
 	while (++i < commands->count_pipe)
 	{
 		pid[i] = fork();
-		if (pid[i] != CHILD)
+		if (pid[i] == CHILD)
 		{
 			dup_fd(&commands[i]);
 			run_commands(&commands[i]);
