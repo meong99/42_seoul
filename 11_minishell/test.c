@@ -10,10 +10,25 @@
 
 int main(void)
 {
-	int	fd[2];
-
+	int		fd[2];
+	char	**str;
+	int		pid;
+	char	buf[10];
+	str = malloc(sizeof(char *) * 2);
+	str[0] = "/bin/ls";
+	str[1] = NULL;
 	pipe(fd);
-	dup2(fd[0], STDIN_FILENO);
-	close(fd[0]);
-	execve("/bin/cat", NULL, NULL);
+	pid = fork();
+	if (pid)
+	{
+		dup2(fd[1], STDOUT_FILENO);
+		close(fd[1]);
+		execve(str[0], str, NULL);
+	}
+	else
+	{
+		wait(&pid);
+		read(fd[0], buf, 10);
+		write(STDOUT_FILENO, buf, 10);
+	}
 }

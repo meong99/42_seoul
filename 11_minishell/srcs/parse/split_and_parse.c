@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static void	parse_input(char **result, t_commands *commands)
+static void	parse_redir_in(char **result, t_commands *commands)
 {
 	char	*redir_mark;
 	char	*filename;
@@ -15,7 +15,7 @@ static void	parse_input(char **result, t_commands *commands)
 	ft_lstadd_back(&redir_file, ft_lstnew(ft_strdup(filename)));
 }
 
-static void	parse_output(char **result, t_commands *commands)
+static void	parse_redir_out(char **result, t_commands *commands)
 {
 	char	*redir_mark;
 	char	*filename;
@@ -40,9 +40,9 @@ static void	split_space(char *str, t_commands *commands)
 	while (result[++i])
 	{
 		if (ft_strnstr("<<", result[i], 3))
-			parse_input(result + i, commands);
+			parse_redir_in(result + i, commands);
 		else if (ft_strnstr(">>", result[i], 3))
-			parse_output(result + i, commands);
+			parse_redir_out(result + i, commands);
 		else if (commands->com == NULL)
 			commands->com = ft_strdup(result[i]);
 		else

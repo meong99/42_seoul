@@ -87,7 +87,7 @@ int			inside_quote(char *str, char *pointer);
 /*
 ** redirection
 */
-char		*redir_input(t_list *redir, t_list *filename);
+char		*redir_input(t_list *filename);
 void		redir_output(char *output, t_list *redir,  t_list *filename);
 void		redir_append(void);
 char		*redir_heredoc(char *delimiter);
