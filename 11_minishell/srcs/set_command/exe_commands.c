@@ -43,7 +43,7 @@ static void	run_commands(t_commands *commands)
 		exe_bin(commands);
 }
 
-int	find_pid(int pid, int*pidarr, int count)
+static int	find_pid(int pid, int*pidarr, int count)
 {
 	while (count--)
 	{
@@ -72,25 +72,11 @@ static int	make_process(t_commands *commands)
 	}
 	while (i--)
 	{
-		int	tmp;
-		char *str = ft_strdup("");
-		char buf[100];
-		int count;
+		int tmp;
 		tmp = wait(&wstatus);
-		count = find_pid(tmp, pid, commands->count_pipe);
-		close(commands->fd[count][FOR_WRITE]);
-		while (1)
-		{
-			int a;
-			a = read(commands->fd[count][FOR_READ], buf, 100);
-			if (a == 0 || a == -1)
-				break ;
-			buf[a] = 0;
-			str = ft_strjoin_free(str, buf);
-		}
-		write(commands->fd[count + 1][FOR_WRITE], str, ft_strlen(str));
-		close(commands->fd[count + 1][FOR_WRITE]);
-		free(str);
+		tmp = find_pid(tmp, pid, commands->count_pipe);
+		if (tmp + 1 < commands->count_pipe)
+			close(commands->fd[tmp + 1][FOR_WRITE]);
 	}
 	free(pid);
 	return (PARENTS);

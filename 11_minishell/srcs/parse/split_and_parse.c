@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static int	parse_redir_in(char *redir, char *target, t_commands *commands)
+static void	parse_redir_in(char *redir, char *target, t_commands *commands)
 {
 	if (ft_strncmp("<", redir, 2) == 0)
 	{
@@ -25,7 +25,7 @@ static int	parse_redir_in(char *redir, char *target, t_commands *commands)
 	}
 }
 
-static int	parse_redir_out(char *redir, char *target, t_commands *commands)
+static void	parse_redir_out(char *redir, char *target, t_commands *commands)
 {
 	if (commands->redir_out)
 		free(commands->redir_out);
@@ -35,7 +35,7 @@ static int	parse_redir_out(char *redir, char *target, t_commands *commands)
 	commands->redir_out_target = ft_strdup(target);
 }
 
-static int	split_space(char *str, t_commands *commands)
+static void	split_space(char *str, t_commands *commands)
 {
 	char	**result;
 	int		i;
@@ -45,9 +45,15 @@ static int	split_space(char *str, t_commands *commands)
 	while (result[++i])
 	{
 		if (ft_strnstr("<<", result[i], 3))
-			parse_redir_in(result[i], result[++i], commands);
+		{
+			parse_redir_in(result[i], result[i + 1], commands);
+			i++;
+		}
 		else if (ft_strnstr(">>", result[i], 3))
-			parse_redir_out(result[i], result[++i], commands);
+		{
+			parse_redir_out(result[i], result[i + 1], commands);
+			i++;
+		}
 		else if (commands->com == NULL)
 			commands->com = ft_strdup(result[i]);
 		else

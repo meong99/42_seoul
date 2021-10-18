@@ -32,7 +32,7 @@ static char	*ret_input(char *filename)
 		printf("bash: %s: No such file or directory\n", filename);
 		return (NULL);
 	}
-	read_file(fd);
+	str = read_file(fd);
 	close(fd);
 	return (str);
 }

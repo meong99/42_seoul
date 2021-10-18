@@ -8,11 +8,11 @@ static void	delete(void *str)
 static void	free_all(t_commands *commands, char *str, int **fd)
 {
 	free(commands->com);
+	free(commands->redir_in);
+	free(commands->redir_in_target);
+	free(commands->redir_out);
+	free(commands->redir_out_target);
 	ft_lstclear(&commands->arg, delete);
-	ft_lstclear(&commands->redir_in, delete);
-	ft_lstclear(&commands->redir_out, delete);
-	ft_lstclear(&commands->filename_in, delete);
-	ft_lstclear(&commands->filename_out, delete);
 	free(str);
 	ft_free(fd, commands->count_pipe, false);
 	free(commands);

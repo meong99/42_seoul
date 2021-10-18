@@ -10,29 +10,33 @@
 # define BLEN 30
 int main(void)
 {
-	// int		*fd;
+	int		fd[2], pid[2];
 
-	// fd = malloc(sizeof(int) * 2);
-	// pipe(fd);
-	// int	pid = fork();
-	// if (pid == 0)
-	// {
-	// 	dup2(fd[0], STDIN_FILENO);
-	// 	char buf[10];
-	// 	read(STDIN_FILENO, buf, 5);
-	// 	write(1, buf, 10);
-	// 	return (0);
-		// char **str = malloc(sizeof(char *) * 2);
-		// str[0] = "/bin/ls";
-		// str[1] = 0;
-		// execve("/bin/ls", str, NULL);
-	// }
-	char **av;
-	av = malloc(sizeof(char *) * 5);
-	av[3] = 0;
-	av[0] = "/bin/cat";
-	av[1] = "b";
-	av[2] = "c";
-	av[3] = "a";
-	execve("/bin/cat", av, NULL);
+	pipe(fd);
+	for (int i = 0; i < 2; i++)
+	{
+		pid[i] = fork();
+		if (pid[i] && i == 1)
+		{
+			// write(fd[1], "asd", 3);
+			// close(fd[1]);
+			// close(fd[0]);
+			return (0);
+		}
+		else if (pid[i])
+		{
+			dup2(fd[0], STDIN_FILENO);
+			close(fd[0]);
+			// close(fd[1]);
+			char **str = malloc(sizeof(char *) * 2);
+			str[0] = "/bin/cat";
+			str[1] = 0;
+			execve(str[0], str, NULL);
+		}
+	}
+	// write(fd[1], "asd", 3);
+	// close(fd[1]);
+	// close(fd[0]);
+	int status;
+	wait(&status);
 }

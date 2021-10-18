@@ -6,25 +6,28 @@ static void	dup_input(t_commands *commands)
 
 	fd = commands->fd[commands->index];
 	dup2(fd[FOR_READ], STDIN_FILENO);
+	close(fd[FOR_READ]);
+	close(fd[FOR_WRITE]);
 }
 
 static void	dup_output(t_commands *commands)
 {
 	int		*fd;
 
-	fd = commands->fd[commands->index];
+	fd = commands->fd[commands->index + 1];
 	dup2(fd[FOR_WRITE], STDOUT_FILENO);
 }
 
 static void	handle_redir(t_commands *commands)
 {
-	char	*str;
 	int		*fd;
+	char	*redir_str;
 
+	redir_str = commands->redir_in_target;
 	fd = commands->fd[commands->index];
-	str = redir_input(commands->filename_in);
-	dup_input(commands);
-	write(fd[FOR_WRITE], str, ft_strlen(str));
+	dup2(fd[FOR_READ], STDIN_FILENO);
+	close(fd[FOR_READ]);
+	write(fd[FOR_WRITE], redir_str, ft_strlen(redir_str));
 	close(fd[FOR_WRITE]);
 }
 
