@@ -18,7 +18,7 @@
 # define FOR_READ 0
 # define FOR_WRITE 1
 # define NOT_FOUND NULL
-# define ALL_CHILD -1
+# define ALL_CHILD 0
 
 typedef struct s_env
 {
@@ -32,10 +32,10 @@ typedef struct s_commands
 {
 	char	*com;
 	t_list	*arg;
-	t_list	*redir_in;
-	t_list	*redir_out;
-	t_list	*filename_in;
-	t_list	*filename_out;
+	char	*redir_in;
+	char	*redir_in_target;
+	char	*redir_out;
+	char	*redir_out_target;
 	int		index;
 	int		count_pipe;
 	int		**fd;
@@ -87,9 +87,9 @@ int			inside_quote(char *str, char *pointer);
 /*
 ** redirection
 */
-char		*redir_input(t_list *filename);
-void		redir_output(char *output, t_list *redir,  t_list *filename);
-void		redir_append(void);
+char		*redir_input(char *filename);
+void		redir_output(char *output, char *target);
+void		redir_append(char *output, char *target);
 char		*redir_heredoc(char *delimiter);
 
 /*

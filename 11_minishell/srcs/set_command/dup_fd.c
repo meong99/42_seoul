@@ -12,9 +12,8 @@ static void	dup_output(t_commands *commands)
 {
 	int		*fd;
 
-	fd = commands->fd[commands->index + 1];
+	fd = commands->fd[commands->index];
 	dup2(fd[FOR_WRITE], STDOUT_FILENO);
-	close(fd[FOR_WRITE]);
 }
 
 static void	handle_redir(t_commands *commands)
