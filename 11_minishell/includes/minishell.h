@@ -88,14 +88,16 @@ int			inside_quote(char *str, char *pointer);
 ** redirection
 */
 char		*redir_input(char *filename);
-void		redir_output(char *output, char *target);
-void		redir_append(char *output, char *target);
+void		redir_output(char *target);
+void		redir_append(char *target);
 char		*redir_heredoc(char *delimiter);
 
 /*
 ** set_command
 */
-int			exe_commands(t_commands *commands);
+int			set_commands(t_commands *commands);
 void		dup_fd(t_commands *commands);
+void		run_commands(t_commands *commands);
+int			is_nonbuilt(char *com);
 
 #endif

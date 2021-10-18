@@ -44,7 +44,7 @@ int		main(int ac, char **av, char **envp)
 			pipe(fd[i]);
 			commands[i].fd = fd;
 		}
-		if (exe_commands(commands) == CHILD)
+		if (set_commands(commands) == CHILD)
 			return (0);
 		free_all(commands, str, fd);
 	}

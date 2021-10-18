@@ -26,8 +26,8 @@ static void	handle_redir(t_commands *commands)
 	redir_str = commands->redir_in_target;
 	fd = commands->fd[commands->index];
 	dup2(fd[FOR_READ], STDIN_FILENO);
-	close(fd[FOR_READ]);
 	write(fd[FOR_WRITE], redir_str, ft_strlen(redir_str));
+	close(fd[FOR_READ]);
 	close(fd[FOR_WRITE]);
 }
 
@@ -37,6 +37,10 @@ void	dup_fd(t_commands *commands)
 		handle_redir(commands);
 	else if (commands->index != 0)
 		dup_input(commands);
-	if (commands->index + 1 != commands->count_pipe)
+	if (ft_strncmp(">", commands->redir_out, 2) == 0)
+		redir_output(commands->redir_out_target);
+	else if (ft_strncmp(">>", commands->redir_out, 3) == 0)
+		redir_append(commands->redir_out_target);
+	else if (commands->index + 1 != commands->count_pipe)
 		dup_output(commands);
 }

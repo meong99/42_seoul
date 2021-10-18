@@ -3,40 +3,36 @@
 #include "libft/libft.h"
 #include <stdbool.h>
 # include <readline/readline.h>
+#include <sys/wait.h>
 #include <fcntl.h>
 #include <string.h>
 #include <errno.h>
 #include <string.h>
 # define BLEN 30
+
 int main(void)
 {
-	int		fd[2], pid[2];
+	int		fd[2];
+	int		pid;
+	int asd;
+
 
 	pipe(fd);
-	for (int i = 0; i < 2; i++)
+	asd = open("a", O_RDWR | O_CREAT);
+	dup2(asd, fd[0]);
+	dup2(fd[1], STDOUT_FILENO);
+	pid = fork();
+	if (pid == 0)
 	{
-		pid[i] = fork();
-		if (pid[i] && i == 1)
-		{
-			// write(fd[1], "asd", 3);
-			// close(fd[1]);
-			// close(fd[0]);
-			return (0);
-		}
-		else if (pid[i])
-		{
-			dup2(fd[0], STDIN_FILENO);
-			close(fd[0]);
-			// close(fd[1]);
-			char **str = malloc(sizeof(char *) * 2);
-			str[0] = "/bin/cat";
-			str[1] = 0;
-			execve(str[0], str, NULL);
-		}
+		char **str = malloc(sizeof(char *) * 2);
+		str[0] = "/bin/cat";
+		str[1] = 0;
+		execve(str[0], str, NULL);
 	}
+	int status;
+	int	tmp;
 	// write(fd[1], "asd", 3);
 	// close(fd[1]);
 	// close(fd[0]);
-	int status;
-	wait(&status);
+	tmp = waitpid(pid, &status, WUNTRACED);
 }

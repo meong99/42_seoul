@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static int	is_nonbuilt(char *com)
+int	is_nonbuilt(char *com)
 {
 	if (ft_strncmp(com, "cd", 3) == 0)
 		return (false);
@@ -20,7 +20,7 @@ static int	is_nonbuilt(char *com)
 		return (true);
 }
 
-static void	run_commands(t_commands *commands)
+void	run_commands(t_commands *commands)
 {
 	char	*com;
 
@@ -41,52 +41,4 @@ static void	run_commands(t_commands *commands)
 		exe_echo(commands);
 	else
 		exe_bin(commands);
-}
-
-static int	find_pid(int pid, int*pidarr, int count)
-{
-	while (count--)
-	{
-		if (pidarr[count] == pid)
-			return (count);
-	}
-	return (0);
-}
-static int	make_process(t_commands *commands)
-{
-	int		*pid;
-	int		wstatus;
-	int		i;
-
-	pid = malloc(sizeof(int) * commands->count_pipe);
-	i = -1;
-	while (++i < commands->count_pipe)
-	{
-		pid[i] = fork();
-		if (pid[i] == CHILD)
-		{
-			dup_fd(&commands[i]);
-			run_commands(&commands[i]);
-			return (CHILD);
-		}
-	}
-	while (i--)
-	{
-		int tmp;
-		tmp = wait(&wstatus);
-		tmp = find_pid(tmp, pid, commands->count_pipe);
-		if (tmp + 1 < commands->count_pipe)
-			close(commands->fd[tmp + 1][FOR_WRITE]);
-	}
-	free(pid);
-	return (PARENTS);
-}
-
-int	exe_commands(t_commands *commands)
-{
-	if (commands->count_pipe > 1 || is_nonbuilt(commands->com))
-		return (make_process(commands));
-	else
-		run_commands(commands);
-	return (PARENTS);
 }
