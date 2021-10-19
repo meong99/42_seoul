@@ -19,6 +19,11 @@
 # define FOR_WRITE 1
 # define NOT_FOUND NULL
 # define ALL_CHILD 0
+# define NO_REDIR 0
+# define GREATER 1
+# define APPEND 2
+# define HEREDOC 3
+# define LESS 4
 
 typedef struct s_env
 {
@@ -37,7 +42,7 @@ typedef struct s_commands
 	char	*redir_out;
 	char	*redir_out_target;
 	int		index;
-	int		count_pipe;
+	int		pipe_num;
 	int		**fd;
 }	t_commands;
 
@@ -81,8 +86,11 @@ t_env		*new_env_node(char *key, char *value, int *env_num);
 /*
 ** parse
 */
-t_commands	*split_pipe(char *str);
-int			inside_quote(char *str, char *pointer);
+int			check_quote(char *str, char *pointer);
+t_commands	*parsing_handler(char *str);
+t_commands	*parse_pipe(char *str, char **spl);
+int			check_redir(char *str);
+void		parse_redir(t_commands *commands, char *str, int mark);
 
 /*
 ** redirection

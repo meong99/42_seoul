@@ -21,7 +21,7 @@ SRCS = \
 	command/com_unset.c command/com_unset_error.c\
 	redirection/redir_append.c redirection/redir_heredoc.c redirection/redir_input.c redirection/redir_output.c\
 	init/init_commands.c init/init_env_variable.c\
-	parse/quotation_mark.c parse/split_and_parse.c\
+	parse/quotation_mark.c parse/parse.c\
 	set_command/set_commands.c set_command/dup_fd.c set_command/util.c\
 	main.c\
 

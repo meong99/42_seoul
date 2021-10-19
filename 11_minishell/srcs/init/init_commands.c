@@ -10,5 +10,5 @@ void	init_commands(t_commands *commands)
 	commands->redir_out_target = NULL;
 	commands->com = NULL;
 	commands->index = 0;
-	commands->count_pipe = 0;
+	commands->pipe_num = 0;
 }

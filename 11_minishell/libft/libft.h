@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 11:26:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/10/07 18:44:11 by mchae            ###   ########.fr       */
+/*   Updated: 2021/10/19 21:38:15 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int		ft_isascii(int num);
 int		ft_isdigit(int num);
 int		ft_isprint(int num);
 
-char	*ft_strchr_f(const char *s, int c, int (*f)(char *, char *));
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
@@ -67,7 +66,6 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_itoa(int n);
-char	**ft_split_f(char const *s, char c, int (*f)(char *, char *));
 char	**ft_split(char const *s, char c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -86,5 +84,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),
 			void (*del)(void *));
 
 void	*ft_free(void *var, int index, int is_char);
+char	**ft_split_f(char const *s, char c, int (*f)(char *, char *));
+char	*ft_strchr_f(const char *s, int c, int (*f)(char *, char *));
+char	*ft_cut(char *str, char *start, char *end);
 
 #endif

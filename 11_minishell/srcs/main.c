@@ -14,7 +14,7 @@ static void	free_all(t_commands *commands, char *str, int **fd)
 	free(commands->redir_out_target);
 	ft_lstclear(&commands->arg, delete);
 	free(str);
-	ft_free(fd, commands->count_pipe, false);
+	ft_free(fd, commands->pipe_num, false);
 	free(commands);
 }
 
@@ -36,9 +36,9 @@ int		main(int ac, char **av, char **envp)
 			add_history(str);
 		else if (*str == '\0')
 			continue ;
-		commands = split_pipe(str);
-		fd = malloc(sizeof(int *) * commands->count_pipe);
-		for (int i = 0; i < commands->count_pipe; i++)
+		commands = parsing_handler(str);
+		fd = malloc(sizeof(int *) * commands->pipe_num);
+		for (int i = 0; i < commands->pipe_num; i++)
 		{
 			fd[i] = malloc(sizeof(int) * 2);
 			pipe(fd[i]);

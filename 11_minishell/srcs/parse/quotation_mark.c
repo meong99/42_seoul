@@ -38,7 +38,7 @@ static int	check_inside(char *front, char *back, char *pointer)
 	return (false);
 }
 
-int	inside_quote(char *str, char *pointer)
+int	check_quote(char *str, char *pointer)
 {
 	if (str == NULL || pointer == NULL)
 	{

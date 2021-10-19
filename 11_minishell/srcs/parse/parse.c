@@ -40,7 +40,7 @@ static void	split_space(char *str, t_commands *commands)
 	int		i;
 
 	i = -1;
-	result = ft_split_f(str, ' ', inside_quote);
+	result = ft_split_f(str, ' ', check_quote);
 	while (result[++i])
 	{
 		if (ft_strnstr("<<", result[i], 3))
@@ -61,26 +61,21 @@ static void	split_space(char *str, t_commands *commands)
 	ft_free(result, 0, true);
 }
 
-t_commands	*split_pipe(char *str)
+t_commands	*parsing_handler(char *str)
 {
-	char		**tmp;
-	int			count_pipe;
-	int			i;
 	t_commands	*commands;
+	char		**spl_pipe;
+	int			i;
+	int			redir;
 
+	spl_pipe = ft_split_f(str, '|', check_quote);
+	if (ft_strchr_f(str, '|', check_quote))
+		commands = parse_pipe(str, spl_pipe);
 	i = -1;
-	count_pipe = 0;
-	tmp = ft_split_f(str, '|', inside_quote);
-	while (tmp[count_pipe])
-		count_pipe++;
-	commands = malloc(sizeof(t_commands) * count_pipe);
-	while (++i < count_pipe)
+	while (spl_pipe[++i])
 	{
-		init_commands(&commands[i]);
-		split_space(tmp[i], &commands[i]);
-		commands[i].index = i;
-		commands[i].count_pipe = count_pipe;
+		redir = check_redir(spl_pipe[i]);
+		if (redir)
+			parse_redir(commands, spl_pipe[i], redir);
 	}
-	ft_free(tmp, 0, true);
-	return (commands);
 }
