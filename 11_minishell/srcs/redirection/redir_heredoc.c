@@ -9,7 +9,9 @@ char	*redir_heredoc(char *delimiter)
 	while (true)
 	{
 		str = readline("> ");
-		if (ft_strncmp(str, delimiter, ft_strlen(str)) == 0)
+		if (str == NULL)
+			return (result);
+		if (*str && ft_strncmp(str, delimiter, ft_strlen(str)) == 0)
 			break ;
 		result = ft_strjoin_free(result, str);
 		result = ft_strjoin_free(result, "\n");

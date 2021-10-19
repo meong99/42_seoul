@@ -9,7 +9,7 @@ static char	*read_file(int fd)
 	str = ft_strdup("");
 	while (1)
 	{
-		read_len = read(fd, buf, 10);
+		read_len = read(fd, buf, 9);
 		if (read_len == 0)
 			break ;
 		else if (read_len == -1)

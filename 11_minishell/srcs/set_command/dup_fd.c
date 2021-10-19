@@ -5,7 +5,8 @@ static void	dup_input(t_commands *commands)
 	int		*fd;
 
 	fd = commands->fd[commands->index];
-	dup2(fd[FOR_READ], STDIN_FILENO);
+	if (commands->index != 0)
+		dup2(fd[FOR_READ], STDIN_FILENO);
 	close(fd[FOR_READ]);
 	close(fd[FOR_WRITE]);
 }
@@ -16,9 +17,11 @@ static void	dup_output(t_commands *commands)
 
 	fd = commands->fd[commands->index + 1];
 	dup2(fd[FOR_WRITE], STDOUT_FILENO);
+	close(fd[0]);
+	close(fd[1]);
 }
 
-static void	handle_redir(t_commands *commands)
+static void	handle_redir_in(t_commands *commands)
 {
 	int		*fd;
 	char	*redir_str;
@@ -31,16 +34,22 @@ static void	handle_redir(t_commands *commands)
 	close(fd[FOR_WRITE]);
 }
 
+static void	handle_redir_out(t_commands *commands)
+{
+	if (ft_strncmp(">>", commands->redir_out, 3) == 0)
+		redir_append(commands->redir_out_target);
+	else
+		redir_output(commands->redir_out_target);
+}
+
 void	dup_fd(t_commands *commands)
 {
 	if (commands->redir_in)
-		handle_redir(commands);
-	else if (commands->index != 0)
+		handle_redir_in(commands);
+	else
 		dup_input(commands);
-	if (ft_strncmp(">", commands->redir_out, 2) == 0)
-		redir_output(commands->redir_out_target);
-	else if (ft_strncmp(">>", commands->redir_out, 3) == 0)
-		redir_append(commands->redir_out_target);
+	if (commands->redir_out)
+		handle_redir_out(commands);
 	else if (commands->index + 1 != commands->count_pipe)
 		dup_output(commands);
 }

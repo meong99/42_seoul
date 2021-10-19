@@ -10,7 +10,6 @@ static void	parse_redir_in(char *redir, char *target, t_commands *commands)
 			free(commands->redir_in_target);
 		}
 		commands->redir_in = ft_strdup(redir);
-		//if no target
 		commands->redir_in_target = redir_input(target);
 	}
 	else

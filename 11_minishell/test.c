@@ -14,19 +14,17 @@ int main(void)
 {
 	int		fd[2];
 	int		pid;
-	int asd;
 
 
 	pipe(fd);
-	asd = open("a", O_RDWR | O_CREAT);
-	dup2(asd, fd[0]);
-	dup2(fd[1], STDOUT_FILENO);
+	char **str = malloc(sizeof(char *) * 2);
+	str[0] = "/bin/cat";
+	str[1] = 0;
 	pid = fork();
 	if (pid == 0)
 	{
-		char **str = malloc(sizeof(char *) * 2);
-		str[0] = "/bin/cat";
-		str[1] = 0;
+		dup2(fd[1], STDOUT_FILENO);
+		close(fd[1]);
 		execve(str[0], str, NULL);
 	}
 	int status;
@@ -34,5 +32,9 @@ int main(void)
 	// write(fd[1], "asd", 3);
 	// close(fd[1]);
 	// close(fd[0]);
-	tmp = waitpid(pid, &status, WUNTRACED);
+	tmp = wait(&status);
+	dup2(fd[0], STDIN_FILENO);
+	printf("main\n");
+	close(fd[1]);
+	execve(str[0], str, NULL);
 }
