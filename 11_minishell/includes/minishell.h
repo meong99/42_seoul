@@ -90,7 +90,7 @@ int			check_quote(char *str, char *pointer);
 t_commands	*parsing_handler(char *str);
 t_commands	*parse_pipe(char *str, char **spl);
 int			check_redir(char *str);
-void		parse_redir(t_commands *commands, char *str, int mark);
+char		*parse_redir(t_commands *commands, char *str, int mark);
 
 /*
 ** redirection

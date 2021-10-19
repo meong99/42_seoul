@@ -23,7 +23,12 @@ int	check_redir(char *str)
 	return (NO_REDIR);
 }
 
-void	parse_redir(t_commands *commands, char *str, int mark)
+char	*parse_redir(t_commands *commands, char *str, int mark)
 {
+	char	*start;
+	char	end;
 
+	if (mark == NO_REDIR)
+		return (ft_strdup(str));
+	if (mark == LESS || )
 }

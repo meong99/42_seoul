@@ -65,6 +65,7 @@ t_commands	*parsing_handler(char *str)
 {
 	t_commands	*commands;
 	char		**spl_pipe;
+	char		*except_redir;
 	int			i;
 	int			redir;
 
@@ -75,7 +76,6 @@ t_commands	*parsing_handler(char *str)
 	while (spl_pipe[++i])
 	{
 		redir = check_redir(spl_pipe[i]);
-		if (redir)
-			parse_redir(commands, spl_pipe[i], redir);
+		except_redir = parse_redir(commands, spl_pipe[i], redir);
 	}
 }
