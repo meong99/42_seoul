@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-t_commands	*parse_pipe(char *str, char **spl)
+t_commands	*parse_pipe(char **spl)
 {
 	int			pipe_num;
 	int			i;

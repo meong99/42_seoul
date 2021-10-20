@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 11:26:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/10/19 21:38:15 by mchae            ###   ########.fr       */
+/*   Updated: 2021/10/20 17:40:25 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),
 
 void	*ft_free(void *var, int index, int is_char);
 char	**ft_split_f(char const *s, char c, int (*f)(char *, char *));
-char	*ft_strchr_f(const char *s, int c, int (*f)(char *, char *));
+char	*ft_strchr_f(const char *s, int c, \
+	int op, int (*f)(char *, char *, int));
 char	*ft_cut(char *str, char *start, char *end);
 
 #endif

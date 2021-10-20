@@ -8,16 +8,12 @@ static char	get_mark(char *str)
 	while (str[++i])
 	{
 		if (str[i] == '\'' || str[i] == '\"')
-		{
-			if (i == 0 || str[i - 1] == '\\')
-				continue ;
 			return (str[i]);
-		}
 	}
 	return (-1);
 }
 
-static int	check_inside(char *front, char *back, char *pointer)
+static int	check_inside(char *front, char *back, char *pointer, int option)
 {
 	char	mark;
 
@@ -30,7 +26,8 @@ static int	check_inside(char *front, char *back, char *pointer)
 		back = ft_strchr(front + 1, mark);
 		if (front && back)
 		{
-			if (front < pointer && pointer < back)
+			if (front < pointer && pointer < back && \
+			(option == BOTH || (option == DOU_QUOTE && mark == '\"')))
 				return (true);
 		}
 		front = back + 1;
@@ -38,7 +35,7 @@ static int	check_inside(char *front, char *back, char *pointer)
 	return (false);
 }
 
-int	check_quote(char *str, char *pointer)
+int	check_quote(char *str, char *pointer, int option)
 {
 	if (str == NULL || pointer == NULL)
 	{
@@ -46,5 +43,5 @@ int	check_quote(char *str, char *pointer)
 		printf("Can't using NULL pointer in inside_quote()");
 		exit(0);
 	}
-	return (check_inside(str, str, pointer));
+	return (check_inside(str, str, pointer, option));
 }

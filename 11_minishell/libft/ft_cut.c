@@ -10,10 +10,11 @@ char	*ft_cut(char *str, char *start, char *end)
 		return (NULL);
 	if (start < str || end > str + ft_strlen(str))
 		return (NULL);
-	if (end < start || *end == '\0')
+	if (end < start)
 		return (NULL);
 	len = start - str;
-	len += ft_strlen(end + 1);
+	if (*end != '\0')
+		len += ft_strlen(end + 1);
 	result = malloc(len + 1);
 	i = 0;
 	while (*str)

@@ -26,7 +26,7 @@ static void	handle_redir_in(t_commands *commands)
 	int		*fd;
 	char	*redir_str;
 
-	redir_str = commands->redir_in_target;
+	redir_str = commands->redir_input;
 	fd = commands->fd[commands->index];
 	dup2(fd[FOR_READ], STDIN_FILENO);
 	write(fd[FOR_WRITE], redir_str, ft_strlen(redir_str));
@@ -37,9 +37,9 @@ static void	handle_redir_in(t_commands *commands)
 static void	handle_redir_out(t_commands *commands)
 {
 	if (ft_strncmp(">>", commands->redir_out, 3) == 0)
-		redir_append(commands->redir_out_target);
+		redir_append(commands->redir_out_file);
 	else
-		redir_output(commands->redir_out_target);
+		redir_output(commands->redir_out_file);
 }
 
 void	dup_fd(t_commands *commands)

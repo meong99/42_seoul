@@ -24,6 +24,8 @@
 # define APPEND 2
 # define HEREDOC 3
 # define LESS 4
+# define BOTH 0
+# define SING_QUOTE 1
 
 typedef struct s_env
 {
@@ -38,9 +40,9 @@ typedef struct s_commands
 	char	*com;
 	t_list	*arg;
 	char	*redir_in;
-	char	*redir_in_target;
+	char	*redir_input;
 	char	*redir_out;
-	char	*redir_out_target;
+	char	*redir_out_file;
 	int		index;
 	int		pipe_num;
 	int		**fd;
@@ -86,11 +88,17 @@ t_env		*new_env_node(char *key, char *value, int *env_num);
 /*
 ** parse
 */
-int			check_quote(char *str, char *pointer);
+int			check_quote(char *str, char *pointer, int option);
 t_commands	*parsing_handler(char *str);
-t_commands	*parse_pipe(char *str, char **spl);
-int			check_redir(char *str);
-char		*parse_redir(t_commands *commands, char *str, int mark);
+t_commands	*parse_pipe(char **spl);
+
+char		*parse_redir(t_commands *commands, char *str);
+char		*parse_less(t_commands *commands, char *str);
+char		*parse_heredoc(t_commands *commands, char *str);
+char		*parse_greater(t_commands *commands, char *str);
+char		*parse_append(t_commands *commands, char *str);
+
+void		parse_space(t_commands *commands, char *str);
 
 /*
 ** redirection
@@ -107,5 +115,10 @@ int			set_commands(t_commands *commands);
 void		dup_fd(t_commands *commands);
 void		run_commands(t_commands *commands);
 int			is_nonbuilt(char *com);
+
+/*
+** free
+*/
+void		free_all(t_commands *commands, char **str, int **fd);
 
 #endif

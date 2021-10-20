@@ -1,28 +1,22 @@
 #include "minishell.h"
 
-static void	delete(void *str)
+static void	makepipe(t_commands *commands)
 {
-	free(str);
-}
+	int			**fd;
 
-static void	free_all(t_commands *commands, char *str, int **fd)
-{
-	free(commands->com);
-	free(commands->redir_in);
-	free(commands->redir_in_target);
-	free(commands->redir_out);
-	free(commands->redir_out_target);
-	ft_lstclear(&commands->arg, delete);
-	free(str);
-	ft_free(fd, commands->pipe_num, false);
-	free(commands);
+	fd = malloc(sizeof(int *) * commands->pipe_num);
+	for (int i = 0; i < commands->pipe_num; i++)
+	{
+		fd[i] = malloc(sizeof(int) * 2);
+		pipe(fd[i]);
+		commands[i].fd = fd;
+	}
 }
 
 int		main(int ac, char **av, char **envp)
 {
 	t_commands	*commands;
 	char		*str;
-	int			**fd;
 
 	ac = 0;
 	av = 0;
@@ -37,16 +31,10 @@ int		main(int ac, char **av, char **envp)
 		else if (*str == '\0')
 			continue ;
 		commands = parsing_handler(str);
-		fd = malloc(sizeof(int *) * commands->pipe_num);
-		for (int i = 0; i < commands->pipe_num; i++)
-		{
-			fd[i] = malloc(sizeof(int) * 2);
-			pipe(fd[i]);
-			commands[i].fd = fd;
-		}
+		makepipe(commands);
 		if (set_commands(commands) == CHILD)
 			return (0);
-		free_all(commands, str, fd);
+		free_all(commands, &str, commands->fd);
 	}
 	return (0);
 }

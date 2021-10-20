@@ -6,7 +6,7 @@
 #    By: mchae <mchae@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/09 16:16:57 by mchae             #+#    #+#              #
-#    Updated: 2021/10/19 21:40:06 by mchae            ###   ########.fr        #
+#    Updated: 2021/10/20 14:05:14 by mchae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ endif
 
 $(NAME) : $(OBJS)
 	@ar rcs $@ $^
-	@echo "$(NO_COLOR)libft making done$(KILL_COLOR)"
+	@echo "$(NO_COLOR)make libft$(KILL_COLOR)"
 all : $(NAME)
 
 %.o : %.c
@@ -58,12 +58,12 @@ all : $(NAME)
 
 clean :
 	@rm -f $(BOBJS) $(OBJS)
-	@echo "$(NO_COLOR)libft cleaning done$(KILL_COLOR)"
+	@echo "$(NO_COLOR)clean libft$(KILL_COLOR)"
 
 fclean :
 	@rm -f $(NAME)
 	@rm -f $(BOBJS) $(OBJS)
-	@echo "$(NO_COLOR)libft fcleaning done$(KILL_COLOR)"
+	@echo "$(NO_COLOR)fclean libft$(KILL_COLOR)"
 
 re : fclean all
 

@@ -21,9 +21,10 @@ SRCS = \
 	command/com_unset.c command/com_unset_error.c\
 	redirection/redir_append.c redirection/redir_heredoc.c redirection/redir_input.c redirection/redir_output.c\
 	init/init_commands.c init/init_env_variable.c\
-	parse/quotation_mark.c parse/parse.c\
+	parse/quotation_mark.c parse/parse.c parse/parse_append.c parse/parse_greater.c parse/parse_heredoc.c\
+	parse/parse_less.c parse/parse_pipe.c parse/parse_redir.c parse/parse_space.c\
 	set_command/set_commands.c set_command/dup_fd.c set_command/util.c\
-	main.c\
+	main.c free.c\
 
 OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PAHT)/, $(OBJS_NAME))
@@ -45,26 +46,22 @@ $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(NAME) : $(OBJS)
-	@echo "$(NO_COLOR)making objects$(KILL_COLOR)"
+	@echo "$(NO_COLOR)make objects$(KILL_COLOR)"
 	@make -C libft
 	@$(CC) $(CFLAGS) $(LINK_RDLINE) $(INC) -o $(NAME) $(OBJS) -L $(LIBFT_PATH) -lft
-	@echo "$(NO_COLOR)making done$(KILL_COLOR)"
+	@echo "$(NO_COLOR)done$(KILL_COLOR)"
 all : $(NAME)
 
 clean :
-	@echo "$(NO_COLOR)cleaning libft$(KILL_COLOR)"
 	@make -C $(LIBFT_PATH) clean
-	@echo "$(NO_COLOR)cleaning$(KILL_COLOR)"
+	@echo "$(NO_COLOR)clean minishell$(KILL_COLOR)"
 	@rm -rf $(OBJS_PAHT)
-	@echo "$(NO_COLOR)cleaning done$(KILL_COLOR)"
 
 fclean :
-	@echo "$(NO_COLOR)fcleaning libft$(KILL_COLOR)"
 	@make -C $(LIBFT_PATH) fclean
-	@echo "$(NO_COLOR)fcleaning$(KILL_COLOR)"
+	@echo "$(NO_COLOR)fclea mknishell$(KILL_COLOR)"
 	@rm -rf $(OBJS_PAHT)
 	@rm -f $(NAME)
-	@echo "$(NO_COLOR)fcleaning done$(KILL_COLOR)"
 
 re : fclean all
 

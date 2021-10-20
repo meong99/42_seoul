@@ -14,11 +14,11 @@ static void	wait_for_child(int children, int *pidarr, int **fd)
 {
 	int		wstatus;
 	int		count;
+	int		pid;
 
 	count = children;
 	while (children--)
 	{
-		int pid;
 		close(fd[0][1]);
 		pid = wait(&wstatus);
 		pid = find_pid(pid, pidarr, count);
