@@ -60,22 +60,15 @@ int			check_export_error(char *key, char *arg);
 int			check_first_char(char *str);
 void		print_export_env(void);
 void		sorting_export(t_env *set, t_env *compare, t_env **head);
-
 int			exe_unset(t_commands *commands);
 int			check_unset_error(char *key);
-
 void		exe_env(t_commands *commands);
-
 void		exe_echo(t_commands *commands);
-
 void		exe_bin(t_commands *commands);
 void		check_bin_error(char *com);
 char		*set_path(t_commands *commands);
-
 void		exe_cd(t_commands *commands);
-
 void		exe_pwd(void);
-
 void		exe_exit(t_list *arg);
 
 /*
@@ -89,16 +82,16 @@ t_env		*new_env_node(char *key, char *value, int *env_num);
 ** parse
 */
 int			check_quote(char *str, char *pointer, int option);
+void		mapping_dollar(t_commands *commands);
 t_commands	*parsing_handler(char *str);
 t_commands	*parse_pipe(char **spl);
-
+void		parse_space(t_commands *commands, char *str);
 char		*parse_redir(t_commands *commands, char *str);
 char		*parse_less(t_commands *commands, char *str);
 char		*parse_heredoc(t_commands *commands, char *str);
 char		*parse_greater(t_commands *commands, char *str);
 char		*parse_append(t_commands *commands, char *str);
 
-void		parse_space(t_commands *commands, char *str);
 
 /*
 ** redirection

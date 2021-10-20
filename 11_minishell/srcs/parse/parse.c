@@ -7,7 +7,7 @@ t_commands	*parsing_handler(char *str)
 	char		*except_redir;
 	int			i;
 
-	spl_pipe = ft_split_f(str, '|', check_quote);
+	spl_pipe = ft_split_f(str, '|', BOTH, check_quote);
 	commands = parse_pipe(spl_pipe);
 	init_commands(commands);
 	i = -1;
@@ -19,5 +19,6 @@ t_commands	*parsing_handler(char *str)
 		free(except_redir);
 	}
 	free(spl_pipe);
+	mapping_dollar(commands);
 	return (commands);
 }

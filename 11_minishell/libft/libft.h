@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 11:26:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/10/20 17:40:25 by mchae            ###   ########.fr       */
+/*   Updated: 2021/10/20 18:47:16 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_list
 typedef struct s_split
 {
 	char	**double_str;
+	int		option;
 	size_t	arr_size;
 	size_t	alloc_size;
 	size_t	index;
@@ -69,7 +70,7 @@ char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strjoin_free(char const *s1, char const *s2);
+char	*ft_strjoin_free(char *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 t_list	*ft_lstnew(void *content);
@@ -84,7 +85,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),
 			void (*del)(void *));
 
 void	*ft_free(void *var, int index, int is_char);
-char	**ft_split_f(char const *s, char c, int (*f)(char *, char *));
+char	**ft_split_f(char const *s, char c, \
+	int op, int (*f)(char *, char *, int));
 char	*ft_strchr_f(const char *s, int c, \
 	int op, int (*f)(char *, char *, int));
 char	*ft_cut(char *str, char *start, char *end);

@@ -1,19 +1,55 @@
 #include "minishell.h"
 
-static char	*ret_var_name(char *target)
+static char	*ret_env_value(char *key)
 {
+	t_env	*index;
 
+	index = g_env;
+	while (index)
+	{
+		if (ft_strncmp(index->key, key, ft_strlen(key)) == 0)
+			return (index->value);
+		index = index->next;
+	}
+	return (NULL);
+}
+
+static char	*ret_mapped_var(char *target)
+{
+	char	*value;
+
+	value = ret_env_value(target);
+	return (ft_strdup(value));
 }
 
 static void	mapping_var(char **target)
 {
+	char	**spl;
+	char	*result;
+	char	*value;
 	char	*tmp;
+	int		i;
 
+	spl = ft_split_f(*target, '$', SING_QUOTE, check_quote);
+	i = -1;
 	tmp = *target;
-
+	result = ft_strdup("");
+	while (spl[++i])
+	{
+		tmp = ft_strnstr(tmp, spl[i], ft_strlen(*target)) - 1;
+		if (*tmp == '$')
+			value = ret_mapped_var(spl[i]);
+		else
+			value = ft_strdup(spl[i]);
+		result = ft_strjoin_free(result, value);
+		free(value);
+		value = 0;
+	}
+	free(*target);
+	*target = result;
 }
 
-static void	mapping_dollar(t_commands *commands)
+void	mapping_dollar(t_commands *commands)
 {
 	t_list	*i;
 	char	*arg;
@@ -28,13 +64,8 @@ static void	mapping_dollar(t_commands *commands)
 	while (i)
 	{
 		arg = (char *)i->content;
-		if (ft_strchr_f(&arg, '$', SING_QUOTE, check_quote))
+		if (ft_strchr_f(arg, '$', SING_QUOTE, check_quote))
 			mapping_var(&arg);
 		i = i->next;
 	}
-}
-
-void	parse_dollar(t_commands *commands)
-{
-	mapping_dollar(commands);
 }

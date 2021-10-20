@@ -27,7 +27,7 @@ static int	check_inside(char *front, char *back, char *pointer, int option)
 		if (front && back)
 		{
 			if (front < pointer && pointer < back && \
-			(option == BOTH || (option == DOU_QUOTE && mark == '\"')))
+			(option == BOTH || (option == SING_QUOTE && mark == '\"')))
 				return (true);
 		}
 		front = back + 1;

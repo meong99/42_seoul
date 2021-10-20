@@ -4,6 +4,7 @@
 		"unistd.h": "c",
 		"libft.h": "c",
 		"stdlib.h": "c",
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"functional": "c"
 	}
 }

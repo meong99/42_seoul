@@ -37,8 +37,9 @@ int main(void)
 	// printf("main\n");
 	// close(fd[1]);
 	// execve(str[0], str, NULL);
-	char	*str;
+	char	**str;
 
-	str = 0;
-	ft_strchr(str, 'b');
+	str = ft_split("b         babbbbbbbb", 'a');
+	printf("%s\n", str[0]);
+	printf("%s\n", str[1]);
 }

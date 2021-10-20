@@ -1,12 +1,12 @@
 #include "libft.h"
 
-char	*ft_strjoin_free(char const *s1, char const *s2)
+char	*ft_strjoin_free(char *s1, char const *s2)
 {
 	char	*new_str;
 	size_t	join_str_len;
 
-	if (!s1 || !s2)
-		return (NULL);
+	if (!s2)
+		return (s1);
 	join_str_len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	new_str = (char *)malloc(join_str_len);
 	if (!new_str)

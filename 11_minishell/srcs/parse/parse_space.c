@@ -5,7 +5,7 @@ void	parse_space(t_commands *commands, char *str)
 	char	**spl;
 	int		i;
 
-	spl = ft_split_f(str, ' ', check_quote);
+	spl = ft_split_f(str, ' ', BOTH, check_quote);
 	i = -1;
 	while (spl[++i])
 	{
