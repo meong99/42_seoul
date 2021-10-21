@@ -21,14 +21,18 @@ static char	*get_filename(char *start, char *end)
 	return (filename);
 }
 
-static void	filename_range(char **start, char **end, char *str)
+static char	*filename_range(char *start)
 {
-	*start = ft_strchr_f(str, '>', BOTH, check_quote);
-	*end = ft_strchr_f(*start, ' ', BOTH, check_quote);
-	if (*end == NULL)
-		*end = *start + ft_strlen(*start);
+	char	*end;
+
+	while (*start == '>' || *start == ' ')
+		start++;
+	end = ft_strchr_f(start, ' ', BOTH, check_quote);
+	if (end == NULL)
+		end = start + ft_strlen(start);
 	else
-		(*end)--;
+		end--;
+	return (end);
 }
 
 char	*parse_greater(t_commands *commands, char *str)
@@ -36,7 +40,8 @@ char	*parse_greater(t_commands *commands, char *str)
 	char	*start;
 	char	*end;
 
-	filename_range(&start, &end, str);
+	start = ft_strchr_f(str, '>', BOTH, check_quote);
+	end = filename_range(start);
 	if (commands->redir_out)
 	{
 		free(commands->redir_out);
