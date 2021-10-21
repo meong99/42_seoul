@@ -23,5 +23,24 @@
 		  },
 		  "preLaunchTask": "Build minishell_test"
 		}
+		// {
+		//   "name": "debug test",
+		//   "type": "cppdbg",
+		//   "request": "launch",
+		//   // 현재 workspace를 기준으로 test.out 프로그램을 실행
+		//   "program": "${workspaceFolder}/a.out",
+		//   "args": [],
+		//   "stopAtEntry": false,
+		//   "cwd": "${workspaceFolder}",
+		//   "environment": [],
+		//   "externalConsole": false,
+		//   "osx": {
+		// 	"MIMode": "lldb"
+		//   },
+		//   "linux": {
+		// 	"MIMode": "gdb"
+		//   },
+		//   "preLaunchTask": "Build test"
+		// }
 	  ]
 }

@@ -28,11 +28,10 @@ int		main(int ac, char **av, char **envp)
 			exit(0);
 		if (*str)
 			add_history(str);
-		else if (*str == '\0')
-			continue ;
 		commands = parsing_handler(str);
 		makepipe(commands);
-		if (commands->check_err == true)
+		if (commands->check_err == true || !commands->com \
+			|| *commands->com == '\0')
 		{
 			free_all(commands, &str, commands->fd);
 			continue ;

@@ -37,9 +37,9 @@ int main(void)
 	// printf("main\n");
 	// close(fd[1]);
 	// execve(str[0], str, NULL);
-	char	**str;
-
-	str = ft_split("b         babbbbbbbb", 'a');
-	printf("%s\n", str[0]);
-	printf("%s\n", str[1]);
+	char	*str;
+	char	*asd = "123456789";
+	str = ft_submap(asd, asd + 3, asd + 5, "000");
+	int a = execve(NULL, NULL, NULL);
+	printf("%d\n", a);
 }

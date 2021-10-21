@@ -14,58 +14,50 @@ static char	*ret_env_value(char *key)
 	return (NULL);
 }
 
-static char	*ret_mapped_var(char *target)
+static char	*mapping_env(char *start, char *end)
 {
+	char	*key;
 	char	*value;
-
-	value = ret_env_value(target);
-	return (ft_strdup(value));
-}
-
-static void	mapping_var(char **target)
-{
-	char	**spl;
-	char	*result;
-	char	*value;
-	char	*tmp;
 	int		i;
 
-	spl = ft_split_f(*target, '$', SING_QUOTE, check_quote);
+	i = 0;
+	while (start + i <= end)
+		i++;
+	key = malloc(i + 1);
 	i = -1;
-	tmp = *target;
-	result = ft_strdup("");
-	while (spl[++i])
-	{
-		tmp = ft_strnstr(tmp, spl[i], ft_strlen(*target)) - 1;
-		if (*tmp == '$')
-			value = ret_mapped_var(spl[i]);
-		else
-			value = ft_strdup(spl[i]);
-		result = ft_strjoin_free(result, value);
-		free(value);
-		value = 0;
-	}
-	free(*target);
-	*target = result;
+	while (start + ++i <= end)
+		key[i] = start[i];
+	key[i] = 0;
+	value = ret_env_value(key);
+	free(key);
+	return (value);
 }
 
-void	mapping_dollar(t_commands *commands)
+char	*mapping_dollar(char *str)
 {
-	t_list	*i;
-	char	*arg;
+	char	*start;
+	char	*end;
+	char	*value;
+	char	*result;
+	char	*tmp;
 
-	i = commands->arg;
-	if (ft_strchr_f(commands->com, '$', SING_QUOTE, check_quote))
-		mapping_var(&commands->com);
-	if (ft_strchr_f(commands->redir_input, '$', SING_QUOTE, check_quote))
-		mapping_var(&commands->redir_input);
-	if (ft_strchr_f(commands->redir_out_file, '$', SING_QUOTE, check_quote))
-		mapping_var(&commands->redir_out_file);
-	while (i)
+	result = ft_strdup(str);
+	while (1)
 	{
-		arg = (char *)i->content;
-		if (ft_strchr_f(arg, '$', SING_QUOTE, check_quote))
-			mapping_var(&arg);
-		i = i->next;
+		tmp = result;
+		start = ft_strchr_f(tmp, '$', SING_QUOTE, check_quote);
+		if (start == NULL)
+			break ;
+		end = ft_strchr_f(start + 1, '$', SING_QUOTE, check_quote);
+		if (end == NULL)
+			end = start + ft_strlen(start);
+		end--;
+		while (end > start + 1 && ft_isdigit(*end))
+			end--;
+		value = mapping_env(start + 1, end);
+		result = ft_submap(tmp, start, end, value);
+		free(value);
+		free(tmp);
 	}
+	return (result);
 }

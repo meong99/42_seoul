@@ -1,20 +1,41 @@
 #include "libft.h"
 
+static int	check_err(char *str, char *start, char *end)
+{
+	if (!str | !start | !end)
+		return (0);
+	if (start < str || end > str + ft_strlen(str))
+		return (0);
+	if (end < start)
+		return (0);
+	return (1);
+}
+
+static int	ret_len(char *str, char *start, char *end)
+{
+	int		len;
+	int		i;
+
+	len = 0;
+	i = 0;
+	while (str[++i])
+	{
+		if (str + i < start && str + i > end)
+			len++;
+		i++;
+	}
+	return (len);
+}
+
 char	*ft_cut(char *str, char *start, char *end)
 {
 	int		len;
 	char	*result;
 	int		i;
 
-	if (!str | !start | !end)
+	if (check_err(str, start, end) == 0)
 		return (NULL);
-	if (start < str || end > str + ft_strlen(str))
-		return (NULL);
-	if (end < start)
-		return (NULL);
-	len = start - str;
-	if (*end != '\0')
-		len += ft_strlen(end + 1);
+	len = ret_len(str, start, end);
 	result = malloc(len + 1);
 	i = 0;
 	while (*str)

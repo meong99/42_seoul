@@ -20,6 +20,22 @@
             ],
             "group": "build"
         }
-    ],
-    "version": "2.0.0"
+    //         "type": "shell",
+    //         "label": "Build test",
+    //         "command": "./a.out",
+    //         "args": [
+    //         ],
+    //         "options": {
+    //             "cwd": "/usr/bin",
+    //             "env": {
+    //                 "DEBUG": "1"
+    //             }
+    //         },
+    //         "problemMatcher": [
+    //             "$gcc"
+    //         ],
+    //         "group": "build"
+    //     }
+    // ],
+    // "version": "2.0.0"
 }

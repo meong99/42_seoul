@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 11:26:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/10/21 19:09:58 by mchae            ###   ########.fr       */
+/*   Updated: 2021/10/21 20:17:42 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ char	*ft_strchr_f(const char *s, int c, \
 char	*ft_cut(char *str, char *start, char *end);
 char	*ft_strnstr_f(const char *heystack, const char *needle, size_t len, \
 	int (*f)(char *, char *, int));
+char	*ft_submap(char *str, char *start, char *end, char *strmap);
 
 #endif

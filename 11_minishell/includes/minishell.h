@@ -83,7 +83,7 @@ t_env		*new_env_node(char *key, char *value, int *env_num);
 ** parse
 */
 int			check_quote(char *str, char *pointer, int option);
-void		mapping_dollar(t_commands *commands);
+char		*mapping_dollar(char *str);
 t_commands	*parsing_handler(char *str);
 t_commands	*parse_pipe(char **spl);
 void		parse_space(t_commands *commands, char *str);
