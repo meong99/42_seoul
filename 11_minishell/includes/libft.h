@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 11:26:09 by mchae             #+#    #+#             */
-/*   Updated: 2021/10/21 18:51:20 by mchae            ###   ########.fr       */
+/*   Updated: 2021/10/21 19:09:58 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strnstr(const char *target_str,
-			const char *search_str, size_t len);
+char	*ft_strnstr(const char *heystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *s, int c);
 
 int		ft_tolower(int c);

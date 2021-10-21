@@ -43,7 +43,7 @@ char	*parse_heredoc(t_commands *commands, char *str)
 	char	*start;
 	char	*end;
 
-	start = ft_strchr_f(str, '<', BOTH, check_quote);
+	start = ft_strnstr_f(str, "<<", ft_strlen(str), check_quote);
 	end = filename_range(start);
 	if (commands->redir_in)
 	{
