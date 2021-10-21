@@ -32,6 +32,11 @@ int		main(int ac, char **av, char **envp)
 			continue ;
 		commands = parsing_handler(str);
 		makepipe(commands);
+		if (commands->check_err == true)
+		{
+			free_all(commands, &str, commands->fd);
+			continue ;
+		}
 		if (set_commands(commands) == CHILD)
 			return (0);
 		free_all(commands, &str, commands->fd);

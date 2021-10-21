@@ -37,6 +37,7 @@ typedef struct s_env
 
 typedef struct s_commands
 {
+	int		check_err;
 	char	*com;
 	t_list	*arg;
 	char	*redir_in;

@@ -57,5 +57,7 @@ char	*parse_less(t_commands *commands, char *str)
 	}
 	commands->redir_input = get_input(start, end);
 	commands->redir_in = ft_strdup("<");
+	if (commands->redir_input == NULL)
+		commands->check_err = true;
 	return (ft_cut(str, start, end));
 }
