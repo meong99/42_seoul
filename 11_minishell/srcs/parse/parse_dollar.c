@@ -50,9 +50,15 @@ static char	*set_end(char *start, char *str)
 		{
 			if (start[i] == '$' && \
 				!check_quote(str, start + i, SINGLE_QUOTE))
+			{
+				end--;
 				break ;
+			}
 			else if (!check_quote(str, start + i, BOTH))
+			{
+				end--;
 				break ;
+			}
 		}
 	}
 	while (end > start + 1 && ft_isdigit(*end))

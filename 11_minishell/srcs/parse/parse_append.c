@@ -24,14 +24,24 @@ static char	*get_filename(char *start, char *end)
 static char	*filename_range(char *start)
 {
 	char	*end;
+	int		i;
 
-	while (*start == '>' || *start == ' ')
-		start++;
-	end = ft_strchr_f(start, ' ', BOTH, check_quote);
-	if (end == NULL)
-		end = start + ft_strlen(start);
-	else
-		end--;
+	i = 0;
+	while (start[i] == '>' || start[i] == ' ')
+		i++;
+	while (start[i])
+	{
+		end = start + i;
+		if (ft_strchr("< >", start[i]))
+		{
+			if (!check_quote(start, start + i, BOTH))
+			{
+				end--;
+				break ;
+			}
+		}
+		i++;
+	}
 	return (end);
 }
 
