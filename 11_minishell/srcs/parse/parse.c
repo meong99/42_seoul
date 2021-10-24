@@ -17,8 +17,10 @@ t_commands	*parsing_handler(char *str)
 	i = -1;
 	while (spl_pipe[++i])
 	{
-		except_redir = parse_redir(&commands[i], spl_pipe[i]);
-		parse_space(&commands[i], except_redir);
+		if (!errno)
+			except_redir = parse_redir(&commands[i], spl_pipe[i]);
+		if (!errno)
+			parse_space(&commands[i], except_redir);
 		free(spl_pipe[i]);
 		free(except_redir);
 	}

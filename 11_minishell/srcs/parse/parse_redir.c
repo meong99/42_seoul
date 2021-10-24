@@ -5,7 +5,6 @@ char	*parse_redir(t_commands *commands, char *str)
 	char	*new_str;
 	char	*tmp;
 
-	tmp = NULL;
 	new_str = ft_strdup(str);
 	while (true)
 	{
@@ -21,6 +20,8 @@ char	*parse_redir(t_commands *commands, char *str)
 		else
 			break ;
 		free(tmp);
+		if (errno)
+			return (NULL);
 	}
 	return (new_str);
 }

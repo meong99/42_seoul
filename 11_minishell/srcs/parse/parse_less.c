@@ -7,7 +7,7 @@ static char	*get_input(char *start, char *end)
 	int		i;
 
 	i = 0;
-	while (*start == '<' || *start == ' ')
+	while (*start == ' ')
 		start++;
 	while (start[i] && start + i <= end)
 		i++;
@@ -30,7 +30,7 @@ static char	*filename_range(char *start)
 	int		i;
 
 	i = 0;
-	while (start[i] == '<' || start[i] == ' ')
+	while (start[i] == ' ')
 		i++;
 	end = start + i;
 	while (start[i])
@@ -55,7 +55,13 @@ char	*parse_less(t_commands *commands, char *str)
 	char	*end;
 
 	start = ft_strchr_f(str, '<', BOTH, check_quote);
-	end = filename_range(start);
+	if (!ft_isalnum(start[1] && start[1] != '_'))
+	{
+		errno = 258;
+		printf("bash: syntax error near unexpected token `%c'\n", start[1]);
+		return (NULL);
+	}
+	end = filename_range(start + 1);
 	if (commands->redir_in)
 	{
 		free(commands->redir_in);
@@ -66,7 +72,7 @@ char	*parse_less(t_commands *commands, char *str)
 		free(commands->redir_input);
 		commands->redir_input = NULL;
 	}
-	commands->redir_input = get_input(start, end);
+	commands->redir_input = get_input(start + 1, end);
 	commands->redir_in = ft_strdup("<");
 	return (ft_cut(str, start, end));
 }

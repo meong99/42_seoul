@@ -6,14 +6,14 @@ static char	*ret_input(char *start, char *end)
 	char	*input;
 	int		i;
 
-	i = 0;
-	while (*start == '<' || *start == ' ')
+	while (*start == ' ')
 		start++;
-	while (start[0] && start + i <= end)
+	i = 0;
+	while (start[i] && start + i <= end)
 		i++;
 	filename = malloc(i + 1);
 	i = 0;
-	while (start[0] && start + i <= end)
+	while (start[i] && start + i <= end)
 	{
 		filename[i] = start[i];
 		i++;
@@ -30,7 +30,7 @@ static char	*filename_range(char *start)
 	int		i;
 
 	i = 0;
-	while (start[i] == '<' || start[i] == ' ')
+	while (start[i] == ' ')
 		i++;
 	end = start + i;
 	while (start[i])
@@ -55,7 +55,13 @@ char	*parse_heredoc(t_commands *commands, char *str)
 	char	*end;
 
 	start = ft_strnstr_f(str, "<<", ft_strlen(str), check_quote);
-	end = filename_range(start);
+	if (!ft_isalnum(start[2] && start[2] != '_'))
+	{
+		errno = 258;
+		printf("bash: syntax error near unexpected token `%c'\n", start[2]);
+		return (NULL);
+	}
+	end = filename_range(start + 2);
 	if (commands->redir_in)
 	{
 		free(commands->redir_in);
@@ -66,7 +72,7 @@ char	*parse_heredoc(t_commands *commands, char *str)
 		free(commands->redir_input);
 		commands->redir_input = NULL;
 	}
-	commands->redir_input = ret_input(start, end);
+	commands->redir_input = ret_input(start + 2, end);
 	commands->redir_in = ft_strdup("<<");
 	return (ft_cut(str, start, end));
 }

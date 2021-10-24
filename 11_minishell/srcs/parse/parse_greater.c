@@ -6,7 +6,7 @@ static char	*get_filename(char *start, char *end)
 	int		i;
 
 	i = 0;
-	while (*start == '>' || *start == ' ')
+	while (*start == ' ')
 		start++;
 	while (start[i] && start + i <= end)
 		i++;
@@ -27,7 +27,7 @@ static char	*filename_range(char *start)
 	int		i;
 
 	i = 0;
-	while (start[i] == '>' || start[i] == ' ')
+	while (start[i] == ' ')
 		i++;
 	end = start + i;
 	while (start[i])
@@ -52,7 +52,13 @@ char	*parse_greater(t_commands *commands, char *str)
 	char	*end;
 
 	start = ft_strchr_f(str, '>', BOTH, check_quote);
-	end = filename_range(start);
+	if (!ft_isalnum(start[1] && start[1] != '_'))
+	{
+		errno = 258;
+		printf("bash: syntax error near unexpected token `%c'\n", start[1]);
+		return (NULL);
+	}
+	end = filename_range(start + 1);
 	if (commands->redir_out)
 	{
 		free(commands->redir_out);
@@ -63,7 +69,7 @@ char	*parse_greater(t_commands *commands, char *str)
 		free(commands->redir_out_file);
 		commands->redir_out_file = NULL;
 	}
-	commands->redir_out_file = get_filename(start, end);
+	commands->redir_out_file = get_filename(start + 1, end);
 	commands->redir_out = ft_strdup(">");
 	return (ft_cut(str, start, end));
 }
