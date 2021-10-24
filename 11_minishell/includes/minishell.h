@@ -25,7 +25,7 @@
 # define HEREDOC 3
 # define LESS 4
 # define BOTH 0
-# define SING_QUOTE 1
+# define SINGLE_QUOTE 1
 
 typedef struct s_env
 {
