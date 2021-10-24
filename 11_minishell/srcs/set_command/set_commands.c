@@ -40,7 +40,8 @@ static int	make_process(t_commands *commands)
 		if (pid[i] == CHILD)
 		{
 			dup_fd(&commands[i]);
-			run_commands(&commands[i]);
+			if (errno == 0)
+				run_commands(&commands[i]);
 			return (CHILD);
 		}
 	}

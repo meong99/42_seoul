@@ -28,6 +28,7 @@ static char	*ret_input(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
+		errno = 1;
 		//
 		printf("bash: %s: No such file or directory\n", filename);
 		return (NULL);
@@ -41,6 +42,11 @@ char	*redir_input(char *filename)
 {
 	char	*input;
 
+	if (*filename == 0)
+	{
+		errno = 258;
+		return (NULL);
+	}
 	input = ret_input(filename);
 	return (input);
 }

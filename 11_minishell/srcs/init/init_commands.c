@@ -2,7 +2,6 @@
 
 void	init_commands(t_commands *commands)
 {
-	commands->check_err = false;
 	commands->arg = NULL;
 	commands->com = NULL;
 	commands->redir_in = NULL;

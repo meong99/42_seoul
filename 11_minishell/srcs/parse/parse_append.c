@@ -29,6 +29,7 @@ static char	*filename_range(char *start)
 	i = 0;
 	while (start[i] == '>' || start[i] == ' ')
 		i++;
+	end = start + i;
 	while (start[i])
 	{
 		end = start + i;

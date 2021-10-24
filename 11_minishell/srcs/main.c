@@ -30,9 +30,9 @@ int		main(int ac, char **av, char **envp)
 			add_history(str);
 		commands = parsing_handler(str);
 		makepipe(commands);
-		if (commands->check_err == true || !commands->com \
-			|| *commands->com == '\0')
+		if (errno)
 		{
+			printf("err\n");
 			free_all(commands, &str, commands->fd);
 			continue ;
 		}

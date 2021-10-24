@@ -8,6 +8,7 @@
 #include <string.h>
 #include <errno.h>
 #include <string.h>
+# include <errno.h>
 # define BLEN 30
 
 int main(void)
@@ -37,9 +38,7 @@ int main(void)
 	// printf("main\n");
 	// close(fd[1]);
 	// execve(str[0], str, NULL);
-	char	*str;
-	char	*asd = "123456789";
-	str = ft_submap(asd, asd + 3, asd + 5, "000");
-	int a = execve(NULL, NULL, NULL);
-	printf("%d\n", a);
+	printf("%d\n", errno);
+	asdasd();
+	printf("%d\n", errno);
 }

@@ -5,6 +5,11 @@ char	*redir_heredoc(char *delimiter)
 	char	*str;
 	char	*result;
 
+	if (delimiter == 0)
+	{
+		errno = 258;
+		return (NULL);
+	}
 	result = ft_strdup("");
 	while (true)
 	{
