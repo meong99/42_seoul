@@ -39,6 +39,7 @@ static int	make_process(t_commands *commands)
 		pid[i] = fork();
 		if (pid[i] == CHILD)
 		{
+			errno = 0;
 			dup_fd(&commands[i]);
 			if (errno == 0)
 				run_commands(&commands[i]);

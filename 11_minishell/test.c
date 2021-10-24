@@ -18,9 +18,10 @@ int main(void)
 
 
 	// pipe(fd);
-	// char **str = malloc(sizeof(char *) * 2);
-	// str[0] = "/bin/cat";
-	// str[1] = 0;
+	char **str = malloc(sizeof(char *) * 3);
+	str[0] = "/bin/cat";
+	str[1] = ",";
+	str[2] = 0;
 	// pid = fork();
 	// if (pid == 0)
 	// {
@@ -37,8 +38,6 @@ int main(void)
 	// dup2(fd[0], STDIN_FILENO);
 	// printf("main\n");
 	// close(fd[1]);
-	// execve(str[0], str, NULL);
-	printf("%d\n", errno);
-	asdasd();
-	printf("%d\n", errno);
+	execve(str[0], str, NULL);
+	printf("ASd\n");
 }
