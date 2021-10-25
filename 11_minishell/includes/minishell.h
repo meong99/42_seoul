@@ -10,6 +10,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "libft.h"
+# include <termios.h>
 
 # define RET_ERR_INT -1
 # define RET_ERR_NULL 0
@@ -50,7 +51,7 @@ typedef struct s_commands
 
 t_env		*g_env;
 
-extern int	rl_replace_line(void);
+extern int	rl_replace_line(char *fmt, ...);
 
 /*
 ** command
@@ -113,5 +114,15 @@ int			is_nonbuilt(char *com);
 ** free
 */
 void		free_all(t_commands *commands, char **str, int **fd);
+
+/*
+** signal
+*/
+void		sig_handler(int signal);
+
+/*
+** terminal
+*/
+int			terminal_handler(struct termios *old_term);
 
 #endif
