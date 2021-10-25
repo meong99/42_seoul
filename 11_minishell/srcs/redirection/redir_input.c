@@ -28,7 +28,12 @@ static char	*ret_input(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("bash: %s: %s\n", filename, strerror(errno));
+		str = strerror(errno);
+		write(2, "minishell: ", 11);
+		write(2, filename, ft_strlen(filename));
+		write(2, ": ", 2);
+		write(2, str, ft_strlen(str));
+		write(2, "\n", 1);
 		errno = 1;
 		return (NULL);
 	}

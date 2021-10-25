@@ -2,12 +2,18 @@
 
 static void	make_file(char *filename)
 {
-	int	fd;
+	int		fd;
+	char	*str;
 
 	fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
 	{
-		printf("bash: %s: %s\n", filename, strerror(errno));
+		str = strerror(errno);
+		write(2, "minishell: ", 11);
+		write(2, filename, ft_strlen(filename));
+		write(2, ": ", 2);
+		write(2, str, ft_strlen(str));
+		write(2, "\n", 1);
 		errno = 1;
 	}
 	close(fd);

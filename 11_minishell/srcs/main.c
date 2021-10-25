@@ -2,7 +2,7 @@
 
 static int	check_errno(t_commands *commands, char **str)
 {
-	if (errno)
+	if (errno || commands->com == NULL)
 	{
 		free_all(commands, str, commands->fd);
 		return (1);

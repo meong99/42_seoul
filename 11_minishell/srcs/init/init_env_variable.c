@@ -3,12 +3,14 @@
 t_env	*new_env_node(char *key, char *value, int *env_num)
 {
 	t_env	*node;
+	char	*strerr;
 
 	node = malloc(sizeof(t_env));
 	if (node == NULL)
 	{
-		//err
-		printf("%s", strerror(errno));
+		strerr = strerror(errno);
+		write(2, "minishell: ", 11);
+		write(2, strerr, ft_strlen(strerr));
 		exit(errno);
 	}
 	node->key = ft_strdup(key);
@@ -41,13 +43,15 @@ static int	append_node(char **envp)
 void	init_env_var(char **envp)
 {
 	char	**spl_envp;
+	char	*strerr;
 	int		*env_num;
 
 	env_num = malloc(sizeof(int));
 	if (env_num == NULL)
 	{
-		//err
-		printf("asd\n");
+		strerr = strerror(errno);
+		write(2, "minishell: ", 11);
+		write(2, strerr, ft_strlen(strerr));
 		exit(errno);
 	}
 	spl_envp = ft_split(*envp, '=');

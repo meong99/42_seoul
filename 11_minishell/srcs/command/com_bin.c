@@ -20,8 +20,16 @@ static void	copy_env(char **envp)
 static char	**make_envp(void)
 {
 	char	**envp;
+	char	*strerr;
 
 	envp = malloc(sizeof(char *) * (*g_env->env_num + 1));
+	if (envp == NULL)
+	{
+		strerr = strerror(errno);
+		write(2, "minishell: ", 11);
+		write(2, strerr, ft_strlen(strerr));
+		exit(errno);
+	}
 	envp[*g_env->env_num] = NULL;
 	copy_env(envp);
 	return (envp);
@@ -31,11 +39,19 @@ static char	**alloc_argv(t_list *arg)
 {
 	int		i;
 	char	**argv;
+	char	*strerr;
 
 	i = 0;
 	while (arg && ++i)
 		arg = arg->next;
 	argv = malloc(sizeof(char *) * (i + 2));
+	if (argv == NULL)
+	{
+		strerr = strerror(errno);
+		write(2, "minishell: ", 11);
+		write(2, strerr, ft_strlen(strerr));
+		exit(errno);
+	}
 	argv[i + 1] = NULL;
 	return (argv);
 }
