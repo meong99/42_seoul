@@ -28,9 +28,8 @@ static char	*ret_input(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
+		printf("bash: %s: %s\n", filename, strerror(errno));
 		errno = 1;
-		//
-		printf("bash: %s: No such file or directory\n", filename);
 		return (NULL);
 	}
 	str = read_file(fd);

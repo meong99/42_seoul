@@ -10,19 +10,6 @@ static int	check_errno(t_commands *commands, char **str)
 	return (0);
 }
 
-static void	makepipe(t_commands *commands)
-{
-	int			**fd;
-
-	fd = malloc(sizeof(int *) * commands->pipe_num);
-	for (int i = 0; i < commands->pipe_num; i++)
-	{
-		fd[i] = malloc(sizeof(int) * 2);
-		pipe(fd[i]);
-		commands[i].fd = fd;
-	}
-}
-
 static int	str_handler(char *str)
 {
 	if (str == NULL)
@@ -54,7 +41,6 @@ int	main(int ac, char **av, char **envp)
 		if (str_handler(str))
 			continue ;
 		commands = parsing_handler(str);
-		makepipe(commands);
 		if (check_errno(commands, &str))
 			continue ;
 		if (set_commands(commands) == CHILD)

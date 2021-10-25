@@ -87,7 +87,7 @@ char		*mapping_dollar(char *str);
 t_commands	*parsing_handler(char *str);
 t_commands	*parse_pipe(char **spl);
 void		parse_space(t_commands *commands, char *str);
-char		*parse_redir(t_commands *commands, char *str);
+char		*redir_handler(t_commands *commands, char *str);
 char		*parse_less(t_commands *commands, char *str);
 char		*parse_heredoc(t_commands *commands, char *str);
 char		*parse_greater(t_commands *commands, char *str);
@@ -124,5 +124,10 @@ void		sig_handler(int signal);
 ** terminal
 */
 int			terminal_handler(struct termios *old_term);
+
+/*
+** error
+*/
+int			print_systax_err(char *token);
 
 #endif

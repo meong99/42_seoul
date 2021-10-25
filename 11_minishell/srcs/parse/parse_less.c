@@ -1,10 +1,25 @@
 #include "minishell.h"
 
+static int	check_systax(char *target)
+{
+	if (ft_strnstr_f(target, "<<", ft_strlen(target), check_quote))
+		return (print_systax_err("<<"));
+	else if (ft_strnstr_f(target, ">>", ft_strlen(target), check_quote))
+		return (print_systax_err(">>"));
+	else if (ft_strchr_f(target, '<', BOTH, check_quote))
+		return (print_systax_err("<"));
+	else if (ft_strchr_f(target, '>', BOTH, check_quote))
+		return (print_systax_err(">"));
+	else if (*target == '\0')
+		return (print_systax_err("newline"));
+	return (0);
+}
+
 static char	*get_input(char *start, char *end)
 {
 	char	*filename;
-	char	*input;
 	int		i;
+	char	*input;
 
 	i = 0;
 	while (*start == ' ')
@@ -19,7 +34,9 @@ static char	*get_input(char *start, char *end)
 		i++;
 	}
 	filename[i] = 0;
-	input = redir_input(filename);
+	input = 0;
+	if (check_systax(filename) != RET_ERR_INT)
+		input = redir_input(filename);
 	free(filename);
 	return (input);
 }
@@ -28,15 +45,17 @@ static char	*filename_range(char *start)
 {
 	char	*end;
 	int		i;
+	int		check_systax;
 
 	i = 0;
 	while (start[i] == ' ')
 		i++;
 	end = start + i;
+	check_systax = 0;
 	while (start[i])
 	{
 		end = start + i;
-		if (ft_strchr("< >", start[i]))
+		if (check_systax && ft_strchr("< >", start[i]))
 		{
 			if (!check_quote(start, start + i, BOTH))
 			{
@@ -44,6 +63,8 @@ static char	*filename_range(char *start)
 				break ;
 			}
 		}
+		else if (!ft_strchr("<>", start[i]))
+			check_systax++;
 		i++;
 	}
 	return (end);
@@ -55,12 +76,6 @@ char	*parse_less(t_commands *commands, char *str)
 	char	*end;
 
 	start = ft_strchr_f(str, '<', BOTH, check_quote);
-	if (!ft_isalnum(start[1] && start[1] != '_'))
-	{
-		errno = 258;
-		printf("bash: syntax error near unexpected token `%c'\n", start[1]);
-		return (NULL);
-	}
 	end = filename_range(start + 1);
 	if (commands->redir_in)
 	{

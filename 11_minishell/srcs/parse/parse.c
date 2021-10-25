@@ -1,12 +1,41 @@
 #include "minishell.h"
 
+static void	parse_commands(t_commands *commands, char **spl_pipe)
+{
+	int		i;
+	char	*except_redir;
+
+	i = -1;
+	while (spl_pipe[++i])
+	{
+		if (!errno)
+			except_redir = redir_handler(&commands[i], spl_pipe[i]);
+		if (!errno)
+			parse_space(&commands[i], except_redir);
+		free(spl_pipe[i]);
+		free(except_redir);
+	}
+	free(spl_pipe);
+}
+
+static void	makepipe(t_commands *commands)
+{
+	int			**fd;
+
+	fd = malloc(sizeof(int *) * commands->pipe_num);
+	for (int i = 0; i < commands->pipe_num; i++)
+	{
+		fd[i] = malloc(sizeof(int) * 2);
+		pipe(fd[i]);
+		commands[i].fd = fd;
+	}
+}
+
 t_commands	*parsing_handler(char *str)
 {
 	t_commands	*commands;
 	char		**spl_pipe;
-	char		*except_redir;
 	char		*mapped_str;
-	int			i;
 
 	mapped_str = mapping_dollar(str);
 	errno = 0;
@@ -14,16 +43,7 @@ t_commands	*parsing_handler(char *str)
 	free(mapped_str);
 	commands = parse_pipe(spl_pipe);
 	init_commands(commands);
-	i = -1;
-	while (spl_pipe[++i])
-	{
-		if (!errno)
-			except_redir = parse_redir(&commands[i], spl_pipe[i]);
-		if (!errno)
-			parse_space(&commands[i], except_redir);
-		free(spl_pipe[i]);
-		free(except_redir);
-	}
-	free(spl_pipe);
+	makepipe(commands);
+	parse_commands(commands, spl_pipe);
 	return (commands);
 }

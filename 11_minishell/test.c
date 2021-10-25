@@ -43,12 +43,7 @@ int main(void)
 	// // close(fd[1]);
 	// execve(str[0], str, NULL);
 	// printf("ASd\n");
-	struct termios	term;
+	for (int i = 0; i < 259; i++)
+		printf("%s\n", strerror(i));
 
-	tcgetattr(STDIN_FILENO, &term);
-	term.c_lflag |= ECHOCTL;
-	printf("%d\n", term.c_cc[VQUIT]);
-	//  &= (VINTR | VERASE | VEOF | VQUIT);
-	tcsetattr(STDIN_FILENO, TCSANOW, &term);
-	sleep(5);
 }
