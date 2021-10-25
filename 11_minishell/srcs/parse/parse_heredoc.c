@@ -34,6 +34,7 @@ static char	*ret_input(char *start, char *end)
 		i++;
 	}
 	delimiter[i] = 0;
+	delimiter = remove_quote(delimiter);
 	input = 0;
 	if (check_systax(delimiter) != RET_ERR_INT)
 		input = redir_heredoc(delimiter);

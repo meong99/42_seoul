@@ -92,6 +92,7 @@ char		*parse_less(t_commands *commands, char *str);
 char		*parse_heredoc(t_commands *commands, char *str);
 char		*parse_greater(t_commands *commands, char *str);
 char		*parse_append(t_commands *commands, char *str);
+char		*remove_quote(char *str);
 
 
 /*

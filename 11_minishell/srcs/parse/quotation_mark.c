@@ -37,11 +37,5 @@ static int	check_inside(char *front, char *back, char *pointer, int option)
 
 int	check_quote(char *str, char *pointer, int option)
 {
-	if (str == NULL || pointer == NULL)
-	{
-		//err
-		printf("Can't using NULL pointer in inside_quote()");
-		exit(0);
-	}
 	return (check_inside(str, str, pointer, option));
 }

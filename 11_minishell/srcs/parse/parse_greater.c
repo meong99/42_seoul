@@ -47,6 +47,7 @@ static char	*get_filename(char *start, char *end)
 		i++;
 	}
 	filename[i] = 0;
+	filename = remove_quote(filename);
 	if (check_systax(filename) != RET_ERR_INT)
 		make_file(filename);
 	return (filename);

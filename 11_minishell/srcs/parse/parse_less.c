@@ -35,6 +35,7 @@ static char	*get_input(char *start, char *end)
 	}
 	filename[i] = 0;
 	input = 0;
+	filename = remove_quote(filename);
 	if (check_systax(filename) != RET_ERR_INT)
 		input = redir_input(filename);
 	free(filename);

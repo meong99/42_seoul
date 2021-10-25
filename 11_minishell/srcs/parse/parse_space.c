@@ -9,6 +9,7 @@ void	parse_space(t_commands *commands, char *str)
 	i = -1;
 	while (spl[++i])
 	{
+		spl[i] = remove_quote(spl[i]);
 		if (commands->com == NULL)
 			commands->com = ft_strdup(spl[i]);
 		else
