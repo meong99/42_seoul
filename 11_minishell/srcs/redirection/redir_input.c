@@ -16,6 +16,7 @@ static char	*read_file(int fd)
 			return (NULL);
 		buf[read_len] = 0;
 		str = ft_strjoin_free(str, buf);
+		ft_protect(str);
 	}
 	return (str);
 }

@@ -3,9 +3,14 @@
 static char	*ret_env_value(char *key)
 {
 	t_env	*index;
+	char	*result;
 
 	if (ft_strncmp(key, "?", 2) == 0)
-		return (ft_itoa(errno));
+	{
+		result = ft_itoa(errno);
+		ft_protect(result);
+		return (result);
+	}
 	index = g_env;
 	while (index)
 	{
@@ -28,6 +33,7 @@ static char	*mapping_env(char *start, char *end)
 	while (start + i <= end)
 		i++;
 	key = malloc(i + 1);
+	ft_protect(key);
 	i = -1;
 	while (start + ++i <= end)
 		key[i] = start[i];
@@ -75,6 +81,7 @@ char	*mapping_dollar(char *str)
 	char	*tmp;
 
 	result = ft_strdup(str);
+	ft_protect(result);
 	while (1)
 	{
 		tmp = result;
@@ -84,6 +91,7 @@ char	*mapping_dollar(char *str)
 		end = set_end(start + 1, tmp);
 		value = mapping_env(start + 1, end);
 		result = ft_submap(tmp, start, end, value);
+		ft_protect(result);
 		free(value);
 		free(tmp);
 	}

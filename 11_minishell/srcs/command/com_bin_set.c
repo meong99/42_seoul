@@ -28,7 +28,9 @@ static char	*ret_path(t_commands *commands, char **path_arr)
 		while (path_arr[++i])
 		{
 			path = ft_strjoin(path_arr[i], "/");
+			ft_protect(path);
 			path = ft_strjoin_free(path, commands->com);
+			ft_protect(path);
 			if (stat(path, &buf) == 0)
 				return (path);
 			free(path);
@@ -43,6 +45,7 @@ char	*set_path(t_commands *commands)
 	char	**path_arr;
 
 	path_arr = ft_split(find_key("PATH")->value, ':');
+	ft_protect(path_arr);
 	path = ret_path(commands, path_arr);
 	ft_free(path_arr, 0, true);
 	return (path);

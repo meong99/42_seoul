@@ -18,6 +18,8 @@
 		"unordered_map": "c",
 		"vector": "c",
 		"termios.h": "c",
-		"__functional_03": "c"
+		"__functional_03": "c",
+		"__locale": "c",
+		"__node_handle": "c"
 	}
 }

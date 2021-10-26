@@ -3,19 +3,14 @@
 t_env	*new_env_node(char *key, char *value, int *env_num)
 {
 	t_env	*node;
-	char	*strerr;
 
 	node = malloc(sizeof(t_env));
-	if (node == NULL)
-	{
-		strerr = strerror(errno);
-		write(2, "minishell: ", 11);
-		write(2, strerr, ft_strlen(strerr));
-		exit(errno);
-	}
+	ft_protect(node);
 	node->key = ft_strdup(key);
+	ft_protect(key);
 	node->next = NULL;
 	node->value = ft_strtrim(value, "'");
+	ft_protect(value);
 	node->env_num = env_num;
 	return (node);
 }
@@ -31,6 +26,7 @@ static int	append_node(char **envp)
 	while (*envp)
 	{
 		spl_envp = ft_split(*envp, '=');
+		ft_protect(spl_envp);
 		node->next = new_env_node(spl_envp[0], spl_envp[1], g_env->env_num);
 		node = node->next;
 		ft_free(spl_envp, 0, true);
@@ -43,18 +39,12 @@ static int	append_node(char **envp)
 void	init_env_var(char **envp)
 {
 	char	**spl_envp;
-	char	*strerr;
 	int		*env_num;
 
 	env_num = malloc(sizeof(int));
-	if (env_num == NULL)
-	{
-		strerr = strerror(errno);
-		write(2, "minishell: ", 11);
-		write(2, strerr, ft_strlen(strerr));
-		exit(errno);
-	}
+	ft_protect(env_num);
 	spl_envp = ft_split(*envp, '=');
+	ft_protect(spl_envp);
 	g_env = new_env_node(spl_envp[0], spl_envp[1], env_num);
 	envp++;
 	ft_free(spl_envp, 0, true);

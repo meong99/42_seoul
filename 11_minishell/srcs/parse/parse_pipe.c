@@ -10,6 +10,7 @@ t_commands	*parse_pipe(char **spl)
 	while (spl[pipe_num])
 		pipe_num++;
 	commands = malloc(sizeof(t_commands) * pipe_num);
+	ft_protect(commands);
 	i = -1;
 	while (++i < pipe_num)
 	{

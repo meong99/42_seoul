@@ -21,6 +21,7 @@ static void	mapping_value(char *key, char *value)
 	mapping = find_key(key);
 	free(mapping->value);
 	mapping->value = ft_strdup(value);
+	ft_protect(mapping->value);
 }
 
 static void	ft_putenv(char *key, char *value)
@@ -44,6 +45,7 @@ static void	export_internal(t_list *arg)
 		if (check_first_char((char *)arg->content) != RET_ERR_INT)
 		{
 			split_var = ft_split((char *)arg->content, '=');
+			ft_protect(split_var);
 			check_key = find_key(split_var[0]);
 			if (check_key == NOT_FOUND && !check_export_error(split_var[0], \
 				(char *)arg->content))

@@ -20,6 +20,7 @@ char	*redir_handler(t_commands *commands, char *str)
 	char	*tmp;
 
 	new_str = ft_strdup(str);
+	ft_protect(new_str);
 	while (true)
 	{
 		tmp = new_str;

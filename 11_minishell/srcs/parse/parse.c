@@ -23,9 +23,11 @@ static void	makepipe(t_commands *commands)
 	int		**fd;
 	char	*strerr;
 	fd = malloc(sizeof(int *) * commands->pipe_num);
+	ft_protect(fd);
 	for (int i = 0; i < commands->pipe_num; i++)
 	{
 		fd[i] = malloc(sizeof(int) * 2);
+		ft_protect(fd[i]);
 		pipe(fd[i]);
 		commands[i].fd = fd;
 	}
@@ -40,6 +42,7 @@ t_commands	*parsing_handler(char *str)
 	mapped_str = mapping_dollar(str);
 	errno = 0;
 	spl_pipe = ft_split_f(mapped_str, '|', BOTH, check_quote);
+	ft_protect(spl_pipe);
 	free(mapped_str);
 	commands = parse_pipe(spl_pipe);
 	init_commands(commands);

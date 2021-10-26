@@ -31,6 +31,7 @@ static char	*ret_newstr(char *str)
 			len++;
 	}
 	newstr = malloc(len + 1);
+	ft_protect(newstr);
 	i = -1;
 	while (*str)
 	{

@@ -130,5 +130,6 @@ int			terminal_handler(struct termios *old_term);
 ** error
 */
 int			print_systax_err(char *token);
+void		ft_protect(void *arg);
 
 #endif

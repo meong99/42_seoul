@@ -46,6 +46,7 @@ static char	*get_filename(char *start, char *end)
 	while (start[i] && start + i <= end)
 		i++;
 	filename = malloc(i + 1);
+	ft_protect(filename);
 	i = 0;
 	while (start[i] && start + i <= end)
 	{
@@ -107,5 +108,6 @@ char	*parse_greater(t_commands *commands, char *str)
 	}
 	commands->redir_out_file = get_filename(start + 1, end);
 	commands->redir_out = ft_strdup(">");
+	ft_protect(commands->redir_out);
 	return (ft_cut(str, start, end));
 }

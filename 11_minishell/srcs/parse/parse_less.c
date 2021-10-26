@@ -27,6 +27,7 @@ static char	*get_input(char *start, char *end)
 	while (start[i] && start + i <= end)
 		i++;
 	filename = malloc(i + 1);
+	ft_protect(filename);
 	i = 0;
 	while (start[i] && start + i <= end)
 	{
@@ -34,6 +35,7 @@ static char	*get_input(char *start, char *end)
 		i++;
 	}
 	filename[i] = 0;
+	ft_protect(filename);
 	input = 0;
 	filename = remove_quote(filename);
 	if (check_systax(filename) != RET_ERR_INT)
@@ -90,5 +92,6 @@ char	*parse_less(t_commands *commands, char *str)
 	}
 	commands->redir_input = get_input(start + 1, end);
 	commands->redir_in = ft_strdup("<");
+	ft_protect(commands->redir_in);
 	return (ft_cut(str, start, end));
 }

@@ -27,6 +27,7 @@ static char	*ret_input(char *start, char *end)
 	while (start[i] && start + i <= end)
 		i++;
 	delimiter = malloc(i + 1);
+	ft_protect(delimiter);
 	i = 0;
 	while (start[i] && start + i <= end)
 	{
@@ -84,5 +85,6 @@ char	*parse_heredoc(t_commands *commands, char *str)
 		free(commands->redir_input);
 	commands->redir_input = ret_input(start + 2, end);
 	commands->redir_in = ft_strdup("<<");
+	ft_protect(commands->redir_in);
 	return (ft_cut(str, start, end));
 }

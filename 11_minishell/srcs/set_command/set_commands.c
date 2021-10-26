@@ -33,6 +33,7 @@ static int	make_process(t_commands *commands)
 	int		i;
 
 	pid = malloc(sizeof(int) * commands->pipe_num);
+	ft_protect(pid);
 	i = -1;
 	while (++i < commands->pipe_num)
 	{

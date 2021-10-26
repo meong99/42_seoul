@@ -10,8 +10,11 @@ static void	copy_env(char **envp)
 	while (index)
 	{
 		envp[i] = ft_strdup(index->key);
+		ft_protect(envp[i]);
 		envp[i] = ft_strjoin_free(envp[i], "=");
+		ft_protect(envp[i]);
 		envp[i] = ft_strjoin_free(envp[i], index->value);
+		ft_protect(envp[i]);
 		i++;
 		index = index->next;
 	}
@@ -20,16 +23,9 @@ static void	copy_env(char **envp)
 static char	**make_envp(void)
 {
 	char	**envp;
-	char	*strerr;
 
 	envp = malloc(sizeof(char *) * (*g_env->env_num + 1));
-	if (envp == NULL)
-	{
-		strerr = strerror(errno);
-		write(2, "minishell: ", 11);
-		write(2, strerr, ft_strlen(strerr));
-		exit(errno);
-	}
+	ft_protect(envp);
 	envp[*g_env->env_num] = NULL;
 	copy_env(envp);
 	return (envp);
@@ -39,19 +35,12 @@ static char	**alloc_argv(t_list *arg)
 {
 	int		i;
 	char	**argv;
-	char	*strerr;
 
 	i = 0;
 	while (arg && ++i)
 		arg = arg->next;
 	argv = malloc(sizeof(char *) * (i + 2));
-	if (argv == NULL)
-	{
-		strerr = strerror(errno);
-		write(2, "minishell: ", 11);
-		write(2, strerr, ft_strlen(strerr));
-		exit(errno);
-	}
+	ft_protect(argv);
 	argv[i + 1] = NULL;
 	return (argv);
 }
@@ -68,6 +57,7 @@ static char	**make_argv(t_commands *commands)
 	while (arg_list)
 	{
 		argv[i] = ft_strdup((char *)arg_list->content);
+		ft_protect(argv[i]);
 		arg_list = arg_list->next;
 		i++;
 	}

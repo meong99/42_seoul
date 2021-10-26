@@ -25,7 +25,7 @@ SRCS = \
 	parse/parse_less.c parse/parse_pipe.c parse/parse_redir.c parse/parse_space.c parse/remove_quote.c\
 	set_command/set_commands.c set_command/dup_fd.c set_command/util.c\
 	signal/signal.c\
-	main.c free.c terminal.c error.c\
+	main.c free.c terminal.c error.c ft_protect.c\
 
 OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PAHT)/, $(OBJS_NAME))
