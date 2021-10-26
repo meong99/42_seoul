@@ -3,13 +3,12 @@
 void	check_bin_error(char *com)
 {
 	char	*err_msg;
-//
 	if (com == NULL)
 		return ;
 	if (ft_strchr(com, '/') == NULL)
-		err_msg = "command not found";
-	else
 		err_msg = "No such file or directory";
+	else
+		err_msg = "command not found";
 	errno = 127;
 	write(2, "minishell: ", 11);
 	write(2, com, ft_strlen(com));
