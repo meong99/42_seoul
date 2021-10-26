@@ -13,9 +13,13 @@
 
 int main(void)
 {
-	char	*str;
+	char str[4];
 
-	str = getcwd(NULL, 0);
-	str = 0;
-	system("leaks a.out");
+	str[0] = '1';
+	str[1] = -1;
+	str[2] = '2';
+	str[3] = 0;
+	write(STDIN_FILENO, str, 4);
+	read(STDIN_FILENO, str, 4);
+	printf("%s\n", str);
 }

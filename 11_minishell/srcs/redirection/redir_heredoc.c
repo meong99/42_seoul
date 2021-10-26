@@ -2,8 +2,8 @@
 
 char	*redir_heredoc(char *delimiter)
 {
-	char	*str;
-	char	*result;
+	char			*str;
+	char			*result;
 
 	result = ft_strdup("");
 	ft_protect(result);
@@ -11,7 +11,7 @@ char	*redir_heredoc(char *delimiter)
 	{
 		str = readline("> ");
 		if (str == NULL)
-			return (result);
+			break ;
 		if (*str && ft_strncmp(str, delimiter, ft_strlen(str)) == 0)
 			break ;
 		result = ft_strjoin_free(result, str);

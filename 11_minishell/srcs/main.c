@@ -10,35 +10,41 @@ static int	check_errno(t_commands *commands, char **str)
 	return (0);
 }
 
-static int	str_handler(char *str)
+static int	str_handler(char *str, struct termios *oldterm)
 {
 	if (str == NULL)
+	{
+		ft_putstr_fd("\x1b[1A", STDOUT_FILENO);
+		ft_putstr_fd("\033[11C", STDOUT_FILENO);
+		printf("exit\n");
+		tcsetattr(STDIN_FILENO, TCSANOW, oldterm);
 		exit(0);
-	if (*str)
-		add_history(str);
+	}
 	if (*str == 0)
 	{
 		free(str);
 		return (1);
 	}
+	if (*str)
+		add_history(str);
 	return (0);
 }
 
 int	main(int ac, char **av, char **envp)
 {
-	t_commands	*commands;
-	struct termios	old_term;
-	char		*str;
+	t_commands		*commands;
+	struct termios	oldterm;
+	char			*str;
 
 	ac = 0;
 	av = 0;
 	init_env_var(envp);
-	terminal_handler(&old_term);
+	terminal_handler(&oldterm);
 	signal(SIGINT, sig_handler);
 	while (1)
 	{
 		str = readline("minishell> ");
-		if (str_handler(str))
+		if (str_handler(str, &oldterm))
 			continue ;
 		commands = parsing_handler(str);
 		if (check_errno(commands, &str))

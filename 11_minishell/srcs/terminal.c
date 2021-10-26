@@ -1,14 +1,14 @@
 #include "minishell.h"
 
-int	terminal_handler(struct termios *old_term)
+int	terminal_handler(struct termios	*oldterm)
 {
-	struct termios	new_term;
+	struct termios	newterm;
 
-	tcgetattr(STDIN_FILENO, old_term);
-	tcgetattr(STDIN_FILENO, &new_term);
-	new_term.c_lflag &= ~ECHOCTL;
-	new_term.c_cc[VKILL] = 0;
-	new_term.c_cc[VSUSP] = 0;
-	tcsetattr(STDIN_FILENO, TCSANOW, &new_term);
+	tcgetattr(STDIN_FILENO, oldterm);
+	tcgetattr(STDIN_FILENO, &newterm);
+	newterm.c_lflag &= ~ECHOCTL;
+	newterm.c_cc[VKILL] = 0;
+	newterm.c_cc[VSUSP] = 0;
+	tcsetattr(STDIN_FILENO, TCSANOW, &newterm);
 	return (0);
 }

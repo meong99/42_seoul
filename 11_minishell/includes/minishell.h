@@ -124,7 +124,7 @@ void		sig_handler(int signal);
 /*
 ** terminal
 */
-int			terminal_handler(struct termios *old_term);
+int			terminal_handler(struct termios	*oldterm);
 
 /*
 ** error
