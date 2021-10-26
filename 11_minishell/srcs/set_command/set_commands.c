@@ -46,6 +46,8 @@ static int	make_process(t_commands *commands)
 				run_commands(&commands[i]);
 			return (CHILD);
 		}
+		else if (pid[i] == -1)
+			ft_protect(NULL);
 	}
 	wait_for_child(i, pid, commands->fd);
 	free(pid);
