@@ -21,7 +21,6 @@ static void	parse_commands(t_commands *commands, char **spl_pipe)
 static void	makepipe(t_commands *commands)
 {
 	int		**fd;
-	char	*strerr;
 	fd = malloc(sizeof(int *) * commands->pipe_num);
 	ft_protect(fd);
 	for (int i = 0; i < commands->pipe_num; i++)

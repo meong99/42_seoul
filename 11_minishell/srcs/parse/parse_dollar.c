@@ -72,6 +72,18 @@ static char	*set_end(char *start, char *str)
 	return (end);
 }
 
+static int	check_heredoc(char *start)
+{
+	if (start == NULL)
+		return (true);
+	start--;
+	while (*start == ' ')
+		start--;
+	if (*start == '<' && *(start - 1) == '<')
+		return (true);
+	return (false);
+}
+
 char	*mapping_dollar(char *str)
 {
 	char	*start;
@@ -86,7 +98,7 @@ char	*mapping_dollar(char *str)
 	{
 		tmp = result;
 		start = ft_strchr_f(tmp, '$', SINGLE_QUOTE, check_quote);
-		if (start == NULL)
+		if (start == NULL || check_heredoc(start))
 			break ;
 		end = set_end(start + 1, tmp);
 		value = mapping_env(start + 1, end);
