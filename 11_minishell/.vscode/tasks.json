@@ -13,8 +13,8 @@
                 "cwd": "/usr/bin",
                 "env": {
                     "DEBUG": "1",
-                    "CPPFLAGS": "-I/Users/mchae/.brew/opt/readline/include",
-                    "LDFLAGS": "-L/Users/mchae/.brew/opt/readline/lib"
+                    "CPPFLAGS": "-I/opt/homebrew/opt/readline/include",
+                    "LDFLAGS": "-L/opt/homebrew/opt/readline/lib"
                 }
             },
             "problemMatcher": [

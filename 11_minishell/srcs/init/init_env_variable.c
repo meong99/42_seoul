@@ -10,7 +10,6 @@ t_env	*new_env_node(char *key, char *value, int *env_num)
 	ft_protect(key);
 	node->next = NULL;
 	node->value = ft_strtrim(value, "'");
-	ft_protect(value);
 	node->env_num = env_num;
 	return (node);
 }
