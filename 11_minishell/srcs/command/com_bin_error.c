@@ -5,7 +5,7 @@ void	check_bin_error(char *com)
 	char	*err_msg;
 	if (com == NULL)
 		return ;
-	if (ft_strchr(com, '/') == NULL)
+	if (ft_strchr(com, '/'))
 		err_msg = "No such file or directory";
 	else
 		err_msg = "command not found";
