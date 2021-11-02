@@ -32,9 +32,11 @@ OBJS = $(addprefix $(OBJS_PAHT)/, $(OBJS_NAME))
 
 ifeq ($(DEBUG), 1)
 	CFLAGS = -g -Wall -Wextra -Werror
+	DEB = DEBUG 
 endif
 ifeq ($(SANI), 1)
 	CFLAGS = -fsanitize=address -Wall -Wextra -Werror
+	DEB = SANI 
 endif
 
 $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
@@ -48,7 +50,7 @@ $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(NAME) : $(OBJS)
-	@echo "$(NO_COLOR)make objects$(KILL_COLOR)"
+	@echo "$(NO_COLOR)make $(DEB)objects$(KILL_COLOR)"
 	@make -C libft
 	@$(CC) $(CFLAGS) $(LINK_RDLINE) $(INC) -o $(NAME) $(OBJS) -L $(LIBFT_PATH) -lft
 	@echo "$(NO_COLOR)done$(KILL_COLOR)"
@@ -61,7 +63,7 @@ clean :
 
 fclean :
 	@make -C $(LIBFT_PATH) fclean
-	@echo "$(NO_COLOR)fclea mknishell$(KILL_COLOR)"
+	@echo "$(NO_COLOR)fclea minishell$(KILL_COLOR)"
 	@rm -rf $(OBJS_PAHT)
 	@rm -f $(NAME)
 

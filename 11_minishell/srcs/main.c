@@ -43,7 +43,7 @@ int	main(int ac, char **av, char **envp)
 	signal(SIGINT, sig_handler);
 	while (1)
 	{
-		str = readline("minishell> ");
+		str = readline("\033[1;36mminishell> \033[0m ");
 		if (str_handler(str, &oldterm))
 			continue ;
 		commands = parsing_handler(str);

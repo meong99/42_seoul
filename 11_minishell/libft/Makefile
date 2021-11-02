@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mchae <mchae@student.42.fr>                +#+  +:+       +#+         #
+#    By: meong9 <meong9@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/09 16:16:57 by mchae             #+#    #+#              #
-#    Updated: 2021/10/21 20:17:50 by mchae            ###   ########.fr        #
+#    Updated: 2021/11/02 16:41:14 by meong9           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,14 +43,16 @@ KILL_COLOR	= \033[0m
 
 ifeq ($(DEBUG), 1)
 	FLAGS = -g -Wall -Wextra -Werror
+	DEB = DEBUG 
 endif
 ifeq ($(SANI), 1)
 	FLAGS = -fsanitize=address -Wall -Wextra -Werror
+	DEB = SANI 
 endif
 
 $(NAME) : $(OBJS)
 	@ar rcs $@ $^
-	@echo "$(NO_COLOR)make libft$(KILL_COLOR)"
+	@echo "$(NO_COLOR)make $(DEB)libft$(KILL_COLOR)"
 all : $(NAME)
 
 %.o : %.c
