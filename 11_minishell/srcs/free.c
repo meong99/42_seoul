@@ -10,6 +10,7 @@ static void	guard_dangling(t_commands *commands, char **str)
 	init_commands(commands);
 	commands->index = 0;
 	commands->pipe_num =0;
+	free(commands);
 	*str = 0;
 }
 
@@ -22,7 +23,6 @@ static void	free_var(t_commands *commands, char **str)
 	free(commands->redir_out);
 	free(commands->redir_out_file);
 	free(*str);
-	free(commands);
 }
 
 static void	close_fd(int **fd, int pipe_num)
