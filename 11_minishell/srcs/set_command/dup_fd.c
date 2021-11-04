@@ -44,12 +44,17 @@ static void	handle_redir_out(t_commands *commands)
 
 void	dup_fd(t_commands *commands)
 {
+	int	i;
+
+	i = -1;
 	if (commands->redir_input)
 		handle_redir_in(commands);
 	else
 		dup_input(commands);
 	if (commands->redir_out_file)
 		handle_redir_out(commands);
-	else if (commands->index + 1 != commands->pipe_num)
+	else if (commands->index + 1 != commands->command_num)
 		dup_output(commands);
+	while (++i < commands->index)
+		close(commands->fd[i][FOR_WRITE]);
 }

@@ -9,6 +9,7 @@ int	terminal_handler(struct termios	*oldterm)
 	newterm.c_lflag &= ~ECHOCTL;
 	newterm.c_cc[VKILL] = 0;
 	newterm.c_cc[VSUSP] = 0;
+	newterm.c_cc[VQUIT] = 0;
 	tcsetattr(STDIN_FILENO, TCSANOW, &newterm);
 	return (0);
 }

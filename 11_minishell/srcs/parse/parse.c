@@ -27,10 +27,10 @@ static void	makepipe(t_commands *commands)
 	int	**fd;
 	int	i;
 
-	fd = malloc(sizeof(int *) * commands->pipe_num);
+	fd = malloc(sizeof(int *) * commands->command_num);
 	ft_protect(fd);
 	i = -1;
-	while (++i < commands->pipe_num)
+	while (++i < commands->command_num)
 	{
 		fd[i] = malloc(sizeof(int) * 2);
 		ft_protect(fd[i]);
@@ -50,7 +50,7 @@ t_commands	*parsing_handler(char *str)
 	spl_pipe = ft_split_f(str, '|', BOTH, check_quote);
 	ft_protect(spl_pipe);
 	commands = parse_pipe(spl_pipe);
-	while (++i < commands->pipe_num)
+	while (++i < commands->command_num)
 		init_commands(&commands[i]);
 	makepipe(commands);
 	parse_commands(commands, spl_pipe);

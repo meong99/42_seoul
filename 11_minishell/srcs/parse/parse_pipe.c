@@ -14,7 +14,7 @@ t_commands	*parse_pipe(char **spl)
 	i = -1;
 	while (++i < pipe_num)
 	{
-		commands[i].pipe_num = pipe_num;
+		commands[i].command_num = pipe_num;
 		commands[i].index = i;
 	}
 	return (commands);

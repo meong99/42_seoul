@@ -14,23 +14,34 @@ static t_env	*find_key(char *key)
 	return (NULL);
 }
 
-static void	mapping_value(char *key, char *value)
+static void	mapping_value(char *key, char *value, char *str)
 {
 	t_env	*mapping;
 
 	mapping = find_key(key);
-	free(mapping->value);
-	mapping->value = ft_strdup(value);
-	ft_protect(mapping->value);
+	if (value)
+	{
+		free(mapping->value);
+		mapping->value = ft_strdup(value);
+		ft_protect(mapping->value);
+	}
+	else if (ft_strchr(str, '='))
+	{
+		free(mapping->value);
+		mapping->value = ft_strdup("");
+		ft_protect(mapping->value);
+	}
 }
 
-static void	ft_putenv(char *key, char *value)
+static void	ft_putenv(char *key, char *value, char *str)
 {
 	t_env	*index;
 
 	index = g_env;
 	while (index->next)
 		index = index->next;
+	if (value == NULL && ft_strchr(str, '='))
+		value = "";
 	index->next = new_env_node(key, value, g_env->env_num);
 	(*g_env->env_num)++;
 }
@@ -49,9 +60,9 @@ static void	export_internal(t_list *arg)
 			check_key = find_key(split_var[0]);
 			if (check_key == NOT_FOUND && !check_export_error(split_var[0], \
 				(char *)arg->content))
-				ft_putenv(split_var[0], split_var[1]);
+				ft_putenv(split_var[0], split_var[1], (char *)arg->content);
 			else if (check_key)
-				mapping_value(split_var[0], split_var[1]);
+				mapping_value(split_var[0], split_var[1], (char *)arg->content);
 			ft_free(split_var, 0, true);
 		}
 		arg = arg->next;

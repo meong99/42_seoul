@@ -47,7 +47,7 @@ typedef struct s_commands
 	char	*redir_out;
 	char	*redir_out_file;
 	int		index;
-	int		pipe_num;
+	int		command_num;
 	int		**fd;
 }	t_commands;
 

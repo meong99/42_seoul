@@ -32,10 +32,10 @@ static int	make_process(t_commands *commands)
 	int		*pid;
 	int		i;
 
-	pid = malloc(sizeof(int) * commands->pipe_num);
+	pid = malloc(sizeof(int) * commands->command_num);
 	ft_protect(pid);
 	i = -1;
-	while (++i < commands->pipe_num)
+	while (++i < commands->command_num)
 	{
 		pid[i] = fork();
 		if (pid[i] == CHILD)
@@ -56,7 +56,7 @@ static int	make_process(t_commands *commands)
 
 int	set_commands(t_commands *commands)
 {
-	if (commands->pipe_num > 1 || is_nonbuilt(commands->com))
+	if (commands->command_num > 1 || is_nonbuilt(commands->com))
 		return (make_process(commands));
 	else
 		run_commands(commands);

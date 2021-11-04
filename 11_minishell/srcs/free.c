@@ -9,7 +9,7 @@ static void	guard_dangling(t_commands *commands)
 {
 	init_commands(commands);
 	commands->index = 0;
-	commands->pipe_num =0;
+	commands->command_num =0;
 }
 
 static void	free_var(t_commands *commands)
@@ -43,9 +43,9 @@ void	free_all(t_commands *commands, char **str, int **fd)
 	int	i;
 	int	com_num;
 
-	close_fd(fd, commands->pipe_num);
+	close_fd(fd, commands->command_num);
 	i = -1;
-	com_num = commands->pipe_num;
+	com_num = commands->command_num;
 	while (++i < com_num)
 	{
 		free_var(&commands[i]);
