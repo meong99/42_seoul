@@ -46,6 +46,15 @@ static void	mapping_redir(t_commands *commands)
 	while (mark)
 	{
 		mapped = mapping_dollar((char *)target->content);
+		if (mapped == NULL)
+		{
+			errno = 1;
+			write(2, "minishell: ", 11);
+			write(2, (char *)target->content, \
+				ft_strlen((char *)target->content));
+			write(2, ": ambiguous redirect\n", 21);
+			return ;
+		}
 		if (*(char *)mark->content == '<')
 		{
 			free(commands->redir_input);
