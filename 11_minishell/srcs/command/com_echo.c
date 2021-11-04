@@ -1,40 +1,36 @@
 #include "minishell.h"
 
-static void	print_echo(t_list *node, char *str, int option)
+static void	print_echo(t_list *node, int option)
 {
+	char	*str;
+
 	while (node)
 	{
+		str = (char *)node->content;
+		if (str == NULL)
+			str = "";
 		printf("%s", str);
 		node = node->next;
 		if (node)
-		{
 			printf(" ");
-			str = (char *)node->content;
-		}
 	}
 	if (option == false)
 		printf("\n");
 }
 
-static int	set_option(t_list *node, char **str)
+static int	set_option(t_list *node)
 {
-	*str = (char *)node->content;
-	if (ft_strncmp(*str, "-n", 3) == 0)
-	{
-		node = node->next;
-		*str = (char *)node->content;
+	if (ft_strncmp((char *)node->content, "-n", 3) == 0)
 		return (true);
-	}
 	return (false);
 }
 
 void	exe_echo(t_commands *commands)
 {
 	t_list	*node;
-	char	*str;
 	int		option;
 
 	node = commands->arg;
-	option = set_option(node, &str);
-	print_echo(node, str, option);
+	option = set_option(node);
+	print_echo(node + option, option);
 }

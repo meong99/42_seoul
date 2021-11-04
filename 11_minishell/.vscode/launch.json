@@ -6,14 +6,16 @@
 	"configurations": [
 		{
 		  "name": "debug minishell_test",
-		  "type": "cppdbg",
+		  "type": "lldb",
 		  "request": "launch",
 		  // 현재 workspace를 기준으로 test.out 프로그램을 실행
 		  "program": "${workspaceFolder}/minishell",
+		  "targetArchitecture": "x86_64",
 		  "args": [],
 		  "stopAtEntry": false,
 		  "cwd": "${workspaceFolder}",
 		  "environment": [],
+		  "autoAttachChildProcesses": true,
 		  "externalConsole": true,
 		  "osx": {
 			"MIMode": "lldb"

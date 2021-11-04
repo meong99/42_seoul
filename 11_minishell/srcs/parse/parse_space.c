@@ -3,6 +3,7 @@
 void	parse_space(t_commands *commands, char *str)
 {
 	char	**spl;
+	char	*mapped;
 	int		i;
 
 	spl = ft_split_f(str, ' ', BOTH, check_quote);
@@ -11,16 +12,11 @@ void	parse_space(t_commands *commands, char *str)
 	while (spl[++i])
 	{
 		spl[i] = remove_quote(spl[i]);
+		mapped = mapping_dollar(spl[i]);
 		if (commands->com == NULL)
-		{
-			commands->com = ft_strdup(spl[i]);
-			ft_protect(commands->com);
-		}
+			commands->com = mapped;
 		else
-		{
-			ft_lstadd_back(&commands->arg, ft_lstnew(ft_strdup(spl[i])));
-			ft_protect(commands->arg);
-		}
+			ft_lstadd_back(&commands->arg, ft_lstnew(mapped));
 		free(spl[i]);
 	}
 	free(spl);

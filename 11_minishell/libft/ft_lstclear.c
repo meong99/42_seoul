@@ -6,7 +6,7 @@
 /*   By: meong9 <meong9@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:57:59 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/02 17:05:28 by meong9           ###   ########.fr       */
+/*   Updated: 2021/11/03 17:23:01 by meong9           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		return ;
 	while (*lst)
 	{
-		temp = *lst;
+		temp = (*lst)->next;
 		ft_lstdelone(*lst, (*del));
-		*lst = temp->next;
+		free(*lst);
+		*lst = temp;
 		temp = 0;
 	}
 }

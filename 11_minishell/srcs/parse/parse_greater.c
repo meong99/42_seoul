@@ -93,21 +93,13 @@ char	*parse_greater(t_commands *commands, char *str)
 {
 	char	*start;
 	char	*end;
+	char	*filename;
 
 	start = ft_strchr_f(str, '>', BOTH, check_quote);
 	end = filename_range(start + 1);
-	if (commands->redir_out)
-	{
-		free(commands->redir_out);
-		commands->redir_out = NULL;
-	}
-	if (commands->redir_out_file)
-	{
-		free(commands->redir_out_file);
-		commands->redir_out_file = NULL;
-	}
-	commands->redir_out_file = get_filename(start + 1, end);
-	commands->redir_out = ft_strdup(">");
-	ft_protect(commands->redir_out);
-	return (ft_cut(str, start, end));
+	filename = get_filename(start + 1, end);
+	ft_lstadd_back(&commands->redir_lst_mark, ft_lstnew(ft_strdup(">")));
+	ft_lstadd_back(&commands->redir_lst_target, \
+		ft_lstnew(ft_strdup(filename)));
+	return (end);
 }

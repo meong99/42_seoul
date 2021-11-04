@@ -18,9 +18,9 @@ static int	ret_len(char *str, char *start, char *end)
 
 	len = 0;
 	i = 0;
-	while (str[++i])
+	while (str[i])
 	{
-		if (str + i < start && str + i > end)
+		if (!(str + i >= start && str + i <= end))
 			len++;
 		i++;
 	}

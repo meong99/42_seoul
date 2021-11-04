@@ -12,18 +12,25 @@ static void	parse_commands(t_commands *commands, char **spl_pipe)
 			except_redir = redir_handler(&commands[i], spl_pipe[i]);
 		if (!errno)
 			parse_space(&commands[i], except_redir);
-		free(spl_pipe[i]);
 		free(except_redir);
+		if (errno)
+			break ;
 	}
+	i = -1;
+	while (spl_pipe[++i])
+		free(spl_pipe[i]);
 	free(spl_pipe);
 }
 
 static void	makepipe(t_commands *commands)
 {
-	int		**fd;
+	int	**fd;
+	int	i;
+
 	fd = malloc(sizeof(int *) * commands->pipe_num);
 	ft_protect(fd);
-	for (int i = 0; i < commands->pipe_num; i++)
+	i = -1;
+	while (++i < commands->pipe_num)
 	{
 		fd[i] = malloc(sizeof(int) * 2);
 		ft_protect(fd[i]);
@@ -36,15 +43,15 @@ t_commands	*parsing_handler(char *str)
 {
 	t_commands	*commands;
 	char		**spl_pipe;
-	char		*mapped_str;
+	int			i;
 
-	mapped_str = mapping_dollar(str);
+	i = -1;
 	errno = 0;
-	spl_pipe = ft_split_f(mapped_str, '|', BOTH, check_quote);
+	spl_pipe = ft_split_f(str, '|', BOTH, check_quote);
 	ft_protect(spl_pipe);
-	free(mapped_str);
 	commands = parse_pipe(spl_pipe);
-	init_commands(commands);
+	while (++i < commands->pipe_num)
+		init_commands(&commands[i]);
 	makepipe(commands);
 	parse_commands(commands, spl_pipe);
 	return (commands);

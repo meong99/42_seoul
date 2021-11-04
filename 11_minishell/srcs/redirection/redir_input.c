@@ -47,11 +47,8 @@ char	*redir_input(char *filename)
 {
 	char	*input;
 
-	if (*filename == 0)
-	{
-		errno = 258;
+	if (filename == NULL)
 		return (NULL);
-	}
 	input = ret_input(filename);
 	return (input);
 }

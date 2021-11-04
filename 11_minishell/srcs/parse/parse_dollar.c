@@ -15,7 +15,7 @@ static char	*ret_env_value(char *key)
 	while (index)
 	{
 		if (ft_strncmp(index->key, key, ft_strlen(key)) == 0)
-			return (index->value);
+			return (ft_strdup(index->value));
 		index = index->next;
 	}
 	return (NULL);
@@ -39,6 +39,7 @@ static char	*mapping_env(char *start, char *end)
 		key[i] = start[i];
 	key[i] = 0;
 	value = ret_env_value(key);
+	ft_protect(value);
 	free(key);
 	return (value);
 }
@@ -94,7 +95,7 @@ char	*mapping_dollar(char *str)
 
 	result = ft_strdup(str);
 	ft_protect(result);
-	while (1)
+	while (result)
 	{
 		tmp = result;
 		start = ft_strchr_f(tmp, '$', SINGLE_QUOTE, check_quote);
@@ -106,6 +107,11 @@ char	*mapping_dollar(char *str)
 		ft_protect(result);
 		free(value);
 		free(tmp);
+	}
+	if (*result == 0 && *str != 0)
+	{
+		free(result);
+		result = NULL;
 	}
 	return (result);
 }

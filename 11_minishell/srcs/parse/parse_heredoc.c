@@ -76,15 +76,13 @@ char	*parse_heredoc(t_commands *commands, char *str)
 {
 	char	*start;
 	char	*end;
+	char	*input;
 
 	start = ft_strnstr_f(str, "<<", ft_strlen(str), check_quote);
 	end = filename_range(start + 2);
-	if (commands->redir_in)
-		free(commands->redir_in);
-	if (commands->redir_input)
-		free(commands->redir_input);
-	commands->redir_input = ret_input(start + 2, end);
-	commands->redir_in = ft_strdup("<<");
-	ft_protect(commands->redir_in);
-	return (ft_cut(str, start, end));
+	input = ret_input(start + 2, end);
+	ft_lstadd_back(&commands->redir_lst_mark, ft_lstnew(ft_strdup("<<")));
+	ft_lstadd_back(&commands->redir_lst_target, \
+		ft_lstnew(ft_strdup(input)));
+	return (end);
 }

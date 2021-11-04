@@ -19,7 +19,6 @@ static char	*get_input(char *start, char *end)
 {
 	char	*filename;
 	int		i;
-	char	*input;
 
 	i = 0;
 	while (*start == ' ')
@@ -35,13 +34,14 @@ static char	*get_input(char *start, char *end)
 		i++;
 	}
 	filename[i] = 0;
-	ft_protect(filename);
-	input = 0;
-	filename = remove_quote(filename);
-	if (check_systax(filename) != RET_ERR_INT)
-		input = redir_input(filename);
-	free(filename);
-	return (input);
+	if (check_systax(filename) == RET_ERR_INT)
+	{
+		free(filename);
+		filename = 0;
+	}
+	else
+		filename = remove_quote(filename);
+	return (filename);
 }
 
 static char	*filename_range(char *start)
@@ -77,21 +77,13 @@ char	*parse_less(t_commands *commands, char *str)
 {
 	char	*start;
 	char	*end;
+	char	*filename;
 
 	start = ft_strchr_f(str, '<', BOTH, check_quote);
 	end = filename_range(start + 1);
-	if (commands->redir_in)
-	{
-		free(commands->redir_in);
-		commands->redir_in = NULL;
-	}
-	if (commands->redir_input)
-	{
-		free(commands->redir_input);
-		commands->redir_input = NULL;
-	}
-	commands->redir_input = get_input(start + 1, end);
-	commands->redir_in = ft_strdup("<");
-	ft_protect(commands->redir_in);
-	return (ft_cut(str, start, end));
+	filename = get_input(start + 1, end);
+	ft_lstadd_back(&commands->redir_lst_mark, ft_lstnew(ft_strdup("<")));
+	ft_lstadd_back(&commands->redir_lst_target, \
+		ft_lstnew(ft_strdup(filename)));
+	return (end);
 }

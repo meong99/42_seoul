@@ -17,9 +17,9 @@ static void	wait_for_child(int children, int *pidarr, int **fd)
 	int		pid;
 
 	count = children;
+	close(fd[0][1]);
 	while (children--)
 	{
-		close(fd[0][1]);
 		pid = wait(&wstatus);
 		pid = find_pid(pid, pidarr, count);
 		if (pid + 1 < count)
