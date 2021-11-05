@@ -4,7 +4,7 @@ static t_env	*find_key(char *key)
 {
 	t_env	*index;
 
-	index = g_env;
+	index = g_commands->env;
 	while (index)
 	{
 		if (ft_strncmp(index->key, key, ft_strlen(key)) == 0)
@@ -37,13 +37,13 @@ static void	ft_putenv(char *key, char *value, char *str)
 {
 	t_env	*index;
 
-	index = g_env;
+	index = g_commands->env;
 	while (index->next)
 		index = index->next;
 	if (value == NULL && ft_strchr(str, '='))
 		value = "";
-	index->next = new_env_node(key, value, g_env->env_num);
-	(*g_env->env_num)++;
+	index->next = new_env_node(key, value, index->env_num);
+	(*index->env_num)++;
 }
 
 static void	export_internal(t_list *arg)

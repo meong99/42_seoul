@@ -47,6 +47,7 @@ void	exe_exit(t_list *arg)
 		write(2, arg->content, ft_strlen((char *)arg->content));
 		write(2, ": numeric argument required\n", 29);
 		errno = 255;
+		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
 		exit(errno);
 	}
 	else if (ret_arg_len(arg) > 1)
@@ -54,6 +55,7 @@ void	exe_exit(t_list *arg)
 	else
 	{
 		errno = ft_atoi((char *)arg->content);
+		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
 		exit(errno);
 	}
 }

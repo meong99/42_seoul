@@ -32,38 +32,40 @@ static void	wait_for_child(int children, int *pidarr, int **fd)
 	}
 }
 
-static int	make_process(t_commands *commands)
+static int	make_process()
 {
 	int		*pid;
 	int		i;
 
-	pid = malloc(sizeof(int) * commands->command_num);
+	pid = malloc(sizeof(int) * g_commands->command_num);
 	ft_protect(pid);
 	i = -1;
-	while (++i < commands->command_num)
+	while (++i < g_commands->command_num)
 	{
+		g_commands[i].sig_handle = false;
+		put_sigint();
 		pid[i] = fork();
 		if (pid[i] == CHILD)
 		{
 			errno = 0;
-			dup_fd(&commands[i]);
+			dup_fd(&g_commands[i]);
 			if (errno == 0)
-				run_commands(&commands[i]);
+				run_commands(&g_commands[i]);
 			return (CHILD);
 		}
 		else if (pid[i] == -1)
 			ft_protect(NULL);
 	}
-	wait_for_child(i, pid, commands->fd);
+	wait_for_child(i, pid, g_commands->fd);
 	free(pid);
 	return (PARENTS);
 }
 
-int	set_commands(t_commands *commands)
+int	set_commands(void)
 {
-	if (commands->command_num > 1 || is_nonbuilt(commands->com))
-		return (make_process(commands));
+	if (g_commands->command_num > 1 || is_nonbuilt(g_commands->com))
+		return (make_process());
 	else
-		run_commands(commands);
+		run_commands(g_commands);
 	return (PARENTS);
 }

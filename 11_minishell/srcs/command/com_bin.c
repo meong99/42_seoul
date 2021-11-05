@@ -6,7 +6,7 @@ static void	copy_env(char **envp)
 	int		i;
 
 	i = 0;
-	index = g_env;
+	index = g_commands->env;
 	while (index)
 	{
 		envp[i] = ft_strdup(index->key);
@@ -23,10 +23,12 @@ static void	copy_env(char **envp)
 static char	**make_envp(void)
 {
 	char	**envp;
+	t_env	*env;
 
-	envp = malloc(sizeof(char *) * (*g_env->env_num + 1));
+	env = g_commands->env;
+	envp = malloc(sizeof(char *) * (*env->env_num + 1));
 	ft_protect(envp);
-	envp[*g_env->env_num] = NULL;
+	envp[*env->env_num] = NULL;
 	copy_env(envp);
 	return (envp);
 }

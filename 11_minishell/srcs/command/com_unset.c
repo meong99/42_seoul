@@ -4,7 +4,7 @@ static t_env	*ret_befor(t_env *criteria)
 {
 	t_env	*node;
 
-	node = g_env;
+	node = g_commands->env;
 	while (node)
 	{
 		if (node->next == criteria || node == criteria)
@@ -18,7 +18,7 @@ static t_env	*find_key(char *key)
 {
 	t_env	*node;
 
-	node = g_env;
+	node = g_commands->env;
 	while (node)
 	{
 		if (ft_strncmp(node->key, key, ft_strlen(key)) == 0)
@@ -41,7 +41,7 @@ static void	remove_env(char *key)
 	free(node->key);
 	free(node->value);
 	free(node);
-	(*g_env->env_num)--;
+	(*g_commands->env->env_num)--;
 }
 
 int	exe_unset(t_commands *commands)

@@ -11,7 +11,7 @@ static char	*ret_env_value(char *key, int old_errno)
 		ft_protect(result);
 		return (result);
 	}
-	index = g_env;
+	index = g_commands->env;
 	while (index)
 	{
 		if (ft_strncmp(index->key, key, ft_strlen(key)) == 0)
@@ -73,18 +73,6 @@ static char	*set_end(char *start, char *str)
 	return (end);
 }
 
-static int	check_heredoc(char *start)
-{
-	if (start == NULL)
-		return (true);
-	start--;
-	while (*start == ' ')
-		start--;
-	if (*start == '<' && *(start - 1) == '<')
-		return (true);
-	return (false);
-}
-
 char	*mapping_dollar(char *str, int old_errno)
 {
 	char	*start;
@@ -99,7 +87,7 @@ char	*mapping_dollar(char *str, int old_errno)
 	{
 		tmp = result;
 		start = ft_strchr_f(tmp, '$', SINGLE_QUOTE, check_quote);
-		if (start == NULL || check_heredoc(start))
+		if (start == NULL)
 			break ;
 		end = set_end(start + 1, tmp);
 		value = mapping_env(start + 1, end, old_errno);

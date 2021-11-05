@@ -4,7 +4,7 @@ static t_env	*find_key(char *key)
 {
 	t_env	*node;
 
-	node = g_env;
+	node = g_commands->env;
 	while (node)
 	{
 		if (ft_strncmp(node->key, key, ft_strlen(key)) == 0)

@@ -20,6 +20,8 @@
 		"termios.h": "c",
 		"__functional_03": "c",
 		"__locale": "c",
-		"__node_handle": "c"
+		"__node_handle": "c",
+		"_pid_t.h": "c",
+		"_types.h": "c"
 	}
 }

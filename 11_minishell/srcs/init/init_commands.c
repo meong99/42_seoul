@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	init_commands(t_commands *commands)
+void	init_commands(t_commands *commands, t_env *env)
 {
 	commands->com = NULL;
 	commands->arg = NULL;
@@ -10,4 +10,6 @@ void	init_commands(t_commands *commands)
 	commands->redir_out = NULL;
 	commands->redir_input = NULL;
 	commands->redir_out_file = NULL;
+	commands->env = env;
+	commands->sig_handle = true;
 }

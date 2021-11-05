@@ -6,7 +6,7 @@ static t_env	*deep_copy(void)
 	t_env	*temp;
 	t_env	*env;
 
-	index = g_env;
+	index = g_commands->env;
 	env = new_env_node(index->key, index->value, NULL);
 	temp = env;
 	index = index->next;

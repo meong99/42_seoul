@@ -13,3 +13,23 @@ int	terminal_handler(struct termios	*oldterm)
 	tcsetattr(STDIN_FILENO, TCSANOW, &newterm);
 	return (0);
 }
+
+int	put_sigint(void)
+{
+	struct termios	newterm;
+
+	tcgetattr(STDIN_FILENO, &newterm);
+	newterm.c_lflag |= ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSANOW, &newterm);
+	return (0);
+}
+
+int	ignore_sigint(void)
+{
+	struct termios	newterm;
+
+	tcgetattr(STDIN_FILENO, &newterm);
+	newterm.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSANOW, &newterm);
+	return (0);
+}

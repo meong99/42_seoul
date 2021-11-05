@@ -14,19 +14,19 @@ t_env	*new_env_node(char *key, char *value, int *env_num)
 	return (node);
 }
 
-static int	append_node(char **envp)
+static int	append_node(char **envp, t_env *env)
 {
 	t_env	*node;
 	char	**spl_envp;
 	int		env_num;
 
 	env_num = 0;
-	node = g_env;
+	node = env;
 	while (*envp)
 	{
 		spl_envp = ft_split(*envp, '=');
 		ft_protect(spl_envp);
-		node->next = new_env_node(spl_envp[0], spl_envp[1], g_env->env_num);
+		node->next = new_env_node(spl_envp[0], spl_envp[1], node->env_num);
 		node = node->next;
 		ft_free(spl_envp, 0, true);
 		envp++;
@@ -35,17 +35,19 @@ static int	append_node(char **envp)
 	return (env_num);
 }
 
-void	init_env_var(char **envp)
+t_env	*init_env_var(char **envp)
 {
 	char	**spl_envp;
 	int		*env_num;
+	t_env	*env;
 
 	env_num = malloc(sizeof(int));
 	ft_protect(env_num);
 	spl_envp = ft_split(*envp, '=');
 	ft_protect(spl_envp);
-	g_env = new_env_node(spl_envp[0], spl_envp[1], env_num);
+	env = new_env_node(spl_envp[0], spl_envp[1], env_num);
 	envp++;
 	ft_free(spl_envp, 0, true);
-	*env_num = append_node(envp) + 1;
+	*env_num = append_node(envp, env) + 1;
+	return (env);
 }

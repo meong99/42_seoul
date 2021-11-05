@@ -4,7 +4,7 @@ void	exe_env(t_commands *commands)
 {
 	t_env	*temp;
 
-	temp = g_env;
+	temp = g_commands->env;
 	while (temp)
 	{
 		if (temp->value)
