@@ -35,6 +35,7 @@ int	main(int ac, char **av, char **envp)
 	t_commands		*commands;
 	struct termios	oldterm;
 	char			*str;
+	int				old_errno;
 
 	ac = 0;
 	av = 0;
@@ -43,10 +44,11 @@ int	main(int ac, char **av, char **envp)
 	signal(SIGINT, sig_handler);
 	while (1)
 	{
+		old_errno = errno;
 		str = readline("\033[1;36mminishell> \033[0m ");
 		if (str_handler(str, &oldterm))
 			continue ;
-		commands = parsing_handler(str);
+		commands = parsing_handler(str, old_errno);
 		if (check_errno(commands, &str))
 			continue ;
 		if (set_commands(commands) == CHILD)

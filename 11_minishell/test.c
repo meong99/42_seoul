@@ -13,13 +13,27 @@
 
 int main(void)
 {
-	char str[4];
+	char	**str;
+	int		pid;
 
-	str[0] = '1';
-	str[1] = -1;
-	str[2] = '2';
-	str[3] = 0;
-	write(STDIN_FILENO, str, 4);
-	read(STDIN_FILENO, str, 4);
-	printf("%s\n", str);
+	printf("1=%d\n", errno);
+	pid = fork();
+	printf("2=%d\n", errno);
+	if (pid == 0)
+	{
+		str = malloc(sizeof(char *) * 3);
+		str[0] = "/bin/ls";
+		str[1] = "asddasdasad";
+		str[2] = NULL;
+		printf("3=%d\n", errno);
+		execve(str[0], str, NULL);
+		printf("4=%d\n", errno);
+		return (0);
+	}
+	wait(&pid);
+	if (0 == (pid & 0xff))
+		printf("정상 = %d\n", pid >> 8);
+	else
+		printf("비정상 = %d\n", pid);
+	printf("5=%d\n", errno);
 }

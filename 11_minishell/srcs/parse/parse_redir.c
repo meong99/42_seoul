@@ -45,7 +45,7 @@ static void	mapping_redir(t_commands *commands)
 	target = commands->redir_lst_target;
 	while (mark)
 	{
-		mapped = mapping_dollar((char *)target->content);
+		mapped = mapping_dollar((char *)target->content, commands->old_errno);
 		if (mapped == NULL)
 		{
 			errno = 1;

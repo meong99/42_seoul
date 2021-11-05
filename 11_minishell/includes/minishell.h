@@ -46,6 +46,7 @@ typedef struct s_commands
 	char	*redir_input;
 	char	*redir_out;
 	char	*redir_out_file;
+	int		old_errno;
 	int		index;
 	int		command_num;
 	int		**fd;
@@ -85,8 +86,8 @@ t_env		*new_env_node(char *key, char *value, int *env_num);
 ** parse
 */
 int			check_quote(char *str, char *pointer, int option);
-char		*mapping_dollar(char *str);
-t_commands	*parsing_handler(char *str);
+char		*mapping_dollar(char *str, int old_errno);
+t_commands	*parsing_handler(char *str, int old_errno);
 t_commands	*parse_pipe(char **spl);
 void		parse_space(t_commands *commands, char *str);
 char		*redir_handler(t_commands *commands, char *str);

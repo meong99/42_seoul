@@ -12,7 +12,7 @@ void	parse_space(t_commands *commands, char *str)
 	while (spl[++i])
 	{
 		spl[i] = remove_quote(spl[i]);
-		mapped = mapping_dollar(spl[i]);
+		mapped = mapping_dollar(spl[i], commands->old_errno);
 		if (commands->com == NULL)
 			commands->com = mapped;
 		else

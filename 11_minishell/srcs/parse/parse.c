@@ -39,17 +39,17 @@ static void	makepipe(t_commands *commands)
 	}
 }
 
-t_commands	*parsing_handler(char *str)
+t_commands	*parsing_handler(char *str, int old_errno)
 {
 	t_commands	*commands;
 	char		**spl_pipe;
 	int			i;
 
 	i = -1;
-	errno = 0;
 	spl_pipe = ft_split_f(str, '|', BOTH, check_quote);
 	ft_protect(spl_pipe);
 	commands = parse_pipe(spl_pipe);
+	commands->old_errno = old_errno;
 	while (++i < commands->command_num)
 		init_commands(&commands[i]);
 	makepipe(commands);

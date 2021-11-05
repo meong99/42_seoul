@@ -17,10 +17,15 @@ static void	wait_for_child(int children, int *pidarr, int **fd)
 	int		pid;
 
 	count = children;
+	close(fd[0][0]);
 	close(fd[0][1]);
 	while (children--)
 	{
 		pid = wait(&wstatus);
+		if (0 == (wstatus & 0xff))
+			errno = wstatus >> 8;
+		else
+			errno = wstatus;
 		pid = find_pid(pid, pidarr, count);
 		if (pid + 1 < count)
 			close(fd[pid + 1][FOR_WRITE]);

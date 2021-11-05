@@ -28,7 +28,7 @@ static void	close_fd(int **fd, int pipe_num)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	while (++i < pipe_num)
 	{
 		close(fd[i][0]);

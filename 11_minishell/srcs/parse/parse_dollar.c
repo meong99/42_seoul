@@ -1,13 +1,13 @@
 #include "minishell.h"
 
-static char	*ret_env_value(char *key)
+static char	*ret_env_value(char *key, int old_errno)
 {
 	t_env	*index;
 	char	*result;
 
 	if (ft_strncmp(key, "?", 2) == 0)
 	{
-		result = ft_itoa(errno);
+		result = ft_itoa(old_errno);
 		ft_protect(result);
 		return (result);
 	}
@@ -21,7 +21,7 @@ static char	*ret_env_value(char *key)
 	return (NULL);
 }
 
-static char	*mapping_env(char *start, char *end)
+static char	*mapping_env(char *start, char *end, int old_errno)
 {
 	char	*key;
 	char	*value;
@@ -38,7 +38,7 @@ static char	*mapping_env(char *start, char *end)
 	while (start + ++i <= end)
 		key[i] = start[i];
 	key[i] = 0;
-	value = ret_env_value(key);
+	value = ret_env_value(key, old_errno);
 	ft_protect(value);
 	free(key);
 	return (value);
@@ -85,7 +85,7 @@ static int	check_heredoc(char *start)
 	return (false);
 }
 
-char	*mapping_dollar(char *str)
+char	*mapping_dollar(char *str, int old_errno)
 {
 	char	*start;
 	char	*end;
@@ -102,7 +102,7 @@ char	*mapping_dollar(char *str)
 		if (start == NULL || check_heredoc(start))
 			break ;
 		end = set_end(start + 1, tmp);
-		value = mapping_env(start + 1, end);
+		value = mapping_env(start + 1, end, old_errno);
 		result = ft_submap(tmp, start, end, value);
 		ft_protect(result);
 		free(value);
