@@ -29,6 +29,7 @@ static void	close_fd(int **fd, int pipe_num)
 	int	i;
 
 	i = 0;
+	free(fd[i]);
 	while (++i < pipe_num)
 	{
 		close(fd[i][0]);

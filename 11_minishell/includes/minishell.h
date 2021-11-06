@@ -39,9 +39,9 @@ typedef struct s_env
 typedef struct s_commands
 {
 	char	*com;
+	t_list	*arg;
 	t_list	*redir_lst_mark;
 	t_list	*redir_lst_target;
-	t_list	*arg;
 	t_env	*env;
 	struct termios	oldterm;
 	char	*redir_in;
