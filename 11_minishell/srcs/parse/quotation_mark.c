@@ -13,10 +13,14 @@ static char	get_mark(char *str)
 	return (-1);
 }
 
-static int	check_inside(char *front, char *back, char *pointer, int option)
+int	check_quote(char *str, char *pointer, int option)
 {
 	char	mark;
+	char	*front;
+	char	*back;
 
+	front = str;
+	back = str;
 	while (front && back)
 	{
 		mark = get_mark(front);
@@ -33,9 +37,4 @@ static int	check_inside(char *front, char *back, char *pointer, int option)
 		front = back + 1;
 	}
 	return (false);
-}
-
-int	check_quote(char *str, char *pointer, int option)
-{
-	return (check_inside(str, str, pointer, option));
 }

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 06:59:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 22:49:57 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/08 22:54:55 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*parse_redir(t_commands *commands, char *str)
 			end = end + i;
 			if (!start)
 				start = end;
-				end = parse_target(commands, end);
+			end = parse_target(commands, end);
 			i = -1;
 		}
 	}
@@ -52,7 +52,7 @@ static char	*parse_redir(t_commands *commands, char *str)
 		return (ft_cut(str, start, end));
 }
 
-static int parse_mapped(t_commands *commands, char *mapped, \
+static int	parse_mapped(t_commands *commands, char *mapped, \
 	char *target, char *mark)
 {
 	if (mapped == NULL)
