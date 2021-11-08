@@ -29,7 +29,7 @@ static void	handle_redir_in(t_commands *commands)
 	redir_str = commands->redir_input;
 	fd = commands->fd[commands->index];
 	dup2(fd[FOR_READ], STDIN_FILENO);
-	write(fd[FOR_WRITE], redir_str, ft_strlen(redir_str));
+	ft_putstr_fd(redir_str, fd[FOR_WRITE]);
 	close(fd[FOR_READ]);
 	close(fd[FOR_WRITE]);
 }

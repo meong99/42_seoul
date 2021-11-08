@@ -10,10 +10,10 @@ void	check_bin_error(char *com)
 	else
 		err_msg = "command not found";
 	errno = 127;
-	write(2, "minishell: ", 11);
-	write(2, com, ft_strlen(com));
-	write(2, ": ", 2);
-	write(2, err_msg, ft_strlen(err_msg));
-	write(2, "\n", 1);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(com, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putstr_fd(err_msg, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 	exit(errno);
 }

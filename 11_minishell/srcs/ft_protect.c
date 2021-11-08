@@ -4,7 +4,7 @@ void	ft_protect(void *arg)
 {
 	if (arg == NULL && errno)
 	{
-		write(2, strerror(errno), ft_strlen(strerror(errno)));
+		ft_putstr_fd(strerror(errno), STDERR_FILENO);
 		exit(errno);
 	}
 }

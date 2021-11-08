@@ -2,10 +2,10 @@
 
 static void	print_err_exit(void)
 {
-	write(2, "exit\n", 5);
-	write(2, "minishell: ", 11);
-	write(2, "exit: ", 6);
-	write(2, "too many arguments\n", 20);
+	ft_putstr_fd("exit\n", STDERR_FILENO);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd("exit: ", STDERR_FILENO);
+	ft_putstr_fd("too many arguments\n", STDERR_FILENO);
 	errno = 1;
 }
 
@@ -41,11 +41,11 @@ void	exe_exit(t_list *arg)
 {
 	if (check_numeric(arg) == false)
 	{
-		write(2, "exit\n", 5);
-		write(2, "minishell: ", 11);
-		write(2, "exit: ", 6);
-		write(2, arg->content, ft_strlen((char *)arg->content));
-		write(2, ": numeric argument required\n", 29);
+		ft_putstr_fd("exit\n", STDERR_FILENO);
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd("exit: ", STDERR_FILENO);
+		ft_putstr_fd((char *)arg->content, STDERR_FILENO);
+		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
 		errno = 255;
 		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
 		exit(errno);

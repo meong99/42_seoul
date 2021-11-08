@@ -2,10 +2,10 @@
 
 int	print_systax_err(char *token)
 {
-	write(2, "minishell: ", 11);
-	write(2, "syntax error near unexpected token `", 36);
-	write(2, token, ft_strlen(token));
-	write(2, "'\n", 2);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
+	ft_putstr_fd(token, STDERR_FILENO);
+	ft_putstr_fd("'\n", STDERR_FILENO);
 	errno = 258;
 	return (RET_ERR_INT);
 }

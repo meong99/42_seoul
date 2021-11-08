@@ -3,11 +3,11 @@
 static void	print_err_unset(int err_num, char *arg, char *err_mag)
 {
 	errno = err_num;
-	write(2, "minishell: unset: `", 19);
-	write(2, arg, ft_strlen(arg));
-	write(2, "': ", 3);
-	write(2, err_mag, ft_strlen(err_mag));
-	write(2, "\n", 1);
+	ft_putstr_fd("minishell: unset: `", STDERR_FILENO);
+	ft_putstr_fd(arg, STDERR_FILENO);
+	ft_putstr_fd("': ", STDERR_FILENO);
+	ft_putstr_fd(err_mag, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }
 
 int	check_unset_error(char *key)

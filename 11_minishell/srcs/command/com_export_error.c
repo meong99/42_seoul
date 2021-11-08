@@ -3,11 +3,11 @@
 static void	print_err_export(int err_num, char *arg, char *err_mag)
 {
 	errno = err_num;
-	write(2, "minishell: export: `", 20);
-	write(2, arg, ft_strlen(arg));
-	write(2, "': ", 3);
-	write(2, err_mag, ft_strlen(err_mag));
-	write(2, "\n", 1);
+	ft_putstr_fd("minishell: export: `", STDERR_FILENO);
+	ft_putstr_fd(arg, STDERR_FILENO);
+	ft_putstr_fd("': ", STDERR_FILENO);
+	ft_putstr_fd(err_mag, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }
 
 static int	check_key(char *key, char *arg)

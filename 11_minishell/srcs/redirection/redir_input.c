@@ -30,11 +30,11 @@ static char	*ret_input(char *filename)
 	if (fd == -1)
 	{
 		str = strerror(errno);
-		write(2, "minishell: ", 11);
-		write(2, filename, ft_strlen(filename));
-		write(2, ": ", 2);
-		write(2, str, ft_strlen(str));
-		write(2, "\n", 1);
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd(filename, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+		ft_putstr_fd(str, STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
 		errno = 1;
 		return (NULL);
 	}

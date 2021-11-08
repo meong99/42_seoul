@@ -1,10 +1,5 @@
 #include "minishell.h"
 
-static void	delete(void *str)
-{
-	free(str);
-}
-
 static void	guard_dangling(t_commands *commands)
 {
 	init_commands(commands, NULL);
@@ -15,9 +10,9 @@ static void	guard_dangling(t_commands *commands)
 static void	free_var(t_commands *commands)
 {
 	free(commands->com);
-	ft_lstclear(&commands->arg, delete);
-	ft_lstclear(&commands->redir_lst_mark, delete);
-	ft_lstclear(&commands->redir_lst_target, delete);
+	ft_lstclear(&commands->arg, free);
+	ft_lstclear(&commands->redir_lst_mark, free);
+	ft_lstclear(&commands->redir_lst_target, free);
 	free(commands->redir_in);
 	free(commands->redir_input);
 	free(commands->redir_out);

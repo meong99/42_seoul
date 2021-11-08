@@ -7,11 +7,11 @@ static void	print_err_cd(int err_code, char *arg)
 	if (err_code == 0)
 		return ;
 	strerr = strerror(errno);
-	write(2, "minishell: cd: ", 15);
-	write(2, arg, ft_strlen(arg));
-	write(2, ": ", 2);
-	write(2, strerr, ft_strlen(strerr));
-	write(2, "\n", 1);
+	ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
+	ft_putstr_fd(arg, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putstr_fd(strerr, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }
 
 void	exe_cd(t_commands *commands)

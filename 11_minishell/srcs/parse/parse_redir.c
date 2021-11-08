@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_redir.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/07 06:59:17 by mchae             #+#    #+#             */
+/*   Updated: 2021/11/08 17:34:56 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static char	*parse_redir(t_commands *commands, char *str)
@@ -49,10 +61,9 @@ static void	mapping_redir(t_commands *commands)
 		if (mapped == NULL)
 		{
 			errno = 1;
-			write(2, "minishell: ", 11);
-			write(2, (char *)target->content, \
-				ft_strlen((char *)target->content));
-			write(2, ": ambiguous redirect\n", 21);
+			ft_putstr_fd("minishell: ", STDERR_FILENO);
+			ft_putstr_fd((char *)target->content, STDERR_FILENO);
+			ft_putstr_fd(": ambiguous redirect\n", STDERR_FILENO);
 			return ;
 		}
 		if (*(char *)mark->content == '<')
