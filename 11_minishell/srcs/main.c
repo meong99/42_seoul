@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/08 23:47:26 by mchae             #+#    #+#             */
+/*   Updated: 2021/11/08 23:59:53 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static int	check_errno(char **str)
@@ -30,18 +42,11 @@ static int	str_handler(char *str)
 	return (0);
 }
 
-int	main(int ac, char **av, char **envp)
+int	loop_minishell(t_env *env, struct termios oldterm)
 {
-	t_env			*env;
-	char			*str;
-	struct termios	oldterm;
-	int				old_errno;
+	char	*str;
+	int		old_errno;
 
-	ac = 0;
-	av = 0;
-	env = init_env_var(envp);
-	terminal_handler(&oldterm);
-	signal(SIGINT, sig_handler);
 	while (1)
 	{
 		ignore_sigint();
@@ -55,8 +60,22 @@ int	main(int ac, char **av, char **envp)
 		if (check_errno(&str))
 			continue ;
 		if (set_commands() == CHILD)
-			break ;
+			return (0);
 		free_all(&str, g_commands->fd);
 	}
+	return (0);
+}
+
+int	main(int ac, char **av, char **envp)
+{
+	t_env			*env;
+	struct termios	oldterm;
+
+	ac = 0;
+	av = 0;
+	env = init_env_var(envp);
+	terminal_handler(&oldterm);
+	signal(SIGINT, sig_handler);
+	loop_minishell(env, oldterm);
 	return (0);
 }

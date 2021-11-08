@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/08 23:47:22 by mchae             #+#    #+#             */
+/*   Updated: 2021/11/08 23:51:46 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void	guard_dangling(t_commands *commands)
 {
 	init_commands(commands, NULL);
 	commands->index = 0;
-	commands->command_num =0;
+	commands->command_num = 0;
 }
 
 static void	free_var(t_commands *commands)

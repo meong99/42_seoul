@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_commands.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/08 23:47:13 by mchae             #+#    #+#             */
+/*   Updated: 2021/11/08 23:49:44 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static int	find_pid(int pid, int*pidarr, int count)
@@ -32,7 +44,7 @@ static void	wait_for_child(int children, int *pidarr, int **fd)
 	}
 }
 
-static int	make_process()
+static int	make_process(void)
 {
 	int		*pid;
 	int		i;

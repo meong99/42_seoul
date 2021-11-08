@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_dollar.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/08 23:38:14 by mchae             #+#    #+#             */
+/*   Updated: 2021/11/08 23:46:30 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static char	*ret_env_value(char *key, int old_errno)
@@ -73,6 +85,16 @@ static char	*set_end(char *start, char *str)
 	return (end);
 }
 
+static char	*check_ambiguous(char *result, char *str)
+{
+	if (*result == 0 && *str != 0)
+	{
+		free(result);
+		result = NULL;
+	}
+	return (result);
+}
+
 char	*mapping_dollar(char *str, int old_errno)
 {
 	char	*start;
@@ -96,10 +118,5 @@ char	*mapping_dollar(char *str, int old_errno)
 		free(value);
 		free(tmp);
 	}
-	if (*result == 0 && *str != 0)
-	{
-		free(result);
-		result = NULL;
-	}
-	return (result);
+	return (check_ambiguous(result, str));
 }
