@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:26 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:59:53 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 00:04:13 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	main(int ac, char **av, char **envp)
 	t_env			*env;
 	struct termios	oldterm;
 
-	ac = 0;
-	av = 0;
+	if (ac == 0 || av == NULL || envp == NULL)
+		return (0);
 	env = init_env_var(envp);
 	terminal_handler(&oldterm);
 	signal(SIGINT, sig_handler);
