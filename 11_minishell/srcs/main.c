@@ -16,7 +16,7 @@ static int	str_handler(char *str)
 	{
 		ft_putstr_fd("\x1b[1A", STDOUT_FILENO);
 		ft_putstr_fd("\033[11C", STDOUT_FILENO);
-		printf("exit\n");
+		ft_putstr_fd("exit\n", STDOUT_FILENO);
 		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
 		exit(0);
 	}
