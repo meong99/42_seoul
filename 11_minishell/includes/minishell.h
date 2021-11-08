@@ -139,5 +139,6 @@ int		ignore_sigint(void);
 */
 int		print_systax_err(char *token);
 void	ft_protect(void *arg);
+void	put_err(char *fun_name);
 
 #endif

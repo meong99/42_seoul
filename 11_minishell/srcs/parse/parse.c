@@ -16,10 +16,7 @@ static void	parse_commands(char **spl_pipe)
 		if (errno)
 			break ;
 	}
-	i = -1;
-	while (spl_pipe[++i])
-		free(spl_pipe[i]);
-	free(spl_pipe);
+	ft_free(spl_pipe, 0, true);
 }
 
 static void	makepipe(void)
@@ -34,7 +31,8 @@ static void	makepipe(void)
 	{
 		fd[i] = malloc(sizeof(int) * 2);
 		ft_protect(fd[i]);
-		pipe(fd[i]);
+		if (pipe(fd[i]) == -1)
+			put_err("pipe");
 		g_commands[i].fd = fd;
 	}
 }

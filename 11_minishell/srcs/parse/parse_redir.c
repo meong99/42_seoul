@@ -6,11 +6,23 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 06:59:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 17:34:56 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/08 22:49:57 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static char	*parse_target(t_commands *commands, char *end)
+{
+	if (ft_strncmp(end, "<<", 2) == 0)
+		return (parse_heredoc(commands, end));
+	else if (ft_strncmp(end, "<", 1) == 0)
+		return (parse_less(commands, end));
+	else if (ft_strncmp(end, ">>", 2) == 0)
+		return (parse_append(commands, end));
+	else
+		return (parse_greater(commands, end));
+}
 
 static char	*parse_redir(t_commands *commands, char *str)
 {
@@ -30,14 +42,7 @@ static char	*parse_redir(t_commands *commands, char *str)
 			end = end + i;
 			if (!start)
 				start = end;
-			if (ft_strncmp(end, "<<", 2) == 0)
-				end = parse_heredoc(commands, end);
-			else if (ft_strncmp(end, "<", 1) == 0)
-				end = parse_less(commands, end);
-			else if (ft_strncmp(end, ">>", 2) == 0)
-				end = parse_append(commands, end);
-			else
-				end = parse_greater(commands, end);
+				end = parse_target(commands, end);
 			i = -1;
 		}
 	}
@@ -45,6 +50,34 @@ static char	*parse_redir(t_commands *commands, char *str)
 		return (ft_strdup(str));
 	else
 		return (ft_cut(str, start, end));
+}
+
+static int parse_mapped(t_commands *commands, char *mapped, \
+	char *target, char *mark)
+{
+	if (mapped == NULL)
+	{
+		errno = 1;
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd(target, STDERR_FILENO);
+		ft_putstr_fd(": ambiguous redirect\n", STDERR_FILENO);
+		return (RET_ERR_INT);
+	}
+	if (*mark == '<')
+	{
+		free(commands->redir_input);
+		free(commands->redir_in);
+		commands->redir_in = ft_strdup(mark);
+		commands->redir_input = mapped;
+	}
+	else
+	{
+		free(commands->redir_out);
+		free(commands->redir_out_file);
+		commands->redir_out = ft_strdup(mark);
+		commands->redir_out_file = mapped;
+	}
+	return (0);
 }
 
 static void	mapping_redir(t_commands *commands)
@@ -58,38 +91,23 @@ static void	mapping_redir(t_commands *commands)
 	while (mark)
 	{
 		mapped = mapping_dollar((char *)target->content, commands->old_errno);
-		if (mapped == NULL)
-		{
-			errno = 1;
-			ft_putstr_fd("minishell: ", STDERR_FILENO);
-			ft_putstr_fd((char *)target->content, STDERR_FILENO);
-			ft_putstr_fd(": ambiguous redirect\n", STDERR_FILENO);
-			return ;
-		}
-		if (*(char *)mark->content == '<')
-		{
-			free(commands->redir_input);
-			free(commands->redir_in);
-			commands->redir_in = ft_strdup((char *)mark->content);
-			commands->redir_input = mapped;
-		}
-		else
-		{
-			free(commands->redir_out);
-			free(commands->redir_out_file);
-			commands->redir_out = ft_strdup((char *)mark->content);
-			commands->redir_out_file = mapped;
-		}
+		if (parse_mapped(commands, mapped, \
+			(char *)target->content, (char *)mark->content) == RET_ERR_INT)
+			break ;
 		mark = mark->next;
 		target = target->next;
 	}
 }
 
-static void	get_input(t_commands *commands)
+char	*redir_handler(t_commands *commands, char *str)
 {
+	char	*except_redir;
 	char	*input;
 
-	if (commands->redir_input)
+	except_redir = parse_redir(commands, str);
+	if (!errno)
+		mapping_redir(commands);
+	if (!errno && commands->redir_input)
 	{
 		if (ft_strncmp(commands->redir_in, "<", 2) == 0)
 		{
@@ -98,16 +116,5 @@ static void	get_input(t_commands *commands)
 			commands->redir_input = input;
 		}
 	}
-}
-
-char	*redir_handler(t_commands *commands, char *str)
-{
-	char	*except_redir;
-
-	except_redir = parse_redir(commands, str);
-	if (!errno)
-		mapping_redir(commands);
-	if (!errno)
-		get_input(commands);
 	return (except_redir);
 }
