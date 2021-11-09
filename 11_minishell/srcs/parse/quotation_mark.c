@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:51 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:46:51 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 23:20:36 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	check_quote(char *str, char *pointer, int option)
 		if (front && back)
 		{
 			if (front < pointer && pointer < back && \
-			(option == BOTH || (option == SINGLE_QUOTE && mark == '\'')))
+			(option == BOTH || (option == SINGLE_QUOTE && mark == '\'') || \
+			(option == DOUBLE_QUOTE && mark == '\"')))
 				return (true);
 		}
 		front = back + 1;

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/09 21:13:24 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 23:41:29 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define LESS 4
 # define BOTH 0
 # define SINGLE_QUOTE 1
+# define DOUBLE_QUOTE 2
 
 typedef struct s_env
 {
@@ -151,5 +152,6 @@ int			ignore_sigint(void);
 int			print_systax_err(char *token);
 void		ft_protect(void *arg);
 void		put_err(char *source_err, int use_exit);
+int			closed_quote(char *str);
 
 #endif

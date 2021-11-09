@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:20 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/09 20:34:57 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/10 00:50:01 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ int	print_systax_err(char *token)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
-	ft_putstr_fd(token, STDERR_FILENO);
+	if (*token == '<' || *token == '>')
+		ft_putstr_fd(token, STDERR_FILENO);
+	else
+		write(STDERR_FILENO, token, 1);
 	ft_putstr_fd("'\n", STDERR_FILENO);
 	errno = 258;
 	return (RET_ERR_INT);
@@ -34,4 +37,31 @@ void	put_err(char *source_err, int use_exit)
 	ft_putstr_fd("\n", STDERR_FILENO);
 	if (use_exit)
 		exit(errno);
+}
+
+int	closed_quote(char *str)
+{
+	int		result;
+	char	mark;
+
+	result = true;
+	while (*str)
+	{
+		if (*str == '\'' || *str == '\"')
+		{
+			mark = *str;
+			result = false;
+			while (!result && *str)
+			{
+				if (*str++ == mark)
+					result = true;
+			}
+		}
+		if (*str == 0)
+			break ;
+		str++;
+	}
+	if (result == false)
+		print_systax_err(&mark);
+	return (result);
 }

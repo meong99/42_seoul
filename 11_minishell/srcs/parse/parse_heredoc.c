@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:35 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/09 20:24:25 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 22:21:31 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ static char	*ret_input(char *start, char *end)
 		i++;
 	}
 	delimiter[i] = 0;
-	delimiter = remove_quote(delimiter);
-	input = 0;
+	input = NULL;
 	if (check_systax(delimiter) != RET_ERR_INT)
 		input = redir_heredoc(delimiter);
 	free(delimiter);

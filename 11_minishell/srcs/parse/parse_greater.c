@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:33 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/09 20:43:45 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 22:21:36 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static char	*get_filename(char *start, char *end)
 		i++;
 	}
 	filename[i] = 0;
-	filename = remove_quote(filename);
 	check_systax(filename);
 	return (filename);
 }

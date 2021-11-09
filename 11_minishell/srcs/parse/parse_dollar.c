@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:38:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:46:30 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/10 00:57:10 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*ret_env_value(char *key, int old_errno)
 	index = g_commands->env;
 	while (index)
 	{
-		if (ft_strncmp(index->key, key, ft_strlen(key)) == 0)
+		if (ft_strncmp(index->key, key, ft_strlen(key) + 1) == 0)
 			return (ft_strdup(index->value));
 		index = index->next;
 	}
@@ -56,7 +56,7 @@ static char	*mapping_env(char *start, char *end, int old_errno)
 	return (value);
 }
 
-static char	*set_end(char *start, char *str)
+static char	*set_end(char *start)
 {
 	char	*end;
 	int		i;
@@ -65,23 +65,12 @@ static char	*set_end(char *start, char *str)
 	while (start[++i])
 	{
 		end = start + i;
-		if (ft_strchr("$<>", start[i]))
+		if (ft_strchr("$\'\"", start[i]))
 		{
-			if (start[i] == '$' && \
-				!check_quote(str, start + i, SINGLE_QUOTE))
-			{
-				end--;
-				break ;
-			}
-			else if (!check_quote(str, start + i, BOTH))
-			{
-				end--;
-				break ;
-			}
+			end--;
+			break ;
 		}
 	}
-	while (end > start + 1 && ft_isdigit(*end))
-		end--;
 	return (end);
 }
 
@@ -92,6 +81,8 @@ static char	*check_ambiguous(char *result, char *str)
 		free(result);
 		result = NULL;
 	}
+	else
+		result = remove_quote(result);
 	return (result);
 }
 
@@ -109,9 +100,11 @@ char	*mapping_dollar(char *str, int old_errno)
 	{
 		tmp = result;
 		start = ft_strchr_f(tmp, '$', SINGLE_QUOTE, check_quote);
+		while (start && start[1] == '\"')
+			start = ft_strchr_f(start + 1, '$', SINGLE_QUOTE, check_quote);
 		if (start == NULL)
 			break ;
-		end = set_end(start + 1, tmp);
+		end = set_end(start + 1);
 		value = mapping_env(start + 1, end, old_errno);
 		result = ft_submap(tmp, start, end, value);
 		ft_protect(result);
