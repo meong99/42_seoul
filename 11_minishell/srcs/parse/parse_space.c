@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:47 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/09 22:25:01 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/10 04:54:22 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	parse_space(t_commands *commands, char *str)
 		mapped = mapping_dollar(spl[i], commands->old_errno);
 		if (commands->com == NULL)
 			commands->com = mapped;
-		else
+		else if (mapped)
 			ft_lstadd_back(&commands->arg, ft_lstnew(mapped));
 		free(spl[i]);
 	}

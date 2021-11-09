@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:44 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:45:45 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/10 05:06:56 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	exe_cd(t_commands *commands)
 	int		err_code;
 
 	pwd = getcwd(NULL, 0);
-	str = (char *)commands->arg->content;
+	if (commands->arg)
+		str = (char *)commands->arg->content;
+	else
+		str = "./";
 	err_code = chdir(str);
 	print_err_cd(err_code, str);
 	free(pwd);

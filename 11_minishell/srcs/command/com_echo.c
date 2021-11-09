@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:45:47 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/10 04:55:52 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	print_echo(t_list *node, int option)
 
 static int	set_option(t_list *node)
 {
-	if (ft_strncmp((char *)node->content, "-n", 3) == 0)
+	if (node && ft_strncmp((char *)node->content, "-n", 3) == 0)
 		return (true);
 	return (false);
 }

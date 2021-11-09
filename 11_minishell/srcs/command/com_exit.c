@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:56 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:45:56 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/10 05:03:53 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ void	exe_exit(t_list *arg)
 		print_err_exit();
 	else
 	{
-		errno = ft_atoi((char *)arg->content);
+		if (arg)
+			errno = ft_atoi((char *)arg->content);
+		else
+			errno = g_commands->old_errno;
 		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
 		exit(errno);
 	}
