@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:35 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:46:35 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 20:24:25 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,11 @@ char	*parse_heredoc(t_commands *commands, char *str)
 {
 	char	*start;
 	char	*end;
-	char	*input;
 
 	start = ft_strnstr_f(str, "<<", ft_strlen(str), check_quote);
 	end = filename_range(start + 2);
-	input = ret_input(start + 2, end);
 	ft_lstadd_back(&commands->redir_lst_mark, ft_lstnew(ft_strdup("<<")));
 	ft_lstadd_back(&commands->redir_lst_target, \
-		ft_lstnew(ft_strdup(input)));
+		ft_lstnew(ret_input(start + 2, end)));
 	return (end);
 }

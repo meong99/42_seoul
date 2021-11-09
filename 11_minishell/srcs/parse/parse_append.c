@@ -6,31 +6,11 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:27 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:46:28 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 20:43:55 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	make_file(char *filename)
-{
-	int		fd;
-	char	*str;
-
-	fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
-	if (fd == -1)
-	{
-		str = strerror(errno);
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		ft_putstr_fd(filename, STDERR_FILENO);
-		ft_putstr_fd(": ", STDERR_FILENO);
-		ft_putstr_fd(str, STDERR_FILENO);
-		ft_putstr_fd("\n", STDERR_FILENO);
-		errno = 1;
-	}
-	close(fd);
-	return ;
-}
 
 static int	check_systax(char *target)
 {
@@ -67,8 +47,7 @@ static char	*get_filename(char *start, char *end)
 	}
 	filename[i] = 0;
 	filename = remove_quote(filename);
-	if (check_systax(filename) != RET_ERR_INT)
-		make_file(filename);
+	check_systax(filename);
 	return (filename);
 }
 
@@ -105,13 +84,11 @@ char	*parse_append(t_commands *commands, char *str)
 {
 	char	*start;
 	char	*end;
-	char	*filename;
 
 	start = ft_strnstr_f(str, ">>", ft_strlen(str), check_quote);
 	end = filename_range(start + 2);
-	filename = get_filename(start + 2, end);
 	ft_lstadd_back(&commands->redir_lst_mark, ft_lstnew(ft_strdup(">>")));
 	ft_lstadd_back(&commands->redir_lst_target, \
-		ft_lstnew(ft_strdup(filename)));
+		ft_lstnew(get_filename(start + 2, end)));
 	return (end);
 }

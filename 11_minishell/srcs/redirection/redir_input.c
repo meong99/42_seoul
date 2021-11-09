@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:06 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:47:06 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 20:39:39 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,9 @@ static char	*ret_input(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		str = strerror(errno);
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		ft_putstr_fd(filename, STDERR_FILENO);
-		ft_putstr_fd(": ", STDERR_FILENO);
-		ft_putstr_fd(str, STDERR_FILENO);
-		ft_putstr_fd("\n", STDERR_FILENO);
-		errno = 1;
+		put_err(filename, false);
+		if (errno == 2)
+			errno = 1;
 		return (NULL);
 	}
 	str = read_file(fd);

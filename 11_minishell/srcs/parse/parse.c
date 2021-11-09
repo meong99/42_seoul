@@ -6,11 +6,26 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:49 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:46:49 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 21:13:14 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	make_file(char *filename, int option)
+{
+	int		fd;
+
+	fd = open(filename, O_WRONLY | O_CREAT | option, 0644);
+	if (fd == -1)
+	{
+		put_err(filename, false);
+		if (errno == 2)
+			errno = 1;
+	}
+	close(fd);
+	return ;
+}
 
 static void	parse_commands(char **spl_pipe)
 {
@@ -44,7 +59,7 @@ static void	makepipe(void)
 		fd[i] = malloc(sizeof(int) * 2);
 		ft_protect(fd[i]);
 		if (pipe(fd[i]) == -1)
-			put_err("pipe");
+			put_err("pipe", true);
 		g_commands[i].fd = fd;
 	}
 }

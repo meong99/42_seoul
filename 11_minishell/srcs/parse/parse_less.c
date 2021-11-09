@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:39 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:46:40 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 20:25:11 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,11 @@ char	*parse_less(t_commands *commands, char *str)
 {
 	char	*start;
 	char	*end;
-	char	*filename;
 
 	start = ft_strchr_f(str, '<', BOTH, check_quote);
 	end = filename_range(start + 1);
-	filename = get_input(start + 1, end);
 	ft_lstadd_back(&commands->redir_lst_mark, ft_lstnew(ft_strdup("<")));
 	ft_lstadd_back(&commands->redir_lst_target, \
-		ft_lstnew(ft_strdup(filename)));
+		ft_lstnew(get_input(start + 1, end)));
 	return (end);
 }

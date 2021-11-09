@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:58:17 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 21:13:24 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ char		*parse_heredoc(t_commands *commands, char *str);
 char		*parse_greater(t_commands *commands, char *str);
 char		*parse_append(t_commands *commands, char *str);
 char		*remove_quote(char *str);
-
+void		make_file(char *filename, int option);
 /*
 ** redirection
 */
@@ -150,6 +150,6 @@ int			ignore_sigint(void);
 */
 int			print_systax_err(char *token);
 void		ft_protect(void *arg);
-void		put_err(char *fun_name);
+void		put_err(char *source_err, int use_exit);
 
 #endif

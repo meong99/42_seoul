@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:20 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:51:27 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 20:34:57 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,16 @@ int	print_systax_err(char *token)
 	return (RET_ERR_INT);
 }
 
-void	put_err(char *fun_name)
+void	put_err(char *source_err, int use_exit)
 {
 	char	*str_err;
 
 	str_err = strerror(errno);
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
-	ft_putstr_fd(fun_name, STDERR_FILENO);
+	ft_putstr_fd(source_err, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putstr_fd(str_err, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
-	exit(errno);
+	if (use_exit)
+		exit(errno);
 }

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:13 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:49:44 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 17:32:13 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static int	make_process(void)
 		else if (pid[i] == -1)
 			ft_protect(NULL);
 	}
+	ignore_sigint();
 	wait_for_child(i, pid, g_commands->fd);
 	free(pid);
 	return (PARENTS);
