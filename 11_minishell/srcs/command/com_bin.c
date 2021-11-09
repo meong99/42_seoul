@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:41 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/09 21:12:28 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/09 21:26:58 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	**make_envp(void)
 	env = g_commands->env;
 	envp = malloc(sizeof(char *) * (*env->env_num + 1));
 	ft_protect(envp);
-	envp[*env->env_num] = NULL;
+	envp[*env->env_num - 1] = NULL;
 	copy_env(envp);
 	return (envp);
 }
