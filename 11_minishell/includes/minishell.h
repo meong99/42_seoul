@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/10 23:08:41 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/10 23:27:30 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,6 @@ void		sig_handler(int signal);
 ** terminal
 */
 int			terminal_handler(struct termios *oldterm);
-int			put_sigint(void);
-int			ignore_sigint(void);
 
 /*
 ** error

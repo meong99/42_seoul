@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:13 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/10 23:11:40 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/10 23:27:40 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static int	make_process(void)
 	while (++i < g_commands->command_num)
 	{
 		g_commands[i].sig_handle = false;
-		put_sigint();
 		pid[i] = fork();
 		if (pid[i] == CHILD)
 		{
@@ -67,7 +66,6 @@ static int	make_process(void)
 		}
 		ft_protect(NULL);
 	}
-	ignore_sigint();
 	wait_for_child(i, pid, g_commands->fd);
 	free(pid);
 	return (PARENTS);
