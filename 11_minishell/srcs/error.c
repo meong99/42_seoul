@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:20 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/10 00:50:01 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/10 22:54:34 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	closed_quote(char *str)
 			result = false;
 			while (!result && *str)
 			{
-				if (*str++ == mark)
+				if (*++str == mark)
 					result = true;
 			}
 		}

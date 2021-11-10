@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:26 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/09 23:41:53 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/10 22:57:08 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	str_handler(char *str)
 		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
 		exit(0);
 	}
-	if (*str == 0 && !closed_quote(str))
+	if (*str == 0 || !closed_quote(str))
 	{
 		free(str);
 		return (1);
