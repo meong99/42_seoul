@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/09 23:41:29 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/10 23:08:41 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ char		*parse_heredoc(t_commands *commands, char *str);
 char		*parse_greater(t_commands *commands, char *str);
 char		*parse_append(t_commands *commands, char *str);
 char		*remove_quote(char *str);
-void		make_file(char *filename, int option);
+void		make_file(char *filename, t_commands *commands);
 /*
 ** redirection
 */

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 06:59:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/09 21:13:01 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/10 23:09:20 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,7 @@ static void	parse_mapped(t_commands *commands, char *mapped, char *mark)
 		free(commands->redir_out_file);
 		commands->redir_out = ft_strdup(mark);
 		commands->redir_out_file = mapped;
-		if (ft_strncmp(commands->redir_out, "<<", 3) == 0)
-			make_file(mapped, O_APPEND);
-		else
-			make_file(mapped, O_TRUNC);
+		make_file(mapped, commands);
 	}
 }
 
