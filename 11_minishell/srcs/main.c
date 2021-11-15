@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:26 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/11 03:41:20 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 04:11:18 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,6 @@ static int	check_errno(char **str)
 	return (0);
 }
 
-static int	str_handler(char *str)
-{
-	if (str == NULL)
-	{
-		ft_putstr_fd("\x1b[1A", STDOUT_FILENO);
-		ft_putstr_fd("\033[11C", STDOUT_FILENO);
-		ft_putstr_fd("exit\n", STDOUT_FILENO);
-		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
-		exit(0);
-	}
-	if (*str == 0 || !closed_quote(str))
-	{
-		free(str);
-		return (1);
-	}
-	if (*str)
-		add_history(str);
-	return (0);
-}
-
 int	loop_minishell(t_env *env, struct termios oldterm)
 {
 	char	*str;
@@ -52,7 +32,7 @@ int	loop_minishell(t_env *env, struct termios oldterm)
 		old_errno = errno;
 		str = readline("\033[1;36mminishell> \033[0m ");
 		errno = 0;
-		if (str_handler(str))
+		if (check_str_err(str))
 			continue ;
 		parsing_handler(str, old_errno, env);
 		g_commands->oldterm = oldterm;
