@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:20 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/10 22:54:34 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 03:59:12 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	print_systax_err(char *token)
 	if (*token == '<' || *token == '>')
 		ft_putstr_fd(token, STDERR_FILENO);
 	else
-		write(STDERR_FILENO, token, 1);
+		ft_putstr_fd(token, STDERR_FILENO);
 	ft_putstr_fd("'\n", STDERR_FILENO);
 	errno = 258;
 	return (RET_ERR_INT);

@@ -47,7 +47,7 @@ $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
 	@mkdir -p $(OBJS_PAHT)/set_command
 	@mkdir -p $(OBJS_PAHT)/signal
 	@mkdir -p $(OBJS_PAHT)
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC) $(CPPFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJS)
 	@echo "$(NO_COLOR)make $(DEB)objects$(KILL_COLOR)"

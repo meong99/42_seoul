@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/10 23:27:30 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/13 14:13:01 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <errno.h>
 # include <readline/readline.h>
+# include <readline/history.h>
 # include <stdbool.h>
 # include <signal.h>
 # include <string.h>
@@ -70,7 +71,8 @@ typedef struct s_commands
 
 t_commands	*g_commands;
 
-extern int	rl_replace_line(char *fmt, ...);
+//errno 전역변수
+// extern int	rl_replace_line(char *fmt, ...);
 
 /*
 ** command
