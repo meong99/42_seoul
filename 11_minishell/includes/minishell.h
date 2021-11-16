@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/16 19:11:14 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 19:24:51 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,6 @@ void		ft_protect(void *arg);
 void		put_err(char *source_err, int use_exit);
 int			closed_quote(char *str);
 int			check_str_err(char *str);
+char		*join_errmsg(char *str1, char *str2, char *str3, char *str4);
 
 #endif

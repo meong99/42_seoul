@@ -6,20 +6,23 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:58 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:49:08 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 19:53:37 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	print_err_export(int err_num, char *arg, char *err_mag)
+static void	print_err_export(int err_num, char *arg, char *err_msg)
 {
+	char	*errstr;
+
 	errno = err_num;
-	ft_putstr_fd("minishell: export: `", STDERR_FILENO);
-	ft_putstr_fd(arg, STDERR_FILENO);
-	ft_putstr_fd("': ", STDERR_FILENO);
-	ft_putstr_fd(err_mag, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
+	errstr = ft_strjoin("minishell: export: `", arg);
+	errstr = ft_strjoin_free(errstr, "': ");
+	errstr = ft_strjoin_free(errstr, err_msg);
+	errstr = ft_strjoin_free(errstr, "\n");
+	ft_putstr_fd(errstr, STDERR_FILENO);
+	free(errstr);
 }
 
 static int	check_key(char *key, char *arg)

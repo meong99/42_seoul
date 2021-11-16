@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:56 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/10 05:03:53 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 19:58:59 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 static void	print_err_exit(void)
 {
-	ft_putstr_fd("exit\n", STDERR_FILENO);
-	ft_putstr_fd("minishell: ", STDERR_FILENO);
-	ft_putstr_fd("exit: ", STDERR_FILENO);
-	ft_putstr_fd("too many arguments\n", STDERR_FILENO);
+	char	*errstr;
+
+	errstr = ft_strjoin("exit\n", "minishell: ");
+	errstr = ft_strjoin_free(errstr, "exit: ");
+	errstr = ft_strjoin_free(errstr, "too many arguments\n");
+	ft_putstr_fd(errstr, STDERR_FILENO);
+	free(errstr);
 	errno = 1;
 }
 
@@ -51,13 +54,16 @@ static int	check_numeric(t_list *arg)
 
 void	exe_exit(t_list *arg)
 {
+	char	*errstr;
+
 	if (check_numeric(arg) == false)
 	{
-		ft_putstr_fd("exit\n", STDERR_FILENO);
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		ft_putstr_fd("exit: ", STDERR_FILENO);
-		ft_putstr_fd((char *)arg->content, STDERR_FILENO);
-		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
+		errstr = ft_strjoin("exit\n", "minishell: ");
+		errstr = ft_strjoin_free(errstr, "exit: ");
+		errstr = ft_strjoin_free(errstr, (char *)arg->content);
+		errstr = ft_strjoin_free(errstr, ": numeric argument required\n");
+		ft_putstr_fd(errstr, STDERR_FILENO);
+		free(errstr);
 		errno = 255;
 		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
 		exit(errno);

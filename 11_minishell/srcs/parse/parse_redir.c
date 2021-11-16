@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 06:59:17 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/10 23:09:20 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 19:41:05 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ static void	mapping_redir(t_commands *commands)
 		if (mapped == NULL)
 		{
 			errno = 1;
-			ft_putstr_fd("minishell: ", STDERR_FILENO);
-			ft_putstr_fd((char *)target->content, STDERR_FILENO);
-			ft_putstr_fd(": ambiguous redirect\n", STDERR_FILENO);
+			mapped = join_errmsg((char *)target->content, \
+				"ambiguous redirect", 0, 0);
+			ft_putstr_fd(mapped, STDERR_FILENO);
+			free(mapped);
 			return ;
 		}
 		parse_mapped(commands, mapped, (char *)mark->content);

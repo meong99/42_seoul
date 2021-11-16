@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:35 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/16 18:16:40 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 19:48:39 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	check_bin_error(char *com, char *path)
 {
 	char	*err_msg;
+	char	*errstr;
 
 	if (com == NULL)
 		return ;
@@ -23,10 +24,8 @@ void	check_bin_error(char *com, char *path)
 	else
 		err_msg = "command not found";
 	errno = 127;
-	ft_putstr_fd("minishell: ", STDERR_FILENO);
-	ft_putstr_fd(com, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
-	ft_putstr_fd(err_msg, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
+	errstr = join_errmsg(com, err_msg, 0, 0);
+	ft_putstr_fd(errstr, STDERR_FILENO);
+	free(errstr);
 	exit(errno);
 }

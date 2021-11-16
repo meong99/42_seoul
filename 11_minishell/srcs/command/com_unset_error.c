@@ -6,20 +6,24 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:18 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:46:21 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 20:14:44 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	print_err_unset(int err_num, char *arg, char *err_mag)
+static void	print_err_unset(int err_num, char *arg, char *err_msg)
 {
+	char	*errstr;
+
 	errno = err_num;
-	ft_putstr_fd("minishell: unset: `", STDERR_FILENO);
-	ft_putstr_fd(arg, STDERR_FILENO);
-	ft_putstr_fd("': ", STDERR_FILENO);
-	ft_putstr_fd(err_mag, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
+	errstr = "minishell: unset: `";
+	errstr = ft_strjoin(errstr, arg);
+	errstr = ft_strjoin_free(errstr, "': ");
+	errstr = ft_strjoin_free(errstr, err_msg);
+	errstr = ft_strjoin_free(errstr, "\n");
+	ft_putstr_fd(errstr, STDERR_FILENO);
+	free(errstr);
 }
 
 int	check_unset_error(char *key)

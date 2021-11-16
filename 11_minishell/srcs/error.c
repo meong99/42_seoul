@@ -6,35 +6,59 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:20 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/16 04:14:27 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 20:14:26 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+char	*join_errmsg(char *str1, char *str2, char *str3, char *str4)
+{
+	char	*str;
+
+	str = ft_strdup("minishell: ");
+	if (str1)
+		str = ft_strjoin_free(str, str1);
+	if (str2)
+	{
+		str = ft_strjoin_free(str, ": ");
+		str = ft_strjoin_free(str, str2);
+	}
+	if (str3)
+	{
+		str = ft_strjoin_free(str, ": ");
+		str = ft_strjoin_free(str, str3);
+	}
+	if (str4)
+	{
+		str = ft_strjoin_free(str, ": ");
+		str = ft_strjoin_free(str, str4);
+	}
+	str = ft_strjoin_free(str, "\n");
+	return (str);
+}
+
 int	print_systax_err(char *token)
 {
-	ft_putstr_fd("minishell: ", STDERR_FILENO);
-	ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
-	if (*token == '<' || *token == '>')
-		ft_putstr_fd(token, STDERR_FILENO);
-	else
-		ft_putstr_fd(token, STDERR_FILENO);
-	ft_putstr_fd("'\n", STDERR_FILENO);
+	char	*errstr;
+
+	errstr = ft_strjoin("minishell: ", "syntax error near unexpected token `");
+	errstr = ft_strjoin_free(errstr, token);
+	errstr = ft_strjoin_free(errstr, "'\n");
+	ft_putstr_fd(errstr, STDERR_FILENO);
+	free(errstr);
 	errno = 258;
 	return (RET_ERR_INT);
 }
 
 void	put_err(char *source_err, int use_exit)
 {
-	char	*str_err;
+	char	*errstr;
 
-	str_err = strerror(errno);
-	ft_putstr_fd("minishell: ", STDERR_FILENO);
-	ft_putstr_fd(source_err, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
-	ft_putstr_fd(str_err, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
+	errstr = strerror(errno);
+	errstr = join_errmsg(source_err, errstr, 0, 0);
+	ft_putstr_fd(errstr, STDERR_FILENO);
+	free(errstr);
 	if (use_exit)
 		exit(errno);
 }
