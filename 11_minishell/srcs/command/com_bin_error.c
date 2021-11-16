@@ -6,19 +6,19 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:35 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/09 21:20:45 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 18:16:40 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	check_bin_error(char *com)
+void	check_bin_error(char *com, char *path)
 {
 	char	*err_msg;
 
 	if (com == NULL)
 		return ;
-	if (ft_strchr(com, '/'))
+	if (ft_strchr(com, '/') || !path)
 		err_msg = "No such file or directory";
 	else
 		err_msg = "command not found";

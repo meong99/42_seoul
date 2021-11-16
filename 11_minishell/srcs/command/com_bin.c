@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:41 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/09 21:26:58 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 18:16:48 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	exe_bin(t_commands *commands)
 	argv = make_argv(commands);
 	argv[0] = set_path(commands);
 	if (execve(argv[0], argv, envp) == -1)
-		check_bin_error(commands->com);
+		check_bin_error(commands->com, argv[0]);
 	ft_free(envp, 0, true);
 	ft_free(argv, 0, true);
 }

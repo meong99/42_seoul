@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:38 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:45:39 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 18:14:36 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,17 @@ static char	*ret_path(t_commands *commands, char **path_arr)
 char	*set_path(t_commands *commands)
 {
 	char	*path;
+	t_env	*env_path;
 	char	**path_arr;
 
-	path_arr = ft_split(find_key("PATH")->value, ':');
-	ft_protect(path_arr);
-	path = ret_path(commands, path_arr);
-	ft_free(path_arr, 0, true);
+	path = NULL;
+	env_path = find_key("PATH");
+	if (env_path != NULL)
+	{
+		path_arr = ft_split(env_path->value, ':');
+		ft_protect(path_arr);
+		path = ret_path(commands, path_arr);
+		ft_free(path_arr, 0, true);
+	}
 	return (path);
 }

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/16 04:10:06 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 18:16:29 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			check_unset_error(char *key);
 void		exe_env(t_commands *commands);
 void		exe_echo(t_commands *commands);
 void		exe_bin(t_commands *commands);
-void		check_bin_error(char *com);
+void		check_bin_error(char *com, char *path);
 char		*set_path(t_commands *commands);
 void		exe_cd(t_commands *commands);
 void		exe_pwd(void);
