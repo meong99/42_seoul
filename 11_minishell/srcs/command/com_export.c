@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:46:13 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 18:41:00 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	mapping_value(char *key, char *value, char *str)
 	t_env	*mapping;
 
 	mapping = find_key(key);
-	if (value)
+	if (value && !mapping->value)
 	{
 		free(mapping->value);
 		mapping->value = ft_strdup(value);

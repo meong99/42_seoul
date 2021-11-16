@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/16 18:16:29 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 18:24:53 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,6 @@ typedef struct s_commands
 }	t_commands;
 
 t_commands	*g_commands;
-
-//errno 전역변수
-// extern int	rl_replace_line(char *fmt, ...);
 
 /*
 ** command
