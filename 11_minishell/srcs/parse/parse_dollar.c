@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:38:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/10 00:57:10 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 20:26:38 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ char	*mapping_dollar(char *str, int old_errno)
 	{
 		tmp = result;
 		start = ft_strchr_f(tmp, '$', SINGLE_QUOTE, check_quote);
-		while (start && start[1] == '\"')
+		while (start && (start[1] == '\"' || start[1] == '\'') && \
+			check_quote(tmp, start, DOUBLE_QUOTE))
 			start = ft_strchr_f(start + 1, '$', SINGLE_QUOTE, check_quote);
 		if (start == NULL)
 			break ;
