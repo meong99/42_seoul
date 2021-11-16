@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:18 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:47:19 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/16 21:17:38 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ void	sig_handler(int signal)
 	}
 	else if (g_commands->sig_handle == false)
 		ft_putstr_fd("\n", STDOUT_FILENO);
+	else if (g_commands->sig_handle == HEREDOC)
+	{
+		ft_putstr_fd("\n", STDOUT_FILENO);
+		g_commands->sig_handle = true;
+		close(STDIN_FILENO);
+	}
 	errno = 1;
 	signal = 0;
 }
