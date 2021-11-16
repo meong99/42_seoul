@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:04 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/16 21:16:04 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/17 03:48:53 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ static char	*loop_heredoc(char *delimiter)
 		g_commands->sig_handle = HEREDOC;
 		str = readline("> ");
 		if (str == NULL)
+		{
+			if (g_commands->sig_handle == HEREDOC)
+				ft_putstr_fd("\x1b[1A\033[2C", STDOUT_FILENO);
 			break ;
+		}
 		if (*str && ft_strncmp(str, delimiter, ft_strlen(str)) == 0)
 			break ;
 		result = ft_strjoin_free(result, str);
