@@ -24,8 +24,7 @@ SRCS = \
 	parse/parse_dollar.c parse/quotation_mark.c parse/parse.c parse/parse_append.c parse/parse_greater.c parse/parse_heredoc.c\
 	parse/parse_less.c parse/parse_pipe.c parse/parse_redir.c parse/parse_space.c parse/remove_quote.c\
 	set_command/set_commands.c set_command/dup_fd.c set_command/util.c\
-	signal/signal.c\
-	main.c free.c terminal.c error.c ft_protect.c\
+	main.c free.c terminal.c error.c error2.c signal.c ft_protect.c\
 
 OBJS_NAME = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_PAHT)/, $(OBJS_NAME))
@@ -45,7 +44,6 @@ $(OBJS_PAHT)/%.o: $(SRCS_PAHT)/%.c
 	@mkdir -p $(OBJS_PAHT)/init
 	@mkdir -p $(OBJS_PAHT)/parse
 	@mkdir -p $(OBJS_PAHT)/set_command
-	@mkdir -p $(OBJS_PAHT)/signal
 	@mkdir -p $(OBJS_PAHT)
 	@$(CC) $(CFLAGS) $(INC) $(CPPFLAGS) -c $< -o $@
 

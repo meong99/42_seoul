@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:04 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/17 03:48:53 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/19 22:01:17 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	handle_sig(int fd, char **result)
 	free(*result);
 	*result = 0;
 	dup2(fd, STDIN_FILENO);
-	close(fd);
 }
 
 static char	*loop_heredoc(char *delimiter)
@@ -58,6 +57,7 @@ char	*redir_heredoc(char *delimiter)
 	result = loop_heredoc(delimiter);
 	if (g_commands->sig_handle == true)
 		handle_sig(fd, &result);
+	close(fd);
 	g_commands->sig_handle = true;
 	return (result);
 }
