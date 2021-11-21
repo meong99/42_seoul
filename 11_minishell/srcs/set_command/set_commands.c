@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:13 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/22 06:47:01 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/22 06:56:34 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	wait_for_child(int children, int *pidarr, int **fd)
 		if (pid + 1 < count)
 			close(fd[pid + 1][FOR_WRITE]);
 	}
+	g_commands->sig_handle = SIG_USUAL;
 }
 
 static int	make_process(void)
@@ -68,7 +69,6 @@ static int	make_process(void)
 		ft_protect(NULL);
 	}
 	wait_for_child(i, pid, g_commands->fd);
-	g_commands->sig_handle = SIG_USUAL;
 	ignore_sigint();
 	free(pid);
 	return (PARENTS);
