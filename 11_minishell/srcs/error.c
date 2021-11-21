@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error2.c                                           :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 23:22:39 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/19 23:47:18 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/22 06:53:42 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,19 @@ int	print_systax_err(char *token)
 int	closed_quote(char *str)
 {
 	int		result;
-	char	mark;
+	char	mark[2];
 
 	result = true;
+	mark[1] = 0;
 	while (*str)
 	{
 		if (*str == '\'' || *str == '\"')
 		{
-			mark = *str;
+			mark[0] = *str;
 			result = false;
 			while (!result && *str)
 			{
-				if (*++str == mark)
+				if (*++str == mark[0])
 					result = true;
 			}
 		}
@@ -48,7 +49,7 @@ int	closed_quote(char *str)
 		str++;
 	}
 	if (result == false)
-		print_systax_err(&mark);
+		print_systax_err(mark);
 	return (result);
 }
 
@@ -88,4 +89,22 @@ void	put_err(char *source_err, int use_exit)
 	free(errstr);
 	if (use_exit)
 		exit(errno);
+}
+
+int	check_str_err(char *str)
+{
+	if (str == NULL)
+	{
+		ft_putstr_fd("\x1b[1A\033[11Cexit\n", STDOUT_FILENO);
+		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
+		exit(0);
+	}
+	if (*str == 0 || !closed_quote(str))
+	{
+		free(str);
+		return (1);
+	}
+	if (*str)
+		add_history(str);
+	return (check_pipe_err(str));
 }

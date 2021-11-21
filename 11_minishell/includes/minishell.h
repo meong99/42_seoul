@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/17 03:40:26 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/22 06:43:57 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,28 @@
 
 # define RET_ERR_INT -1
 # define RET_ERR_NULL 0
+
 # define CHILD 0
 # define PARENTS 1
+
 # define FOR_READ 0
 # define FOR_WRITE 1
+
 # define NOT_FOUND NULL
-# define ALL_CHILD 0
-# define NO_REDIR 0
+
 # define GREATER 1
 # define APPEND 2
 # define HEREDOC 3
 # define LESS 4
+
 # define BOTH 0
 # define SINGLE_QUOTE 1
 # define DOUBLE_QUOTE 2
+
+# define SIG_USUAL 0
+# define SIG_COM 1
+# define SIG_HEREDOC 2
+# define AFTER_SIG_HEREDOC 3
 
 typedef struct s_env
 {
@@ -154,5 +162,6 @@ void		put_err(char *source_err, int use_exit);
 int			closed_quote(char *str);
 int			check_str_err(char *str);
 char		*join_errmsg(char *str1, char *str2, char *str3, char *str4);
+int			check_pipe_err(char *str);
 
 #endif

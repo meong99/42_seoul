@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 06:59:06 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:46:42 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/22 06:29:25 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	parse_pipe(char **spl)
 	int			i;
 
 	pipe_num = 0;
+	if (g_commands)
+		free(g_commands);
 	while (spl[pipe_num])
 		pipe_num++;
 	g_commands = malloc(sizeof(t_commands) * pipe_num);

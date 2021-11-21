@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:22 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:51:46 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/22 06:29:37 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	free_all(char **str, int **fd)
 		free_var(&g_commands[i]);
 		guard_dangling(&g_commands[i]);
 	}
-	free(g_commands);
-	g_commands = 0;
 	free(*str);
 	*str = 0;
 }
