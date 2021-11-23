@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:04 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/22 06:48:38 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 04:27:30 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ char	*redir_heredoc(char *delimiter)
 	result = loop_heredoc(delimiter);
 	if (g_commands->sig_handle == AFTER_SIG_HEREDOC)
 		handle_sig(fd, &result);
+	else if (!*result)
+		g_commands->sig_handle = AFTER_SIG_HEREDOC;
+	else
+		g_commands->sig_handle = SIG_USUAL;
 	close(fd);
 	return (result);
 }
