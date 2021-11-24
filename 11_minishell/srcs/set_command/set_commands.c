@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:13 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 19:44:13 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 20:02:31 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static int	builtin_redirset(t_commands *commands)
 
 	filename = commands->redir_out_file;
 	old_stdout = dup(STDOUT_FILENO);
-	if (ft_strncmp(commands->redir_out, "<<", 3) == 0)
+	if (ft_strncmp(commands->redir_out, ">>", 3) == 0)
 		redir_append(filename);
 	else
 		redir_output(filename);
