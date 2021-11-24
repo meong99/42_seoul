@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:38:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 17:28:28 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 20:21:08 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,19 @@ static char	*set_end(char *start)
 {
 	char	*end;
 	int		i;
+	int		question;
 
 	i = -1;
+	question = 0;
 	while (start[++i])
 	{
 		end = start + i;
-		if (ft_strchr("$\'\"", start[i]))
+		if (!ft_isalnum(start[i]) && start[i] != '_' && !question)
 		{
-			end--;
+			if (start[i] == '?')
+				question = 1;
+			else
+				end--;
 			break ;
 		}
 	}
