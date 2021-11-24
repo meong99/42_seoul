@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:13 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 18:26:03 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:35:01 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	wait_for_child(int children, int *pidarr, int **fd)
 		if (pid + 1 < count)
 			close(fd[pid + 1][FOR_WRITE]);
 	}
-	g_sig_handler = SIG_USUAL;
+	g_sig_handler[0] = SIG_USUAL;
 }
 
 static int	make_process(t_commands *commands)

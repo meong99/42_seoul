@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:18 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 18:24:22 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:37:23 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 
 void	sig_handler(int signal)
 {
-	if (g_sig_handler == SIG_COM)
+	if (g_sig_handler[0] == SIG_COM)
 		ft_putstr_fd("\n", STDOUT_FILENO);
-	else if (g_sig_handler == SIG_HEREDOC)
+	else if (g_sig_handler[0] == SIG_HEREDOC)
 	{
 		ft_putstr_fd("\n", STDOUT_FILENO);
-		g_sig_handler = AFTER_SIG_HEREDOC;
+		g_sig_handler[0] = AFTER_SIG_HEREDOC;
 		close(STDIN_FILENO);
 	}
 	else
 	{
-		if (g_sig_handler == SIG_USUAL || g_sig_handler != AFTER_SIG_HEREDOC)
+		if (g_sig_handler[0] == SIG_USUAL || \
+			g_sig_handler[0] != AFTER_SIG_HEREDOC)
 			ft_putstr_fd("\n", STDOUT_FILENO);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-	errno = 1;
+	g_sig_handler[1] = true;
 	signal = 0;
 }

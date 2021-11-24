@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:04 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 18:25:15 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:35:26 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static char	*loop_heredoc(char *delimiter)
 	ft_protect(result);
 	while (true)
 	{
-		g_sig_handler = SIG_HEREDOC;
+		g_sig_handler[0] = SIG_HEREDOC;
 		str = readline("> ");
 		if (str == NULL)
 		{
-			if (g_sig_handler == SIG_HEREDOC)
+			if (g_sig_handler[0] == SIG_HEREDOC)
 				ft_putstr_fd("\x1b[1A\033[2C", STDOUT_FILENO);
 			break ;
 		}
@@ -55,12 +55,12 @@ char	*redir_heredoc(char *delimiter)
 
 	fd = dup(STDIN_FILENO);
 	result = loop_heredoc(delimiter);
-	if (g_sig_handler == AFTER_SIG_HEREDOC)
+	if (g_sig_handler[0] == AFTER_SIG_HEREDOC)
 		handle_sig(fd, &result);
 	else if (!*result)
-		g_sig_handler = AFTER_SIG_HEREDOC;
+		g_sig_handler[0] = AFTER_SIG_HEREDOC;
 	else
-		g_sig_handler = SIG_USUAL;
+		g_sig_handler[0] = SIG_USUAL;
 	close(fd);
 	return (result);
 }

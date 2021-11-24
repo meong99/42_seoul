@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:10 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 18:15:35 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:44:42 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,11 @@ static void	export_internal(t_list *arg, t_env *head)
 			check_key = find_key(head, split_var[0]);
 			if (check_key == NOT_FOUND && !check_export_error(split_var[0], \
 				(char *)arg->content))
-				ft_putenv(head, split_var[0], split_var[1], (char *)arg->content);
+				ft_putenv(head, split_var[0], \
+				split_var[1], (char *)arg->content);
 			else if (check_key)
-				mapping_value(head, split_var[0], split_var[1], (char *)arg->content);
+				mapping_value(head, split_var[0], \
+				split_var[1], (char *)arg->content);
 			ft_free(split_var, 0, true);
 		}
 		arg = arg->next;

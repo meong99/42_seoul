@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 18:25:26 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:34:30 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct s_commands
 	int				**fd;
 }	t_commands;
 
-int			g_sig_handler;
+int			g_sig_handler[2];
 
 /*
 ** command
