@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:28 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/19 22:20:37 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 19:44:37 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,24 @@ int	terminal_handler(struct termios *oldterm)
 	return (0);
 }
 
-int	put_sigint(void)
-{
-	struct termios	newterm;
-
-	tcgetattr(STDIN_FILENO, &newterm);
-	newterm.c_lflag |= ECHOCTL;
-	tcsetattr(STDIN_FILENO, TCSANOW, &newterm);
-	return (0);
-}
-
-int	ignore_sigint(void)
+int	restore_signal(void)
 {
 	struct termios	newterm;
 
 	tcgetattr(STDIN_FILENO, &newterm);
 	newterm.c_lflag &= ~ECHOCTL;
+	newterm.c_cc[VQUIT] = 0;
+	tcsetattr(STDIN_FILENO, TCSANOW, &newterm);
+	return (0);
+}
+
+int	accept_signal(void)
+{
+	struct termios	newterm;
+
+	tcgetattr(STDIN_FILENO, &newterm);
+	newterm.c_lflag |= ECHOCTL;
+	newterm.c_cc[VQUIT] = 28;
 	tcsetattr(STDIN_FILENO, TCSANOW, &newterm);
 	return (0);
 }

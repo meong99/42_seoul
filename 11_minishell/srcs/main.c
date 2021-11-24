@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:26 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 18:36:52 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 19:40:11 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int	loop_minishell(t_env *env, struct termios oldterm)
 	{
 		old_errno = errno;
 		str = readline("\033[1;36mminishell> \033[0m ");
-		if (g_sig_handler[1] == true)
+		if (g_sig_handler[1])
 		{
-			old_errno = 1;
-			g_sig_handler[1] = false;
+			old_errno = g_sig_handler[1];
+			g_sig_handler[1] = 0;
 		}
 		if (check_str_err(oldterm, str))
 			continue ;
@@ -60,6 +60,7 @@ int	main(int ac, char **av, char **envp)
 	env = init_env_var(envp);
 	terminal_handler(&oldterm);
 	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, sig_quit_handler);
 	loop_minishell(env, oldterm);
 	return (0);
 }

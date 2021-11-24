@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 18:34:30 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 19:44:16 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,13 +145,14 @@ void		free_all(t_commands *commands, char **str, int **fd);
 ** signal
 */
 void		sig_handler(int signal);
+void		sig_quit_handler(int signal);
 
 /*
 ** terminal
 */
 int			terminal_handler(struct termios *oldterm);
-int			put_sigint(void);
-int			ignore_sigint(void);
+int			restore_signal(void);
+int			accept_signal(void);
 
 /*
 ** error

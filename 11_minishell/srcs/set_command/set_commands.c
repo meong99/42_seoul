@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:13 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 18:35:01 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 19:44:13 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	wait_for_child(int children, int *pidarr, int **fd)
 			close(fd[pid + 1][FOR_WRITE]);
 	}
 	g_sig_handler[0] = SIG_USUAL;
+	restore_signal();
 }
 
 static int	make_process(t_commands *commands)
@@ -55,11 +56,11 @@ static int	make_process(t_commands *commands)
 	i = -1;
 	while (++i < commands->command_num)
 	{
-		commands[i].sig_handle = SIG_COM;
-		put_sigint();
+		g_sig_handler[0] = SIG_COM;
 		pid[i] = fork();
 		if (pid[i] == CHILD)
 		{
+			accept_signal();
 			errno = 0;
 			dup_fd(&commands[i]);
 			if (errno == 0)
@@ -69,7 +70,6 @@ static int	make_process(t_commands *commands)
 		ft_protect(NULL);
 	}
 	wait_for_child(i, pid, commands->fd);
-	ignore_sigint();
 	free(pid);
 	return (PARENTS);
 }
