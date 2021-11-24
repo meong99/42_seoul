@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:13 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/22 06:56:34 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:26:03 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,68 +42,68 @@ static void	wait_for_child(int children, int *pidarr, int **fd)
 		if (pid + 1 < count)
 			close(fd[pid + 1][FOR_WRITE]);
 	}
-	g_commands->sig_handle = SIG_USUAL;
+	g_sig_handler = SIG_USUAL;
 }
 
-static int	make_process(void)
+static int	make_process(t_commands *commands)
 {
 	int		*pid;
 	int		i;
 
-	pid = malloc(sizeof(int) * g_commands->command_num);
+	pid = malloc(sizeof(int) * commands->command_num);
 	ft_protect(pid);
 	i = -1;
-	while (++i < g_commands->command_num)
+	while (++i < commands->command_num)
 	{
-		g_commands[i].sig_handle = SIG_COM;
+		commands[i].sig_handle = SIG_COM;
 		put_sigint();
 		pid[i] = fork();
 		if (pid[i] == CHILD)
 		{
 			errno = 0;
-			dup_fd(&g_commands[i]);
+			dup_fd(&commands[i]);
 			if (errno == 0)
-				run_commands(&g_commands[i]);
+				run_commands(&commands[i]);
 			return (CHILD);
 		}
 		ft_protect(NULL);
 	}
-	wait_for_child(i, pid, g_commands->fd);
+	wait_for_child(i, pid, commands->fd);
 	ignore_sigint();
 	free(pid);
 	return (PARENTS);
 }
 
-static int	builtin_redirset(void)
+static int	builtin_redirset(t_commands *commands)
 {
 	char	*filename;
 	int		old_stdout;
 
-	filename = g_commands->redir_out_file;
+	filename = commands->redir_out_file;
 	old_stdout = dup(STDOUT_FILENO);
-	if (ft_strncmp(g_commands->redir_out, "<<", 3) == 0)
+	if (ft_strncmp(commands->redir_out, "<<", 3) == 0)
 		redir_append(filename);
 	else
 		redir_output(filename);
 	return (old_stdout);
 }
 
-int	set_commands(void)
+int	set_commands(t_commands *commands)
 {
 	int	redir;
 	int	old_stdout;
 
 	redir = false;
-	if (g_commands->command_num > 1 || is_nonbuilt(g_commands->com))
-		return (make_process());
+	if (commands->command_num > 1 || is_nonbuilt(commands->com))
+		return (make_process(commands));
 	else
 	{
-		if (g_commands->redir_out)
+		if (commands->redir_out)
 		{
-			old_stdout = builtin_redirset();
+			old_stdout = builtin_redirset(commands);
 			redir = true;
 		}
-		run_commands(g_commands);
+		run_commands(commands);
 		if (redir == true)
 			dup2(old_stdout, STDOUT_FILENO);
 	}

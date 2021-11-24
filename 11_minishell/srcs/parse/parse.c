@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:49 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/10 23:09:39 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:26:34 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	make_file(char *filename, t_commands *commands)
 	return ;
 }
 
-static void	parse_commands(char **spl_pipe)
+static void	parse_commands(t_commands *commands, char **spl_pipe)
 {
 	int		i;
 	char	*except_redir;
@@ -39,9 +39,9 @@ static void	parse_commands(char **spl_pipe)
 	while (spl_pipe[++i])
 	{
 		if (!errno)
-			except_redir = redir_handler(&g_commands[i], spl_pipe[i]);
+			except_redir = redir_handler(&commands[i], spl_pipe[i]);
 		if (!errno)
-			parse_space(&g_commands[i], except_redir);
+			parse_space(&commands[i], except_redir);
 		free(except_redir);
 		if (errno)
 			break ;
@@ -49,36 +49,38 @@ static void	parse_commands(char **spl_pipe)
 	ft_free(spl_pipe, 0, true);
 }
 
-static void	makepipe(void)
+static void	makepipe(t_commands *commands)
 {
 	int	**fd;
 	int	i;
 
-	fd = malloc(sizeof(int *) * g_commands->command_num);
+	fd = malloc(sizeof(int *) * commands->command_num);
 	ft_protect(fd);
 	i = -1;
-	while (++i < g_commands->command_num)
+	while (++i < commands->command_num)
 	{
 		fd[i] = malloc(sizeof(int) * 2);
 		ft_protect(fd[i]);
 		if (pipe(fd[i]) == -1)
 			put_err("pipe", true);
-		g_commands[i].fd = fd;
+		commands[i].fd = fd;
 	}
 }
 
-void	parsing_handler(char *str, int old_errno, t_env *env)
+t_commands	*parsing_handler(char *str, int old_errno, t_env *env)
 {
 	char		**spl_pipe;
 	int			i;
+	t_commands	*commands;
 
 	i = -1;
 	spl_pipe = ft_split_f(str, '|', BOTH, check_quote);
 	ft_protect(spl_pipe);
-	parse_pipe(spl_pipe);
-	g_commands->old_errno = old_errno;
-	while (++i < g_commands->command_num)
-		init_commands(&g_commands[i], env);
-	makepipe();
-	parse_commands(spl_pipe);
+	commands = parse_pipe(spl_pipe);
+	commands->old_errno = old_errno;
+	while (++i < commands->command_num)
+		init_commands(&commands[i], env);
+	makepipe(commands);
+	parse_commands(commands, spl_pipe);
+	return (commands);
 }

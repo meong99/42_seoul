@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 23:22:39 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 04:03:11 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 16:46:09 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ void	put_err(char *source_err, int use_exit)
 		exit(errno);
 }
 
-int	check_str_err(char *str)
+int	check_str_err(struct termios oldterm, char *str)
 {
 	if (str == NULL)
 	{
 		ft_putstr_fd("\x1b[1A\033[11Cexit\n", STDOUT_FILENO);
-		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
+		tcsetattr(STDIN_FILENO, TCSANOW, &oldterm);
 		exit(0);
 	}
 	if (*str == 0 || !closed_quote(str))

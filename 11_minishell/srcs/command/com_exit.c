@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:56 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 16:28:25 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:22:18 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	check_numeric(t_list *arg)
 	return (true);
 }
 
-void	exe_exit(t_list *arg)
+void	exe_exit(t_commands *commands, t_list *arg)
 {
 	char	*errstr;
 
@@ -61,7 +61,7 @@ void	exe_exit(t_list *arg)
 		ft_putstr_fd(errstr, STDERR_FILENO);
 		free(errstr);
 		errno = 255;
-		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
+		tcsetattr(STDIN_FILENO, TCSANOW, &commands->oldterm);
 		exit(errno);
 	}
 	else if (ret_arg_len(arg) > 1)
@@ -71,8 +71,8 @@ void	exe_exit(t_list *arg)
 		if (arg)
 			errno = ft_atoi((char *)arg->content);
 		else
-			errno = g_commands->old_errno;
-		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
+			errno = commands->old_errno;
+		tcsetattr(STDIN_FILENO, TCSANOW, &commands->oldterm);
 		ft_putstr_fd("exit\n", STDOUT_FILENO);
 		exit(errno);
 	}

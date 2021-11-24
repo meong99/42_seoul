@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:49 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/16 18:20:38 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 17:45:52 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	exe_env(t_commands *commands)
 {
 	t_env	*temp;
 
-	temp = g_commands->env;
+	temp = commands->env;
 	while (temp)
 	{
 		if (temp->value)

@@ -6,17 +6,17 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:26 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/23 18:48:32 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:22:35 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	check_errno(char **str)
+static int	check_errno(t_commands *commands, char **str)
 {
-	if (errno || g_commands->com == NULL)
+	if (errno || commands->com == NULL)
 	{
-		free_all(str, g_commands->fd);
+		free_all(commands, str, commands->fd);
 		return (1);
 	}
 	return (0);
@@ -24,22 +24,23 @@ static int	check_errno(char **str)
 
 int	loop_minishell(t_env *env, struct termios oldterm)
 {
-	char	*str;
-	int		old_errno;
+	char		*str;
+	int			old_errno;
+	t_commands	*commands;
 
 	while (1)
 	{
 		old_errno = errno;
 		str = readline("\033[1;36mminishell> \033[0m ");
-		if (check_str_err(str))
+		if (check_str_err(oldterm, str))
 			continue ;
-		parsing_handler(str, old_errno, env);
-		g_commands->oldterm = oldterm;
-		if (check_errno(&str))
+		commands = parsing_handler(str, old_errno, env);
+		commands->oldterm = oldterm;
+		if (check_errno(commands, &str))
 			continue ;
-		if (set_commands() == CHILD)
+		if (set_commands(commands) == CHILD)
 			return (0);
-		free_all(&str, g_commands->fd);
+		free_all(commands, &str, commands->fd);
 	}
 	return (0);
 }

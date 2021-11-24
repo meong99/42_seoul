@@ -6,13 +6,13 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:38:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/16 20:26:38 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 17:28:28 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*ret_env_value(char *key, int old_errno)
+static char	*ret_env_value(t_env *env, char *key, int old_errno)
 {
 	t_env	*index;
 	char	*result;
@@ -23,7 +23,7 @@ static char	*ret_env_value(char *key, int old_errno)
 		ft_protect(result);
 		return (result);
 	}
-	index = g_commands->env;
+	index = env;
 	while (index)
 	{
 		if (ft_strncmp(index->key, key, ft_strlen(key) + 1) == 0)
@@ -33,7 +33,7 @@ static char	*ret_env_value(char *key, int old_errno)
 	return (NULL);
 }
 
-static char	*mapping_env(char *start, char *end, int old_errno)
+static char	*mapping_env(t_env *env, char *start, char *end, int old_errno)
 {
 	char	*key;
 	char	*value;
@@ -50,7 +50,7 @@ static char	*mapping_env(char *start, char *end, int old_errno)
 	while (start + ++i <= end)
 		key[i] = start[i];
 	key[i] = 0;
-	value = ret_env_value(key, old_errno);
+	value = ret_env_value(env, key, old_errno);
 	ft_protect(value);
 	free(key);
 	return (value);
@@ -86,7 +86,7 @@ static char	*check_ambiguous(char *result, char *str)
 	return (result);
 }
 
-char	*mapping_dollar(char *str, int old_errno)
+char	*mapping_dollar(t_commands *commands, char *str, int old_errno)
 {
 	char	*start;
 	char	*end;
@@ -106,7 +106,7 @@ char	*mapping_dollar(char *str, int old_errno)
 		if (start == NULL)
 			break ;
 		end = set_end(start + 1);
-		value = mapping_env(start + 1, end, old_errno);
+		value = mapping_env(commands->env, start + 1, end, old_errno);
 		result = ft_submap(tmp, start, end, value);
 		ft_protect(result);
 		free(value);

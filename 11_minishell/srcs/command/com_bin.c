@@ -6,42 +6,38 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:41 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/16 18:16:48 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:19:56 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	copy_env(char **envp)
+static void	copy_env(t_env *head, char **envp)
 {
-	t_env	*index;
 	int		i;
 
 	i = 0;
-	index = g_commands->env;
-	while (index)
+	while (head)
 	{
-		envp[i] = ft_strdup(index->key);
+		envp[i] = ft_strdup(head->key);
 		ft_protect(envp[i]);
 		envp[i] = ft_strjoin_free(envp[i], "=");
 		ft_protect(envp[i]);
-		envp[i] = ft_strjoin_free(envp[i], index->value);
+		envp[i] = ft_strjoin_free(envp[i], head->value);
 		ft_protect(envp[i]);
 		i++;
-		index = index->next;
+		head = head->next;
 	}
 }
 
-static char	**make_envp(void)
+static char	**make_envp(t_env *head)
 {
 	char	**envp;
-	t_env	*env;
 
-	env = g_commands->env;
-	envp = malloc(sizeof(char *) * (*env->env_num + 1));
+	envp = malloc(sizeof(char *) * (*head->env_num + 1));
 	ft_protect(envp);
-	envp[*env->env_num - 1] = NULL;
-	copy_env(envp);
+	envp[*head->env_num - 1] = NULL;
+	copy_env(head, envp);
 	return (envp);
 }
 
@@ -83,7 +79,7 @@ void	exe_bin(t_commands *commands)
 	char	**envp;
 	char	**argv;
 
-	envp = make_envp();
+	envp = make_envp(commands->env);
 	argv = make_argv(commands);
 	argv[0] = set_path(commands);
 	if (execve(argv[0], argv, envp) == -1)

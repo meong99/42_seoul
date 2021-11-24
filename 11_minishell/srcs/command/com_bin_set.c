@@ -6,22 +6,19 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:38 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/16 18:14:36 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:16:50 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_env	*find_key(char *key)
+static t_env	*find_key(t_env *head, char *key)
 {
-	t_env	*node;
-
-	node = g_commands->env;
-	while (node)
+	while (head)
 	{
-		if (ft_strncmp(node->key, key, ft_strlen(key)) == 0)
-			return (node);
-		node = node->next;
+		if (ft_strncmp(head->key, key, ft_strlen(key)) == 0)
+			return (head);
+		head = head->next;
 	}
 	return (NULL);
 }
@@ -58,7 +55,7 @@ char	*set_path(t_commands *commands)
 	char	**path_arr;
 
 	path = NULL;
-	env_path = find_key("PATH");
+	env_path = find_key(commands->env, "PATH");
 	if (env_path != NULL)
 	{
 		path_arr = ft_split(env_path->value, ':');

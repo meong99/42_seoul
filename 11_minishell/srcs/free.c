@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:22 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/22 06:29:37 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 17:32:29 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,20 @@ static void	close_fd(int **fd, int pipe_num)
 	free(fd);
 }
 
-void	free_all(char **str, int **fd)
+void	free_all(t_commands *commands, char **str, int **fd)
 {
 	int	i;
 	int	com_num;
 
-	close_fd(fd, g_commands->command_num);
+	close_fd(fd, commands->command_num);
 	i = -1;
-	com_num = g_commands->command_num;
+	com_num = commands->command_num;
 	while (++i < com_num)
 	{
-		free_var(&g_commands[i]);
-		guard_dangling(&g_commands[i]);
+		free_var(&commands[i]);
+		guard_dangling(&commands[i]);
 	}
 	free(*str);
 	*str = 0;
+	free(commands);
 }

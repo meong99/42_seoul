@@ -6,37 +6,35 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:03 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:46:04 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:11:51 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_env	*deep_copy(void)
+static t_env	*deep_copy(t_env *env)
 {
-	t_env	*index;
 	t_env	*temp;
-	t_env	*env;
+	t_env	*head;
 
-	index = g_commands->env;
-	env = new_env_node(index->key, index->value, NULL);
-	temp = env;
-	index = index->next;
-	while (index)
+	head = new_env_node(env->key, env->value, NULL);
+	temp = head;
+	env = env->next;
+	while (env)
 	{
-		temp->next = new_env_node(index->key, index->value, NULL);
+		temp->next = new_env_node(env->key, env->value, NULL);
 		temp = temp->next;
-		index = index->next;
+		env = env->next;
 	}
-	return (env);
+	return (head);
 }
 
-void	print_export_env(void)
+void	print_export_env(t_env *env)
 {
 	t_env	*node;
 	t_env	*temp;
 
-	node = deep_copy();
+	node = deep_copy(env);
 	sorting_export(node, node->next, &node);
 	temp = node;
 	while (temp)

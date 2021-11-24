@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/22 06:43:57 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:25:26 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,15 @@ typedef struct s_commands
 	int				**fd;
 }	t_commands;
 
-t_commands	*g_commands;
+int			g_sig_handler;
 
 /*
 ** command
 */
 int			exe_export(t_commands *commands);
-int			check_export_error(char *key, char *arg);
 int			check_first_char(char *str);
-void		print_export_env(void);
+int			check_export_error(char *key, char *arg);
+void		print_export_env(t_env *env);
 void		sorting_export(t_env *set, t_env *compare, t_env **head);
 int			exe_unset(t_commands *commands);
 int			check_unset_error(char *key);
@@ -96,7 +96,7 @@ void		check_bin_error(char *com, char *path);
 char		*set_path(t_commands *commands);
 void		exe_cd(t_commands *commands);
 void		exe_pwd(void);
-void		exe_exit(t_list *arg);
+void		exe_exit(t_commands *commands, t_list *arg);
 
 /*
 ** init
@@ -108,12 +108,12 @@ t_env		*new_env_node(char *key, char *value, int *env_num);
 /*
 ** parse
 */
-int			check_quote(char *str, char *pointer, int option);
-char		*mapping_dollar(char *str, int old_errno);
-void		parsing_handler(char *str, int old_errno, t_env *env);
-void		parse_pipe(char **spl);
-void		parse_space(t_commands *commands, char *str);
+t_commands	*parsing_handler(char *str, int old_errno, t_env *env);
+t_commands	*parse_pipe(char **spl);
 char		*redir_handler(t_commands *commands, char *str);
+int			check_quote(char *str, char *pointer, int option);
+char		*mapping_dollar(t_commands *commands, char *str, int old_errno);
+void		parse_space(t_commands *commands, char *str);
 char		*parse_less(t_commands *commands, char *str);
 char		*parse_heredoc(t_commands *commands, char *str);
 char		*parse_greater(t_commands *commands, char *str);
@@ -131,7 +131,7 @@ char		*redir_heredoc(char *delimiter);
 /*
 ** set_command
 */
-int			set_commands(void);
+int			set_commands(t_commands *commands);
 void		dup_fd(t_commands *commands);
 void		run_commands(t_commands *commands);
 int			is_nonbuilt(char *com);
@@ -139,7 +139,7 @@ int			is_nonbuilt(char *com);
 /*
 ** free
 */
-void		free_all(char **str, int **fd);
+void		free_all(t_commands *commands, char **str, int **fd);
 
 /*
 ** signal
@@ -160,7 +160,7 @@ int			print_systax_err(char *token);
 void		ft_protect(void *arg);
 void		put_err(char *source_err, int use_exit);
 int			closed_quote(char *str);
-int			check_str_err(char *str);
+int			check_str_err(struct termios oldterm, char *str);
 char		*join_errmsg(char *str1, char *str2, char *str3, char *str4);
 int			check_pipe_err(char *str);
 

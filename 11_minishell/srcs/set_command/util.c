@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:15 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:47:15 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 18:20:54 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	run_commands(t_commands *commands)
 	else if (ft_strncmp(com, "env", 4) == 0)
 		exe_env(commands);
 	else if (ft_strncmp(com, "exit", 5) == 0)
-		exe_exit(commands->arg);
+		exe_exit(commands, commands->arg);
 	else if (ft_strncmp(com, "echo", 5) == 0)
 		exe_echo(commands);
 	else
