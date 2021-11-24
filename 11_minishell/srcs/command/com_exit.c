@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:56 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/16 19:58:59 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/24 16:28:25 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,12 @@ static int	check_numeric(t_list *arg)
 {
 	char	*str;
 
-	while (arg)
+	str = (char *)arg->content;
+	while (*str)
 	{
-		str = (char *)arg->content;
-		while (*str)
-		{
-			if (ft_isdigit(*str) == 0)
-				return (false);
-			str++;
-		}
-		arg = arg->next;
+		if (ft_isdigit(*str) == 0)
+			return (false);
+		str++;
 	}
 	return (true);
 }
@@ -77,6 +73,7 @@ void	exe_exit(t_list *arg)
 		else
 			errno = g_commands->old_errno;
 		tcsetattr(STDIN_FILENO, TCSANOW, &g_commands->oldterm);
+		ft_putstr_fd("exit\n", STDOUT_FILENO);
 		exit(errno);
 	}
 }
