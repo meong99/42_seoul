@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 20:26:02 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/25 21:14:28 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 21:26:59 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	mapping_redir(t_commands *commands)
 	{
 		mapped = mapping_dollar(commands, \
 			(char *)target->content, commands->old_errno);
-		if (mapped == NULL)
+		if (mapped == NULL || ft_strchr(mapped, ' '))
 		{
 			errno = 1;
 			mapped = join_errmsg((char *)target->content, \

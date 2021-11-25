@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:38:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 20:21:08 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 21:26:30 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static char	*set_end(char *start)
 
 static char	*check_ambiguous(char *result, char *str)
 {
-	if (*result == 0 && *str != 0)
+	if ((*result == 0 && *str != 0))
 	{
 		free(result);
 		result = NULL;
