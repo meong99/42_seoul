@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 20:26:02 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/25 21:42:07 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 22:09:54 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ static void	parse_mapped(t_commands *commands, char *mapped, char *mark)
 			commands->redir_input = input;
 			free(mapped);
 		}
-		else
-			commands->redir_input = mapped;
 	}
 	else
 	{
