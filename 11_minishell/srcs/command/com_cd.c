@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:44 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/25 19:07:39 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/26 01:36:28 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void	print_err_cd(int err_code, char *arg)
 
 	if (err_code == 0)
 		return ;
+	errstr = strerror(errno);
 	if (errno == 2)
 		errno = 1;
-	errstr = strerror(errno);
 	errstr = join_errmsg("cd", arg, errstr, 0);
 	ft_putstr_fd(errstr, STDERR_FILENO);
 	free(errstr);
