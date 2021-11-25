@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:46 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/10 04:55:52 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/26 06:49:40 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,8 @@ void	exe_echo(t_commands *commands)
 
 	node = commands->arg;
 	option = set_option(node);
-	print_echo(node + option, option);
+	if (option)
+		print_echo(node->next, option);
+	else
+		print_echo(node, option);
 }
