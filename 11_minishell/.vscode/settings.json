@@ -25,6 +25,9 @@
 		"_types.h": "c",
 		"__tree": "c",
 		"set": "c",
-		"complex": "c"
+		"complex": "c",
+		"__config": "c",
+		"__tuple": "c",
+		"chrono": "c"
 	}
 }

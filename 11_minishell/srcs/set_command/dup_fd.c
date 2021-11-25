@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:11 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/08 23:47:11 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/26 01:52:41 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	dup_fd(t_commands *commands)
 {
 	int	i;
 
-	i = -1;
 	if (commands->redir_input)
 		handle_redir_in(commands);
 	else
@@ -67,6 +66,7 @@ void	dup_fd(t_commands *commands)
 		handle_redir_out(commands);
 	else if (commands->index + 1 != commands->command_num)
 		dup_output(commands);
+	i = -1;
 	while (++i < commands->index)
 		close(commands->fd[i][FOR_WRITE]);
 }

@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:13 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/26 01:31:03 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/26 01:53:28 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	make_process(t_commands *commands)
 			accept_signal();
 			errno = 0;
 			check_commands_err(commands, NONBUILTIN);
-			dup_fd(commands);
+			dup_fd(&commands[i]);
 			if (!errno)
 				run_commands(&commands[i]);
 			return (CHILD);
