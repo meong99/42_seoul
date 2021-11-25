@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_commands_err.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/25 20:26:02 by mchae             #+#    #+#             */
+/*   Updated: 2021/11/25 21:14:28 by mchae            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void	parse_mapped(t_commands *commands, char *mapped, char *mark)
@@ -72,29 +84,24 @@ static int	check_systax(char *target)
 	return (0);
 }
 
-static int	redir_check(t_commands *commands)
+static int	redir_check(char **input, char *redir)
 {
-	char	*redirin;
-	char	*redirout;
-	char	*input;
+	char	*tmp;
 
-	redirin = 0;
-	redirout = 0;
-	if (commands->redir_in)
-		redirin = commands->redir_in;
-	if (commands->redir_out)
-		redirin = commands->redir_out;
-	if (redirin && ft_strncmp(redirin, "<<", 2) == 0)
+	if (ft_strncmp(redir, "<<", 2) == 0)
 	{
-		if (check_systax(redirin) != RET_ERR_INT)
-			input = redir_heredoc(redirin);
+		if (check_systax(redir) != RET_ERR_INT)
+		{
+			tmp = redir_heredoc(redir);
+			*input = tmp;
+		}
 	}
-	else if (redirin && ft_strncmp(redirin, "<", 1) == 0)
-			check_systax(redirin);
-	else if (redirout && ft_strncmp(redirout, ">>", 2) == 0)
-			check_systax(redirout);
-	else if (redirout && ft_strncmp(redirout, ">", 1) == 0)
-			check_systax(redirout);
+	else if (ft_strncmp(redir, "<", 1) == 0)
+		check_systax(redir);
+	else if (ft_strncmp(redir, ">>", 2) == 0)
+		check_systax(redir);
+	else if (ft_strncmp(redir, ">", 1) == 0)
+		check_systax(redir);
 	if (errno)
 		return (RET_ERR_INT);
 	return (0);
@@ -102,9 +109,26 @@ static int	redir_check(t_commands *commands)
 
 int	check_commands_err(t_commands *commands)
 {
-	if (redir_check(commands) != RET_ERR_INT)
+	t_list	*mark;
+	t_list	*target;
+
+	mark = commands->redir_lst_mark;
+	target = commands->redir_lst_target;
+	while (mark && !errno)
+	{
+		if (ft_strncmp((char *)target->content, "<<", 2) == 0)
+		{
+			free(commands->redir_input);
+			commands->redir_input = 0;
+		}
+		redir_check(&commands->redir_input, (char *)target->content);
+		mark = mark->next;
+		target = target->next;
+	}
+	if (!errno)
 		mapping_redir(commands);
 	if (errno)
 		return (RET_ERR_INT);
+	dup_fd(commands);
 	return (0);
 }
