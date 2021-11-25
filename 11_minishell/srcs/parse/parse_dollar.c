@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:38:14 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/25 21:26:30 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/26 01:26:50 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	*mapping_dollar(t_commands *commands, char *str, int old_errno)
 		while (start && (start[1] == '\"' || start[1] == '\'') && \
 			check_quote(tmp, start, DOUBLE_QUOTE))
 			start = ft_strchr_f(start + 1, '$', SINGLE_QUOTE, check_quote);
-		if (start == NULL)
+		if (start == NULL || start[1] == '\0')
 			break ;
 		end = set_end(start + 1);
 		value = mapping_env(commands->env, start + 1, end, old_errno);
