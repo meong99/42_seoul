@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:13 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/26 02:24:07 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/26 06:59:27 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ static int	make_process(t_commands *commands)
 		pid[i] = fork();
 		if (pid[i] == CHILD)
 		{
-			accept_signal();
 			errno = 0;
 			check_commands_err(&commands[i]);
+			accept_signal();
 			dup_fd(&commands[i]);
 			if (!errno)
 				run_commands(&commands[i]);
