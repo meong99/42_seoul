@@ -23,5 +23,7 @@
 		"__node_handle": "c",
 		"_pid_t.h": "c",
 		"_types.h": "c",
+		"__tree": "c",
+		"set": "c"
 	}
 }

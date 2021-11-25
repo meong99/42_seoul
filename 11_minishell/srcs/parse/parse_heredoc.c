@@ -6,26 +6,11 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:35 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/22 15:30:42 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 20:16:26 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	check_systax(char *target)
-{
-	if (ft_strnstr_f(target, "<<", ft_strlen(target), check_quote))
-		return (print_systax_err("<<"));
-	else if (ft_strnstr_f(target, ">>", ft_strlen(target), check_quote))
-		return (print_systax_err(">>"));
-	else if (ft_strchr_f(target, '<', BOTH, check_quote))
-		return (print_systax_err("<"));
-	else if (ft_strchr_f(target, '>', BOTH, check_quote))
-		return (print_systax_err(">"));
-	else if (*target == '\0')
-		return (print_systax_err("newline"));
-	return (0);
-}
 
 static char	*ret_input(char *start, char *end)
 {
@@ -49,8 +34,6 @@ static char	*ret_input(char *start, char *end)
 	delimiter[i] = 0;
 	delimiter = remove_quote(delimiter);
 	input = NULL;
-	if (check_systax(delimiter) != RET_ERR_INT)
-		input = redir_heredoc(delimiter);
 	free(delimiter);
 	return (input);
 }

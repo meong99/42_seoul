@@ -6,26 +6,11 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:39 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/09 22:21:50 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 20:17:09 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	check_systax(char *target)
-{
-	if (ft_strnstr_f(target, "<<", ft_strlen(target), check_quote))
-		return (print_systax_err("<<"));
-	else if (ft_strnstr_f(target, ">>", ft_strlen(target), check_quote))
-		return (print_systax_err(">>"));
-	else if (ft_strchr_f(target, '<', BOTH, check_quote))
-		return (print_systax_err("<"));
-	else if (ft_strchr_f(target, '>', BOTH, check_quote))
-		return (print_systax_err(">"));
-	else if (*target == '\0')
-		return (print_systax_err("newline"));
-	return (0);
-}
 
 static char	*get_input(char *start, char *end)
 {
@@ -46,11 +31,6 @@ static char	*get_input(char *start, char *end)
 		i++;
 	}
 	filename[i] = 0;
-	if (check_systax(filename) == RET_ERR_INT)
-	{
-		free(filename);
-		filename = 0;
-	}
 	return (filename);
 }
 

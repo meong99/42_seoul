@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 19:44:16 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 20:06:59 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int			set_commands(t_commands *commands);
 void		dup_fd(t_commands *commands);
 void		run_commands(t_commands *commands);
 int			is_nonbuilt(char *com);
-
+int			check_commands_err(t_commands *commands);
 /*
 ** free
 */

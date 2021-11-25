@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:15 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 18:20:54 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 20:09:02 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ void	run_commands(t_commands *commands)
 	char	*com;
 
 	com = commands->com;
-	if (ft_strncmp(com, "cd", 3) == 0)
+	if (check_commands_err(commands) == RET_ERR_INT || !com)
+		return ;
+	else if (ft_strncmp(com, "cd", 3) == 0)
 		exe_cd(commands);
 	else if (ft_strncmp(com, "pwd", 4) == 0)
 		exe_pwd();
