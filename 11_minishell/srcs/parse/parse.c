@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:49 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 20:07:11 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/26 00:59:56 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	make_file(char *filename, t_commands *commands)
 	int		fd;
 
 	if (ft_strncmp(commands->redir_out, ">>", 3) == 0)
-		fd = open(filename, O_WRONLY | O_APPEND, 0644);
+		fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else
-		fd = open(filename, O_WRONLY | O_CREAT, 0644);
+		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{
 		put_err(filename, false);
