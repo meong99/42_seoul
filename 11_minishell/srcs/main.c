@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:26 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 19:40:11 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 18:51:00 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	loop_minishell(t_env *env, struct termios oldterm)
 			continue ;
 		if (set_commands(commands) == CHILD)
 			return (0);
+		env = commands->env;
 		free_all(commands, &str, commands->fd);
 	}
 	return (0);

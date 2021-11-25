@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:23 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 18:04:54 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 00:12:31 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static void	remove_env(t_commands *commands, char *key)
 	if (node == NULL)
 		return ;
 	before = ret_befor(node, commands->env);
+	if (commands->env == node)
+		commands->env = node->next;
 	before->next = node->next;
 	free(node->key);
 	free(node->value);
