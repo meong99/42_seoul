@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:45:56 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/25 19:11:31 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 22:34:25 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static int	check_numeric(t_list *arg)
 	if (arg)
 	{
 		str = (char *)arg->content;
+		if (*str == '-')
+			str++;
 		while (*str)
 		{
 			if (ft_isdigit(*str) == 0)

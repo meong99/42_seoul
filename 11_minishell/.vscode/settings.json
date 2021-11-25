@@ -24,6 +24,7 @@
 		"_pid_t.h": "c",
 		"_types.h": "c",
 		"__tree": "c",
-		"set": "c"
+		"set": "c",
+		"complex": "c"
 	}
 }
