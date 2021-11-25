@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 20:26:02 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/25 21:26:59 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 21:42:07 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,24 +84,24 @@ static int	check_systax(char *target)
 	return (0);
 }
 
-static int	redir_check(char **input, char *redir)
+static int	redir_check(char **input, char *redir, char *target)
 {
 	char	*tmp;
 
 	if (ft_strncmp(redir, "<<", 2) == 0)
 	{
-		if (check_systax(redir) != RET_ERR_INT)
+		if (check_systax(target) != RET_ERR_INT)
 		{
-			tmp = redir_heredoc(redir);
+			tmp = redir_heredoc(target);
 			*input = tmp;
 		}
 	}
 	else if (ft_strncmp(redir, "<", 1) == 0)
-		check_systax(redir);
+		check_systax(target);
 	else if (ft_strncmp(redir, ">>", 2) == 0)
-		check_systax(redir);
+		check_systax(target);
 	else if (ft_strncmp(redir, ">", 1) == 0)
-		check_systax(redir);
+		check_systax(target);
 	if (errno)
 		return (RET_ERR_INT);
 	return (0);
@@ -116,12 +116,13 @@ int	check_commands_err(t_commands *commands)
 	target = commands->redir_lst_target;
 	while (mark && !errno)
 	{
-		if (ft_strncmp((char *)target->content, "<<", 2) == 0)
+		if (ft_strncmp((char *)mark->content, "<<", 2) == 0)
 		{
 			free(commands->redir_input);
 			commands->redir_input = 0;
 		}
-		redir_check(&commands->redir_input, (char *)target->content);
+		redir_check(&commands->redir_input, (char *)mark->content, \
+			(char *)target->content);
 		mark = mark->next;
 		target = target->next;
 	}

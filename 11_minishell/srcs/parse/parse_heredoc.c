@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:46:35 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/25 20:16:26 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 21:36:32 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static char	*ret_input(char *start, char *end)
 {
 	char	*delimiter;
-	char	*input;
 	int		i;
 
 	while (*start == ' ')
@@ -33,9 +32,7 @@ static char	*ret_input(char *start, char *end)
 	}
 	delimiter[i] = 0;
 	delimiter = remove_quote(delimiter);
-	input = NULL;
-	free(delimiter);
-	return (input);
+	return (delimiter);
 }
 
 static char	*filename_range(char *start)
