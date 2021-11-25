@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 23:22:39 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/24 16:46:09 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 23:17:15 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int	check_str_err(struct termios oldterm, char *str)
 		if (*str)
 			add_history(str);
 		free(str);
+		errno = 1;
 		return (1);
 	}
 	if (*str)

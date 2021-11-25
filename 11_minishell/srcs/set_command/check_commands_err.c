@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 20:26:02 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/25 22:27:26 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 23:36:50 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ static int	check_systax(char *target)
 	return (0);
 }
 
-static int	redir_check(char **input, char *redir, char *target)
+static int	redir_check(char **input, char *redir, char *target, int option)
 {
 	char	*tmp;
 
-	if (ft_strncmp(redir, "<<", 2) == 0)
+	if (option == NONBUILTIN && ft_strncmp(redir, "<<", 2) == 0)
 	{
 		if (check_systax(target) != RET_ERR_INT)
 		{
@@ -94,7 +94,7 @@ static int	redir_check(char **input, char *redir, char *target)
 			*input = tmp;
 		}
 	}
-	else if (ft_strncmp(redir, "<", 1) == 0)
+	else if (option == NONBUILTIN && ft_strncmp(redir, "<", 1) == 0)
 		check_systax(target);
 	else if (ft_strncmp(redir, ">>", 2) == 0)
 		check_systax(target);
@@ -105,7 +105,7 @@ static int	redir_check(char **input, char *redir, char *target)
 	return (0);
 }
 
-int	check_commands_err(t_commands *commands)
+int	check_commands_err(t_commands *commands, int option)
 {
 	t_list	*mark;
 	t_list	*target;
@@ -120,7 +120,7 @@ int	check_commands_err(t_commands *commands)
 			commands->redir_input = 0;
 		}
 		redir_check(&commands->redir_input, (char *)mark->content, \
-			(char *)target->content);
+			(char *)target->content, option);
 		mark = mark->next;
 		target = target->next;
 	}
@@ -128,6 +128,5 @@ int	check_commands_err(t_commands *commands)
 		mapping_redir(commands);
 	if (errno)
 		return (RET_ERR_INT);
-	dup_fd(commands);
 	return (0);
 }
