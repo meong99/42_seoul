@@ -6,23 +6,11 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:26 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/25 20:23:27 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/25 20:24:28 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	check_errno(t_commands *commands, char **str)
-{
-	//
-	if (errno || commands->com == NULL)
-	{
-		free_all(commands, str, commands->fd);
-		return (1);
-	}
-	//
-	return (0);
-}
 
 int	loop_minishell(t_env *env, struct termios oldterm)
 {
@@ -43,10 +31,6 @@ int	loop_minishell(t_env *env, struct termios oldterm)
 			continue ;
 		commands = parsing_handler(str, old_errno, env);
 		commands->oldterm = oldterm;
-		
-		if (check_errno(commands, &str))
-			continue ;
-			
 		if (set_commands(commands) == CHILD)
 			return (0);
 		env = commands->env;
