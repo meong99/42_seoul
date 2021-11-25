@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 20:26:02 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/25 23:36:50 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/26 02:58:34 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	parse_mapped(t_commands *commands, char *mapped, char *mark)
 
 	if (*mark == '<')
 	{
-		free(commands->redir_input);
 		free(commands->redir_in);
 		commands->redir_in = ft_strdup(mark);
 		if (ft_strncmp(commands->redir_in, "<", 2) == 0)
 		{
+			free(commands->redir_input);
 			input = redir_input(mapped);
 			commands->redir_input = input;
 			free(mapped);
@@ -50,7 +50,7 @@ static void	mapping_redir(t_commands *commands)
 	{
 		mapped = mapping_dollar(commands, \
 			(char *)target->content, commands->old_errno);
-		if (mapped == NULL || ft_strchr(mapped, ' '))
+		if ((mapped == NULL || ft_strchr(mapped, ' ')))
 		{
 			errno = 1;
 			mapped = join_errmsg((char *)target->content, \
@@ -82,19 +82,20 @@ static int	check_systax(char *target)
 	return (0);
 }
 
-static int	redir_check(char **input, char *redir, char *target, int option)
+static int	redir_check(char **input, char *redir, char *target)
 {
 	char	*tmp;
 
-	if (option == NONBUILTIN && ft_strncmp(redir, "<<", 2) == 0)
+	if (ft_strncmp(redir, "<<", 2) == 0)
 	{
 		if (check_systax(target) != RET_ERR_INT)
 		{
 			tmp = redir_heredoc(target);
 			*input = tmp;
+			*target = 'a';
 		}
 	}
-	else if (option == NONBUILTIN && ft_strncmp(redir, "<", 1) == 0)
+	else if (ft_strncmp(redir, "<", 1) == 0)
 		check_systax(target);
 	else if (ft_strncmp(redir, ">>", 2) == 0)
 		check_systax(target);
@@ -105,7 +106,7 @@ static int	redir_check(char **input, char *redir, char *target, int option)
 	return (0);
 }
 
-int	check_commands_err(t_commands *commands, int option)
+int	check_commands_err(t_commands *commands)
 {
 	t_list	*mark;
 	t_list	*target;
@@ -120,7 +121,7 @@ int	check_commands_err(t_commands *commands, int option)
 			commands->redir_input = 0;
 		}
 		redir_check(&commands->redir_input, (char *)mark->content, \
-			(char *)target->content, option);
+			(char *)target->content);
 		mark = mark->next;
 		target = target->next;
 	}

@@ -6,17 +6,17 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:47:04 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/25 22:07:04 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/26 02:51:35 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	handle_sig(int fd, char **result)
+static void	handle_sig(int oldfd, char **result)
 {
 	free(*result);
 	*result = 0;
-	dup2(fd, STDIN_FILENO);
+	dup2(oldfd, STDIN_FILENO);
 }
 
 static char	*loop_heredoc(char *delimiter)
@@ -51,16 +51,16 @@ static char	*loop_heredoc(char *delimiter)
 char	*redir_heredoc(char *delimiter)
 {
 	char	*result;
-	int		fd;
+	int		oldfd;
 
-	fd = dup(STDIN_FILENO);
+	oldfd = dup(STDIN_FILENO);
 	result = loop_heredoc(delimiter);
 	if (g_sig_handler[0] == AFTER_SIG_HEREDOC)
-		handle_sig(fd, &result);
+		handle_sig(oldfd, &result);
 	else if (!*result)
 		g_sig_handler[0] = AFTER_SIG_HEREDOC;
 	else
 		g_sig_handler[0] = SIG_USUAL;
-	close(fd);
+	close(oldfd);
 	return (result);
 }

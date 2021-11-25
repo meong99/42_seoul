@@ -6,7 +6,7 @@
 /*   By: mchae <mchae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:55:57 by mchae             #+#    #+#             */
-/*   Updated: 2021/11/25 23:28:33 by mchae            ###   ########.fr       */
+/*   Updated: 2021/11/26 02:24:11 by mchae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@
 # define SIG_COM 1
 # define SIG_HEREDOC 2
 # define AFTER_SIG_HEREDOC 3
-
-# define BUILTIN 0
-# define NONBUILTIN 1
 
 typedef struct s_env
 {
@@ -138,7 +135,7 @@ int			set_commands(t_commands *commands);
 void		dup_fd(t_commands *commands);
 void		run_commands(t_commands *commands);
 int			is_nonbuilt(char *com);
-int			check_commands_err(t_commands *commands, int option);
+int			check_commands_err(t_commands *commands);
 /*
 ** free
 */
