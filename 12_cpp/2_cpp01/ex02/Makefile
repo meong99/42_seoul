@@ -1,8 +1,8 @@
-NAME = megaphone
+NAME = Brain
 CC = clang++
 CPP00FLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS_PATH = objs
-SRCS = megaphone.cpp
+SRCS = main.cpp
 OBJS_NAME = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
 
