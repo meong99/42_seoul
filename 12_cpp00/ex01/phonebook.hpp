@@ -1,42 +1,25 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-# include <iostream>
-# include <iomanip>
+# include "add.hpp"
+# include "search.hpp"
+
 class Phonebook
 {
-private	:
-	std::string	infomation[5];
-public	:
+private:
+	std::string	_infos[8][5];
+	Search		_search;
+	Add			_add;
+	int			_index;
+
+	void	_exitPhonebook();
+public:
+	bool	is_working;
+
 	Phonebook();
 	~Phonebook();
-	void	command_add();
-	void	command_exit();
-	void	command_search();
+	void	enter_command(std::string &command);
+	void	run_command(const std::string command);
 };
-
-Phonebook::Phonebook()
-{
-	std::cout << "Hello ! Enter command !\n";
-}
-
-Phonebook::~Phonebook()
-{
-	std::cout << "Bye !\n";
-}
-
-void	Phonebook::command_add()
-{
-	std::string	infostr[5] = {"last name : ", "fisrt name : ", "nick name : ", "phonenumber : ", "secret : "};
-
-	std::cout << "Enter information !\n";
-	for (int i = 0; i < 5; i++)
-	{
-		std::cout << infostr[i];
-		std::cin >> infomation[i];
-	}
-	std::cout << "input complete\n";
-}
-
 
 #endif

@@ -1,14 +1,18 @@
 NAME = Phonebook
 CC = clang++
-CPP00FLAGS = -Wall -Wextra -Werror -std=c++98
+CPP00FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 OBJS_PATH = objs
 
-SRCS = phonebook.cpp
+SRCS = \
+	phonebook.cpp\
+	add.cpp\
+	search.cpp\
+	main.cpp
 OBJS_NAME = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
 
 $(OBJS_PATH)/%.o : %.cpp
-	mkdir -p $(OBJS_PATH)
+	@mkdir -p $(OBJS_PATH)
 	$(CC) $(CPP00FLAGS) -c $^ -o $@
 
 $(NAME) : $(OBJS)
