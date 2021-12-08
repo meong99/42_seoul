@@ -12,12 +12,12 @@ private:
 	Add			_add;
 	int			_index;
 
-	void	_exitPhonebook();
+	void	_exitPhonebook(void);
 public:
 	bool	is_working;
 
-	Phonebook();
-	~Phonebook();
+	Phonebook(void);
+	~Phonebook(void);
 	void	enter_command(std::string &command);
 	void	run_command(const std::string command);
 };

@@ -1,6 +1,6 @@
 #include "add.hpp"
 
-void	Add::_putInfo(std::string (&_infos)[8][5])
+void	Add::_putInfo( std::string (&_infos)[8][5] )
 {
 	for (int i = 0; i < 8; i++)
 	{
@@ -23,7 +23,7 @@ void	Add::_putInfo(std::string (&_infos)[8][5])
 	}
 }
 
-void	Add::_getInfo()
+void	Add::_getInfo( void )
 {
 	std::string infostr[5] = {
 		"last name : ",
@@ -33,24 +33,24 @@ void	Add::_getInfo()
 		"secret : "};
 
 	std::cout << GREEN << "Enter information !" << RESET << std::endl;
-	for (int i = 0; i < 5; i++)
+	for ( int i = 0; i < 5; i++ )
 	{
 		std::cout << CYAN << infostr[i] << RESET << std::endl;
 		std::cin >> _infomation[i];
-		if (std::cin.eof() == true)
+		if ( std::cin.eof() == true )
 		{
 			std::cin.clear();
-			clearerr(stdin);
+			clearerr( stdin );
 			return;
 		}
 	}
 }
 
-void	Add::add(std::string (&_infos)[8][5], int &_index)
+void	Add::add( std::string ( &_infos )[8][5], int &_index )
 {
 	_getInfo();
-	_putInfo(_infos);
+	_putInfo( _infos );
 	std::cout << YELLOW << "input complete !" << RESET << std::endl << std::endl;
-	if (_index < 8)
+	if ( _index < 8 )
 		_index++;
 }
