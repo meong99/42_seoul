@@ -3,7 +3,6 @@
 Phonebook::Phonebook( void )
 {
 	_index = 0;
-	is_working = true;
 	std::cout << MAGENTA << "Hello !" << RESET << std::endl;
 }
 
@@ -12,9 +11,9 @@ Phonebook::~Phonebook( void )
 	std::cout << MAGENTA << "Bye !" << RESET << std::endl;
 }
 
-void Phonebook::_exitPhonebook( void )
+bool Phonebook::_exitPhonebook( void )
 {
-	is_working = false;
+	return ( false );
 }
 
 void Phonebook::enter_command( std::string &command )
@@ -23,10 +22,12 @@ void Phonebook::enter_command( std::string &command )
 	std::cin >> command;
 }
 
-void Phonebook::run_command( const std::string command )
+bool Phonebook::run_command( const std::string command )
 {
+	bool	is_working = true;
+
 	if (command == "EXIT" || command == "exit")
-		_exitPhonebook();
+		is_working = _exitPhonebook();
 	else if (command == "ADD" || command == "add")
 		_add.add(_infos, _index);
 	else if (command == "SEARCH" || command == "search")
@@ -40,4 +41,5 @@ void Phonebook::run_command( const std::string command )
 		}
 		std::cout << RED << "Can't found command !" << RESET << std::endl;
 	}
+	return ( is_working );
 }
