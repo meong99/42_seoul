@@ -16,12 +16,6 @@ bool Phonebook::_exitPhonebook( void )
 	return ( false );
 }
 
-void Phonebook::enter_command( std::string &command )
-{
-	std::cout << GREEN << "Enter command :" << RESET << std::endl;
-	std::cin >> command;
-}
-
 bool Phonebook::run_command( const std::string command )
 {
 	bool	is_working = true;

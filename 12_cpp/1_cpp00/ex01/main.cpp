@@ -8,8 +8,10 @@ int main( void )
 
 	while (is_working)
 	{
-		phonebook.enter_command(command);
+		std::cout << GREEN << "Enter command :" << RESET << std::endl;
+		std::cin >> command;
 		is_working = phonebook.run_command(command);
+		command = "";
 	}
 	return (0);
 }

@@ -17,7 +17,6 @@ public:
 	Phonebook(void);
 	~Phonebook(void);
 
-	void	enter_command(std::string &command);
 	bool	run_command(const std::string command);
 };
 

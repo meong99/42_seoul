@@ -23,7 +23,7 @@ void	Add::_putInfo( std::string (&_infos)[8][5] )
 	}
 }
 
-void	Add::_getInfo( void )
+bool	Add::_getInfo( void )
 {
 	std::string infostr[5] = {
 		"last name : ",
@@ -41,16 +41,19 @@ void	Add::_getInfo( void )
 		{
 			std::cin.clear();
 			clearerr( stdin );
-			return;
+			return ( false );
 		}
 	}
+	return ( true );
 }
 
 void	Add::add( std::string ( &_infos )[8][5], int &_index )
 {
-	_getInfo();
-	_putInfo( _infos );
-	std::cout << YELLOW << "input complete !" << RESET << std::endl << std::endl;
-	if ( _index < 8 )
-		_index++;
+	if (_getInfo())
+	{
+		_putInfo( _infos );
+		std::cout << YELLOW << "input complete !" << RESET << std::endl << std::endl;
+		if ( _index < 8 )
+			_index++;
+	}
 }

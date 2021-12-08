@@ -9,7 +9,7 @@ class Add
 private	:
 	std::string	_infomation[5];
 
-	void	_getInfo( void );
+	bool	_getInfo( void );
 	void	_putInfo( std::string (&_infos)[8][5] );
 public	:
 	void	add( std::string (&_infos)[8][5], int &_index );
