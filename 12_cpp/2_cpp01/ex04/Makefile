@@ -1,17 +1,18 @@
-NAME = megaphone
+NAME = replace
 CC = clang++
-CPP00FLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 OBJS_PATH = objs
-SRCS = megaphone.cpp
+SRCS = \
+	main.cpp Replace.cpp
 OBJS_NAME = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
 
 $(OBJS_PATH)/%.o : %.cpp
 	mkdir -p $(OBJS_PATH)
-	$(CC) $(CPP00FLAGS) -c $^ -o $@
+	$(CC) $(CPPFLAGS) -c $^ -o $@
 
 $(NAME) : $(OBJS)
-	$(CC) $(CPP00FLAGS) -o $(NAME) $(OBJS)
+	$(CC) $(CPPFLAGS) -o $(NAME) $(OBJS)
 
 all : $(NAME)
 
