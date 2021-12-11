@@ -12,26 +12,32 @@ void	Karen::complain( std::string level )
 		"ERROR"
 		};
 
-	void	(Karen::*func[4])(void) = {
-		&Karen::debug,
-		&Karen::info,
-		&Karen::warning,
-		&Karen::error
-	};
-
-	bool	allowPrinting = false;
-	for (int i = 0; i < 4; i++)
+	int	i = 0;
+	for (; i < 4; i++)
 	{
-		if (arrlev[i] == level || allowPrinting == true)
-		{
-			(this->*func[i])();
-			allowPrinting = true;	
-		}
+		if (arrlev[i] == level)
+			break ;
 	}
-	if (allowPrinting == false)
+
+	switch (i)
 	{
+	case 0:
+		Karen::debug();
+		i++;
+	case 1:
+		Karen::info();
+		i++;
+	case 2:
+		Karen::warning();
+		i++;
+	case 3:
+		Karen::error();
+		i++;
+		break ;
+	default:
 		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 		std::cout << "There are many ways to filter karen, but one of the best ones is to SWITCH her off" << std::endl;
+		break;
 	}
 }
 
