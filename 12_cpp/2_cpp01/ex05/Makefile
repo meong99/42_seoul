@@ -1,4 +1,4 @@
-NAME =
+NAME = karen
 CC = clang++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS_PATH = objs
