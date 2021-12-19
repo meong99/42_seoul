@@ -8,11 +8,11 @@
 		  "name": "debug test",
 		  "type": "lldb",
 		  "request": "launch",
-		  "program": "${workspaceFolder}/ex02/Account",
+		  "program": "${workspaceFolder}/ex00/megaphone",
 		  "targetArchitecture": "arm64",
 		  "args": [],
 		  "stopAtEntry": false,
-		  "cwd": "${workspaceFolder}/ex02",
+		  "cwd": "${workspaceFolder}/ex00",
 		  "environment": [],
 		  "externalConsole": true,
 		  "osx": {

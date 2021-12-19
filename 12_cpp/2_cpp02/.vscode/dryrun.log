@@ -1,3 +1,4 @@
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/meong9/42seoul/12_cpp/2_cpp02'
 make: Leaving directory `/Users/meong9/42seoul/12_cpp/2_cpp02'
  

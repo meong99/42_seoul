@@ -10,13 +10,14 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
  
 
-# Make data base, printed on Mon Dec 13 15:34:21 2021
+# Make data base, printed on Sun Dec 19 13:48:57 2021
 
 # Variables
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
+ 
 ?F = $(notdir $?)
 # environment
 VSCODE_LOG_NATIVE = false
@@ -41,11 +42,11 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/qp/4scjnlhx3kq99zb6tgxkr07m0000gn/T/vscode-ipc-a37dbb67-853a-4952-89cc-33da54b57e22.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/qp/4scjnlhx3kq99zb6tgxkr07m0000gn/T/vscode-ipc-c94b776a-a305-4761-a16d-8c1905141bd7.sock
 # environment
 VSCODE_CWD = /
 # environment
-PATH = /usr/bin:/bin:/usr/sbin:/sbin
+PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -87,6 +88,7 @@ MAKECMDGOALS := all
 # environment
 SHLVL = 1
 # default
+ 
 MAKE_VERSION := 3.81
 # environment
 USER = meong9
@@ -186,6 +188,7 @@ makefile:
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
+ 
 #  Failed to be updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -219,6 +222,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Mon Dec 13 15:34:21 2021
+# Finished Make data base on Sun Dec 19 13:48:57 2021
 
  
