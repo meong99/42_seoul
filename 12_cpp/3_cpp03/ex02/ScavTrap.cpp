@@ -49,25 +49,3 @@ void	ScavTrap::attack(std::string const &target)
 	this->_ep -= 5;
 	std::cout << this->_name << "'s ep left " << this->_ep << std::endl;
 }
-
-void	ScavTrap::takeDamage(unsigned int amount)
-{
-	if (deathCheck() == true)
-		return ;
-
-	std::cout << "ScavTrap " << this->_name << " got " << amount << " damage" << std::endl;
-	this->_hp -= amount;
-	if (this->_hp < 0)
-		this->_hp = 0;
-	std::cout << this->_name << "'s hp left " << this->_hp << std::endl;
-}
-
-void	ScavTrap::beRepaired(unsigned int amount)
-{
-	if (deathCheck() == true)
-		return ;
-
-	std::cout << "ScavTrap " << this->_name << "'s hp has recovered by " << amount << "!" << std::endl;
-	this->_hp += amount;
-	std::cout << this->_name << "'s hp left " << this->_hp << std::endl;
-}

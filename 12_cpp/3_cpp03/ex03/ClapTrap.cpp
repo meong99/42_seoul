@@ -65,7 +65,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	if (deathCheck() == true)
 		return ;
 
-	std::cout << "ClapTrap " << this->_name << " got " << amount << " damage" << std::endl;
+	std::cout << this->_name << " got " << amount << " damage" << std::endl;
 	this->_hp -= amount;
 	if (this->_hp < 0)
 		this->_hp = 0;
@@ -77,7 +77,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	if (deathCheck() == true)
 		return ;
 
-	std::cout << "ClapTrap " << this->_name << "'s hp has recovered by " << amount << "!" << std::endl;
+	std::cout << this->_name << "'s hp has recovered by " << amount << "!" << std::endl;
 	this->_hp += amount;
 	std::cout << this->_name << "'s hp left " << this->_hp << std::endl;
 }
