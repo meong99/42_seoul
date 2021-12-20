@@ -6,16 +6,16 @@
 class ClapTrap
 {
 private:
-	std::string	_name;
 	int			_hp;
 	int			_ep;
 	int			_ad;
+	std::string	_name;
 
 public:
 	ClapTrap(void);
 	~ClapTrap(void);
 	ClapTrap(const ClapTrap &ref);
-	ClapTrap(std::string name, int hp, int ep, int ad);
+	ClapTrap(std::string name);
 	ClapTrap	&operator=(const ClapTrap &ref);
 
 	bool	deathCheck(void);

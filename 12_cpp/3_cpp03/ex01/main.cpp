@@ -1,8 +1,8 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void)
 {
-	ClapTrap	champ_1("Timo", 20, 9, 5);
+	ScavTrap	champ_1("Timo");
 
 	champ_1.attack("worm");
 	champ_1.takeDamage(15);
@@ -10,14 +10,16 @@ int	main(void)
 	champ_1.attack("worm");
 	champ_1.takeDamage(15);
 	champ_1.takeDamage(15);
+	champ_1.guardGate();
 
 	std::cout << std::endl << "--------------Next chapter--------------" << std::endl << std::endl;
 
-	ClapTrap	champ_2;
+	ScavTrap	champ_2;
 
 	champ_2.attack("kkong");
 	champ_2.takeDamage(15);
 	champ_2.beRepaired(10);
 	champ_2.takeDamage(15);
 	champ_2.takeDamage(15);
+	champ_2.guardGate();
 }
