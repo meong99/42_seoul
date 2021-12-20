@@ -5,14 +5,12 @@
 
 class ClapTrap
 {
-private:
-	ClapTrap(void);
-
 protected:
 	int			_hp;
 	int			_ep;
 	int			_ad;
 	std::string	_name;
+	ClapTrap(void);
 
 public:
 	~ClapTrap(void);

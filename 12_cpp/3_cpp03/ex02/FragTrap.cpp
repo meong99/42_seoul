@@ -1,6 +1,6 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(void)
+FragTrap::FragTrap(void) : ClapTrap()
 {
 	this->_hp = 100;
 	this->_ep = 50;

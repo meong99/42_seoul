@@ -14,7 +14,7 @@ int	main(void)
 
 	std::cout << std::endl << "--------------Next chapter--------------" << std::endl << std::endl;
 
-	ScavTrap	champ_2;
+	ScavTrap	champ_2 = champ_1;
 
 	champ_2.attack("kkong");
 	champ_2.takeDamage(15);
