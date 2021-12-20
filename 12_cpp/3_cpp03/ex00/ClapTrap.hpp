@@ -10,9 +10,9 @@ private:
 	int			_ep;
 	int			_ad;
 	std::string	_name;
+	ClapTrap(void);
 
 public:
-	ClapTrap(void);
 	~ClapTrap(void);
 	ClapTrap(const ClapTrap &ref);
 	ClapTrap(std::string name);

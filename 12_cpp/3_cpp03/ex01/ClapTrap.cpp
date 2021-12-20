@@ -10,6 +10,11 @@ ClapTrap::~ClapTrap(void)
 	std::cout << "ClapTrap destroyed" << std::endl;
 }
 
+ClapTrap::ClapTrap(std::string name) : _hp(10), _ep(10), _ad(0), _name(name)
+{
+	std::cout << "ClapTrap created" << std::endl;
+}
+
 ClapTrap::ClapTrap(const ClapTrap &ref) : _hp(ref._hp), _ep(ref._ep), _ad(ref._ad), _name(ref._name)
 {
 	std::cout << "ClapTrap created" << std::endl;
@@ -24,16 +29,11 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &ref)
 	return (*this);
 }
 
-ClapTrap::ClapTrap(std::string name) : _hp(10), _ep(10), _ad(0), _name(name)
-{
-	std::cout << "ClapTrap created" << std::endl;
-}
-
 bool	ClapTrap::deathCheck(void)
 {
 	if (this->_hp <= 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " already died" << std::endl;
+		std::cout << "ClapTrap " << this->_name << " is already dead" << std::endl;
 		return (true);
 	}
 	return (false);

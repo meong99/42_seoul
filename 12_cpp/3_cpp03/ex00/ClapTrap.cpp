@@ -33,7 +33,7 @@ bool	ClapTrap::deathCheck(void)
 {
 	if (this->_hp <= 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " already died" << std::endl;
+		std::cout << "ClapTrap " << this->_name << " is already dead" << std::endl;
 		return (true);
 	}
 	return (false);
