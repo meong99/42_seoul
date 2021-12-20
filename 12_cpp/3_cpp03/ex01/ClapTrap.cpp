@@ -1,6 +1,6 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void):_name(""), _hp(20), _ep(10), _ad(0)
+ClapTrap::ClapTrap(void):_name(""), _hp(0), _ep(0), _ad(0)
 {
 	std::cout << "ClapTrap created" << std::endl;
 }
@@ -18,18 +18,41 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &ref)
 	return (*this);
 }
 
-void	ClapTrap::attack(std::string const &target)
-{
-	std::cout << "ClapTrap " << this->_name << " attacks " << target << " causing " << this->_ad << " points of damage!" << std::endl;
-}
-
-void	ClapTrap::takeDamage(unsigned int amount)
+bool	ClapTrap::deathCheck(void)
 {
 	if (this->_hp <= 0)
 	{
 		std::cout << "ClapTrap " << this->_name << " already died" << std::endl;
-		return ;
+		return (true);
 	}
+	return (false);
+}
+
+bool	ClapTrap::lowEp(void)
+{
+	if (this->_ep < 5)
+	{
+		std::cout << "There's not enough ep" << std::endl;
+		return (true);
+	}
+	return (false);
+}
+
+
+void	ClapTrap::attack(std::string const &target)
+{
+	if (lowEp() == true)
+		return ;
+	
+	std::cout << "ClapTrap " << this->_name << " attacks " << target << " causing " << this->_ad << " points of damage!" << std::endl;
+	this->_ep -= 5;
+	std::cout << this->_name << "'s ep left " << this->_ep << std::endl;
+}
+
+void	ClapTrap::takeDamage(unsigned int amount)
+{
+	if (deathCheck() == true)
+		return ;
 
 	std::cout << "ClapTrap " << this->_name << " got " << amount << " damage" << std::endl;
 	this->_hp -= amount;
@@ -40,11 +63,8 @@ void	ClapTrap::takeDamage(unsigned int amount)
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->_hp <= 0)
-	{
-		std::cout << "ClapTrap " << this->_name << "already died" << std::endl;
+	if (deathCheck() == true)
 		return ;
-	}
 
 	std::cout << "ClapTrap " << this->_name << "'s hp has recovered by " << amount << "!" << std::endl;
 	this->_hp += amount;

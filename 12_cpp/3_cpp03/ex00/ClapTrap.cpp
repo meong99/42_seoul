@@ -1,6 +1,6 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void):_name(""), _hp(20), _ep(10), _ad(0)
+ClapTrap::ClapTrap(void):_name(""), _hp(0), _ep(0), _ad(0)
 {
 	std::cout << "ClapTrap created" << std::endl;
 }

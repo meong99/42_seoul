@@ -2,11 +2,12 @@
 
 int	main(void)
 {
-	ClapTrap	champ_1("Timo", 20, 10, 5);
+	ClapTrap	champ_1("Timo", 20, 9, 5);
 
 	champ_1.attack("worm");
 	champ_1.takeDamage(15);
 	champ_1.beRepaired(10);
+	champ_1.attack("worm");
 	champ_1.takeDamage(15);
 	champ_1.takeDamage(15);
 
