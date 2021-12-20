@@ -3,8 +3,8 @@
 FragTrap::FragTrap(void) : ClapTrap()
 {
 	this->_hp = 100;
-	this->_ep = 50;
-	this->_ad = 20;
+	this->_ep = 100;
+	this->_ad = 30;
 	std::cout << "FragTrap created" << std::endl;
 }
 
@@ -16,8 +16,8 @@ FragTrap::~FragTrap(void)
 FragTrap::FragTrap(const FragTrap &ref) : ClapTrap(ref)
 {
 	this->_hp = 100;
-	this->_ep = 50;
-	this->_ad = 20;
+	this->_ep = 100;
+	this->_ad = 30;
 	std::cout << "FragTrap created" << std::endl;
 }
 
@@ -30,8 +30,8 @@ FragTrap	&FragTrap::operator=(const FragTrap &ref)
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	this->_hp = 100;
-	this->_ep = 50;
-	this->_ad = 20;
+	this->_ep = 100;
+	this->_ad = 30;
 	std::cout << "FragTrap created" << std::endl;
 }
 
@@ -65,4 +65,9 @@ void	FragTrap::beRepaired(unsigned int amount)
 	std::cout << "FragTrap " << this->_name << "'s hp has recovered by " << amount << "!" << std::endl;
 	this->_hp += amount;
 	std::cout << this->_name << "'s hp left " << this->_hp << std::endl;
+}
+
+void	FragTrap::highFivesGuys(void)
+{
+	std::cout << "High five!!" << std::endl;
 }

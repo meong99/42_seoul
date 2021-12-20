@@ -1,9 +1,9 @@
-NAME = ScavTrap
+NAME = FragTrap
 CC = clang++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS_PATH = objs
 SRCS = \
-	main.cpp ClapTrap.cpp ScavTrap.cpp
+	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
 OBJS_NAME = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
