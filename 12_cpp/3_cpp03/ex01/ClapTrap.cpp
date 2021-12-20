@@ -4,11 +4,17 @@ ClapTrap::ClapTrap(void):_name(""), _hp(0), _ep(0), _ad(0)
 {
 	std::cout << "ClapTrap created" << std::endl;
 }
+
 ClapTrap::~ClapTrap(void)
 {
 	std::cout << "ClapTrap destroyed" << std::endl;
 }
-ClapTrap::ClapTrap(std::string name, int hp, int ep, int ad):_name(name), _hp(hp), _ep(ep), _ad(ad) {}
+
+ClapTrap::ClapTrap(std::string name, int hp, int ep, int ad):_name(name), _hp(hp), _ep(ep), _ad(ad)
+{
+	std::cout << "ClapTrap created" << std::endl;
+}
+
 ClapTrap	&ClapTrap::operator=(const ClapTrap &ref)
 {
 	this->_name = ref._name;
