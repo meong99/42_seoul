@@ -11,6 +11,8 @@ private:
 	
 public:
 	~DiamondTrap(void);
+
+	void	whoAmI(void);
 };
 
 

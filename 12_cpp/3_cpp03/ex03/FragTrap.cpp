@@ -5,12 +5,12 @@ FragTrap::FragTrap(void) : ClapTrap()
 	this->_hp = 100;
 	this->_ep = 100;
 	this->_ad = 30;
-	std::cout << "FragTrap created" << std::endl;
+	std::cout << "FragTrap " << this->_name << " created" << std::endl;
 }
 
 FragTrap::~FragTrap(void)
 {
-	std::cout << "FragTrap destroyed" << std::endl;
+	std::cout << "FragTrap " << this->_name << " destroyed" << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap &ref) : ClapTrap(ref)
@@ -18,7 +18,7 @@ FragTrap::FragTrap(const FragTrap &ref) : ClapTrap(ref)
 	this->_hp = 100;
 	this->_ep = 100;
 	this->_ad = 30;
-	std::cout << "FragTrap created" << std::endl;
+	std::cout << "FragTrap " << this->_name << " created" << std::endl;
 }
 
 FragTrap	&FragTrap::operator=(const FragTrap &ref)
@@ -32,7 +32,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	this->_hp = 100;
 	this->_ep = 100;
 	this->_ad = 30;
-	std::cout << "FragTrap created" << std::endl;
+	std::cout << "FragTrap " << this->_name << " created" << std::endl;
 }
 
 void	FragTrap::attack(std::string const &target)

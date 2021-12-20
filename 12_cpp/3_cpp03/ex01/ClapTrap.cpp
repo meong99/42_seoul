@@ -2,22 +2,22 @@
 
 ClapTrap::ClapTrap(void) : _hp(10), _ep(10), _ad(0)
 {
-	std::cout << "ClapTrap created" << std::endl;
+	std::cout << "ClapTrap " << this->_name << " created" << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "ClapTrap destroyed" << std::endl;
+	std::cout << "ClapTrap " << this->_name << " destroyed" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _hp(10), _ep(10), _ad(0), _name(name)
 {
-	std::cout << "ClapTrap created" << std::endl;
+	std::cout << "ClapTrap " << this->_name << " created" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &ref) : _hp(ref._hp), _ep(ref._ep), _ad(ref._ad), _name(ref._name)
 {
-	std::cout << "ClapTrap created" << std::endl;
+	std::cout << "ClapTrap " << this->_name << " created" << std::endl;
 }
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap &ref)
@@ -43,7 +43,7 @@ bool	ClapTrap::lowEp(void)
 {
 	if (this->_ep < 5)
 	{
-		std::cout << _name << "'s not enough ep" << std::endl;
+		std::cout << this->_name << "'s not enough ep" << std::endl;
 		return (true);
 	}
 	return (false);
