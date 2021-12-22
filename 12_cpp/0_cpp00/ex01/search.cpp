@@ -25,7 +25,7 @@ void Search::_print_list(std::string str[], std::string color = WHITE, int index
 	for (int j = 0; j < 3; j++)
 	{
 		if (str[j].length() > 10)
-			std::cout << color << std::setw(10) << str[j].substr(0, 9) << "." << RESET << "|";
+			std::cout << color << std::setw(9) << str[j].substr(0, 9) << "." << RESET << "|";
 		else
 			std::cout << color << std::setw(10) << str[j] << RESET << "|";
 	}
