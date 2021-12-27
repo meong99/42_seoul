@@ -12,27 +12,19 @@ void	Karen::complain( std::string level )
 		"ERROR"
 		};
 
-	int	i = 0;
-	for (; i < 4; i++)
+	void	(Karen::*ptr[4])(void) = {
+		&Karen::debug,
+		&Karen::info,
+		&Karen::warning,
+		&Karen::error
+	};
+	for (int i = 0; i < 4; i++)
 	{
 		if (arrlev[i] == level)
-			break ;
-	}
-
-	switch (i)
-	{
-	case 0:
-		Karen::debug();
-		break;
-	case 1:
-		Karen::info();
-		break;
-	case 2:
-		Karen::warning();
-		break;
-	default:
-		Karen::error();
-		break;
+		{
+			(this->*ptr[i])();
+			return ;
+		}
 	}
 }
 

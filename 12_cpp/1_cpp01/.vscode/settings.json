@@ -75,6 +75,7 @@
 		"utility": "cpp",
 		"deque": "cpp",
 		"fstream": "cpp",
-		"stack": "cpp"
+		"stack": "cpp",
+		"__availability": "cpp"
 	}
 }
