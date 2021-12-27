@@ -11,6 +11,9 @@ int	main(void)
 	randomChump( ranName[rand() % 5] );
 
 	Zombie* p_zombie = newZombie( "bobo" );
+	if (p_zombie == NULL)
+		return (1);
+
 	p_zombie->announce();
 	delete p_zombie;
 }

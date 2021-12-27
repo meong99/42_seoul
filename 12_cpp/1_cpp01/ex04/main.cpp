@@ -4,7 +4,7 @@ int	main( int ac, char **av )
 {
 	if (ac != 4)
 	{
-		std::cout << "Enter filename, s1, s2" << std::endl;
+		std::cerr << "Enter filename, s1, s2" << std::endl;
 		return (1);
 	}
 	Replace	repl(av[1], av[2], av[3]);

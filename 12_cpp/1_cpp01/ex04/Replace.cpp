@@ -1,15 +1,17 @@
 #include "Replace.hpp"
 
 Replace::Replace( void ) {}
+
 Replace::Replace( std::string filename, std::string s1, std::string s2 ):
 	_filename(filename), _filestr(""), _s1(s1), _s2(s2) {}
+
 Replace::~Replace( void ) {}
 
 bool	Replace::checkEmpty( void )
 {
 	if (_filename.empty() || _s1.empty() || _s2.empty())
 	{
-		std::cout << "filename, s1 and s2 should not be empty." << std::endl;
+		std::cerr << "filename, s1 and s2 should not be empty." << std::endl;
 		return (true);
 	}
 	return (false);
@@ -18,9 +20,10 @@ bool	Replace::checkEmpty( void )
 int	Replace::setFilestr(void)
 {
 	std::ifstream	in(_filename);
-	if (!in)
+	
+	if (in.fail())
 	{
-		std::cout << strerror( errno ) << std::endl;
+		std::cerr << strerror( errno ) << std::endl;
 		return ( errno );
 	}
 
@@ -54,12 +57,13 @@ void	Replace::replaceStr(void)
 int	Replace::putFilestr(void)
 {
 	std::ofstream	out(_filename + ".replace");
-	if (!out)
+
+	if (out.fail())
 	{
-		std::cout << strerror( errno ) << std::endl;
+		std::cerr << strerror( errno ) << std::endl;
 		return ( errno );
 	}
-
 	out << _filestr;
+
 	return (0);
 }
