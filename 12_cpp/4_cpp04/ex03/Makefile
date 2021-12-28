@@ -3,7 +3,7 @@ CC = clang++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 OBJS_PATH = objs
 SRCS = \
-	main.cpp Amateria.cpp Character.cpp Cure.cpp Ice.cpp ICharacter.cpp IMateriaSource.cpp MateriaSource.cpp
+	main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 
 OBJS_NAME = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))
