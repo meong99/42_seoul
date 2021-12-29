@@ -28,42 +28,42 @@ std::ostream	&operator<<(std::ostream &out, const Fixed &ref)
 	return (out);
 }
 
-bool	Fixed::operator>(const Fixed &ref)
+bool	Fixed::operator>(const Fixed &ref) const
 {
 	if (this->_fixedPointNum > ref._fixedPointNum)
 		return (true);
 	return (false);
 }
 
-bool	Fixed::operator<(const Fixed &ref)
+bool	Fixed::operator<(const Fixed &ref) const
 {
 	if (this->_fixedPointNum < ref._fixedPointNum)
 		return (true);
 	return (false);
 }
 
-bool	Fixed::operator>=(const Fixed &ref)
+bool	Fixed::operator>=(const Fixed &ref) const
 {
 	if (this->_fixedPointNum >= ref._fixedPointNum)
 		return (true);
 	return (false);
 }
 
-bool	Fixed::operator<=(const Fixed &ref)
+bool	Fixed::operator<=(const Fixed &ref) const
 {
 	if (this->_fixedPointNum <= ref._fixedPointNum)
 		return (true);
 	return (false);
 }
 
-bool	Fixed::operator==(const Fixed &ref)
+bool	Fixed::operator==(const Fixed &ref) const
 {
 	if (this->_fixedPointNum == ref._fixedPointNum)
 		return (true);
 	return (false);
 }
 
-bool	Fixed::operator!=(const Fixed &ref)
+bool	Fixed::operator!=(const Fixed &ref) const
 {
 	if (this->_fixedPointNum != ref._fixedPointNum)
 		return (true);
@@ -71,25 +71,25 @@ bool	Fixed::operator!=(const Fixed &ref)
 }
 
 
-Fixed	Fixed::operator+(const Fixed &ref)
+Fixed	Fixed::operator+(const Fixed &ref) const
 {
 	Fixed	add(this->toFloat() + ref.toFloat());
 	return (add);
 }
 
-Fixed	Fixed::operator-(const Fixed &ref)
+Fixed	Fixed::operator-(const Fixed &ref) const
 {
 	Fixed	add(this->toFloat() - ref.toFloat());
 	return (add);
 }
 
-Fixed	Fixed::operator*(const Fixed &ref)
+Fixed	Fixed::operator*(const Fixed &ref) const
 {
 	Fixed	add(this->toFloat() * ref.toFloat());
 	return (add);
 }
 
-Fixed	Fixed::operator/(const Fixed &ref)
+Fixed	Fixed::operator/(const Fixed &ref) const
 {
 	Fixed	add(this->toFloat() / ref.toFloat());
 	return (add);
@@ -137,14 +137,14 @@ Fixed	&Fixed::max(Fixed &a, Fixed &b)
 
 const Fixed	&Fixed::min(const Fixed &a, const Fixed &b)
 {
-	if (Fixed(a) > Fixed(b))
+	if (a > b)
 		return (b);
 	return (a);
 }
 
 const Fixed	&Fixed::max(const Fixed &a, const Fixed &b)
 {
-	if (Fixed(a) < Fixed(b))
+	if (a < b)
 		return (b);
 	return (a);
 }

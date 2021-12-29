@@ -18,17 +18,17 @@ public:
 
 	Fixed	&operator=(const Fixed &ref);
 
-	bool	operator>(const Fixed &ref);
-	bool	operator<(const Fixed &ref);
-	bool	operator>=(const Fixed &ref);
-	bool	operator<=(const Fixed &ref);
-	bool	operator==(const Fixed &ref);
-	bool	operator!=(const Fixed &ref);
+	bool	operator>(const Fixed &ref) const;
+	bool	operator<(const Fixed &ref) const;
+	bool	operator>=(const Fixed &ref) const;
+	bool	operator<=(const Fixed &ref) const;
+	bool	operator==(const Fixed &ref) const;
+	bool	operator!=(const Fixed &ref) const;
 
-	Fixed	operator+(const Fixed &ref);
-	Fixed	operator-(const Fixed &ref);
-	Fixed	operator*(const Fixed &ref);
-	Fixed	operator/(const Fixed &ref);
+	Fixed	operator+(const Fixed &ref) const;
+	Fixed	operator-(const Fixed &ref) const;
+	Fixed	operator*(const Fixed &ref) const;
+	Fixed	operator/(const Fixed &ref) const;
 
 	Fixed			&operator++(void);
 	Fixed			&operator--(void);
