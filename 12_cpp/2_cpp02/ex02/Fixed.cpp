@@ -72,13 +72,13 @@ bool	Fixed::operator!=(const Fixed &ref)
 
 Fixed	Fixed::operator+(const Fixed &ref)
 {
-	Fixed	add(this->_fixedPointNum + ref._fixedPointNum);
+	Fixed	add(this->toFloat() + ref.toFloat());// 바꾸는 중
 	return (add);
 }
 
 Fixed	Fixed::operator-(const Fixed &ref)
 {
-	Fixed	add(this->_fixedPointNum - ref._fixedPointNum);
+	Fixed	add(this->toFloat() - ref.toFloat());
 	return (add);
 }
 
@@ -90,7 +90,7 @@ Fixed	Fixed::operator*(const Fixed &ref)
 
 Fixed	Fixed::operator/(const Fixed &ref)
 {
-	Fixed	add(this->_fixedPointNum / ref._fixedPointNum);
+	Fixed	add(this->toFloat() / ref.toFloat());
 	return (add);
 }
 
