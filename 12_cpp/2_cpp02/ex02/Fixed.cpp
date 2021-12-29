@@ -1,4 +1,5 @@
 #include "Fixed.hpp"
+#include <cmath>
 
 Fixed::Fixed(void):_fixedPointNum(0) {}
 
@@ -7,7 +8,7 @@ Fixed::Fixed(const int num){
 }
 
 Fixed::Fixed(const float num) {
-	_fixedPointNum = (int)(num * (1 << _fractional));
+	_fixedPointNum = (int)roundf(num * (1 << _fractional));
 }
 
 Fixed::~Fixed(void) {}
@@ -72,7 +73,7 @@ bool	Fixed::operator!=(const Fixed &ref)
 
 Fixed	Fixed::operator+(const Fixed &ref)
 {
-	Fixed	add(this->toFloat() + ref.toFloat());// 바꾸는 중
+	Fixed	add(this->toFloat() + ref.toFloat());
 	return (add);
 }
 
