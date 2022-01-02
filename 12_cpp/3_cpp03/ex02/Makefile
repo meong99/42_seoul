@@ -1,5 +1,5 @@
 NAME = FragTrap
-CC = clang++
+CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS_PATH = objs
 SRCS = \
