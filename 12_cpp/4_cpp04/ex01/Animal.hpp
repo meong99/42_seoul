@@ -18,7 +18,7 @@ public:
 
 	virtual void		makeSound(void) const;
 	std::string const	&getType(void) const;
-	virtual const Brain		*getBrain(void) const = 0;
+	virtual Brain		*getBrain(void) = 0;
 };
 
 #endif

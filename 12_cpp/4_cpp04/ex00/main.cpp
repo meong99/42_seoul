@@ -17,7 +17,7 @@ int	main(void)
 	std::cout << std::endl << "-----------except virtual keyword-----------" << std::endl << std::endl;
 
 	const WrongAnimal *pWanimal = new WrongAnimal();
-	const WrongAnimal *pWcat = new WrongCat;
+	const WrongAnimal *pWcat = new WrongCat();
 	std::cout << pWcat->getType() << " " << std::endl;
 	pWcat->makeSound();
 	std::cout << pWanimal->getType() << " " << std::endl;

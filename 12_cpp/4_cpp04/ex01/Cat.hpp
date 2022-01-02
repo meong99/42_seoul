@@ -15,7 +15,7 @@ public:
 	Cat	&operator=(const Cat &ref);
 
 	virtual void	makeSound(void) const;
-	virtual const Brain		*getBrain(void) const;
+	virtual Brain		*getBrain(void);
 };
 
 

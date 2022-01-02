@@ -21,13 +21,14 @@ int	main(void)
 
 	system("leaks Brain");
 
-	std::cout << std::endl << "----------check deep copy for dog----------" << std::endl << std::endl;
+	std::cout << std::endl << "----------check dog's deep copy----------" << std::endl << std::endl;
 	
 	Dog	dogtest;
 	sleep(1);
 	Dog	dogtest_2 = dogtest;
 	sleep(1);
 	Dog	dogtest3;
+	dogtest.getBrain()->setIdea(0, "😎");
 	for (size_t i = 0; i < 50; i++)
 		std::cout << dogtest.getBrain()->getIdea(i);
 	std::cout << std::endl;
@@ -38,13 +39,14 @@ int	main(void)
 		std::cout << dogtest3.getBrain()->getIdea(i);
 	std::cout << std::endl;
 
-	std::cout << std::endl << "----------check deep copy for cat----------" << std::endl << std::endl;
+	std::cout << std::endl << "----------check cat's deep copy----------" << std::endl << std::endl;
 
 	Cat	cattest;
 	sleep(1);
 	Cat	cattest_2 = cattest;
 	sleep(1);
 	Cat	cattest3;
+	cattest.getBrain()->setIdea(0, "🤬");
 	for (size_t i = 0; i < 50; i++)
 		std::cout << cattest.getBrain()->getIdea(i);
 	std::cout << std::endl;
