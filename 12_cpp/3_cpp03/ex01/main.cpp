@@ -11,4 +11,7 @@ int	main(void)
 	champ_1.takeDamage(15);
 	champ_1.takeDamage(15);
 	champ_1.guardGate();
+	std::cout << std::endl;
+	ScavTrap	champ_2 = champ_1;
+	champ_2.takeDamage(1);
 }
