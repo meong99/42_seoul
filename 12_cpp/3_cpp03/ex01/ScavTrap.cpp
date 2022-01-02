@@ -1,12 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(void) : ClapTrap()
-{
-	this->_hp = 100;
-	this->_ep = 50;
-	this->_ad = 20;
-	std::cout << "ScavTrap " << this->_name << " created" << std::endl;
-}
+ScavTrap::ScavTrap(void) {}
 
 ScavTrap::~ScavTrap(void)
 {

@@ -1,12 +1,6 @@
 # include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(void) : ClapTrap("_Clap_name"), FragTrap(), ScavTrap()
-{
-	this->_hp = 100;
-	this->_ep = 50;
-	this->_ad = 30;
-	std::cout << "DiamondTrap " << this->_diaName << " created" << std::endl;
-}
+DiamondTrap::DiamondTrap(void) {}
 
 DiamondTrap::~DiamondTrap(void)
 {
