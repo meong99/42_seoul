@@ -16,7 +16,6 @@ int	main(void)
 	std::cout << "a-- = " << a-- << std::endl;
 	std::cout << "a = " << a << std::endl;
 
-
 	std::cout << "b = " << b << std::endl;
 	std::cout << std::endl;
 	
@@ -36,4 +35,5 @@ int	main(void)
 	std::cout << "4.2 * 2.0 = " << (Fixed(4.2f) * Fixed(2.0f)) << std::endl;
 	std::cout << "4.2 / 2.0 = " << (Fixed(4.2f) / Fixed(2.0f)) << std::endl;
 	return 0;
+
 }

@@ -11,16 +11,16 @@ private:
 
 public:
 	Fixed(void);
+	~Fixed(void);
 	Fixed(int num);
 	Fixed(float num);
-	~Fixed(void);
 	Fixed(const Fixed &copy);
 	Fixed	&operator=(const Fixed &ref);
-	
-	int		toInt( void ) const;
-	float	toFloat( void ) const;
+
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
+	int		toInt( void ) const;
+	float	toFloat( void ) const;
 };
 
 std::ostream	&operator<<(std::ostream &out, const Fixed &ref);

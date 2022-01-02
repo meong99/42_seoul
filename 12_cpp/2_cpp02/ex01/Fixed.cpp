@@ -1,4 +1,5 @@
 #include "Fixed.hpp"
+#include <cmath>
 
 Fixed::Fixed(void):_fixedPointNum(0) {
 	std::cout << "Default constructor called" << std::endl;
@@ -11,7 +12,7 @@ Fixed::Fixed(const int num){
 
 Fixed::Fixed(const float num) {
 	std::cout << "Float constructor called" << std::endl;
-	_fixedPointNum = (int)(num * (1 << _fractional));
+	_fixedPointNum = (int)roundf(num * (1 << _fractional));
 }
 
 Fixed::~Fixed(void) {
