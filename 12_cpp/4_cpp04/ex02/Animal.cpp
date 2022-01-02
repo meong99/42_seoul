@@ -21,11 +21,6 @@ Animal	&Animal::operator=(const Animal &ref)
 	return (*this);
 }
 
-void	Animal::makeSound(void) const
-{
-	std::cout << "Animalllllllllll~~~" << std::endl;
-}
-
 std::string const	&Animal::getType(void) const
 {
 	return (this->_type);
