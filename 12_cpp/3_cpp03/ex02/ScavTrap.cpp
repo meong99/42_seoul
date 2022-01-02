@@ -9,15 +9,12 @@ ScavTrap::~ScavTrap(void)
 
 ScavTrap::ScavTrap(const ScavTrap &ref) : ClapTrap(ref)
 {
-	this->_hp = 100;
-	this->_ep = 50;
-	this->_ad = 20;
 	std::cout << "ScavTrap " << this->_name << " created" << std::endl;
 }
 
 ScavTrap	&ScavTrap::operator=(const ScavTrap &ref)
 {
-	ClapTrap::operator=(ref);
+	this->ClapTrap::operator=(ref);
 	return (*this);
 }
 

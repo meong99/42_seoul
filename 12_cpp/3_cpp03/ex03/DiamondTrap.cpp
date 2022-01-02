@@ -10,10 +10,8 @@ DiamondTrap::~DiamondTrap(void)
 DiamondTrap::DiamondTrap(const DiamondTrap &ref) : ClapTrap(ref), FragTrap(ref), ScavTrap(ref)
 {
 	this->_diaName = ref._diaName;
-	this->ClapTrap::_name += "_Clap_name";
-	this->_hp = 100;
-	this->_ep = 50;
-	this->_ad = 30;
+	if (this->ClapTrap::_name.find("_Clap_name") == false)
+		this->ClapTrap::_name += "_Clap_name";
 	std::cout << "DiamondTrap " << this->_diaName << " created" << std::endl;
 }
 

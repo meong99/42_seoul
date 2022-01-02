@@ -12,4 +12,9 @@ int	main(void)
 	champ_1.takeDamage(15);
 	champ_1.guardGate();
 	champ_1.highFivesGuys();
+
+	std::cout << std::endl;
+
+	DiamondTrap	champ_2 = champ_1;
+	champ_1.takeDamage(10);
 }
