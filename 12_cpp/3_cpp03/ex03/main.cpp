@@ -16,5 +16,6 @@ int	main(void)
 	std::cout << std::endl;
 
 	DiamondTrap	champ_2 = champ_1;
+	champ_1.whoAmI();
 	champ_1.takeDamage(10);
 }
