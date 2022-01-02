@@ -1,9 +1,6 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void) : _hp(10), _ep(10), _ad(0)
-{
-	std::cout << "ClapTrap " << this->_name << " created" << std::endl;
-}
+ClapTrap::ClapTrap(void) {}
 
 ClapTrap::~ClapTrap(void)
 {
