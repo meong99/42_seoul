@@ -21,7 +21,7 @@ int	main(void)
 
 	system("leaks Brain");
 
-	std::cout << std::endl << "----------check deep copy for dog----------" << std::endl << std::endl;
+	std::cout << std::endl << "----------dog class deep copy check----------" << std::endl << std::endl;
 	
 	Dog	dogtest;
 	sleep(1);
@@ -38,7 +38,7 @@ int	main(void)
 		std::cout << dogtest3.getBrain()->getIdea(i);
 	std::cout << std::endl;
 
-	std::cout << std::endl << "----------check deep copy for cat----------" << std::endl << std::endl;
+	std::cout << std::endl << "----------cat class deep copy check----------" << std::endl << std::endl;
 
 	Cat	cattest;
 	sleep(1);
