@@ -4,7 +4,7 @@ Cure::Cure(void):AMateria("cure") {}
 
 Cure::~Cure(void) {}
 
-Cure::Cure(const Cure &ref):AMateria(ref._type) {}
+Cure::Cure(const Cure &ref):AMateria(ref) {}
 
 Cure	&Cure::operator=(const Cure &ref)
 {

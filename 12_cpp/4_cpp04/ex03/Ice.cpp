@@ -4,7 +4,7 @@ Ice::Ice(void):AMateria("ice") {}
 
 Ice::~Ice(void) {}
 
-Ice::Ice(const Ice &ref):AMateria(ref._type) {}
+Ice::Ice(const Ice &ref):AMateria(ref) {}
 
 Ice	&Ice::operator=(const Ice &ref)
 {
