@@ -20,7 +20,6 @@ int	main(void)
 		delete arr_animals[i];
 
 	system("leaks Brain");
-
 	std::cout << std::endl << "----------dog class deep copy check----------" << std::endl << std::endl;
 	
 	Dog	dogtest;
@@ -56,6 +55,5 @@ int	main(void)
 	for (size_t i = 0; i < 50; i++)
 		std::cout << cattest3.getBrain()->getIdea(i);
 	std::cout << std::endl;
-
 	system("leaks Brain");
 }
