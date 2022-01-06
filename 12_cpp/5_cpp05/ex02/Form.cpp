@@ -68,3 +68,13 @@ const char	*Form::GradeTooLowToExecute::what(void) const throw()
 {
 	return ("grade is too low to execute");
 }
+
+std::ostream	&operator<<(std::ostream &out, const Form &ref)
+{
+	out << ref.getName() << ", Form for sign " << ref.getForSign() << ", Form for execute " << ref.getForExecute();
+	if (ref.getSigned())
+		out << "Form is signed";
+	else
+		out << "Form is not signed";
+	return (out);
+}

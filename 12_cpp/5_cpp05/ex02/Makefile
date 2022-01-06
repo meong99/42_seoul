@@ -3,7 +3,7 @@ CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS_PATH = objs
 SRCS = \
-	main.cpp Bureaucrat.cpp Form.cpp
+	main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 
 OBJS_NAME = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))

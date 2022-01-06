@@ -30,6 +30,7 @@ int	main(void)
 		// bureaucrat.decrementGrade();
 		{
 			Form	form("first", 42, 42);
+			std::cout << form << std::endl;
 			bureaucrat.signForm(form);
 		}
 		// 예외 발생
