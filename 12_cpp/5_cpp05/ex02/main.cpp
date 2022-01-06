@@ -5,7 +5,7 @@ int	main(void)
 {
 	try
 	{
-		
+		//
 	}
 	catch(const std::exception& e)
 	{
