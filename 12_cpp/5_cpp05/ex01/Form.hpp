@@ -34,11 +34,11 @@ public:
 	{
 		virtual const char	*what(void) const throw();
 	};
-	class GradeTooLowToSign : public std::exception
+	class GradeTooLowToSignException : public std::exception
 	{
 		virtual const char	*what(void) const throw();
 	};
-	class GradeTooLowToExecute : public std::exception
+	class GradeTooLowToExecuteException : public std::exception
 	{
 		virtual const char	*what(void) const throw();
 	};

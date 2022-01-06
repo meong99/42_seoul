@@ -2,19 +2,30 @@
 # define FORM_HPP
 
 # include <iostream>
-class Bureaucrat;
+# include <fstream>
+# include "Bureaucrat.hpp"
 
 class Form
 {
 private:
+	Form(void);
 	const std::string	_name;
 	const int			_forSign;
 	const int			_forExecute;
 	bool				_signed;
-	Form(void);
+	void				checkException(void) const;
+
+	class GradeTooHighException : public std::exception
+	{
+		virtual const char	*what(void) const throw();
+	};
+	class GradeTooLowException : public std::exception
+	{
+		virtual const char	*what(void) const throw();
+	};
 
 public:
-	~Form(void);
+	virtual ~Form(void);
 	Form(const Form &ref);
 	Form(const std::string &name, int forSign, int forExecute);
 	Form	&operator=(const Form &ref);
@@ -24,21 +35,18 @@ public:
 	int					getForExecute(void) const;
 	bool				getSigned(void) const;
 	void				beSigned(const Bureaucrat &ref);
-	void				checkException(void) const;
-	
-	class GradeTooHighException : public std::exception
+	void				execute(Bureaucrat const & executor) const;
+	virtual void		action(Bureaucrat const &executer) const = 0;
+
+	class GradeTooLowToSignException : public std::exception
 	{
 		virtual const char	*what(void) const throw();
 	};
-	class GradeTooLowException : public std::exception
+	class GradeTooLowToExecuteException : public std::exception
 	{
 		virtual const char	*what(void) const throw();
 	};
-	class GradeTooLowToSign : public std::exception
-	{
-		virtual const char	*what(void) const throw();
-	};
-	class GradeTooLowToExecute : public std::exception
+	class NotSignedException : public std::exception
 	{
 		virtual const char	*what(void) const throw();
 	};

@@ -1,5 +1,4 @@
 #include "Form.hpp"
-# include "Bureaucrat.hpp"
 
 Form::~Form(void) {}
 
@@ -12,8 +11,16 @@ Form::Form(const std::string &name, int forSign, int forExecute):_name(name), _f
 
 Form	&Form::operator=(const Form &ref)
 {
+	if (this == &ref) return (*this);
+
 	this->_signed = ref._signed;
 	return (*this);
+}
+
+void	Form::checkException(void) const
+{
+	if (this->_forSign < 1 || this->_forExecute < 1) throw (Form::GradeTooHighException());
+	if (this->_forSign > 150 || this->_forExecute > 150) throw (Form::GradeTooLowException());
 }
 
 const std::string	&Form::getName(void) const
@@ -39,14 +46,16 @@ bool	Form::getSigned(void) const
 void	Form::beSigned(const Bureaucrat &ref)
 {
 	if (ref.getGrade() > this->_forSign)
-		throw (Form::GradeTooLowToSign());
+		throw (Form::GradeTooLowToSignException());
 	this->_signed = true;
 }
 
-void	Form::checkException(void) const
+void	Form::execute(Bureaucrat const & executor) const
 {
-	if (this->_forSign < 1 || this->_forExecute < 1) throw (Form::GradeTooHighException());
-	if (this->_forSign > 150 || this->_forExecute > 150) throw (Form::GradeTooLowException());
+	if (this->getSigned() == false)
+		throw (Form::NotSignedException());
+	if (executor.getGrade() > this->getForExecute())
+		throw (Form::GradeTooLowToExecuteException());
 }
 
 const char	*Form::GradeTooHighException::what(void) const throw()
@@ -59,14 +68,19 @@ const char	*Form::GradeTooLowException::what(void) const throw()
 	return ("It's too low. The range of grades is 1 to 150.");
 }
 
-const char	*Form::GradeTooLowToSign::what(void) const throw()
+const char	*Form::GradeTooLowToSignException::what(void) const throw()
 {
 	return ("grade is too low to sign");
 }
 
-const char	*Form::GradeTooLowToExecute::what(void) const throw()
+const char	*Form::GradeTooLowToExecuteException::what(void) const throw()
 {
 	return ("grade is too low to execute");
+}
+
+const char	*Form::NotSignedException::what(void) const throw()
+{
+	return ("Not signed");
 }
 
 std::ostream	&operator<<(std::ostream &out, const Form &ref)

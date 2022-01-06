@@ -39,7 +39,7 @@ bool	Form::getSigned(void) const
 void	Form::beSigned(const Bureaucrat &ref)
 {
 	if (ref.getGrade() > this->_forSign)
-		throw (Form::GradeTooLowToSign());
+		throw (Form::GradeTooLowToSignException());
 	this->_signed = true;
 }
 
@@ -59,12 +59,12 @@ const char	*Form::GradeTooLowException::what(void) const throw()
 	return ("It's too low. The range of grades is 1 to 150.");
 }
 
-const char	*Form::GradeTooLowToSign::what(void) const throw()
+const char	*Form::GradeTooLowToSignException::what(void) const throw()
 {
 	return ("grade is too low to sign");
 }
 
-const char	*Form::GradeTooLowToExecute::what(void) const throw()
+const char	*Form::GradeTooLowToExecuteException::what(void) const throw()
 {
 	return ("grade is too low to execute");
 }

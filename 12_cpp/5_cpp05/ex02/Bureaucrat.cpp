@@ -25,6 +25,12 @@ std::ostream	&operator<<(std::ostream &out, const Bureaucrat &ref)
 	return (out);
 }
 
+void	Bureaucrat::checkException(void) const
+{
+	if (this->_grade > 150) throw (Bureaucrat::GradeTooLowException());
+	if (this->_grade < 1) throw (Bureaucrat::GradeTooHighException());
+}
+
 const std::string	&Bureaucrat::getName(void) const
 {
 	return (this->_name);
@@ -66,10 +72,17 @@ void	Bureaucrat::signForm(Form &ref)
 	}
 }
 
-void	Bureaucrat::checkException(void) const
+void	Bureaucrat::executeForm(Form const & form)
 {
-	if (this->_grade > 150) throw (Bureaucrat::GradeTooLowException());
-	if (this->_grade < 1) throw (Bureaucrat::GradeTooHighException());
+	try
+	{
+		form.action(*this);
+		std::cout << this->_name << " executes " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << this->_name << " cannot execute " << form.getName() << " because " << this->_name << "'s "<< e.what() << std::endl;
+	}
 }
 
 const char	*Bureaucrat::GradeTooHighException::what(void) const throw()
