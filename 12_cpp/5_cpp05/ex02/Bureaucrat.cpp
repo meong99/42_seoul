@@ -57,8 +57,6 @@ void	Bureaucrat::signForm(Form &ref)
 {
 	try
 	{
-		if (this->_grade > ref.getForExecute())
-			throw (Form::GradeTooLowToExecute());
 		ref.beSigned(*this);
 		std::cout << this->_name << " signs " << ref.getName() << std::endl;
 	}
