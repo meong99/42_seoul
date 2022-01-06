@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main(void)
 {
@@ -17,6 +18,7 @@ int	main(void)
 		std::cout << bureaucrat << std::endl;
 
 		//예외 발생
+		// Bureaucrat	bureaucrat("Bread", 1000);
 		// bureaucrat.setGrade(-123);
 
 		// bureaucrat.setGrade(500);
@@ -26,6 +28,24 @@ int	main(void)
 
 		// bureaucrat.setGrade(150);
 		// bureaucrat.decrementGrade();
+		{
+			Form	form("first", 42, 42);
+			bureaucrat.signForm(form);
+		}
+		// 예외 발생
+
+		Form	form("first", 160, 42);
+		// {
+		// 	Form	form("first", 160, 42);
+		// 	bureaucrat.signForm(form);
+		// }
+		// {
+		// 	Form	form("first", 42, 160);
+		// 	bureaucrat.signForm(form);
+		// }
+		// Form	form("first", -1, 42);
+		// Form	form("first", 42, 160);
+		// Form	form("first", 42, -1);
 	}
 	catch(const std::exception& e)
 	{

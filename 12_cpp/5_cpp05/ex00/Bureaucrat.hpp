@@ -28,10 +28,10 @@ public:
 	};
 
 	const std::string	&getName(void) const;
-	const int			&getGrade(void) const;
+	int					getGrade(void) const;
 	void				setGrade(int value);
-	void				incrementGrade() throw(Bureaucrat::GradeTooHighException);
-	void				decrementGrade() throw(Bureaucrat::GradeTooLowException);
+	void				incrementGrade();
+	void				decrementGrade();
 	
 	
 };

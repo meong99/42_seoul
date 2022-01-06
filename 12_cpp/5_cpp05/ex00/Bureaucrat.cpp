@@ -2,20 +2,13 @@
 
 Bureaucrat::~Bureaucrat(void) {}
 
-Bureaucrat::Bureaucrat(const Bureaucrat &ref):_name(ref._name), _grade(ref._grade) 
-{
-	if (this->_grade > 150) throw (Bureaucrat::GradeTooLowException());
-	if (this->_grade < 1) throw (Bureaucrat::GradeTooHighException());
-}
+Bureaucrat::Bureaucrat(const Bureaucrat &ref):_name(ref._name), _grade(ref._grade) {}
 
 Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &ref)
 {
 	if (this == &ref) return (*this);
 
 	this->_grade = ref._grade;
-	if (this->_grade > 150) throw (Bureaucrat::GradeTooLowException());
-	if (this->_grade < 1) throw (Bureaucrat::GradeTooHighException());
-
 	return (*this);
 }
 
@@ -30,7 +23,7 @@ const std::string	&Bureaucrat::getName(void) const
 	return (this->_name);
 }
 
-const int	&Bureaucrat::getGrade(void) const
+int	Bureaucrat::getGrade(void) const
 {
 	return (this->_grade);
 }
@@ -43,13 +36,13 @@ void	Bureaucrat::setGrade(int value)
 }
 
 
-void	Bureaucrat::incrementGrade(void) throw(Bureaucrat::GradeTooHighException)
+void	Bureaucrat::incrementGrade(void)
 {
 	this->_grade--;
 	if (_grade < 1) throw (Bureaucrat::GradeTooHighException());
 }
 
-void	Bureaucrat::decrementGrade(void) throw(Bureaucrat::GradeTooLowException)
+void	Bureaucrat::decrementGrade(void)
 {
 	this->_grade++;
 	if (_grade > 150) throw (Bureaucrat::GradeTooLowException());

@@ -3,6 +3,7 @@
 
 # include <iostream>
 
+class Form;
 class Bureaucrat
 {
 private:
@@ -28,12 +29,12 @@ public:
 	};
 
 	const std::string	&getName(void) const;
-	const int			&getGrade(void) const;
+	int					getGrade(void) const;
 	void				setGrade(int value);
-	void				incrementGrade() throw(Bureaucrat::GradeTooHighException);
-	void				decrementGrade() throw(Bureaucrat::GradeTooLowException);
-	
-	
+	void				signForm(Form &ref);
+	void				incrementGrade();
+	void				decrementGrade();
+	void				checkException(void) const;
 };
 
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &ref);
