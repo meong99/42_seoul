@@ -23,7 +23,7 @@ void		RobotomyRequestForm::action(Bureaucrat const &executor) const
 	this->execute(executor);
 	std::cout << "Drrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" << std::endl;
 	if ((unsigned int)time(NULL) % 2)
-		std::cout << this->_target << "has been robotomized successfully";
+		std::cout << this->_target << " has been robotomized successfully" << std::endl;
 	else
-		std::cout << this->_target << " failed to robotize";
+		std::cout << this->_target << " failed to robotize" << std::endl;
 }

@@ -22,16 +22,16 @@ private:
 	ShrubberyCreationForm(void);
 };
 
-# define ASCII_TREE "\
-    ,~    \
-    ==    \
-    *=    \
-    =~    \
-   ;=*~   \
-   ==*=   \
-   *=$~   \
-   !$-=   \
-   ====   \
+# define ASCII_TREE "\n\
+    ,~    \n\
+    ==    \n\
+    *=    \n\
+    =~    \n\
+   ;=*~   \n\
+   ==*=   \n\
+   *=$~   \n\
+   !$-=   \n\
+   ====   \n\
 "
 
 #endif

@@ -26,6 +26,7 @@ void	ShrubberyCreationForm::action(Bureaucrat const &executor) const
 	if (outStream.is_open() == false)
 		throw (std::ofstream::failure("Fialed to open " + this->_target + "_shrubbery"));
 	outStream << ASCII_TREE;
+	std::cout << executor.getName() << "create ascii tree" << std::endl;
 }
 Form		*ShrubberyCreationForm::create(const std::string &target)
 {
