@@ -1,4 +1,4 @@
-NAME = Bureaucrat
+NAME = OtherForm
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS_PATH = objs

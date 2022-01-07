@@ -10,8 +10,10 @@ public:
 	RobotomyRequestForm(const RobotomyRequestForm &ref);
 	RobotomyRequestForm(const std::string &target);
 	~RobotomyRequestForm(void);
+	RobotomyRequestForm	&operator=(const RobotomyRequestForm &ref);
 
 	virtual void		action(Bureaucrat const &executor) const;
+	static Form			*create(const std::string &target);
 
 private:
 	std::string					_target;

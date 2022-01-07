@@ -27,3 +27,8 @@ void		RobotomyRequestForm::action(Bureaucrat const &executor) const
 	else
 		std::cout << this->_target << " failed to robotize";
 }
+
+Form		*RobotomyRequestForm::create(const std::string &target)
+{
+	return (new RobotomyRequestForm(target));
+}

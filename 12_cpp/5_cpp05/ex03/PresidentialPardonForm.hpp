@@ -13,6 +13,7 @@ public:
 	~PresidentialPardonForm(void);
 	
 	virtual void		action(Bureaucrat const &executor) const;
+	static Form			*create(const std::string &target);
 
 private:
 	std::string					_target;
