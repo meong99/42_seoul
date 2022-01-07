@@ -5,7 +5,7 @@ const std::string PresidentialPardonForm::st_mName = "PresidentialPardonForm";
 PresidentialPardonForm::~PresidentialPardonForm(void) {}
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target) :
-	Form(this->st_mName, 72, 45), _target(target) {}
+	Form(this->st_mName, 25, 5), _target(target) {}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &ref) :
 	Form(ref), _target(ref._target) {}

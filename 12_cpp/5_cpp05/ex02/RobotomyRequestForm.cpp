@@ -5,7 +5,7 @@ std::string	const RobotomyRequestForm::st_mName = "RobotomyRequestForm";
 RobotomyRequestForm::~RobotomyRequestForm(void) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target) :
-	Form(this->st_mName, 25, 5), _target(target) {}
+	Form(this->st_mName, 72, 45), _target(target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &ref) :
 	Form(ref), _target(ref._target) {}

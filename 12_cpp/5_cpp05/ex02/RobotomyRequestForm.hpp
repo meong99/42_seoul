@@ -10,6 +10,7 @@ public:
 	RobotomyRequestForm(const RobotomyRequestForm &ref);
 	RobotomyRequestForm(const std::string &target);
 	~RobotomyRequestForm(void);
+	RobotomyRequestForm	&operator=(const RobotomyRequestForm &ref);
 
 	virtual void		action(Bureaucrat const &executor) const;
 
