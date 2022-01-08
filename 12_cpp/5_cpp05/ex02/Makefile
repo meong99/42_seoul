@@ -1,6 +1,6 @@
 NAME = OtherForm
 CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS_PATH = objs
 SRCS = \
 	main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp

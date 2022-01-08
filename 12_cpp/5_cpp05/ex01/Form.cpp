@@ -71,7 +71,7 @@ const char	*Form::GradeTooLowToExecuteException::what(void) const throw()
 
 std::ostream	&operator<<(std::ostream &out, const Form &ref)
 {
-	out << ref.getName() << ", Form for sign " << ref.getForSign() << ", Form for execute " << ref.getForExecute();
+	out << "name : " << ref.getName() << "\nSign : " << ref.getForSign() << "\nexecute : " << ref.getForExecute() << "\n";
 	if (ref.getSigned())
 		out << "Form is signed";
 	else
