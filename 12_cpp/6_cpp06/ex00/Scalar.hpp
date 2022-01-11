@@ -11,14 +11,14 @@ public:
 	Scalar	&operator=(const Scalar &ref);
 	~Scalar(void);
 
-	void	printToChar(std::ostream &out) const;
-	void	printToInt(std::ostream &out) const;
-	void	printToFloat(std::ostream &out) const;
-	void	printToDouble(std::ostream &out) const;
+	void	PrintToChar(std::ostream &out) const;
+	void	PrintToInt(std::ostream &out) const;
+	void	PrintToFloat(std::ostream &out) const;
+	void	PrintToDouble(std::ostream &out) const;
 
 private:
 	std::string	m_value;
-	
+
 	class ConvertException : public std::exception
 	{
 		virtual const char	*what(void) const throw();

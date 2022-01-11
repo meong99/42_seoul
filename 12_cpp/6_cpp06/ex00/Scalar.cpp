@@ -18,27 +18,28 @@ Scalar	&Scalar::operator=(const Scalar &ref)
 
 std::ostream	&operator<<(std::ostream &out, const Scalar &ref)
 {
-	ref.printToChar(out);
-	ref.printToInt(out);
-	ref.printToFloat(out);
-	ref.printToDouble(out);
+	ref.PrintToChar(out);
+	ref.PrintToInt(out);
+	ref.PrintToFloat(out);
+	ref.PrintToDouble(out);
 
 	return (out);
 }
 
-void	Scalar::printToChar(std::ostream &out) const
+void	Scalar::PrintToChar(std::ostream &out) const
 {
+	char	cValue = this->m_value[0];
+
 	out << "char : ";
 	try
 	{
-		if (this->m_value.length() > 1 || this->m_value.length() < 1)
+		int	length = static_cast<int>(this->m_value.length());
+		if (length != 1)
 			throw (Scalar::ConvertException());
-
-		int iValue = std::stoi(this->m_value);
-		if (iValue >= 127 || iValue <= 31)
+		if (static_cast<int>(cValue) >= 127 || static_cast<int>(cValue) <= 31)
 			throw ("Non displayable");
 
-		out << static_cast<char>(iValue) << std::endl;
+		out << cValue << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -50,15 +51,22 @@ void	Scalar::printToChar(std::ostream &out) const
 	}
 }
 
-void	Scalar::printToInt(std::ostream &out) const
+void	Scalar::PrintToInt(std::ostream &out) const
 {
 	out << "Int : ";
 	try
 	{
-		for (int i = 0; i < this->m_value.length(); i++)
+		int	length = static_cast<int>(this->m_value.length());
+		if (length == 0)
+			throw (Scalar::ConvertException());
+		for (int i = length - 1; i >= 0; i--)
 		{
+			if (length > 1 && i == 0 && this->m_value[i] == '-')
+				break ;
 			if (!std::isdigit(this->m_value[i]))
+			{
 				throw (Scalar::ConvertException());
+			}
 		}
 		int	iValue = std::stoi(this->m_value);
 		out << iValue << std::endl;
@@ -69,17 +77,24 @@ void	Scalar::printToInt(std::ostream &out) const
 	}
 }
 
-void	Scalar::printToFloat(std::ostream &out) const
+void	Scalar::PrintToFloat(std::ostream &out) const
 {
 	out << "Float : ";
 	try
 	{
+		int	length = static_cast<int>(this->m_value.length());
+		if (length == 0)
+			throw (Scalar::ConvertException());
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	
+}
+
+void	Scalar::PrintToDouble(std::ostream &out) const
+{
+	out << "Double : ";
 }
 
 const char	*Scalar::ConvertException::what(void) const throw()
