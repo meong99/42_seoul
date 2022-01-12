@@ -1,9 +1,9 @@
 NAME = convert
 CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror
 OBJS_PATH = objs
 SRCS = \
-	main.cpp Scalar.cpp
+	main.cpp Convert.cpp
 
 OBJS_NAME = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))

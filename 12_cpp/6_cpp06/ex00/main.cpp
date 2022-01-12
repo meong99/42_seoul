@@ -1,14 +1,14 @@
-#include "Scalar.hpp"
+#include "Convert.hpp"
 
 int	main(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		std::cerr << "You have to pass only one parameter" << std::endl;
+		std::cerr << "Put in one parameter" << std::endl;
 		return (1);
 	}
 
-	Scalar	scal(argv[1]);
+	Convert	convert(argv[1]);
 
-	std::cout << scal << std::endl;
+	std::cout << convert << std::endl;
 }
