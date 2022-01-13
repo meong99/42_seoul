@@ -3,8 +3,8 @@
 bool	Add::_getInfo( void )
 {
 	std::string infostr[5] = {
-		"last name : ",
 		"fisrt name : ",
+		"last name : ",
 		"nick name : ",
 		"phonenumber : ",
 		"secret : "};

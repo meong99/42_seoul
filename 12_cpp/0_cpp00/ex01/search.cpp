@@ -2,10 +2,9 @@
 
 void Search::_print_list(std::string str[], std::string color = WHITE, int index = 0)
 {
-	std::string infostr[4] = {
-		"index",
-		"last name",
+	std::string infostr[3] = {
 		"first name",
+		"last name",
 		"nick name"};
 
 	if (index == 0)

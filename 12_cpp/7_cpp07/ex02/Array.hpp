@@ -17,12 +17,12 @@ public:
 	Array(unsigned int n)
 	{
 		m_n = n;
-		new numbers[m_n];
+		new T[m_n];
 	};
 	Array(const Array &ref)
 	{
 		m_n = ref.m_n;
-		new numbers[m_n];
+		new T[m_n];
 	};
 	~Array(void)
 	{
@@ -38,7 +38,9 @@ public:
 	};
 	T		&operator[](int index)
 	{
-		return (numbers[i]);
+		if (index < 0 || index >= m_n)
+			throw ();
+		return (numbers[index]);
 	};
 
 	int		size(void) const;
