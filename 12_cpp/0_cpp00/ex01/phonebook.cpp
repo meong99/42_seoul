@@ -1,4 +1,4 @@
-#include "phonebook.hpp"
+#include "Phonebook.hpp"
 
 Phonebook::Phonebook( void )
 {
@@ -23,9 +23,9 @@ bool Phonebook::run_command( const std::string command )
 	if (command == "EXIT" || command == "exit")
 		is_working = _exitPhonebook();
 	else if (command == "ADD" || command == "add")
-		_add.add(_infos, _index);
+		_add.add(_contact, _index);
 	else if (command == "SEARCH" || command == "search")
-		_search.search(_infos, _index);
+		_search.search(_contact, _index);
 	else
 	{
 		if (std::cin.eof() == true)

@@ -1,13 +1,14 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-# include "add.hpp"
-# include "search.hpp"
+# include "Add.hpp"
+# include "Search.hpp"
+# include "Contact.hpp"
 
 class Phonebook
 {
 private:
-	std::string	_infos[8][5];
+	Contact		_contact;
 	Search		_search;
 	Add			_add;
 	int			_index;

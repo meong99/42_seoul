@@ -1,11 +1,4 @@
-#include "search.hpp"
-
-void Search::_print_info(std::string (&_infos)[8][5], int index)
-{
-	for (int i = 0; i < 5; i++)
-		std::cout << _infos[index][i] << std::endl;
-	std::cout << std::endl;
-}
+#include "Search.hpp"
 
 void Search::_print_list(std::string str[], std::string color = WHITE, int index = 0)
 {
@@ -32,18 +25,18 @@ void Search::_print_list(std::string str[], std::string color = WHITE, int index
 	std::cout << std::endl;
 }
 
-void Search::search(std::string (&_infos)[8][5], int _index)
+void Search::search(Contact &contect, int _index)
 {
 	std::cout << GREEN << "Contact list !" << RESET << std::endl;
-	if (_infos[0][0] == "")
+	if (contect.GetInfo(0)[0] == "")
 	{
 		std::cout << RED << "Add first ! " << RESET << std::endl;
 		return;
 	}
 	for (int i = 0; i < 8; i++)
 	{
-		if (_infos[i][0] != "")
-			_print_list(_infos[i], WHITE, i);
+		if (contect.GetInfo(i)[0] != "")
+			_print_list(contect.GetInfo(i), WHITE, i);
 	}
 	std::cout << GREEN << "Enter index of information you want to print out !" << RESET << std::endl;
 
@@ -57,5 +50,5 @@ void Search::search(std::string (&_infos)[8][5], int _index)
 		std::cout << RED << "Wrong input !" << RESET << std::endl;
 		std::cout << GREEN << "Enter index of information you want to print out !" << RESET << std::endl;
 	}
-	_print_info(_infos, index);
+	contect.PrintInfo(index);
 }

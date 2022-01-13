@@ -4,9 +4,10 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS_PATH = objs
 
 SRCS = \
-	phonebook.cpp\
-	add.cpp\
-	search.cpp\
+	Phonebook.cpp\
+	Add.cpp\
+	Search.cpp\
+	Contact.cpp\
 	main.cpp
 OBJS_NAME = $(SRCS:.cpp=.o)
 OBJS = $(addprefix $(OBJS_PATH)/, $(OBJS_NAME))

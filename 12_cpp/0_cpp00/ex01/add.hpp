@@ -3,6 +3,7 @@
 
 # include "color.h"
 # include <iostream>
+# include "Contact.hpp"
 
 class Add
 {
@@ -10,9 +11,8 @@ private	:
 	std::string	_infomation[5];
 
 	bool	_getInfo( void );
-	void	_putInfo( std::string (&_infos)[8][5] );
 public	:
-	void	add( std::string (&_infos)[8][5], int &_index );
+	void	add( Contact &contact, int &_index );
 };
 
 #endif

@@ -5,12 +5,13 @@
 # include <iostream>
 # include <iomanip>
 
+#include "Contact.hpp"
+
 class Search
 {
 private	:
 	void	_print_list(std::string str[], std::string color, int index);
-	void	_print_info(std::string (&_infos)[8][5], int index);
 public	:
-	void	search(std::string (&_infos)[8][5], int _index);
+	void	search(Contact &contect, int _index);
 };
 #endif
