@@ -2,35 +2,25 @@
 
 void	Contact::AddContact(const std::string	_infomation[5])
 {
-	for (int i = 0; i < 8; i++)
-	{
-		if (_infos[i][0] == "")
-		{
-			for (int j = 0; j < 5; j++)
-				_infos[i][j] = _infomation[j];
-			break;
-		}
-		if (i == 7)
-		{
-			for (int j = 0; j < 7; j++)
-			{
-				for (int k = 0; k < 5; k++)
-					_infos[j][k] = _infos[j + 1][k];
-			}
-			for (int k = 0; k < 5; k++)
-				_infos[7][k] = _infomation[k];
-		}
-	}
+	for (int i = 0; i < 5; i++)
+		_infos[i] = _infomation[i];
 }
 
-void	Contact::PrintInfo(int index)
+void	Contact::PrintInfo(void)
 {
 	for (int i = 0; i < 5; i++)
-		std::cout << _infos[index][i] << std::endl;
+		std::cout << _infos[i] << std::endl;
 	std::cout << std::endl;
 }
 
-std::string	*Contact::GetInfo(int index)
+std::string	*Contact::GetInfo(void)
 {
-	return (_infos[index]);
+	return (_infos);
+}
+
+bool	Contact::IsEmpty(void)
+{
+	if (_infos[0] == "")
+		return (true);
+	return (false);
 }

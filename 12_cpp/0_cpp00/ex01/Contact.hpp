@@ -6,11 +6,13 @@
 class Contact
 {
 private:
-	std::string	_infos[8][5];
+	std::string	_infos[5];
+
 public:
 	void		AddContact(const std::string	_infomation[5]);
-	void		PrintInfo(int index);
-	std::string	*GetInfo(int index);
+	void		PrintInfo(void);
+	std::string	*GetInfo(void);
+	bool		IsEmpty(void);
 };
 
 #endif

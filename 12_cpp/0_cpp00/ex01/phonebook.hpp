@@ -8,7 +8,7 @@
 class Phonebook
 {
 private:
-	Contact		_contact;
+	Contact		_contact[8];
 	Search		_search;
 	Add			_add;
 	int			_index;

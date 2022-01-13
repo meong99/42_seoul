@@ -25,18 +25,18 @@ void Search::_print_list(std::string str[], std::string color = WHITE, int index
 	std::cout << std::endl;
 }
 
-void Search::search(Contact &contect, int _index)
+void Search::search(Contact contect[8], int _index)
 {
 	std::cout << GREEN << "Contact list !" << RESET << std::endl;
-	if (contect.GetInfo(0)[0] == "")
+	if (contect[0].IsEmpty())
 	{
 		std::cout << RED << "Add first ! " << RESET << std::endl;
 		return;
 	}
 	for (int i = 0; i < 8; i++)
 	{
-		if (contect.GetInfo(i)[0] != "")
-			_print_list(contect.GetInfo(i), WHITE, i);
+		if (contect[i].IsEmpty() == false)
+			_print_list(contect[i].GetInfo(), WHITE, i);
 	}
 	std::cout << GREEN << "Enter index of information you want to print out !" << RESET << std::endl;
 
@@ -50,5 +50,5 @@ void Search::search(Contact &contect, int _index)
 		std::cout << RED << "Wrong input !" << RESET << std::endl;
 		std::cout << GREEN << "Enter index of information you want to print out !" << RESET << std::endl;
 	}
-	contect.PrintInfo(index);
+	contect[index].PrintInfo();
 }

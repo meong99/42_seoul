@@ -24,13 +24,34 @@ bool	Add::_getInfo( void )
 	return ( true );
 }
 
-void	Add::add( Contact &contact, int &_index )
+void	Add::_addInfoToContact(Contact contact[8])
+{
+	for (int i = 0; i < 8; i++)
+	{
+		if (contact[i].IsEmpty())
+		{
+			contact[i].AddContact(_infomation);
+			return ;
+		}
+		if (i == 7)
+		{
+			for (int j = 0; j < 7; j++)
+			{
+				contact[j].AddContact(contact[j + 1].GetInfo());
+			}
+			contact[7].AddContact(_infomation);
+		}
+	}
+}
+
+int	Add::add( Contact contact[8], int _index )
 {
 	if (_getInfo())
 	{
-		contact.AddContact(_infomation);
+		_addInfoToContact(contact);
 		std::cout << YELLOW << "input complete !" << RESET << std::endl << std::endl;
 		if ( _index < 8 )
-			_index++;
+			return (1);
 	}
+	return (0);
 }

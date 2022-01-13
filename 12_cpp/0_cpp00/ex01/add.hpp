@@ -11,8 +11,9 @@ private	:
 	std::string	_infomation[5];
 
 	bool	_getInfo( void );
+	void	_addInfoToContact(Contact contact[]);
 public	:
-	void	add( Contact &contact, int &_index );
+	int	add( Contact contact[8], int _index );
 };
 
 #endif
