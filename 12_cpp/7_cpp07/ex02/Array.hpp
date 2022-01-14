@@ -7,40 +7,40 @@ template <typename T>
 class Array
 {
 private:
-	T	*numbers;
+	T	*m_arr;
 	int	m_n;
 
 public:
 	Array(void)
 	{
 		m_n = 0;
-		numbers = new T[0];
+		m_arr = nullptr;
 	};
 	Array(unsigned int n)
 	{
 		m_n = n;
-		numbers = new T[m_n];
+		m_arr = new T[m_n];
 	};
 	Array(const Array &ref)
 	{
 		m_n = ref.size();
-		numbers = new T[m_n];
+		m_arr = new T[m_n];
 		for (int i = 0; i < m_n; i++)
-			numbers[i] = ref.numbers[i];
+			m_arr[i] = ref.m_arr[i];
 	};
 	~Array(void)
 	{
-		delete []numbers;
+		delete []m_arr;
 	};
 	Array	&operator=(const Array &ref)
 	{
 		if (this == &ref) return (*this);
-		delete []numbers;
+		delete []m_arr;
 		m_n = ref.size();
-		numbers = new T[m_n];
+		m_arr = new T[m_n];
 		for (int i = 0; i < ref.m_n; i++)
 		{
-			numbers[i] = ref.numbers[i];
+			m_arr[i] = ref.m_arr[i];
 		}
 		return (*this);
 	};
@@ -48,7 +48,7 @@ public:
 	{
 		if (index < 0 || index >= m_n)
 			throw (Array::OutOfRange());
-		return (numbers[index]);
+		return (m_arr[index]);
 	};
 
 	int		size(void) const
@@ -58,7 +58,7 @@ public:
 
 	T	*getArray(void)
 	{
-		return (numbers);
+		return (m_arr);
 	};
 
 	class OutOfRange : public std::exception
