@@ -17,6 +17,11 @@ int main(int, char**)
     {
         Array<int> tmp = numbers;
         Array<int> test(tmp);
+        // tmp.getArray()[0] = 1;
+        // test.getArray()[0] = 2;
+        // std::cout << tmp.getArray()[0] << std::endl;
+        // std::cout << test.getArray()[0] << std::endl;
+        // std::cout << numbers.getArray()[0] << std::endl;
     }
 
     for (int i = 0; i < MAX_VAL; i++)

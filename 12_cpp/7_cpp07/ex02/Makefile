@@ -1,6 +1,6 @@
 NAME = array
 CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 OBJS_PATH = objs
 SRCS = \
 	main.cpp
