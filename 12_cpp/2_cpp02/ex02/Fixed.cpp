@@ -13,11 +13,14 @@ Fixed::Fixed(const float num) {
 
 Fixed::~Fixed(void) {}
 
-Fixed::Fixed(const Fixed &copy):_fixedPointNum(copy._fixedPointNum) {}
+Fixed::Fixed(const Fixed &copy)
+{
+	*this = copy;
+}
 
 Fixed	&Fixed::operator=(const Fixed &ref)
 {
-	_fixedPointNum = ref._fixedPointNum;
+	_fixedPointNum = ref.getRawBits();
 	return (*this);
 }
 

@@ -6,14 +6,16 @@ Fixed::Fixed(void):_fixedPointNum(0) {
 Fixed::~Fixed(void) {
 	std::cout << "Destructor called" << std::endl;
 }
-Fixed::Fixed(const Fixed &copy):_fixedPointNum(copy._fixedPointNum) {
+Fixed::Fixed(const Fixed &copy)
+{
 	std::cout << "Copy constructor called" << std::endl;
+	*this = copy;
 }
 
 Fixed	&Fixed::operator=(const Fixed &ref)
 {
 	std::cout << "Assignation operator called" << std::endl;
-	_fixedPointNum = ref._fixedPointNum;
+	_fixedPointNum = ref.getRawBits();
 	return (*this);
 }
 
