@@ -6,7 +6,8 @@
 int	main(void)
 {
 	int					arr[] = {1, 2, 3, 4, 5};
-	std::vector<int>	vec(arr, arr + sizeof(arr) / sizeof(int));
+	std::vector<int>	vec;
+	vec.insert(vec.begin(), arr, arr + sizeof(arr) / sizeof(int));
 
 	for (std::vector<int>::iterator	iter = vec.begin(); iter != vec.end(); iter++)
 	{
@@ -16,11 +17,10 @@ int	main(void)
 	
 	try
 	{
-		std::cout << *easyfind(vec, 9) << std::endl;
+		std::cout << *easyfind(vec, 2) << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	
 }
