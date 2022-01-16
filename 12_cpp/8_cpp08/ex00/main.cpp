@@ -1,7 +1,8 @@
-#include "easyfind.hpp"
 #include <iostream>
 #include <vector>
-#include <string>
+#include <iterator>
+#include <algorithm>
+#include "easyfind.hpp"
 
 int	main(void)
 {
