@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
  
 
-# Make data base, printed on Thu Dec 30 00:42:52 2021
+# Make data base, printed on Mon Jan 17 18:48:19 2022
 
 # Variables
 
@@ -45,10 +45,9 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/qp/4scjnlhx3kq99zb6tgxkr07m0000gn/T/vscode-ipc-4f2ae308-971d-4e47-84f2-ada7145803e4.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/qp/4scjnlhx3kq99zb6tgxkr07m0000gn/T/vscode-ipc-106b20e5-d385-490d-add7-15cd1bccfa96.sock
 # environment
 VSCODE_CWD = /
- 
 # environment
 PATH = /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
 # environment
@@ -62,7 +61,7 @@ LDFLAGS = -L/opt/homebrew/opt/readline/lib
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.G4SkuDTzdc/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.GAu0rjbrnU/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -83,6 +82,7 @@ HOME = /Users/meong9
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
 VSCODE_CODE_CACHE_PATH = /Users/meong9/Library/Application Support/Code/CachedData/b3318bc0524af3d74034b8bb8a64df0ccf35549a
+ 
 # environment
 LOGNAME = meong9
 # environment
@@ -160,7 +160,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 36950
+VSCODE_PID = 37496
 # variable set hash-table stats:
 # Load=73/1024=7%, Rehash=0, Collisions=1/93=1%
 
@@ -244,6 +244,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Thu Dec 30 00:42:52 2021
+# Finished Make data base on Mon Jan 17 18:48:19 2022
 
  

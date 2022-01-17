@@ -126,14 +126,14 @@ const Fixed	Fixed::operator--(int)
 
 Fixed	&Fixed::min(Fixed &a, Fixed &b)
 {
-	if (a._fixedPointNum > b._fixedPointNum)
+	if (a > b)
 		return (b);
 	return (a);
 }
 
 Fixed	&Fixed::max(Fixed &a, Fixed &b)
 {
-	if (a._fixedPointNum < b._fixedPointNum)
+	if (a < b)
 		return (b);
 	return (a);
 }
