@@ -14,4 +14,6 @@ int	main(void)
 	std::cout << std::endl;
 	ScavTrap	champ_2 = champ_1;
 	champ_2.takeDamage(1);
+
+	return (0);
 }

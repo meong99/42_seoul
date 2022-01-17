@@ -10,4 +10,6 @@ int	main(void)
 	champ_1.attack("worm");
 	champ_1.takeDamage(15);
 	champ_1.takeDamage(15);
+
+	return (0);
 }

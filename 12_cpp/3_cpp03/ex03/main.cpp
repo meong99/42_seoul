@@ -18,4 +18,6 @@ int	main(void)
 	DiamondTrap	champ_2 = champ_1;
 	champ_1.whoAmI();
 	champ_1.takeDamage(10);
+
+	return (0);
 }
