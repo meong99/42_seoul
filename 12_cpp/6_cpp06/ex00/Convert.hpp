@@ -22,6 +22,7 @@ private:
 
 	std::string	m_value;
 
+	bool	isChar(void) const;
 	bool	isNanInf(void) const;
 	bool	isAllNumbers(void) const;
 };

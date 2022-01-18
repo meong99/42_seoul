@@ -37,6 +37,13 @@ std::ostream	&operator<<(std::ostream &out, const Convert &ref)
 	return (out);
 }
 
+bool	Convert::isChar(void) const
+{
+	if (m_value.length() == 1)
+		return (true);
+	return (false);
+}
+
 bool	Convert::isNanInf(void) const
 {
 	if (!m_value.compare("nan") || !m_value.compare("nanf") ||
@@ -74,6 +81,8 @@ bool	Convert::isAllNumbers(void) const
 
 bool	Convert::IsImpossible(void) const
 {
+	if (isChar())
+		return (false);
 	if (isNanInf())
 		return (false);
 	if(isAllNumbers())
@@ -86,7 +95,12 @@ void	Convert::PrintToChar(std::ostream &out) const
 	out << "char : ";
 	try
 	{
-		int	to_int = std::stoi(m_value);
+		int	to_int;
+
+		if (!isChar())
+			to_int = std::stoi(m_value);
+		else
+			to_int = static_cast<int>(m_value[0]);
 		if (to_int > 255 || to_int < 0)
 			throw ("impossible");
 		if (!isprint(to_int))
