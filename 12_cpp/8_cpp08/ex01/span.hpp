@@ -1,24 +1,39 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
 
-# include <iostream>
 # include <vector>
+# include <iostream>
 
-class span
+class Span
 {
 private:
-	span(void);
-	unsigned int		m_size;
-	std::vector<int>	m_saved;
-public:
-	span(const span& copy);
-	span(unsigned int N);
-	~span(void);
-	span&	operator=(const span& copy);
+	Span(void);
+	unsigned int		_size;
+	std::vector<int>	_vec;
 
-	void			addNumber(int num);
-	void			setSize(unsigned int size);
-	unsigned int	getSize(void) const;
+public:
+	Span(const Span& copy);
+	Span(unsigned int N);
+	~Span(void);
+	Span&	operator=(const Span& copy);
+
+	void					setSize(unsigned int size);
+	unsigned int			getSize(void) const;
+	const std::vector<int>	&getVector(void) const;
+
+	void	addNumber(int num);
+	void	addNumber(const std::vector<int>::iterator &begin, const std::vector<int>::iterator &end);
+	long	shortestSpan(void);
+	long	longestSpan(void);
+
+	class	FullException : public std::exception
+	{
+		virtual const char	*what(void) const throw();
+	};
+	class	NotenoughException : public std::exception
+	{
+		virtual const char	*what(void) const throw();
+	};
 };
 
 #endif
