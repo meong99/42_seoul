@@ -7,7 +7,7 @@ WrongAnimal::WrongAnimal(void) : _type("WrongAnimal")
 
 WrongAnimal::~WrongAnimal(void)
 {
-	std::cout << "Destroy " << this->_type << "class" << std::endl;
+	std::cout << "Destroy " << "WrongAnimal(" << this->_type << ")" << "class" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &ref) : _type(ref._type)

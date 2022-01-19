@@ -7,7 +7,7 @@ Animal::Animal(void) : _type("Animal")
 
 Animal::~Animal(void)
 {
-	std::cout << "Destroy " << this->_type << "class" << std::endl;
+	std::cout << "Destroy " << "Animal(" << this->_type << ")" << "class" << std::endl;
 }
 
 Animal::Animal(const Animal &ref) : _type(ref._type)

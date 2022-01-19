@@ -11,7 +11,7 @@ protected:
 	std::string	_type;
 public:
 	Animal(void);
-	~Animal(void);
+	virtual ~Animal(void);
 	Animal(const Animal &ref);
 	Animal	&operator=(const Animal &ref);
 
