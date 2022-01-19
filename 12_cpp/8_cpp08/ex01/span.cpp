@@ -45,7 +45,7 @@ void	Span::addNumber(int	num)
 
 void	Span::addNumber(const std::vector<int>::iterator &begin, const std::vector<int>::iterator &end)
 {
-	if (static_cast<size_t>(_size) - _vec.size() < static_cast<size_t>(end - begin))
+	if (std::distance(begin, end) + _vec.size() > _size)
 		throw (Span::FullException());
 	_vec.insert(_vec.begin() + _vec.size(), begin, end);
 }
@@ -59,11 +59,11 @@ long	Span::shortestSpan(void)
 	std::vector<int>::iterator	first = tmp.begin();
 	std::vector<int>::iterator	next = ++tmp.begin();
 
-	long	shortest = (long)*next - *first;
+	long	shortest = static_cast<long>(*next - *first);
 	while (next != tmp.end())
 	{
-		if ((long)*next - *first < shortest)
-			shortest = (long)*next - *first;
+		if (static_cast<long>(*next - *first) < shortest)
+			shortest = static_cast<long>(*next - *first);
 		++first;
 		++next;
 	}
@@ -74,7 +74,7 @@ long	Span::longestSpan(void)
 {
 	if (_vec.size() < 2)
 		throw (Span::NotenoughException());
-	long	longest = (long)*std::max_element(_vec.begin(), _vec.end()) -
+	long	longest = static_cast<long>(*std::max_element(_vec.begin(), _vec.end())) -
 					*std::min_element(_vec.begin(), _vec.end());
 	return (longest);
 }
