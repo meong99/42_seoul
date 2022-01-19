@@ -1,6 +1,9 @@
 #ifndef EASTFIND_HPP
 # define EASTFIND_HPP
 
+# include <iostream>
+# include <algorithm>
+
 class	NotFoundException : public std::exception
 {
 	virtual const char *what(void) const throw()
