@@ -17,7 +17,7 @@ public:
 
 private:
 	std::string					_target;
-	static const std::string	st_mNamea;
+	static const std::string	st_mName;
 
 	ShrubberyCreationForm(void);
 };

@@ -5,7 +5,7 @@ const std::string ShrubberyCreationForm::st_mName = "ShrubberyCreationForm";
 ShrubberyCreationForm::~ShrubberyCreationForm(void) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) :
-	Form(this->st_mName, 145, 137), _target(target) {}
+	Form(st_mName, 145, 137), _target(target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &ref) :
 	Form(ref), _target(ref._target) {}
