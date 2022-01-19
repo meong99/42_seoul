@@ -9,14 +9,13 @@ void test_list(void)
 	MutantStack<int, std::list<int> > mstack;
 	mstack.push(5);
 	mstack.push(17);
-	std::cout << mstack.top() << std::endl; // 17
+	std::cout << mstack.top() << std::endl;
 	mstack.pop();
-	std::cout << mstack.size() << std::endl; // 1
+	std::cout << mstack.size() << std::endl;
 	mstack.push(3);
 	mstack.push(5);
 	mstack.push(737);
-	//[...]
-	mstack.push(0); // [5,3,5,737,0]
+	mstack.push(0);
 	MutantStack<int, std::list<int> >::iterator it = mstack.begin();
 	MutantStack<int, std::list<int> >::iterator ite = mstack.end();
 	++it;
@@ -25,7 +24,7 @@ void test_list(void)
 	{
 		std::cout << *it << std::endl;
 		++it;
-	} // 5 3 5 737 0
+	}
 	std::stack<int, std::list<int> > s(mstack);
 }
 
@@ -35,14 +34,13 @@ void test_reverse_it(void)
 	MutantStack<std::string> mstack;
 	mstack.push("one");
 	mstack.push("two");
-	std::cout << mstack.top() << std::endl; // "two"
+	std::cout << mstack.top() << std::endl;
 	mstack.pop();
-	std::cout << mstack.size() << std::endl; // 1
+	std::cout << mstack.size() << std::endl;
 	mstack.push("three");
 	mstack.push("four");
 	mstack.push("five");
-	//[...]
-	mstack.push("six"); // [one, three, four, five, six]
+	mstack.push("six");
 	MutantStack<std::string>::reverse_iterator rit = mstack.rbegin();
 	MutantStack<std::string>::reverse_iterator rite = mstack.rend();
 	++rit;
