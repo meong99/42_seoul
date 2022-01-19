@@ -59,11 +59,11 @@ long	Span::shortestSpan(void)
 	std::vector<int>::iterator	first = tmp.begin();
 	std::vector<int>::iterator	next = ++tmp.begin();
 
-	long	shortest = static_cast<long>(*next - *first);
+	long	shortest = static_cast<long>(*next) - *first;
 	while (next != tmp.end())
 	{
-		if (static_cast<long>(*next - *first) < shortest)
-			shortest = static_cast<long>(*next - *first);
+		if (static_cast<long>(*next) - *first < shortest)
+			shortest = static_cast<long>(*next) - *first;
 		++first;
 		++next;
 	}
