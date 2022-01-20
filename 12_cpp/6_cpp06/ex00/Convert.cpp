@@ -9,7 +9,7 @@ Convert::Convert(const Convert &ref) : m_str(ref.m_str), m_value(ref.m_value), m
 
 Convert::Convert(const std::string &value) : m_str(value), m_value(atof(value.c_str()))
 {
-	if (value.length() == 1)
+	if (value.length() == 1 && !(value[0] >= '0' && value[0] <= '9'))
 		m_char = value[0];
 	else
 		m_char = -1;
