@@ -11,7 +11,6 @@ public:
 	Convert	&operator=(const Convert &ref);
 	~Convert(void);
 
-	bool	IsImpossible(void) const;
 	void	PrintToChar(std::ostream &out) const;
 	void	PrintToInt(std::ostream &out) const;
 	void	PrintToFloat(std::ostream &out) const;
@@ -20,11 +19,9 @@ public:
 private:
 	Convert(void);
 
-	std::string	m_value;
-
-	bool	isChar(void) const;
-	bool	isNanInf(void) const;
-	bool	isAllNumbers(void) const;
+	std::string	m_str;
+	double		m_value;
+	char		m_char;
 };
 
 std::ostream	&operator<<(std::ostream &out , const Convert &ref);

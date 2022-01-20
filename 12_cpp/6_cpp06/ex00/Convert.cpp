@@ -5,89 +5,33 @@ Convert::Convert(void) {}
 
 Convert::~Convert(void) {}
 
-Convert::Convert(const Convert &ref) : m_value(ref.m_value) {}
+Convert::Convert(const Convert &ref) : m_str(ref.m_str), m_value(ref.m_value), m_char(ref.m_char) {}
 
-Convert::Convert(const std::string &value) : m_value(value) {}
+Convert::Convert(const std::string &value) : m_str(value), m_value(atof(value.c_str()))
+{
+	if (value.length() == 1)
+		m_char = value[0];
+	else
+		m_char = -1;
+}
 
 Convert	&Convert::operator=(const Convert &ref)
 {
 	if (this == &ref) return (*this);
 
+	m_str = ref.m_str;
 	m_value = ref.m_value;
+	m_char = m_char;
 	return (*this);
 }
 
 std::ostream	&operator<<(std::ostream &out, const Convert &ref)
 {
-	try
-	{
-		ref.IsImpossible();
-		ref.PrintToChar(out);
-		ref.PrintToInt(out);
-		ref.PrintToFloat(out);
-		ref.PrintToDouble(out);
-	}
-	catch(...)
-	{
-		out << "char : " << "impossible" << std::endl;
-		out << "int : " << "impossible" << std::endl;
-		out << "float : " << "impossible" << std::endl;
-		out << "double : " << "impossible";
-	}
+	ref.PrintToChar(out);
+	ref.PrintToInt(out);
+	ref.PrintToFloat(out);
+	ref.PrintToDouble(out);
 	return (out);
-}
-
-bool	Convert::isChar(void) const
-{
-	if (m_value.length() == 1)
-		return (true);
-	return (false);
-}
-
-bool	Convert::isNanInf(void) const
-{
-	if (!m_value.compare("nan") || !m_value.compare("nanf") ||
-		!m_value.compare("inf") || !m_value.compare("inff") ||
-		!m_value.compare("-inf") || !m_value.compare("-inff") ||
-		!m_value.compare("+inf") || !m_value.compare("+inff"))
-		return (true);
-	return (false);
-}
-
-bool	Convert::isAllNumbers(void) const
-{
-	int		length = static_cast<int>(m_value.length());
-	int		point = 0;
-	bool	minus = false;
-
-	if (m_value[0] == '-')
-		minus = true;
-
-	for (int i = 0; i < length; i++)
-	{
-		if (i == 0 && minus)
-			i++;
-		if (m_value[i] == '.')
-			point++;
-		if (i == length - 1 && m_value[i] == 'f')
-			break ;
-		if (m_value[i] != '.' && !isdigit(m_value[i]))
-			return (false);
-	}
-	if (point > 1)
-		return (false);
-	return (true);
-}
-
-bool	Convert::IsImpossible(void) const
-{
-	if (isChar())
-		return (false);
-	if (isNanInf())
-		return (false);
-	if(isAllNumbers())
-		return (false);
-	throw ("impossible");
 }
 
 void	Convert::PrintToChar(std::ostream &out) const
@@ -95,17 +39,17 @@ void	Convert::PrintToChar(std::ostream &out) const
 	out << "char : ";
 	try
 	{
-		int	to_int;
-
-		if (!isChar())
-			to_int = std::stoi(m_value);
-		else
-			to_int = static_cast<int>(m_value[0]);
-		if (to_int > 255 || to_int < 0)
+		if (m_char == -1 && (isnan(m_value) || m_value > CHAR_MAX || m_value < CHAR_MIN ||
+			(m_value == 0 && m_str[0] != '0')))
 			throw ("impossible");
-		if (!isprint(to_int))
+
+		char	to_char;
+		to_char = static_cast<char>(m_value);
+		if (m_char != -1)
+			to_char = m_char;
+		if (!isprint(to_char))
 			throw ("Non displayable");
-		out << '\'' << static_cast<char>(to_int) << '\'' << std::endl;
+		out << '\'' << to_char << '\'' << std::endl;
 	}
 	catch (const char *str)
 	{
@@ -122,7 +66,11 @@ void	Convert::PrintToInt(std::ostream &out) const
 	out << "Int : ";
 	try
 	{
-		int	to_int = std::stoi(m_value);
+		if (isnan(m_value) || m_value > INT_MAX || m_value < INT_MIN ||
+			(m_value == 0 && m_str[0] != '0'))
+			throw ("impossible");
+
+		int	to_int = static_cast<int>(m_value);
 		out << to_int << std::endl;
 	}
 	catch(...)
@@ -136,7 +84,10 @@ void	Convert::PrintToFloat(std::ostream &out) const
 	out << "Float : ";
 	try
 	{
-		float	to_float = std::stof(m_value);
+		float	to_float = static_cast<float>(m_value);
+		if ((!isinf(to_float) && !isnan(to_float) && (m_value > __FLT_MAX__ || m_value < -__FLT_MAX__)) || 
+			(m_value == 0 && m_str[0] != '0'))
+			throw ("impossible");
 		out << to_float;
 		if (!isnan(to_float) && to_float - static_cast<int>(to_float) == 0)
 			out << ".0";
@@ -153,9 +104,10 @@ void	Convert::PrintToDouble(std::ostream &out) const
 	out << "Double : ";
 	try
 	{
-		double	to_double = std::stod(m_value);
-		out << to_double;
-		if (!isnan(to_double) && to_double - static_cast<int>(to_double) == 0)
+		if (m_value == 0 && m_str[0] != '0')
+			throw ("impossible");
+		out << m_value;
+		if (!isnan(m_value) && m_value - static_cast<int>(m_value) == 0)
 			out << ".0";
 	}
 	catch(...)
