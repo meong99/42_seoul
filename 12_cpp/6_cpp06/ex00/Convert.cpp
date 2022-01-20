@@ -21,7 +21,7 @@ Convert	&Convert::operator=(const Convert &ref)
 
 	m_str = ref.m_str;
 	m_value = ref.m_value;
-	m_char = m_char;
+	m_char = ref.m_char;
 	return (*this);
 }
 
