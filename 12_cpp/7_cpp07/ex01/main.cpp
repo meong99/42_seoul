@@ -9,7 +9,7 @@ void	ft_print(const T &element)
 
 int	main(void)
 {
-	std::string s_arr[5] = {"hello", "42", "seoul", "mchae", "world"};
+	std::string s_arr[5] = {"hello", "42", "seoul", "sohelee", "world"};
 	int			i_arr[6] = {1, 2, 3, 4, 5, 6};
 
 	std::cout << "------string------" << std::endl;
