@@ -7,8 +7,8 @@ template <typename T>
 class Array
 {
 private:
-	T	*m_arr;
-	int	m_n;
+	T				*m_arr;
+	unsigned int	m_n;
 
 public:
 	Array(void)
@@ -51,7 +51,7 @@ public:
 		return (m_arr[index]);
 	};
 
-	int		size(void) const
+	unsigned int	size(void) const
 	{
 		return (m_n);
 	};

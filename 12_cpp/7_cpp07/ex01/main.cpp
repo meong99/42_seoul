@@ -16,4 +16,6 @@ int	main(void)
 	iter(s_arr, 5, ft_print);
 	std::cout << "------int------" << std::endl;
 	iter(i_arr, 6, ft_print);
+
+	return (0);
 }
