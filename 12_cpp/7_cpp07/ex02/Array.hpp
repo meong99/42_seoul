@@ -14,7 +14,7 @@ public:
 	Array(void)
 	{
 		m_n = 0;
-		m_arr = nullptr;
+		m_arr = new T[m_n];
 	};
 	Array(unsigned int n)
 	{
