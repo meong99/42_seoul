@@ -8,7 +8,8 @@ int	main(void)
 {
 	int					arr[] = {1, 2, 3, 4, 5};
 	std::vector<int>	vec;
-	vec.insert(vec.begin(), arr, arr + sizeof(arr) / sizeof(int));
+	for (size_t i = 0; i < sizeof(arr) / sizeof(int); i++)
+		vec.push_back(arr[i]);
 
 	for (std::vector<int>::iterator	iter = vec.begin(); iter != vec.end(); iter++)
 	{
