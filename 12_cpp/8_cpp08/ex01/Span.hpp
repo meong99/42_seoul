@@ -23,7 +23,13 @@ public:
 	const std::vector<int>	&getVector(void) const;
 
 	void	addNumber(int num);
-	void	addNumber(const std::vector<int>::iterator &begin, const std::vector<int>::iterator &end);
+	template <typename T>
+	void	addNumber(const T &begin, const T &end)
+	{
+		if (std::distance(begin, end) + _vec.size() > _size)
+			throw (FullException());
+		_vec.insert(_vec.begin() + _vec.size(), begin, end);
+	}
 	long	shortestSpan(void);
 	long	longestSpan(void);
 
