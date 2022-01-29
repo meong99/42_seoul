@@ -25,7 +25,7 @@ public:
 	{
 		m_n = ref.size();
 		m_arr = new T[m_n];
-		for (int i = 0; i < m_n; i++)
+		for (unsigned int i = 0; i < m_n; i++)
 			m_arr[i] = ref.m_arr[i];
 	};
 	~Array(void)
@@ -38,7 +38,7 @@ public:
 		delete []m_arr;
 		m_n = ref.size();
 		m_arr = new T[m_n];
-		for (int i = 0; i < ref.m_n; i++)
+		for (unsigned int i = 0; i < ref.m_n; i++)
 		{
 			m_arr[i] = ref.m_arr[i];
 		}
@@ -46,7 +46,7 @@ public:
 	};
 	T		&operator[](int index)
 	{
-		if (index < 0 || index >= m_n)
+		if (index < 0 || index >= static_cast<int>(m_n))
 			throw (Array::OutOfRange());
 		return (m_arr[index]);
 	};
