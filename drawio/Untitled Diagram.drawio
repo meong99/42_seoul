@@ -1,28 +1,33 @@
-<mxfile host="app.diagrams.net" modified="2022-02-05T05:45:45.355Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36" etag="K9AVQmCG1CWFVSBd0zMg" version="16.2.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-05T06:07:40.694Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36" etag="fJWhbizj5xCoaTCcdGNC" version="16.2.6" type="github">
   <diagram id="NEwX0GINdfbFj0cJLXgC" name="Page-1">
-    <mxGraphModel dx="213" dy="341" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="1075" dy="504" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="d1wSOaY1Rt4tFcjzDiCB-96" value="ByteBuffer" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fontColor=none;strokeColor=default;" vertex="1" parent="1">
-          <mxGeometry x="10" y="310" width="160" height="236" as="geometry" />
+        <mxCell id="d1wSOaY1Rt4tFcjzDiCB-96" value="ByteBuffer" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fontColor=none;strokeColor=default;" parent="1" vertex="1">
+          <mxGeometry x="40" y="30" width="480" height="580" as="geometry" />
         </mxCell>
-        <mxCell id="d1wSOaY1Rt4tFcjzDiCB-100" value="Private variable" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;fontColor=none;" vertex="1" parent="d1wSOaY1Rt4tFcjzDiCB-96">
-          <mxGeometry y="26" width="160" height="120" as="geometry">
-            <mxRectangle y="26" width="160" height="30" as="alternateBounds" />
+        <mxCell id="8qMU7OTORDwylD3JnRRq-5" value="Private Variable" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" collapsed="1" parent="d1wSOaY1Rt4tFcjzDiCB-96">
+          <mxGeometry y="26" width="480" height="30" as="geometry">
+            <mxRectangle y="26" width="300" height="120" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="d1wSOaY1Rt4tFcjzDiCB-101" value="unsigned int rpos, wpos" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;fontColor=none;noLabel=1;labelBorderColor=none;" vertex="1" parent="d1wSOaY1Rt4tFcjzDiCB-100">
-          <mxGeometry y="30" width="160" height="90" as="geometry" />
+        <mxCell id="8qMU7OTORDwylD3JnRRq-6" value="unsigned int    rpos, wpos" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="8qMU7OTORDwylD3JnRRq-5">
+          <mxGeometry y="30" width="300" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="d1wSOaY1Rt4tFcjzDiCB-97" value="Item 1" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontColor=none;" vertex="1" parent="d1wSOaY1Rt4tFcjzDiCB-96">
-          <mxGeometry y="146" width="160" height="30" as="geometry" />
+        <mxCell id="8qMU7OTORDwylD3JnRRq-8" value="Private Function" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" collapsed="1" parent="d1wSOaY1Rt4tFcjzDiCB-96">
+          <mxGeometry y="56" width="480" height="30" as="geometry">
+            <mxRectangle y="56" width="300" height="120" as="alternateBounds" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="d1wSOaY1Rt4tFcjzDiCB-98" value="Item 2" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontColor=none;" vertex="1" parent="d1wSOaY1Rt4tFcjzDiCB-96">
-          <mxGeometry y="176" width="160" height="30" as="geometry" />
+        <mxCell id="8qMU7OTORDwylD3JnRRq-9" value="T read(void);&#xa;T read(unsigned int index) const;&#xa;void append(T data);&#xa;void insert(T data, unsigned int index);&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="8qMU7OTORDwylD3JnRRq-8">
+          <mxGeometry y="30" width="300" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="d1wSOaY1Rt4tFcjzDiCB-99" value="Item 3" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontColor=none;" vertex="1" parent="d1wSOaY1Rt4tFcjzDiCB-96">
-          <mxGeometry y="206" width="160" height="30" as="geometry" />
+        <mxCell id="8qMU7OTORDwylD3JnRRq-13" value="Public Function" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="d1wSOaY1Rt4tFcjzDiCB-96">
+          <mxGeometry y="86" width="480" height="494" as="geometry" />
+        </mxCell>
+        <mxCell id="8qMU7OTORDwylD3JnRRq-14" value="ByteBuffer(unsigned int size = DEFAULT_SIZE);&#xa;ByteBuffer(Byte *arr, unsigned int size);&#xa;virtual ~ByteBuffer(void);&#xa;&#xa;unsigned int    bytesRemaining(void);&#xa;void                 clear(void);&#xa;ByteBuffer*      clone();&#xa;bool                 equals(ByteBuffer *other);&#xa;void                 resize(unsigned int newSize);&#xa;unsigned int    size(void);&#xa;&#xa;int        find(T key, unsigned int start = 0);&#xa;void     replace(byte key, byte rep, unsigned int start = 0, bool firstOccuranceOnly = false);&#xa;void     erase(int startPos, int endPos);&#xa;&#xa;//Read&#xa;byte     peek(void);&#xa;byte     get(void);&#xa;byte     get(unsigned int index);&#xa;void     get Bytes(byte *buf, unsigned int len);&#xa;int        getDataToString(std::string &amp;tempBody, size_t len);&#xa;char     getChar(void);&#xa;char     getChar(unsigned int index);&#xa;double getDouble(void);&#xa;double getDouble(unsigned int index);&#xa;float     getFloat(void);&#xa;float     getFloat(unsigned int index);&#xa;int        getInt(void);&#xa;int        getInt(unsigned int index);&#xa;&#xa;long     getLong(void);&#xa;long     getLong(unsigned int index);&#xa;short    getShort(void);&#xa;short    getShort(unsigned int index);&#xa;&#xa;//Write&#xa;void    put(ByteBuffer *src);&#xa;void    put(byte b);&#xa;void    put(byte b, );&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="8qMU7OTORDwylD3JnRRq-13">
+          <mxGeometry y="30" width="480" height="464" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
