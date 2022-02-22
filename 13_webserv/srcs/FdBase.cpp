@@ -16,27 +16,27 @@ FdBase::~FdBase(void)
 
 FdBase &FdBase::operator=(const FdBase &other)
 {
-	this->m_fd = other.getFd();
-	this->m_fd_type = other.getFdType();
+	m_fd = other.get_m_fd();
+	m_fd_type = other.get_m_fd_type();
 	return (*this);
 }
 
-int FdBase::getFd(void) const
+int FdBase::get_m_fd(void) const
 {
-	return (this->m_fd);
+	return (m_fd);
 }
 
-e_fd_type FdBase::getFdType(void) const
+e_fd_type FdBase::get_m_fd_type(void) const
 {
-	return (this->m_fd_type);
+	return (m_fd_type);
 }
 
-void FdBase::setFd(int fd)
+void FdBase::set_m_fd(int fd)
 {
-	this->m_fd = fd;
+	m_fd = fd;
 }
 
-void FdBase::setFdType(e_fd_type fd_type)
+void FdBase::set_m_fd_type(e_fd_type fd_type)
 {
-	this->m_fd_type = fd_type;
+	m_fd_type = fd_type;
 }

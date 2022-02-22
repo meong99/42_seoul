@@ -6,7 +6,7 @@ void signalhandler(int sigint)
 	if (sigint == 2)
 	{
 		std::cout << "signal 보내 signal  보내!!" << std::endl;
-		Config::getConfig()->getWebserv()->signalExit();
+		Config::get_m_config()->get_m_webserv()->signalExit();
 	}
 	exit(1);  // 숫자 뭐해야함?
 }
@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 {
 	Config *config;
 
-	config = Config::getConfig();
+	config = Config::get_m_config();
 	try 
 	{
 		if (argc < 2)
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 	Webserv webserv;
 
 	signal(SIGINT, signalhandler);
-	config->setWebserv(&webserv);
-	config->getWebserv()->startServer();
+	config->set_m_webserv(&webserv);
+	config->get_m_webserv()->startServer();
 	
 }

@@ -3,24 +3,24 @@
 
 Response::Response()
 {
-	this->m_return = false;
-	this->m_disconnect = false;
-	this->m_message.clear();
-	this->m_resource_path.clear();
-	this->m_location = NULL;
-	this->m_cgi_extension.clear();
-	this->m_write_idx = 0;
-	this->m_resourceList.clear();
-	this->m_fd_read = -1;
-	this->m_fd_write = -1;
+	m_return = false;
+	m_disconnect = false;
+	m_message.clear();
+	m_resource_path.clear();
+	m_location = NULL;
+	m_cgi_extension.clear();
+	m_write_idx = 0;
+	m_resourceList.clear();
+	m_fd_read = -1;
+	m_fd_write = -1;
 }
 
 Response::~Response()
 {
-	if (this->m_fd_read != -1)
-		close(this->m_fd_read);
-	if (this->m_fd_write != -1)
-		close(this->m_fd_write);
+	if (m_fd_read != -1)
+		close(m_fd_read);
+	if (m_fd_write != -1)
+		close(m_fd_write);
 	// for문 필요 
 }
 
@@ -46,108 +46,108 @@ Response& Response::operator=(const Response &other)
 	return (*this);
 }
 
-bool Response::getReturn()
+bool Response::get_m_return()
 {
 	return m_return;
 }
 
-bool Response::getDisconnect()
+bool Response::get_m_disconnect()
 {
 	return m_disconnect;
 }
 
-Client* Response::getClient()
+Client* Response::get_m_client()
 {
 	return m_client;
 }
 
-std::string& Response::getMessage()
+std::string& Response::get_m_message()
 {
 	return m_message;
 }
 
-std::string Response::getResourcePath()
+std::string Response::get_m_resource_path()
 {
 	return m_resource_path;
 }
 
-Location* Response::getLocation()
+Location* Response::get_m_location()
 {
 	return m_location;
 }
 
-std::string Response::getCgiExtension()
+std::string Response::get_m_cgi_extension()
 {
 	return m_cgi_extension;
 }
 
-size_t Response::getWriteIdx()
+size_t Response::get_m_write_idx()
 {
 	return m_write_idx;
 }
 
-int Response::getFdRead()
+int Response::get_m_fd_read()
 {
 	return m_fd_read;
 }
 
-int Response::getFdWrite()
+int Response::get_m_fd_write()
 {
 	return m_fd_write;
 }
 
-std::list<Resource *>& Response::getResourceList()
+std::list<Resource *>& Response::get_m_resourceList()
 {
 	return m_resourceList;
 }
 
 
-void Response::setReturn(bool ret)
+void Response::set_m_return(bool ret)
 {
 	m_return = ret;
 }
 
-void Response::setDisconnect(bool disconnect)
+void Response::set_m_disconnect(bool disconnect)
 {
 	m_disconnect = disconnect;
 }
 
-void Response::setClient(Client* client)
+void Response::set_m_client(Client* client)
 {
 	m_client = client;
 }
 
-void Response::setMessage(std::string message)
+void Response::set_m_message(std::string message)
 {
 	m_message = message;
 }
 
-void Response::setResourcePath(std::string path)
+void Response::set_m_resource_path(std::string path)
 {
 	m_resource_path = path;
 }
 
-void Response::setLocation(Location *location)
+void Response::set_m_location(Location *location)
 {
 	m_location = location;
 }
 
-void Response::setCgi(std::string cgi)
+void Response::set_m_cgi_extension(std::string cgi)
 {
 	m_cgi_extension = cgi;
 }
 
-void Response::setWriteIdx(size_t idx)
+void Response::set_m_write_idx(size_t idx)
 {
 	m_write_idx = idx;
 }
 
-void Response::setFdRead(int fd)
+void Response::set_m_fd_read(int fd)
 {
 	m_fd_read = fd;
 }
 
-void Response::setFdWrite(int fd)
+void Response::set_m_fd_write(int fd)
 {
 	m_fd_write = fd;
 }
@@ -166,15 +166,15 @@ void Response::makeGetResponse()
 		}
 		bool is_exist = false;
 		std::string pathwithfile;
-		for (std::vector<std::string>::iterator it = m_location->getIndexs().begin();
-			 it != m_location->getIndexs().end(); it++)
+		for (std::vector<std::string>::iterator it = m_location->get_m_indexs().begin();
+			 it != m_location->get_m_indexs().end(); it++)
 		{
 			pathwithfile = m_resource_path + (*it);
 			is_exist = isExist(pathwithfile);
 			if (is_exist == true)
 				break;
 		}
-		if (is_exist == false && m_location->getAutoIndex() == true)
+		if (is_exist == false && m_location->get_m_auto_index() == true)
 			return (makeAutoIndexPage());
 		m_resource_path = pathwithfile;
 	}
@@ -205,7 +205,7 @@ void Response::makeGetResponse()
 
 void Response::makePostResponse(void)
 {
-	if (m_client->getRequest().getBody().size() == 0)
+	if (m_client->get_m_request().get_m_body().size() == 0)
 		return (makeErrorResponse(411));
 	if (isDirectory(m_resource_path))
 	{
@@ -242,20 +242,20 @@ void Response::makePostResponse(void)
 	addContentLength(0);
 	addEmptyLine();
 	setResource(fd, WRITE_RESOURCE, MAKING_RESPONSE);
-	m_client->setCStatus(FILE_WRITING);
+	m_client->set_m_c_status(FILE_WRITING);
 }
 
 void Response::makeRedirection(void)
 {
 	m_message.clear();
-	addStatusLine(m_location->getReturnNum());
+	addStatusLine(m_location->get_m_return_num());
 	addDate();
 	addServer();
-	addLocation(m_location->getReturnUrl());
+	addLocation(m_location->get_m_return_url());
 	addEmptyLine();
 	
-	m_client->setCStatus(MAKE_RESPONSE_DONE);
-	setDisconnect(true);
+	m_client->set_m_c_status(MAKE_RESPONSE_DONE);
+	set_m_disconnect(true);
 	return ;
 }
 
@@ -284,7 +284,7 @@ void Response::makeDeleteResponse(void)
 				addServer();
 				addContentLength(0);
 				addEmptyLine();
-				m_client->setCStatus(MAKE_RESPONSE_DONE);
+				m_client->set_m_c_status(MAKE_RESPONSE_DONE);
 			}
 		}
 	}
@@ -304,10 +304,10 @@ void Response::makeErrorResponse(int errorcode)
 		addAllowMethod();
 	if (errorcode == 408)
 		m_message += "Connection: close\r\n";
-	if (m_location->getErrorPages().count(errorcode) == 0)  // default 에러 페이지 없으면
+	if (m_location->get_m_error_pages().count(errorcode) == 0)  // default 에러 페이지 없으면
 		return(addErrorBody(errorcode));
 
-	std::string resource_path = getLocation()->getErrorPages()[errorcode];
+	std::string resource_path = get_m_location()->get_m_error_pages()[errorcode];
 	struct stat sb;
 	int fd;
 	if ((fd = open(resource_path.c_str(), O_RDONLY)) < 0)
@@ -348,13 +348,13 @@ void Response::makeAutoIndexPage(void)
 	addContentLength(body.size());
 	addEmptyLine();
 	m_message += body;
-	m_client->setCStatus(MAKE_RESPONSE_DONE);
+	m_client->set_m_c_status(MAKE_RESPONSE_DONE);
 
 }
 
 void Response::makeFileList(std::string &body)
 {
-	std::string http_host_port = "http://" + m_client->getRequest().getHeadersMap()["Host"] + m_client->getRequest().getReqLocation() ;  // <host>:<port>
+	std::string http_host_port = "http://" + m_client->get_m_request().get_m_headersMap()["Host"] + m_client->get_m_request().get_m_reqlocation() ;  // <host>:<port>
     if (http_host_port[http_host_port.length()-1] != '/')
         http_host_port += "/";
     DIR *dir = NULL;
@@ -378,21 +378,21 @@ void Response::setResource(int res_fd, e_resource_type type, e_nextcall ctype, i
 {
 	Resource* res;
 	
-	Webserv* webserv = Config::getConfig()->getWebserv();
+	Webserv* webserv = Config::get_m_config()->get_m_webserv();
 
 	if (type == WRITE_RESOURCE)
 	{
-		 res = new Resource(res_fd, m_client->getRequest().getBody(), m_client, WRITE_RESOURCE, ctype, errornum);
+		 res = new Resource(res_fd, m_client->get_m_request().get_m_body(), m_client, WRITE_RESOURCE, ctype, errornum);
 		 m_resourceList.push_back(res);
 		 webserv->addFdPool(dynamic_cast<FdBase*>(res));
-		 webserv->change_events(webserv->getChangeList(), res_fd, EVFILT_WRITE, EV_ADD | EV_ENABLE, 0, 0, NULL);
+		 webserv->change_events(webserv->get_m_change_list(), res_fd, EVFILT_WRITE, EV_ADD | EV_ENABLE, 0, 0, NULL);
 	}
 	else if (type == READ_RESOURCE)
 	{
 		res = new Resource(res_fd, m_message, m_client, READ_RESOURCE, ctype, errornum);
 		m_resourceList.push_back(res);
 		webserv->addFdPool(dynamic_cast<FdBase *>(res));
-		webserv->change_events(webserv->getChangeList(), res_fd, EVFILT_READ, EV_ADD | EV_ENABLE, 0, 0, NULL);  
+		webserv->change_events(webserv->get_m_change_list(), res_fd, EVFILT_READ, EV_ADD | EV_ENABLE, 0, 0, NULL);  
 	}
 }
 

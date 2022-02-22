@@ -26,20 +26,20 @@ class Client;
 class Response 
 {
 	private:
-		bool m_return;
-		bool m_disconnect;
-		Client *m_client;
+		bool	m_return;
+		bool	m_disconnect;
+		Client*	m_client;
 
-		std::string m_message;
-		std::string m_resource_path;
-		Location *m_location;
+		std::string	m_message;
+		std::string	m_resource_path;
+		Location*	m_location;
 
-		std::string m_cgi_extension;
-		size_t m_write_idx;
-		std::list<Resource *> m_resourceList;
+		std::string				m_cgi_extension;
+		size_t					m_write_idx;
+		std::list<Resource *>	m_resourceList;
 
-		int m_fd_read;
-		int m_fd_write;
+		int	m_fd_read;
+		int	m_fd_write;
 
 	public:
 		Response();
@@ -48,59 +48,60 @@ class Response
 		Response &operator=(const Response &other);
 
 		//get
-		bool getReturn();
-		bool getDisconnect();
-		Client* getClient();
-		std::string& getMessage();
-		std::string getResourcePath();
-		Location* getLocation();
-		std::string getCgiExtension();
-		size_t getWriteIdx();
-		int getFdRead();
-		int getFdWrite();
-		std::list<Resource *>& getResourceList();
+		bool					get_m_return();
+		bool					get_m_disconnect();
+		Client*					get_m_client();
+		std::string&			get_m_message();
+		std::string				get_m_resource_path();
+		Location*				get_m_location();
+		std::string				get_m_cgi_extension();
+		size_t					get_m_write_idx();
+		int						get_m_fd_read();
+		int						get_m_fd_write();
+		std::list<Resource *>&	get_m_resourceList();
 
 		//set
-		void setReturn(bool);
-		void setDisconnect(bool);
-		void setClient(Client* client);
-		void setMessage(std::string message);
-		void setResourcePath(std::string path);
-		void setLocation(Location *location);
-		void setCgi(std::string cgi);
-		void setWriteIdx(size_t idx);
-		void setFdRead(int fd);
-		void setFdWrite(int fd);
-		void setResource(int res_fd, e_resource_type type, e_nextcall ctype, int errornum = -1);
+		void	set_m_return(bool);
+		void	set_m_disconnect(bool);
+		void	set_m_client(Client* client);
+		void	set_m_message(std::string message);
+		void	set_m_resource_path(std::string path);
+		void	set_m_location(Location *location);
+		void	set_m_cgi_extension(std::string cgi);
+		void	set_m_write_idx(size_t idx);
+		void	set_m_fd_read(int fd);
+		void	set_m_fd_write(int fd);
+		void	setResource(int res_fd, e_resource_type type,				\
+							e_nextcall ctype, int errornum = -1);
 
-		void makeCgiResponse(void);
-		void makeGetResponse(void);
-		void makePostResponse(void);
-		void makeRedirection(void);
-		void makeDeleteResponse(void);
-		void makeErrorResponse(int err); // 헤더 넣고 바디에 addErrorBody(errorcode) or setResource
-		void makeAutoIndexPage(void);
-		void makeFileList(std::string &body);
+		void	makeCgiResponse(void);
+		void	makeGetResponse(void);
+		void	makePostResponse(void);
+		void	makeRedirection(void);
+		void	makeDeleteResponse(void);
+		void	makeErrorResponse(int err); // 헤더 넣고 바디에 addErrorBody(errorcode) or setResource
+		void	makeAutoIndexPage(void);
+		void	makeFileList(std::string &body);
 
-		char **makeCgiEnv(void);
+		char**	makeCgiEnv(void);
 
-		void addStatusLine(int err);
-		void addDate();
-		void addContentLanguage();
-		void addContentType(std::string type);
-		void addContentLength(int size);
-		void addAllowMethod();
-		void addEmptyLine();
-		void addErrorBody(int errorcode); // 다양한 errorcode가 들어간 body 만들어서 return
-		void addDefaultErrorBody(std::string& message, int errorcode);  // 실제 errorcode body 만드는 함수
-		void addServer();
-		void addLocation(std::string &url);
-		void addWWWAuthenticate();
+		void	addStatusLine(int err);
+		void	addDate();
+		void	addContentLanguage();
+		void	addContentType(std::string type);
+		void	addContentLength(int size);
+		void	addAllowMethod();
+		void	addEmptyLine();
+		void	addErrorBody(int errorcode); // 다양한 errorcode가 들어간 body 만들어서 return
+		void	addDefaultErrorBody(std::string& message, int errorcode);  // 실제 errorcode body 만드는 함수
+		void	addServer();
+		void	addLocation(std::string &url);
+		void	addWWWAuthenticate();
 
-		bool isDirectory(std::string path);
-		bool isExist(std::string path);
+		bool	isDirectory(std::string path);
+		bool	isExist(std::string path);
 
-		void initResponse();
+		void	initResponse();
 
 };
 

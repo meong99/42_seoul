@@ -2,18 +2,18 @@
 
 Server::Server()
 {
-	this->m_fd_type = FD_SERVER;
-	this->m_port = -1;
+	m_fd_type = FD_SERVER;
+	m_port = -1;
 }
 
 Server::Server(const Server &other)
 {
-	this->m_fd = other.m_fd;
-	this->m_fd_type = other.m_fd_type;
-	this->m_ip = other.m_ip;
-	this->m_port = other.m_port;
-	this->m_server_name = other.m_server_name;
-	this->m_locationMap.insert(other.m_locationMap.begin(), other.m_locationMap.end());
+	m_fd = other.m_fd;
+	m_fd_type = other.m_fd_type;
+	m_ip = other.m_ip;
+	m_port = other.m_port;
+	m_server_name = other.m_server_name;
+	m_locationMap.insert(other.m_locationMap.begin(), other.m_locationMap.end());
 
 }
 Server::~Server()
@@ -23,55 +23,55 @@ Server::~Server()
 
 Server &Server::operator=(const Server &other)
 {
-	this->m_fd = other.m_fd;
-	this->m_fd_type = other.m_fd_type;
-	this->m_ip = other.m_ip;
-	this->m_port = other.m_port;
-	this->m_server_name = other.m_server_name;
-	if (!this->m_locationMap.empty())
+	m_fd = other.m_fd;
+	m_fd_type = other.m_fd_type;
+	m_ip = other.m_ip;
+	m_port = other.m_port;
+	m_server_name = other.m_server_name;
+	if (!m_locationMap.empty())
 	{
-		this->m_locationMap.clear();
+		m_locationMap.clear();
 	}
-	this->m_locationMap.insert(other.m_locationMap.begin(), other.m_locationMap.end());
+	m_locationMap.insert(other.m_locationMap.begin(), other.m_locationMap.end());
 	return (*this);
 }
 
-void Server::setServerName(std::string server_name)
+void Server::set_m_server_name(std::string server_name)
 {
-	this->m_server_name = server_name;
+	m_server_name = server_name;
 }
 
-void Server::setIp(std::string ip)
+void Server::set_m_ip(std::string ip)
 {
-	this->m_ip = ip;
+	m_ip = ip;
 }
 
-void Server::setPort(std::string port)
+void Server::set_m_port(std::string port)
 {
-	this->m_port = port;
+	m_port = port;
 }
 
-const std::string &Server::getServerName(void) const
+const std::string &Server::get_m_server_name(void) const
 {
-	return (this->m_server_name);
+	return (m_server_name);
 }
 
-const std::string &Server::getIp(void) const
+const std::string &Server::get_m_ip(void) const
 {
-	return (this->m_ip);
+	return (m_ip);
 }
 
-const std::string &Server::getPort(void) const
+const std::string &Server::get_m_port(void) const
 {
-	return (this->m_port);
+	return (m_port);
 }
 
-std::map<std::string, Location> &Server::getLocations()
+std::map<std::string, Location> &Server::get_m_locationMap()
 {
-	return (this->m_locationMap);
+	return (m_locationMap);
 }
 
-Location& Server::getLastLocation(void)
+Location& Server::get_last_location(void)
 {
 	std::map<std::string, Location>::iterator it = m_locationMap.end();
 	it--;
@@ -81,41 +81,41 @@ Location& Server::getLastLocation(void)
 std::ostream &operator<<(std::ostream &o, Server &server)
 {
 	o << "==========Server==========" << std::endl;
-	o << "IP: " << server.getIp() << std::endl;
-	o << "Port: " << server.getPort() << std::endl;
-	o << "Server_name: " << server.getServerName() << std::endl;
+	o << "IP: " << server.get_m_ip() << std::endl;
+	o << "Port: " << server.get_m_port() << std::endl;
+	o << "Server_name: " << server.get_m_server_name() << std::endl;
 
 	o << "----------Location----------" << std::endl;
-	for (std::map<std::string, Location>::iterator iter = server.getLocations().begin(); iter != server.getLocations().end(); iter++)
+	for (std::map<std::string, Location>::iterator iter = server.get_m_locationMap().begin(); iter != server.get_m_locationMap().end(); iter++)
 	{
 
-		o << "maxbody: " << iter->second.getMaxBodySize() << std::endl;
-		o << "returnNum: " << iter->second.getReturnNum() << std::endl;
-		o << "autoindex: " << iter->second.getAutoIndex() << std::endl;
-		o << "root: " << iter->second.getRoot() << std::endl;
-		o << "Uri: " << iter->second.getUri() << std::endl;
-		o << "authkey: " << iter->second.getAuthKey() << std::endl;
-		o << "returnUrl: " << iter->second.getReturnUrl() << std::endl;
+		o << "maxbody: " << iter->second.get_m_max_body_size() << std::endl;
+		o << "returnNum: " << iter->second.get_m_return_num() << std::endl;
+		o << "autoindex: " << iter->second.get_m_auto_index() << std::endl;
+		o << "root: " << iter->second.get_m_root() << std::endl;
+		o << "Uri: " << iter->second.get_m_uri() << std::endl;
+		o << "authkey: " << iter->second.get_m_auth_key() << std::endl;
+		o << "returnUrl: " << iter->second.get_m_return_url() << std::endl;
 
 
 		o << "AllowMethods: ";
-		for (std::vector<std::string>::iterator i = iter->second.getAllowMethods().begin(); i != iter->second.getAllowMethods().end(); i++)
+		for (std::vector<std::string>::iterator i = iter->second.get_m_allow_methods().begin(); i != iter->second.get_m_allow_methods().end(); i++)
 		{
 			o << *i << " ";
 		}
 		o << std::endl << "Indexs: ";
-		for (std::vector<std::string>::iterator i = iter->second.getIndexs().begin(); i != iter->second.getIndexs().end(); i++)
+		for (std::vector<std::string>::iterator i = iter->second.get_m_indexs().begin(); i != iter->second.get_m_indexs().end(); i++)
 		{
 			o << *i << " ";
 		}
 		o << std::endl << "ErrorPages : ";
-		for (std::map<int, std::string>::iterator i = iter->second.getErrorPages().begin(); i != iter->second.getErrorPages().end(); i++)
+		for (std::map<int, std::string>::iterator i = iter->second.get_m_error_pages().begin(); i != iter->second.get_m_error_pages().end(); i++)
 		{
 			o << (i->first) << " "<< (i->second) << " ";
 		}
 
 		o << std::endl << "Cgis : ";
-		for (std::map<std::string, std::string>::iterator i = iter->second.getCgi().begin(); i != iter->second.getCgi().end(); i++)
+		for (std::map<std::string, std::string>::iterator i = iter->second.get_m_cgi().begin(); i != iter->second.get_m_cgi().end(); i++)
 		{
 			o << (i->first) << " "<< (i->second) << " ";
 		}
@@ -128,26 +128,26 @@ std::ostream &operator<<(std::ostream &o, Server &server)
 
 Location	&Server::getPerfectLocation(std::string &uri)
 {
-	Location *ret = &(this->m_locationMap["/"]);
+	Location *ret = &(m_locationMap["/"]);
 	std::string key = "";
 	for (std::string::const_iterator iter = uri.begin(); iter != uri.end(); iter++)
 	{
 		key += *iter;
 		if (*iter == '/')
 		{
-			if (this->m_locationMap.find(key) == this->m_locationMap.end())
+			if (m_locationMap.find(key) == m_locationMap.end())
 				return (*ret);
 			else
-				ret = &(this->m_locationMap[key]);
+				ret = &(m_locationMap[key]);
 		}
 	}
 	if ( *(--key.end()) != '/') // '/'로 끝나지 않았고
 	{
 		key += '/';
-		if (this->m_locationMap.find(key) != this->m_locationMap.end())
+		if (m_locationMap.find(key) != m_locationMap.end())
 		{
 			uri = key;
-			return (this->m_locationMap[key]);
+			return (m_locationMap[key]);
 		}
 	}
 	return (*ret);

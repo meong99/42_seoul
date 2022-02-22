@@ -27,7 +27,7 @@ void Response::addStatusLine(int status)
 	std::string codemsg;
 
 	statuscode = std::to_string(status);
-	codemsg = Config::getConfig()->getStatusCodeMap()[statuscode];
+	codemsg = Config::get_m_config()->get_m_status_codeMap()[statuscode];
 	m_message += "HTTP/1.1 "+statuscode + " " + codemsg + "\r\n";
 	return ;
 }
@@ -56,10 +56,10 @@ void Response::addContentLanguage()
 void Response::addContentType(std::string type)
 {
 	std::string contenttype = "";
-	if (Config::getConfig()->getMimeTypeMap().count(type) == 0)
+	if (Config::get_m_config()->get_m_mime_typeMap().count(type) == 0)
 		contenttype = "application/octet-stream";
 	else
-		contenttype = Config::getConfig()->getMimeTypeMap()[type];
+		contenttype = Config::get_m_config()->get_m_mime_typeMap()[type];
 	m_message += "Content-Type: " + contenttype + "\r\n";
 }
 
@@ -87,12 +87,12 @@ void Response::addErrorBody(int error)
 	addContentLength(body.size());
 	addEmptyLine();
 	m_message += body;
-	m_client->setCStatus(MAKE_RESPONSE_DONE);
+	m_client->set_m_c_status(MAKE_RESPONSE_DONE);
 }
 
 void Response::addServer(void)
 {
-	std::string server_name = m_client->getServer()->getServerName();
+	std::string server_name = m_client->get_m_server()->get_m_server_name();
 	m_message += "Server: " + server_name + "\r\n";
 }
 
@@ -105,7 +105,7 @@ void Response::addLocation(std::string &url)
 void Response::addAllowMethod()
 {
 	std::string method = "";
-	for (std::vector<std::string>::iterator it = m_location->getAllowMethods().begin(); it != m_location->getAllowMethods().end(); it++)
+	for (std::vector<std::string>::iterator it = m_location->get_m_allow_methods().begin(); it != m_location->get_m_allow_methods().end(); it++)
 	{
 		method += *it;
 		method += ' ';

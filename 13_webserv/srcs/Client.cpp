@@ -2,28 +2,28 @@
 
 Client::Client()
 {
-	this->m_server = 0;
-	this->m_c_status = REQUEST_RECEIVING;
-	this->m_fd_type = FD_CLIENT;
-	this->m_fd = -1;
-	this->m_request.setClient(this);
-	this->m_response.setClient(this);
+	m_server = 0;
+	m_c_status = REQUEST_RECEIVING;
+	m_fd_type = FD_CLIENT;
+	m_fd = -1;
+	m_request.set_m_client(this);
+	m_response.set_m_client(this);
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
-	this->m_last_time =  (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	m_last_time =  (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
 Client::Client(Server *server, int c_fd)
 {
-	this->m_server = server;
-	this->m_c_status = REQUEST_RECEIVING;
-	this->m_fd_type = FD_CLIENT;
-	this->m_fd = c_fd;
-	this->m_request.setClient(this);
-	this->m_response.setClient(this);
+	m_server = server;
+	m_c_status = REQUEST_RECEIVING;
+	m_fd_type = FD_CLIENT;
+	m_fd = c_fd;
+	m_request.set_m_client(this);
+	m_response.set_m_client(this);
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
-	this->m_last_time =  (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	m_last_time =  (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 Client::~Client()
 {
@@ -37,81 +37,81 @@ Client::Client(const Client &other)
 
 Client &Client::operator=(const Client &other)
 {
-	this->m_server = other.m_server;
-	this->m_c_status = other.m_c_status;
-	this->m_fd_type = other.m_fd_type;
-	this->m_fd = other.m_fd;
+	m_server = other.m_server;
+	m_c_status = other.m_c_status;
+	m_fd_type = other.m_fd_type;
+	m_fd = other.m_fd;
 	return (*this);
 }
 
-Request &Client::getRequest(void)
+Request &Client::get_m_request(void)
 {
-	return (this->m_request);
+	return (m_request);
 }
 
-Response &Client::getResponse(void)
+Response &Client::get_m_response(void)
 {
-	return (this->m_response);
+	return (m_response);
 }
 
-e_c_status &Client::getCStatus(void)
+e_c_status &Client::get_m_c_status(void)
 {
-	return (this->m_c_status);
+	return (m_c_status);
 }
 
-unsigned long &Client::getLastTime(void)
+unsigned long &Client::get_m_last_time(void)
 {
-	return (this->m_last_time);
+	return (m_last_time);
 }
 
-Server* Client::getServer(void)
+Server* Client::get_m_server(void)
 {
-	return (this->m_server);
+	return (m_server);
 }
 
-void Client::setLastTime(unsigned long last_time)
+void Client::set_m_last_time(unsigned long last_time)
 {
-	this->m_last_time = last_time;
+	m_last_time = last_time;
 }
 
-void Client::setCStatus(e_c_status c_status)
+void Client::set_m_c_status(e_c_status c_status)
 {
-	this->m_c_status = c_status;
+	m_c_status = c_status;
 }
 
 void Client::appendOrigin(std::string newstr)
 {
-	this->getRequest().getOrigin() += newstr;
+	get_m_request().get_m_origin() += newstr;
 }
 
 bool Client::parseRequest()
 {
 	// m_request.setClient(this);  //
-	if (m_request.getRequestStatus() == HEADER_PARSING)
+	if (m_request.get_m_request_status() == HEADER_PARSING)
 	{
-		std::size_t idx = m_request.getOrigin().find("\r\n\r\n");
+		std::size_t idx = m_request.get_m_origin().find("\r\n\r\n");
 		if (idx == std::string::npos)
 			return false;
 		// m_request.makeStartLine();
 		m_request.makeHeader(); // startline, header
-		m_request.setRequestStatus(BODY_PARSING);
+		m_request.set_m_request_status(BODY_PARSING);
 	}
-	if (m_request.getRequestStatus() == BODY_PARSING)
+	if (m_request.get_m_request_status() == BODY_PARSING)
 	{
-		if ((m_request.getHeadersMap().count("Transfer-Encoding") == 1) && \
-		(m_request.getHeadersMap()["Transfer-Encoding"] == "chunked"))
+		if ((m_request.get_m_headersMap().count("Transfer-Encoding") == 1) && \
+		(m_request.get_m_headersMap()["Transfer-Encoding"] == "chunked"))
 		{
-			m_request.setRequestStatus(CHUNKED);
+			m_request.set_m_request_status(CHUNKED);
 			return (m_request.makeBody());
 		}
-		else if (m_request.getHeadersMap().count("Content-Length"))
+		else if (m_request.get_m_headersMap().count("Content-Length"))
 		{
-			m_request.setRemainBodyValue(atoi(m_request.getHeadersMap()["Content-Length"].c_str()));
-			if (m_request.getRemainBodyValue() == 0)
+			m_request.set_m_remain_body_value(atoi(m_request.get_m_headersMap()["Content-Length"].c_str()));
+			if (m_request.get_m_remain_body_value() == 0)
 			{
 				return (m_request.checkValidRequest("FINISHED"));
 			}
-			m_request.setRequestStatus(CONTENT_BODY);
+			m_request.set_m_request_status(CONTENT_BODY);
 			return (m_request.makeBody());
 		}
 		else
@@ -123,32 +123,32 @@ bool Client::parseRequest()
 
 void Client::makeResponse()
 {
-    if(m_response.getCgiExtension() != "")
+    if(m_response.get_m_cgi_extension() != "")
         return (m_response.makeCgiResponse());
-    if (m_response.getReturn()) 
+    if (m_response.get_m_return()) 
         return (m_response.makeRedirection());
     
-    if(m_request.getMethod() == "GET")
+    if(m_request.get_m_method() == "GET")
     {
-		if (getCStatus() == MAKE_RESPONSE)
+		if (get_m_c_status() == MAKE_RESPONSE)
 			m_response.makeGetResponse();
-		else if (getCStatus() == FILE_READ_DONE)
-			this->setCStatus(MAKE_RESPONSE_DONE);
+		else if (get_m_c_status() == FILE_READ_DONE)
+			set_m_c_status(MAKE_RESPONSE_DONE);
 		return ;
 	}
-	if (m_request.getMethod() == "POST")
+	if (m_request.get_m_method() == "POST")
 	{
-		if (getCStatus() == MAKE_RESPONSE)
+		if (get_m_c_status() == MAKE_RESPONSE)
 			m_response.makePostResponse();
-		else if (getCStatus() == FILE_WRITE_DONE)
-			this->setCStatus(MAKE_RESPONSE_DONE);
+		else if (get_m_c_status() == FILE_WRITE_DONE)
+			set_m_c_status(MAKE_RESPONSE_DONE);
 	}
-	if(m_request.getMethod() == "DELETE")
+	if(m_request.get_m_method() == "DELETE")
 	{
-		if (getCStatus() == MAKE_RESPONSE)
+		if (get_m_c_status() == MAKE_RESPONSE)
 			m_response.makeDeleteResponse();
-		else if (getCStatus() == FILE_READ_DONE)
-			this->setCStatus(MAKE_RESPONSE_DONE);
+		else if (get_m_c_status() == FILE_READ_DONE)
+			set_m_c_status(MAKE_RESPONSE_DONE);
 		return ;
 	}
 	

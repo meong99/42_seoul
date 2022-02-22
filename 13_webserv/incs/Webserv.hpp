@@ -32,28 +32,30 @@ class Config;
 class Webserv 
 {
 	private:
-		int m_kq;
-		struct kevent m_return_events[1024];
-		std::vector<struct kevent> m_change_list;
-		std::vector<FdBase *> m_fd_pool;
-		unsigned long m_timeout;
+		int							m_kq;
+		struct kevent				m_return_events[1024];
+		std::vector<struct kevent>	m_change_list;
+		std::vector<FdBase *>		m_fd_pool;
+		unsigned long				m_timeout;
 
 	public:
 		Webserv();
 		Webserv(const Webserv &other);
 		virtual ~Webserv();
-		Webserv &operator=(const Webserv &other);
+		Webserv	&operator=(const Webserv &other);
 
-		void startServer();
-		void testServer();
-		void change_events(std::vector<struct kevent> &change_list, uintptr_t ident, int16_t filter,
-			uint16_t flags, uint32_t fflags, intptr_t data, void *udata);
+		void	startServer();
+		void	testServer();
+		void	change_events(std::vector<struct kevent> &change_list,		\
+							  uintptr_t ident, int16_t filter,				\
+							  uint16_t flags, uint32_t fflags,				\
+							  intptr_t data, void *udata);
 
-		std::vector<struct kevent>& getChangeList();
-		void addFdPool(FdBase* res);
-		void deleteFdPool(FdBase *res);
-		void signalExit();
-		unsigned long call_time(void);
+		std::vector<struct kevent>&	get_m_change_list();
+		void						addFdPool(FdBase* res);
+		void						deleteFdPool(FdBase *res);
+		void						signalExit();
+		unsigned long				call_time(void);
 };
 
 #endif

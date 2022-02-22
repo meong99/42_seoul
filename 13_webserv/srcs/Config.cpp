@@ -126,7 +126,7 @@ Config::Config()
 
 Config::~Config()
 {
-	delete this->m_config;
+	delete m_config;
 }
 
 Config::Config(const Config &other)
@@ -136,14 +136,14 @@ Config::Config(const Config &other)
 
 Config& Config::operator=(const Config & other)
 {
-	this->m_webserv = other.m_webserv;
-	this->m_server_map = other.m_server_map;
-	this->m_mime_typeMap = other.m_mime_typeMap;
-	this->m_status_codeMap = other.m_status_codeMap;
+	m_webserv = other.m_webserv;
+	m_server_map = other.m_server_map;
+	m_mime_typeMap = other.m_mime_typeMap;
+	m_status_codeMap = other.m_status_codeMap;
 	return *this;
 }
 
-Config* Config::getConfig(void)
+Config* Config::get_m_config(void)
 {
 	if (m_config == NULL)
 	{
@@ -152,27 +152,27 @@ Config* Config::getConfig(void)
 	return m_config;
 }
 
-Webserv* Config::getWebserv()
+Webserv* Config::get_m_webserv()
 {
-	return this->m_webserv;
+	return m_webserv;
 }
 
-std::map<std::string, Server> &Config::getServerMap()
+std::map<std::string, Server> &Config::get_m_server_map()
 {
-	return this->m_server_map;
+	return m_server_map;
 }
 
-std::map<std::string, std::string> &Config::getMimeTypeMap()
+std::map<std::string, std::string> &Config::get_m_mime_typeMap()
 {
-	return this->m_mime_typeMap;
+	return m_mime_typeMap;
 }
 
-std::map<std::string, std::string> &Config::getStatusCodeMap()
+std::map<std::string, std::string> &Config::get_m_status_codeMap()
 {
-	return this->m_status_codeMap;
+	return m_status_codeMap;
 }
 
-Server* Config::getLastServer(void)
+Server* Config::get_last_server(void)
 {
 	std::map<std::string, Server>::iterator it = m_server_map.end();
 	it--;
@@ -180,9 +180,9 @@ Server* Config::getLastServer(void)
 }
 
 
-void Config::setWebserv(Webserv* webserv)
+void Config::set_m_webserv(Webserv* webserv)
 {
-	this->m_webserv = webserv;
+	m_webserv = webserv;
 }
 
 bool	Config::isKeyword(std::string keyword)
@@ -239,32 +239,32 @@ void 	Config::parsingConfig(std::string path)
 			it++;
 			std::string ip = *it;
 			std::string key = ip +":"+ port;
-			if (getServerMap().find(key) != getServerMap().end())
+			if (get_m_server_map().find(key) != get_m_server_map().end())
 			{
 				throw "Duplicated Server Ip:Port";
 			}
-			getServerMap()[key].setServerName(server_name);
-			getServerMap()[key].setIp(ip);
-			getServerMap()[key].setPort(port);
+			get_m_server_map()[key].set_m_server_name(server_name);
+			get_m_server_map()[key].set_m_ip(ip);
+			get_m_server_map()[key].set_m_port(port);
 		}
 		if (*it == "location")
 		{
-			server = getLastServer();
+			server = get_last_server();
 			it++;
 			std::string uri = *it;
-			if (server->getLocations().find(uri) != server->getLocations().end())
+			if (server->get_m_locationMap().find(uri) != server->get_m_locationMap().end())
 			{
 				throw "Duplicated Location Uri";
 			}
-			server->getLocations()[uri].setUri(uri);
-			location = &(server->getLocations()[uri]);
+			server->get_m_locationMap()[uri].set_m_uri(uri);
+			location = &(server->get_m_locationMap()[uri]);
 		}
 		if (*it == "error_page")
 		{
 			it++;
 			int ernum = std::atoi((*it).c_str());
 			it++;
-			location->getErrorPages()[ernum] = *it;
+			location->get_m_error_pages()[ernum] = *it;
 		}
 		if (*it == "allow_methods")
 		{
@@ -275,7 +275,7 @@ void 	Config::parsingConfig(std::string path)
 			gpd.push_back("DELETE");
 			while (std::find(gpd.begin(), gpd.end(), *it) != gpd.end())
 			{
-				location->getAllowMethods().push_back(*it);
+				location->get_m_allow_methods().push_back(*it);
 				it++;
 			}
 			it--;
@@ -283,14 +283,14 @@ void 	Config::parsingConfig(std::string path)
 		if (*it == "root")
 		{
 			it++;
-			location->setRoot(*it);
+			location->set_m_root(*it);
 		}
 		if (*it == "index")
 		{
 			it++;
 			while(!isKeyword(*it))
 			{
-				location->getIndexs().push_back(*it);
+				location->get_m_indexs().push_back(*it);
 				it++;
 			}
 			it--;
@@ -299,34 +299,34 @@ void 	Config::parsingConfig(std::string path)
 		{
 			it++;
 			if (*it == "on")
-				location->setAutoIndex(true);
+				location->set_m_auto_index(true);
 			else
-				location->setAutoIndex(false);
+				location->set_m_auto_index(false);
 		}
 		if (*it == "cgi_info")
 		{
 			it++;
 			std::string cgikey = *it;
 			it++;
-			location->getCgi()[cgikey] = *it;
+			location->get_m_cgi()[cgikey] = *it;
 
 		}
 		if (*it == "auth_key")
 		{
 			it++;
-			location->setAuthKey(*it);
+			location->set_m_auth_key(*it);
 		}
 		if (*it == "return")
 		{
 			it++;
-			location->setReturnNum(std::atoi((*it).c_str()));
+			location->set_m_return_num(std::atoi((*it).c_str()));
 			it++;
-			location->setReturnUrl(*it);
+			location->set_m_return_url(*it);
 		}
 		if (*it == "request_max_body_size")
 		{
 			it++;
-			location->setMaxBodySize(std::atoi((*it).c_str()));
+			location->set_m_max_body_size(std::atoi((*it).c_str()));
 		}
 
 

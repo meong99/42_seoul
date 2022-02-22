@@ -11,20 +11,20 @@ typedef enum			t_fd_type
 class FdBase
 {
 	protected:
-		int m_fd;
-		e_fd_type m_fd_type;
+		int			m_fd;
+		e_fd_type	m_fd_type;
 
 	public:
 		FdBase();
 		FdBase(const FdBase &other);
 		virtual ~FdBase();
-		FdBase &operator=(const FdBase &other);
+		FdBase&	operator=(const FdBase &other);
 
-		int getFd(void) const;
-		e_fd_type getFdType(void) const;
+		int			get_m_fd(void) const;
+		e_fd_type	get_m_fd_type(void) const;
 
-		void setFd(int fd);
-		void setFdType(e_fd_type fd_type);
+		void		set_m_fd(int fd);
+		void		set_m_fd_type(e_fd_type fd_type);
 };
 
 #endif

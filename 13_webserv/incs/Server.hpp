@@ -11,33 +11,33 @@
 class Server : public FdBase
 {
 	private: 
-		std::string m_server_name;
-		std::string m_ip;
-		std::string m_port;
-		std::map<std::string, Location> m_locationMap;
+		std::string						m_server_name;
+		std::string						m_ip;
+		std::string						m_port;
+		std::map<std::string, Location>	m_locationMap;
 
 	public:
 		Server();
 		Server(const Server &other);
 		virtual ~Server();
-		Server &operator=(const Server &other);
+		Server	&operator=(const Server &other);
 
-		void setServerName(std::string server_name);
-		void setIp(std::string ip);
-		void setPort(std::string port);
+		void	set_m_server_name(std::string server_name);
+		void	set_m_ip(std::string ip);
+		void	set_m_port(std::string port);
 
-		const std::string &getServerName(void) const;
-		const std::string &getIp(void) const;
-		const std::string &getPort(void) const;
-		std::map<std::string, Location> &getLocations();
+		const std::string				&get_m_server_name(void) const;
+		const std::string				&get_m_ip(void) const;
+		const std::string				&get_m_port(void) const;
+		std::map<std::string, Location>	&get_m_locationMap();
 		
-		Location& getLastLocation(void);
-		Location& getPerfectLocation(std::string &uri);
+		Location&	get_last_location(void);
+		Location&	getPerfectLocation(std::string &uri);
 
 		
 
 };
 
-std::ostream &operator<<(std::ostream &o, Server &server);
+std::ostream	&operator<<(std::ostream &o, Server &server);
 
 #endif

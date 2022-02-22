@@ -2,8 +2,8 @@
 
 Webserv::Webserv()
 {
-	this->m_fd_pool.resize(MAX_FD_SIZE, NULL);
-	this->m_timeout = 700000;
+	m_fd_pool.resize(MAX_FD_SIZE, NULL);
+	m_timeout = 700000;
 	std::cout << "Webserv constructor called" << std::endl;
 }
 
@@ -20,11 +20,11 @@ Webserv::~Webserv()
 
 Webserv &Webserv::operator=(const Webserv &other)
 {
-	this->m_kq = other.m_kq;
-	this->m_fd_pool = other.m_fd_pool;
+	m_kq = other.m_kq;
+	m_fd_pool = other.m_fd_pool;
 	for (int i = 0; i < MAX_FD_SIZE; i++)
 	{
-		this->m_return_events[i] = other.m_return_events[i];
+		m_return_events[i] = other.m_return_events[i];
 	}
 	return (*this);
 }
@@ -47,35 +47,35 @@ void Webserv::change_events(std::vector<struct kevent> &change_list, uintptr_t i
 
 void Webserv::startServer()
 {
-	Config* config = Config::getConfig();
+	Config* config = Config::get_m_config();
 	// std::cout << config->getServerMap().begin()->second;
 	if((m_kq = kqueue()) == -1)
 	{
 		error_handling("kqueue() error");
 	}
 
-	for (std::map<std::string, Server>::iterator it = config->getServerMap().begin(); it != config->getServerMap().end(); it++)
+	for (std::map<std::string, Server>::iterator it = config->get_m_server_map().begin(); it != config->get_m_server_map().end(); it++)
 	{
 		int serv_sock;
 		struct sockaddr_in serv_addr;
 
 		serv_sock = socket(PF_INET, SOCK_STREAM, 0); /* 서버 소켓 생성 */
-		it->second.setFd(serv_sock);
+		it->second.set_m_fd(serv_sock);
 		if (serv_sock == -1)
 			error_handling("socket() error");
 		int opt = 1;
 		setsockopt(serv_sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
 		memset(&serv_addr, 0, sizeof(serv_addr));
 		serv_addr.sin_family = AF_INET;
-		serv_addr.sin_addr.s_addr = inet_addr(it->second.getIp().c_str());
-		serv_addr.sin_port = htons(std::atoi(it->second.getPort().c_str()));
+		serv_addr.sin_addr.s_addr = inet_addr(it->second.get_m_ip().c_str());
+		serv_addr.sin_port = htons(std::atoi(it->second.get_m_port().c_str()));
 
 		/* 소켓에 주소 할당 */
 		if (bind(serv_sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1)
 			error_handling("bind() error");
 		if (listen(serv_sock, 100000) == -1) /* 연결 요청 대기 상태로 진입 */
 			error_handling("listen() error");
-		std::cout << it->second.getIp() << ":" << it->second.getPort() << " server on"<< "\n";
+		std::cout << it->second.get_m_ip() << ":" << it->second.get_m_port() << " server on"<< "\n";
 		fcntl(serv_sock, F_SETFL, O_NONBLOCK);
 		change_events(m_change_list, serv_sock, EVFILT_READ, EV_ADD | EV_ENABLE, 0, 0, NULL);
 		m_fd_pool[serv_sock] = &(it->second);
@@ -107,9 +107,9 @@ void Webserv::testServer(void)
 			}
 			else if (curr_event->filter == EVFILT_READ)
 			{
-				if (m_fd_pool[curr_event->ident]->getFdType() == FD_SERVER)
+				if (m_fd_pool[curr_event->ident]->get_m_fd_type() == FD_SERVER)
 				{
-					int serv_fd = m_fd_pool[curr_event->ident]->getFd();
+					int serv_fd = m_fd_pool[curr_event->ident]->get_m_fd();
 					int clnt_sock;
 
 					if ((clnt_sock = accept(serv_fd, NULL, NULL)) == -1)
@@ -138,10 +138,10 @@ void Webserv::testServer(void)
 					m_fd_pool[clnt_sock] = clnt;
 
 				}
-				else if (m_fd_pool[curr_event->ident]->getFdType() == FD_CLIENT)
+				else if (m_fd_pool[curr_event->ident]->get_m_fd_type() == FD_CLIENT)
 				{
 					Client *clnt = dynamic_cast<Client *>(m_fd_pool[curr_event->ident]);
-					clnt->setLastTime(call_time());
+					clnt->set_m_last_time(call_time());
 					char buf[BUFSIZE];
 					int n = 1;
 					memset(buf, 0, BUFSIZE);
@@ -158,14 +158,14 @@ void Webserv::testServer(void)
 					{
 						buf[n] = '\0';
 						clnt->appendOrigin(buf);
-						if(clnt->getCStatus() == REQUEST_RECEIVING && clnt->parseRequest())
+						if(clnt->get_m_c_status() == REQUEST_RECEIVING && clnt->parseRequest())
 						{
-							clnt->setCStatus(MAKE_RESPONSE);
+							clnt->set_m_c_status(MAKE_RESPONSE);
 							clnt->makeResponse();
 						}
 					}
 				}
-				else if (m_fd_pool[curr_event->ident]->getFdType() == FD_RESOURCE)
+				else if (m_fd_pool[curr_event->ident]->get_m_fd_type() == FD_RESOURCE)
 				{
 					Resource *rsc = dynamic_cast<Resource *>(m_fd_pool[curr_event->ident]);
 					e_rsc_status ret = rsc->isReady();
@@ -180,85 +180,85 @@ void Webserv::testServer(void)
 							continue ;
 						}
 						buff[n] = '\0';
-						rsc->getRawData() += buff;
+						rsc->get_m_raw_data() += buff;
 						if (n < BUFSIZE-1)
 						{
-							rsc->getClient()->setCStatus(FILE_READ_DONE);
-							rsc->getClient()->makeResponse();
+							rsc->get_m_client()->set_m_c_status(FILE_READ_DONE);
+							rsc->get_m_client()->makeResponse();
 							deleteFdPool(m_fd_pool[curr_event->ident]);
 						}
 					}
 					else if (ret == CGI_CRASH)
 					{
-						rsc->getClient()->getResponse().makeErrorResponse(500);
+						rsc->get_m_client()->get_m_response().makeErrorResponse(500);
 						deleteFdPool(rsc);
 					}					
 				}
 			}
 			else if (curr_event->filter == EVFILT_WRITE)
 			{
-				if (m_fd_pool[curr_event->ident]->getFdType() == FD_CLIENT)
+				if (m_fd_pool[curr_event->ident]->get_m_fd_type() == FD_CLIENT)
 				{
 					Client* clnt = dynamic_cast<Client *>(m_fd_pool[curr_event->ident]);
-					if (call_time() - clnt->getLastTime() > m_timeout)
+					if (call_time() - clnt->get_m_last_time() > m_timeout)
 					{
-						if (clnt->getCStatus() == REQUEST_RECEIVING)
+						if (clnt->get_m_c_status() == REQUEST_RECEIVING)
 						{
 							deleteFdPool(clnt);
 							break;
 						}
 						else
 						{
-							clnt->getResponse().makeErrorResponse(408);
-							clnt->getResponse().setDisconnect(true);
+							clnt->get_m_response().makeErrorResponse(408);
+							clnt->get_m_response().set_m_disconnect(true);
 						}
 					}
-					if (clnt->getCStatus() == MAKE_RESPONSE_DONE)
+					if (clnt->get_m_c_status() == MAKE_RESPONSE_DONE)
 					{ 
 						size_t n;
 
-						Response &rsp = clnt->getResponse();
-						n = write(curr_event->ident, rsp.getMessage().c_str(), rsp.getMessage().length());
+						Response &rsp = clnt->get_m_response();
+						n = write(curr_event->ident, rsp.get_m_message().c_str(), rsp.get_m_message().length());
 						if (n < 0)
 						{
 							std::cerr << "client write() error" << std::endl;
 							continue ;
 						}
-						if (n < rsp.getMessage().length())
+						if (n < rsp.get_m_message().length())
 						{
-							rsp.getMessage().erase(0, n);
+							rsp.get_m_message().erase(0, n);
 						}
 						else
 						{
-							if (rsp.getDisconnect())
+							if (rsp.get_m_disconnect())
 								deleteFdPool(clnt);
 							else
 							{
-								clnt->setCStatus(REQUEST_RECEIVING);
+								clnt->set_m_c_status(REQUEST_RECEIVING);
 								clnt->initRequestandResponse();
 							}
 						}
 					}
 				}
-				else if (m_fd_pool[curr_event->ident]->getFdType() == FD_RESOURCE)
+				else if (m_fd_pool[curr_event->ident]->get_m_fd_type() == FD_RESOURCE)
 				{
 					Resource* res = dynamic_cast<Resource *>(m_fd_pool[curr_event->ident]);
 					size_t n = 0;
 					
-					n = write(curr_event->ident, res->getRawData().c_str(), (res->getRawData().length()));
+					n = write(curr_event->ident, res->get_m_raw_data().c_str(), (res->get_m_raw_data().length()));
 					if (n < 0)
 					{
 						std::cerr << "resource write error" << std::endl;
 						continue ;
 					}
-					if (n < res->getRawData().length())
+					if (n < res->get_m_raw_data().length())
 					{
-						res->getRawData().erase(0,n);
+						res->get_m_raw_data().erase(0,n);
 					}
 					else
 					{
-						res->getClient()->setCStatus(FILE_WRITE_DONE);
-						res->getClient()->makeResponse();
+						res->get_m_client()->set_m_c_status(FILE_WRITE_DONE);
+						res->get_m_client()->makeResponse();
 						deleteFdPool(res);
 					}
 				}
@@ -269,18 +269,18 @@ void Webserv::testServer(void)
 }
 
 
-std::vector<struct kevent>& Webserv::getChangeList()
+std::vector<struct kevent>& Webserv::get_m_change_list()
 {
 	return m_change_list;
 }
 
 void Webserv::addFdPool(FdBase* res)
 {
-	if (m_fd_pool[res->getFd()] != NULL)
+	if (m_fd_pool[res->get_m_fd()] != NULL)
 	{
 		std::cout << "duplicated fd" << std::endl;
 	}
-	m_fd_pool[res->getFd()] = res;
+	m_fd_pool[res->get_m_fd()] = res;
 }
 
 // fd close, delete resourceList, m_fd_pool[instance] = NULL, delete instance
@@ -289,12 +289,12 @@ void Webserv::deleteFdPool(FdBase* instance)
 	if (instance == NULL)
 		return ;
 		
-	close(instance->getFd());
-	if (instance->getFdType() == FD_CLIENT)
+	close(instance->get_m_fd());
+	if (instance->get_m_fd_type() == FD_CLIENT)
 	{
 		Client *clnt = dynamic_cast<Client *>(instance);
-		std::list<Resource *> &rspList = clnt->getResponse().getResourceList();
-		if (clnt->getResponse().getResourceList().size() > 1)
+		std::list<Resource *> &rspList = clnt->get_m_response().get_m_resourceList();
+		if (clnt->get_m_response().get_m_resourceList().size() > 1)
 		{
 			for (std::list<Resource *>::iterator it = rspList.begin(); it != rspList.end(); it++)
 			{
@@ -304,13 +304,13 @@ void Webserv::deleteFdPool(FdBase* instance)
 		}
 		// std::cout << "Client >> close fd : " <<instance->getFd() << std::endl;
 	}
-	else if (instance->getFdType() == FD_RESOURCE)
+	else if (instance->get_m_fd_type() == FD_RESOURCE)
 	{
 		Resource * res = dynamic_cast<Resource *>(instance);
-		Client *clnt = res->getClient();
+		Client *clnt = res->get_m_client();
 		if (clnt)
 		{
-			std::list<Resource *> &rspList = clnt->getResponse().getResourceList();
+			std::list<Resource *> &rspList = clnt->get_m_response().get_m_resourceList();
 			if (!rspList.empty())
 			{
 				std::list<Resource *>::iterator it = std::find(rspList.begin(), rspList.end(), res);
@@ -324,8 +324,8 @@ void Webserv::deleteFdPool(FdBase* instance)
 	}
 	// if (instance->getFdType() == FD_SERVER)
 		// std::cout << "Server >> close fd : " << instance->getFd() << std::endl;
-	m_fd_pool[instance->getFd()] = NULL;
-	if (instance->getFdType() != FD_SERVER)
+	m_fd_pool[instance->get_m_fd()] = NULL;
+	if (instance->get_m_fd_type() != FD_SERVER)
 		delete instance;
 }
 

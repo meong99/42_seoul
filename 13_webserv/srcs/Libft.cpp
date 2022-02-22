@@ -1,10 +1,12 @@
 #include "../incs/Libft.hpp"
 
-void	ft_split(const std::string &target, const std::string &sep, std::vector<std::string> &infos)
+void	ft_split(const std::string &target, const std::string &sep,			\
+				 std::vector<std::string> &infos)
 {
 	std::string word;
 
-	for (std::string::const_iterator it = target.begin(); it != target.end(); it++)
+	for (std::string::const_iterator it = target.begin();					\
+									it != target.end(); it++)
 	{
 		if (sep.find(*it) == std::string::npos)
 		{

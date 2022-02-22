@@ -2,9 +2,9 @@
 
 Location::Location()
 {
-	this->m_max_body_size = INT_MAX;
-	this->m_auto_index = false;
-	this->m_return_num = -1;
+	m_max_body_size = INT_MAX;
+	m_auto_index = false;
+	m_return_num = -1;
 }
 
 Location::~Location()
@@ -18,116 +18,116 @@ Location::Location(const Location &src)
 
 Location&	Location::operator=(const Location &src)
 {
-	this->m_max_body_size = src.m_max_body_size;
-	this->m_return_num = src.m_return_num;
-	this->m_auto_index = src.m_auto_index;
-	this-> m_root = src.m_root;
-	this->m_upload_path = src.m_upload_path;
-	this->m_uri = src.m_uri;
-	this->m_auth_key = src.m_auth_key;
-	this->m_return_url = src.m_return_url;
-	this->m_allow_methods = src.m_allow_methods;
-	this->m_error_pages = src.m_error_pages;
-	this->m_cgi = src.m_cgi;
+	m_max_body_size = src.m_max_body_size;
+	m_return_num = src.m_return_num;
+	m_auto_index = src.m_auto_index;
+	m_root = src.m_root;
+	m_upload_path = src.m_upload_path;
+	m_uri = src.m_uri;
+	m_auth_key = src.m_auth_key;
+	m_return_url = src.m_return_url;
+	m_allow_methods = src.m_allow_methods;
+	m_error_pages = src.m_error_pages;
+	m_cgi = src.m_cgi;
 	return *this;
 }
 
-int		&Location::getMaxBodySize()
+int		&Location::get_m_max_body_size()
 {
 	return m_max_body_size;
 }
 
-bool	&Location::getAutoIndex()
+bool	&Location::get_m_auto_index()
 {
 	return m_auto_index;
 }
 
-std::string		&Location::getUploadPath()
+std::string		&Location::get_m_upload_path()
 {
 	return m_upload_path;
 }
 
-std::string		&Location::getUri()
+std::string		&Location::get_m_uri()
 {
 	return m_uri;
 }
 
-std::string		&Location::getAuthKey()
+std::string		&Location::get_m_auth_key()
 {
 	return m_auth_key;
 }
 
-std::string		&Location::getRoot()
+std::string		&Location::get_m_root()
 {
 	return m_root;
 }
 
-int		&Location::getReturnNum()
+int		&Location::get_m_return_num()
 {
 	return m_return_num;
 }
 
-std::string		&Location::getReturnUrl()
+std::string		&Location::get_m_return_url()
 {
 	return m_return_url;
 }
 
-std::vector<std::string>	&Location::getAllowMethods()
+std::vector<std::string>	&Location::get_m_allow_methods()
 {
 	return m_allow_methods;
 }
 
-std::vector<std::string>	&Location::getIndexs()
+std::vector<std::string>	&Location::get_m_indexs()
 {
 	return m_indexs;
 }
 
-std::map<int, std::string>	&Location::getErrorPages()
+std::map<int, std::string>	&Location::get_m_error_pages()
 {
 	return m_error_pages;
 }
 
-std::map<std::string, std::string>	&Location::getCgi()
+std::map<std::string, std::string>	&Location::get_m_cgi()
 {
 	return m_cgi;
 }
 
-void	Location::setMaxBodySize(int size)
+void	Location::set_m_max_body_size(int size)
 {
 	m_max_body_size = size;
 }
 
-void	Location::setReturnNum(int return_num)
+void	Location::set_m_return_num(int return_num)
 {
 	m_return_num = return_num;
 }
 
-void	Location::setAutoIndex(bool auto_index)
+void	Location::set_m_auto_index(bool auto_index)
 {
 	m_auto_index = auto_index;
 }
 
-void	Location::setRoot(std::string root)
+void	Location::set_m_root(std::string root)
 {
 	m_root = root;
 }
 
-void	Location::setUploadPath(std::string path)
+void	Location::set_m_upload_path(std::string path)
 {
 	m_upload_path = path;
 }
 
-void	Location::setUri(std::string uri)
+void	Location::set_m_uri(std::string uri)
 {
 	m_uri = uri;
 }
 
-void	Location::setAuthKey(std::string auth_key)
+void	Location::set_m_auth_key(std::string auth_key)
 {
 	m_auth_key = auth_key;
 }
 
-void	Location::setReturnUrl(std::string return_url)
+void	Location::set_m_return_url(std::string return_url)
 {
 	m_return_url = return_url;
 }
