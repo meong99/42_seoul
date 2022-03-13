@@ -19,40 +19,37 @@ class Webserv;
 
 class Config 
 {
-	private:
-		Config(const Config &other);
+private:
+	Config(const Config& copy);
 
-		Webserv*							m_webserv;
-		static Config*						m_config;
-		std::map<std::string, Server>		m_server_map;
-		std::map<std::string, std::string>	m_mime_typeMap;
-		std::map<std::string, std::string>	m_status_codeMap;
+	Webserv*							m_webserv;
+	static Config*						m_config;
+	std::map<std::string, Server>		m_server_map;
+	std::map<std::string, std::string>	m_mime_typeMap;
+	std::map<std::string, std::string>	m_status_codeMap;
 
-	public:
-		static const int					decodeMimeBase64[256];
+public:
+	Config(void);
+	~Config(void);
+	Config&	operator=(const Config& copy);
 
-		Config();
-		virtual ~Config();
-		Config&	operator=(const Config &other);
+	void	parseConfig(const std::string& path);
+	void	tokenize(std::string& buffer, std::vector<std::string>& tokens);
 
-		static Config*	get_m_config();
-		void			parsingConfig(std::string path);
+	Webserv*							get_m_webserv(void);
+	static Config*						get_m_config(void);
+	std::map<std::string, Server>&		get_m_server_map(void);
+	std::map<std::string, std::string>&	get_m_mime_typeMap(void);
+	std::map<std::string, std::string>&	get_m_status_codeMap(void);
+	Server*								get_last_server(void);
 
-		//get
-		Webserv*							get_m_webserv();
-		std::map<std::string, Server>&		get_m_server_map();
-		std::map<std::string, std::string>&	get_m_mime_typeMap();
-		std::map<std::string, std::string>&	get_m_status_codeMap();
-		Server*								get_last_server();
+	void	set_m_webserv(Webserv* webserv);
 
-		//set
-		void	set_m_webserv(Webserv* webserv);
-
-		//is
-		bool	isKeyword(std::string keyword);
-
-		//add
-		// void addServerMap(std::string ipPort, Server Server);
+	bool	isValidDirective(std::string directive);
+	void	parseServerBlock(std::vector<std::string>::const_iterator& iter, \
+							 int server_block_index);
+	void	parseLocationBlock												\
+		(std::vector<std::string>::const_iterator& iter, Location& location);
 };
 
 #endif

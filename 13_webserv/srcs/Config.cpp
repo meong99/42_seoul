@@ -1,27 +1,8 @@
 #include "../incs/Config.hpp"
 
-Config* Config::m_config = 0; // static 멤버 변수 초기화 
+Config* Config::m_config = 0;
 
-int const Config::decodeMimeBase64[256] = {
-    -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,  /* 00-0F */
-    -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,  /* 10-1F */
-    -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,62,-1,-1,-1,63,  /* 20-2F */
-    52,53,54,55,56,57,58,59,60,61,-1,-1,-1,-1,-1,-1,  /* 30-3F */
-    -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,  /* 40-4F */
-    15,16,17,18,19,20,21,22,23,24,25,-1,-1,-1,-1,-1,  /* 50-5F */
-    -1,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,  /* 60-6F */
-    41,42,43,44,45,46,47,48,49,50,51,-1,-1,-1,-1,-1,  /* 70-7F */
-    -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,  /* 80-8F */
-    -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,  /* 90-9F */
-    -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,  /* A0-AF */
-    -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,  /* B0-BF */
-    -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,  /* C0-CF */
-    -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,  /* D0-DF */
-    -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,  /* E0-EF */
-    -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1   /* F0-FF */
-};
-
-Config::Config()
+Config::Config(void)
 {
 	m_status_codeMap["100"] = "Continue";
 	m_status_codeMap["101"] = "Switching Protocols";
@@ -35,7 +16,7 @@ Config::Config()
 	m_status_codeMap["300"] = "Multiple Choices";
 	m_status_codeMap["301"] = "Moved Permanently";
 	m_status_codeMap["302"] = "Found";
-	m_status_codeMap["303"] = "See Other";
+	m_status_codeMap["303"] = "See copy";
 	m_status_codeMap["304"] = "Not Modified";
 	m_status_codeMap["305"] = "Use Proxy";
 	m_status_codeMap["307"] = "Temporary Redirect";
@@ -124,217 +105,287 @@ Config::Config()
 	m_mime_typeMap[".7z"] = "application/x-7z-compressed";
 }
 
-Config::~Config()
+Config::~Config(void)
 {
 	delete m_config;
 }
 
-Config::Config(const Config &other)
+Config::Config(const Config& copy)
 {
-	*this = other;
+	*this = copy;
 }
 
-Config& Config::operator=(const Config & other)
+Config&	Config::operator=(const Config& copy)
 {
-	m_webserv = other.m_webserv;
-	m_server_map = other.m_server_map;
-	m_mime_typeMap = other.m_mime_typeMap;
-	m_status_codeMap = other.m_status_codeMap;
-	return *this;
+	m_webserv			= copy.m_webserv;
+	m_server_map		= copy.m_server_map;
+	m_mime_typeMap		= copy.m_mime_typeMap;
+	m_status_codeMap	= copy.m_status_codeMap;
+	return (*this);
 }
 
 Config* Config::get_m_config(void)
 {
 	if (m_config == NULL)
-	{
 		m_config = new Config();
-	}
-	return m_config;
+	return (m_config);
 }
 
-Webserv* Config::get_m_webserv()
+Webserv*	Config::get_m_webserv(void)
 {
-	return m_webserv;
+	return (m_webserv);
 }
 
-std::map<std::string, Server> &Config::get_m_server_map()
+std::map<std::string, Server>&	Config::get_m_server_map(void)
 {
-	return m_server_map;
+	return (m_server_map);
 }
 
-std::map<std::string, std::string> &Config::get_m_mime_typeMap()
+std::map<std::string, std::string>&	Config::get_m_mime_typeMap(void)
 {
-	return m_mime_typeMap;
+	return (m_mime_typeMap);
 }
 
-std::map<std::string, std::string> &Config::get_m_status_codeMap()
+std::map<std::string, std::string>&	Config::get_m_status_codeMap(void)
 {
-	return m_status_codeMap;
+	return (m_status_codeMap);
 }
 
-Server* Config::get_last_server(void)
+Server*	Config::get_last_server(void)
 {
-	std::map<std::string, Server>::iterator it = m_server_map.end();
+	std::map<std::string, Server>::iterator	it = m_server_map.end();
+
 	it--;
-	return &(it->second);
+	return (&(it->second));
 }
 
 
-void Config::set_m_webserv(Webserv* webserv)
+void	Config::set_m_webserv(Webserv* webserv)
 {
 	m_webserv = webserv;
 }
 
-bool	Config::isKeyword(std::string keyword)
+bool	Config::isValidDirective(std::string directive)
 {
-	if (keyword == "server" ||
-		keyword == "listen" ||
-		keyword == "server_name" ||
-		keyword == "location" ||
-		keyword == "error_page" ||
-		keyword == "allow_methods" ||
-		keyword == "root" ||
-		keyword == "index" ||
-		keyword == "upload_path" ||
-		keyword == "auto_index" ||
-		keyword == "request_max_body_size" ||
-		keyword == "auth_key" ||
-		keyword == "cgi_info" ||
-		keyword == "return" ||
-		keyword == "}" ||
-		keyword == "{" )
+	if (directive == "server" ||
+		directive == "listen" ||
+		directive == "server_name" ||
+		directive == "location" ||
+		directive == "error_page" ||
+		directive == "allowed_methods" ||
+		directive == "root" ||
+		directive == "index" ||
+		directive == "upload_path" ||
+		directive == "auto_index" ||
+		directive == "request_max_body_size" ||
+		directive == "cgi_info" ||
+		directive == "return")
 		return (true);
 	return (false);
 }
 
-void 	Config::parsingConfig(std::string path)
+void	Config::parseConfig(const std::string& path)
 {
-	std::ifstream output;
-	std::string lines;
-	std::string temp;
-	std::vector<std::string> vinfos;
-	Server *server;
-	Location *location;
+	std::ifstream	file_stream;
+	std::string		buffer;
+	std::string		line;
 
-	output.open(path, std::ofstream::in);
-	if (output.fail())
+	file_stream.open(path, std::ifstream::in);
+	if (file_stream.fail())
+		throw ("config file open failure");
+	while (getline(file_stream, line))
+		buffer = buffer + line + "\n";
+
+	std::vector<std::string> tokens;
+	tokenize(buffer, tokens);
+
+	std::vector<std::string>::const_iterator	iter;
+	std::vector<std::string>::const_iterator	end = tokens.end();
+
+	int	server_block_index = 0;
+	for (iter = tokens.begin(); iter != end; iter++)
 	{
-		std::cerr << "ERROR" << std::endl;
-		exit(1);
+		if (*iter++ != "server")
+			throw ("config err");
+		parseServerBlock(iter, server_block_index);
+		server_block_index++;
 	}
-	while (getline(output, temp))
+}
+
+void	Config::tokenize(std::string& buffer, std::vector<std::string>& tokens)
+{
+	std::string					line;
+	std::string					temp;
+	std::vector<std::string>	brace;
+	std::string::size_type		first;
+	std::string::size_type		last;
+
+	while (!buffer.empty())
 	{
-		lines += temp;
-	}
-	ft_split(lines, " \t}{", vinfos);
-	for (std::vector<std::string>::const_iterator it = vinfos.begin(); it != vinfos.end(); it++)
-	{
-		if (*it == "server_name")
+		last = 0;
+		line = ft_getline(buffer);
+		while ((first = line.find_first_not_of(" \t", last))				\
+				!= std::string::npos)
 		{
-			it++;
-			std::string server_name = *it;
-			it++;
-			it++;
-			std::string port = *it;
-			it++;
-			std::string ip = *it;
-			std::string key = ip +":"+ port;
+			if (line[first] == '#')
+				break ;
+			last = line.find_first_of(" \t", first);
+			if (last == std::string::npos)
+				last = line.size();
+			temp = line.substr(first, last - first);
+			if (temp == "{")
+				brace.push_back(temp);
+			else if (temp == "}")
+			{
+				if (brace.empty())
+					throw ("error in config");
+				else
+					brace.pop_back();
+			}
+			if (isValidDirective(temp) && \
+				line[line.find_last_not_of(" \t", line.length())] != ';')
+			{
+				if (temp.compare("location") && temp.compare("server"))
+					throw ("error in config");
+			}
+			if (temp.find(';', temp.length() - 1) != std::string::npos)
+			{
+				temp.erase(temp.length() - 1);
+				tokens.push_back(temp);
+				tokens.push_back(";");
+			}
+			else
+				tokens.push_back(temp);
+		}
+	}
+}
+
+void	Config::parseServerBlock(std::vector<std::string>::const_iterator& iter, \
+int server_block_index)
+{
+	std::string	server_name;
+
+	if (*iter != "{")
+		throw ("config err");
+	while (*(++iter) != "}")
+	{
+		if (*iter == "server_name")
+		{
+			iter++;
+
+			server_name = *iter++;
+		}
+		if (*iter == "listen")
+		{
+			iter++;
+
+			std::string port = *iter++;
+			std::string ip	 = *iter++;
+			std::string key	 = ip + ":" + port;
+			
 			if (get_m_server_map().find(key) != get_m_server_map().end())
 			{
-				throw "Duplicated Server Ip:Port";
+				if (get_m_server_map()[key].get_m_server_block_index()		\
+					== server_block_index)
+					throw ("Duplicated Server Ip:Port");
+				while (*(iter + 1) != "server")
+					iter++;
+				break ;
 			}
-			get_m_server_map()[key].set_m_server_name(server_name);
+
 			get_m_server_map()[key].set_m_ip(ip);
 			get_m_server_map()[key].set_m_port(port);
+			get_m_server_map()[key].set_m_server_name(server_name);
+			get_m_server_map()[key].set_m_server_block_index(server_block_index);
 		}
-		if (*it == "location")
+		if (*iter == "location")
 		{
-			server = get_last_server();
-			it++;
-			std::string uri = *it;
-			if (server->get_m_locationMap().find(uri) != server->get_m_locationMap().end())
-			{
-				throw "Duplicated Location Uri";
-			}
-			server->get_m_locationMap()[uri].set_m_uri(uri);
-			location = &(server->get_m_locationMap()[uri]);
+			iter++;
+
+			std::string	uri		= *iter++;
+			Server		*server	= get_last_server();
+			std::map<std::string, Location>&
+				location_map = server->get_m_locationMap();
+
+			if (location_map.find(uri) != location_map.end())
+				throw ("Duplicated Location Uri");
+
+			location_map[uri].set_m_uri(uri);
+			Location&	location = location_map[uri];
+			parseLocationBlock(iter, location);
 		}
-		if (*it == "error_page")
+	}
+}
+
+void	Config::parseLocationBlock											\
+		(std::vector<std::string>::const_iterator& iter, Location& location)
+{
+	if (*iter != "{")
+		throw ("config err");
+	while (*(++iter) != "}")
+	{
+		if (*iter == "error_page")
 		{
-			it++;
-			int ernum = std::atoi((*it).c_str());
-			it++;
-			location->get_m_error_pages()[ernum] = *it;
+			iter++;
+	
+			int ernum = std::atoi((*iter++).c_str());
+			location.get_m_error_pages_map()[ernum] = *iter++;
 		}
-		if (*it == "allow_methods")
+		if (*iter == "allowed_methods")
 		{
-			it++;
-			std::vector<std::string> gpd;
+			iter++;
+			std::vector<std::string>	gpd;
+			
 			gpd.push_back("GET");
 			gpd.push_back("POST");
 			gpd.push_back("DELETE");
-			while (std::find(gpd.begin(), gpd.end(), *it) != gpd.end())
+
+			while (true)
 			{
-				location->get_m_allow_methods().push_back(*it);
-				it++;
+				if (std::find(gpd.begin(), gpd.end(), *iter) == gpd.end())
+					break ;
+				location.get_m_allowed_methods().push_back(*iter++);
 			}
-			it--;
 		}
-		if (*it == "root")
+		if (*iter == "root")
 		{
-			it++;
-			location->set_m_root(*it);
+			iter++;
+			
+			location.set_m_root(*iter++);
 		}
-		if (*it == "index")
+		if (*iter == "index")
 		{
-			it++;
-			while(!isKeyword(*it))
-			{
-				location->get_m_indexs().push_back(*it);
-				it++;
-			}
-			it--;
+			iter++;
+
+			while(*iter != ";")
+				location.get_m_indexes().push_back(*iter++);
 		}
-		if (*it == "auto_index")
+		if (*iter == "auto_index")
 		{
-			it++;
-			if (*it == "on")
-				location->set_m_auto_index(true);
+			iter++;
+
+			if (*iter++ == "on")
+				location.set_m_auto_index(true);
 			else
-				location->set_m_auto_index(false);
+				location.set_m_auto_index(false);
 		}
-		if (*it == "cgi_info")
+		if (*iter == "cgi_info")
 		{
-			it++;
-			std::string cgikey = *it;
-			it++;
-			location->get_m_cgi()[cgikey] = *it;
+			iter++;
 
+			std::string cgikey = *iter++;
+			location.get_m_cgi_map()[cgikey] = *iter++;
 		}
-		if (*it == "auth_key")
+		if (*iter == "return")
 		{
-			it++;
-			location->set_m_auth_key(*it);
+			iter++;
+			location.set_m_return_num(std::atoi((*iter++).c_str()));
+			location.set_m_return_url(*iter++);
 		}
-		if (*it == "return")
+		if (*iter == "request_max_body_size")
 		{
-			it++;
-			location->set_m_return_num(std::atoi((*it).c_str()));
-			it++;
-			location->set_m_return_url(*it);
+			iter++;
+			location.set_m_max_body_size(std::atoi((*iter++).c_str()));
 		}
-		if (*it == "request_max_body_size")
-		{
-			it++;
-			location->set_m_max_body_size(std::atoi((*it).c_str()));
-		}
-
-
 	}
-	// for (std::map<std::string, Server>::iterator k = getServerMap().begin(); k != getServerMap().end(); k++)
-	// {
-	// 	std::cout << k->second;
-	// }
-
-	output.close();
 }

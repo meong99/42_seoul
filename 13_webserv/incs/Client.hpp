@@ -13,48 +13,53 @@
 
 class Server;
 
-typedef enum t_c_status
+typedef enum	t_progress_status
 {
-			REQUEST_RECEIVING,
-			MAKE_RESPONSE,
-			FILE_READING,
-			FILE_READ_DONE,
-			FILE_WRITING,
-			FILE_WRITE_DONE,
-			MAKE_RESPONSE_DONE
-}			e_c_status;
+	REQUEST_RECEIVING,
+	MAKE_RESPONSE,
+	FILE_READING,
+	FILE_READ_DONE,
+	FILE_WRITING,
+	FILE_WRITE_DONE,
+	MAKE_RESPONSE_DONE
+}				e_progress_status;
 
+typedef enum	t_cgi_status
+{
+	READ_NOT_YET,
+	READ_DONE,
+	CGI_ERROR
+}				e_cgi_status;
 
 class Client : public FdBase
 {
 	private:
-		Request			m_request;
-		Response		m_response;
-		e_c_status		m_c_status;
-		unsigned long	m_last_time;
-
-		Server*			m_server;
+		Request				m_request;
+		Response			m_response;
+		e_progress_status	m_progress_status;
+		Server*				m_server;
+		e_cgi_status		m_cgi_status;
 
 	public:
-		Client();
-		Client(Server *server, int c_fd);
-		virtual ~Client();
-		Client(const Client &other);
-		Client&	operator=(const Client &other);
+		Client(void);
+		Client(Server* server, int clinet_fd);
+		Client(const Client& copy);
+		virtual	~Client(void);
+		Client&	operator=(const Client& copy);
 
-		Request&		get_m_request(void);
-		Response&		get_m_response(void);
-		e_c_status&		get_m_c_status(void);
-		unsigned long&	get_m_last_time(void);
-		Server*			get_m_server(void);
+		Request&			get_m_request(void);
+		Response&			get_m_response(void);
+		e_progress_status&	get_m_progress_status(void);
+		Server*				get_m_server(void);
+		e_cgi_status		get_m_cgi_status(void);
 
-		void	set_m_last_time(unsigned long last_time);
-		void	set_m_c_status(e_c_status c_status);
+		void	set_m_cgi_status(e_cgi_status cgi_status);
+		void	set_m_progress_status(e_progress_status c_progress_status);
 
-		void	appendOrigin(std::string newstr);
-		bool	parseRequest();
-		void	makeResponse();
-		void	initRequestandResponse();
+		void	appendRequestMessage(std::string newstr);
+		bool	parseRequest(void);
+		void	makeResponse(void);
+		void	initRequestAndResponse(void);
 };
 
 #endif

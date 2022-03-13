@@ -44,8 +44,8 @@ class Response
 	public:
 		Response();
 		virtual ~Response();
-		Response(const Response &other);
-		Response &operator=(const Response &other);
+		Response(const Response &copy);
+		Response &operator=(const Response &copy);
 
 		//get
 		bool					get_m_return();
@@ -71,10 +71,9 @@ class Response
 		void	set_m_write_idx(size_t idx);
 		void	set_m_fd_read(int fd);
 		void	set_m_fd_write(int fd);
-		void	setResource(int res_fd, e_resource_type type,				\
-							e_nextcall ctype, int errornum = -1);
+		void	setResource(int res_fd, e_resource_type type, int errornum =-1);
 
-		void	makeCgiResponse(void);
+		void	makeCgiResponse(std::string str = "");
 		void	makeGetResponse(void);
 		void	makePostResponse(void);
 		void	makeRedirection(void);
@@ -83,26 +82,24 @@ class Response
 		void	makeAutoIndexPage(void);
 		void	makeFileList(std::string &body);
 
-		char**	makeCgiEnv(void);
+		char**	makeCgiEnv(size_t file_len);
 
 		void	addStatusLine(int err);
 		void	addDate();
 		void	addContentLanguage();
 		void	addContentType(std::string type);
 		void	addContentLength(int size);
-		void	addAllowMethod();
+		void	addAllowedMethod();
 		void	addEmptyLine();
 		void	addErrorBody(int errorcode); // 다양한 errorcode가 들어간 body 만들어서 return
 		void	addDefaultErrorBody(std::string& message, int errorcode);  // 실제 errorcode body 만드는 함수
 		void	addServer();
 		void	addLocation(std::string &url);
-		void	addWWWAuthenticate();
 
 		bool	isDirectory(std::string path);
-		bool	isExist(std::string path);
+		bool	doExist(std::string path);
 
 		void	initResponse();
-
 };
 
 #endif

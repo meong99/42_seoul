@@ -1,12 +1,12 @@
-#ifndef FD_BASE_HPP
-# define FD_BASE_HPP
+#ifndef FDBASE_HPP
+# define FDBASE_HPP
 
-typedef enum			t_fd_type
+typedef enum	t_fd_type
 {
 	FD_SERVER,
 	FD_CLIENT,
 	FD_RESOURCE
-}						e_fd_type;
+}				e_fd_type;
 
 class FdBase
 {
@@ -15,10 +15,10 @@ class FdBase
 		e_fd_type	m_fd_type;
 
 	public:
-		FdBase();
-		FdBase(const FdBase &other);
-		virtual ~FdBase();
-		FdBase&	operator=(const FdBase &other);
+		FdBase(void);
+		FdBase(const FdBase& copy);
+		virtual ~FdBase(void);
+		FdBase&	operator=(const FdBase& copy);
 
 		int			get_m_fd(void) const;
 		e_fd_type	get_m_fd_type(void) const;
