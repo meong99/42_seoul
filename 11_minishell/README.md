@@ -5,3 +5,8 @@ Bash의 Builtin-Command(echo, cd, pwd, export, env, unset, exit) 및 외부 프�
 [관련 지식을 정리한 블로그 2](https://velog.io/@meong9090/series/OS)<br/>
 
 ![minishell_gif](https://user-images.githubusercontent.com/57436863/170262870-73a6f7e6-2cd6-49db-96d5-3743b414a234.gif)
+
+### 학습내용
+- 프로세스 및 멀티 프로세스
+- 외부 프로그램 병행 실행
+- 파일 관리 시스템
