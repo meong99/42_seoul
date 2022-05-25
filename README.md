@@ -8,28 +8,30 @@
 - [다섯 번째 과제 cub3D](https://github.com/meong99/42_seoul/tree/master/05_cub3d)
 
 
-https://user-images.githubusercontent.com/57436863/170292120-c22a8402-34aa-4baa-a29b-fb172c7a0a2c.mov
+  ![Cub3D_gif](https://user-images.githubusercontent.com/57436863/170298181-2b62eed8-92ae-4d11-8814-961f379402a1.gif)
 
 
 - [여섯 번째 과제 ft_server](https://github.com/meong99/42_seoul/tree/master/06_ft_server)
 - [일곱 번째 과제 push_swap](https://github.com/meong99/42_seoul/tree/master/07_push_swap)
 
 
-https://user-images.githubusercontent.com/57436863/170292715-11bfa019-fc37-44b6-b46e-60d0355bcaf1.mp4
+  ![push_swap_AdobeCreativeCloudExpress](https://user-images.githubusercontent.com/57436863/170298221-231d74da-951d-4d77-83ed-c173a78ba951.gif)
 
 
 - [여덟 번째 과제 minitalk](https://github.com/meong99/42_seoul/tree/master/08_minitalk)
 
-https://user-images.githubusercontent.com/57436863/170292280-549af8b1-2b0e-4597-a59b-8ec97d26ad35.mp4
+
+  ![minitalk_AdobeCreativeCloudExpress](https://user-images.githubusercontent.com/57436863/170298250-cb6628b2-3d38-4859-8ecd-134fcb02a83f.gif)
+
 
 - [아홉 번째 과제 philosophers](https://github.com/meong99/42_seoul/tree/master/09_philosopher)
 
-![philosophers](https://user-images.githubusercontent.com/57436863/170292505-f9cb7a22-c168-46f8-8440-20e16d4ba016.gif)
+  ![philosophers](https://user-images.githubusercontent.com/57436863/170292505-f9cb7a22-c168-46f8-8440-20e16d4ba016.gif)
 
 - [열 번째 과제 libasm](https://github.com/meong99/42_seoul/tree/master/10_libasm)
 - [열 한 번째 과제 minishell](https://github.com/meong99/42_seoul/tree/master/11_minishell)
 
-![minishell_gif](https://user-images.githubusercontent.com/57436863/170292613-a1eb5243-42d2-4365-bffb-3fc72516492d.gif)
+  ![minishell_gif](https://user-images.githubusercontent.com/57436863/170292613-a1eb5243-42d2-4365-bffb-3fc72516492d.gif)
 
 
 - [열 둘 번째 과제 cpp-module](https://github.com/meong99/42_seoul/tree/master/12_cpp)
