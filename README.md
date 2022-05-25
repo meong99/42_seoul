@@ -13,17 +13,7 @@
 
 - [여섯 번째 과제 ft_server](https://github.com/meong99/42_seoul/tree/master/06_ft_server)
 - [일곱 번째 과제 push_swap](https://github.com/meong99/42_seoul/tree/master/07_push_swap)
-
-
-  ![push_swap_AdobeCreativeCloudExpress](https://user-images.githubusercontent.com/57436863/170298221-231d74da-951d-4d77-83ed-c173a78ba951.gif)
-
-
 - [여덟 번째 과제 minitalk](https://github.com/meong99/42_seoul/tree/master/08_minitalk)
-
-
-  ![minitalk_AdobeCreativeCloudExpress](https://user-images.githubusercontent.com/57436863/170298250-cb6628b2-3d38-4859-8ecd-134fcb02a83f.gif)
-
-
 - [아홉 번째 과제 philosophers](https://github.com/meong99/42_seoul/tree/master/09_philosopher)
 
   ![philosophers](https://user-images.githubusercontent.com/57436863/170292505-f9cb7a22-c168-46f8-8440-20e16d4ba016.gif)
