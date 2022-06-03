@@ -1,5 +1,7 @@
 ## C 라이브러리인 Printf를 구현하는 과제입니다.
 [관련 내용을 정리한 블로그](https://velog.io/@meong9090/series/ftprintf)
+### 인원
+- 1인
 ### 학습내용
 - 가변인자
 - printf의 구조
