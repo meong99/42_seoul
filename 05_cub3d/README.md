@@ -4,10 +4,28 @@
 openGL기반으로 제작되었으며 기본적인 라이브러리는 42Seoul에서 제공된 라이브러리를 사용해 화면에 그려냅니다.<br/>
 처음에 게임의 정보를 인자로 받아 해당 파일에 있는 정보인 화면크기, 벽, 땅, 하늘의 텍스쳐, 맵의 구성을 분석하고 파싱해서 주어진 정보에 알맞게 게임을 만들어냅니다.<br/>
 [관련 지식을 정리한 블로그](https://velog.io/@meong9090/series/cub3d)
+### 인원
+- 1인
+### 환경
+- intel macOS Catalina
 
-https://user-images.githubusercontent.com/57436863/169983698-351475b8-d8c7-4533-99a7-2420792a0a4a.mov
+### 실행
+```
+git clone git@github.com:meong99/42_seoul.git Cub3d
+cd Cub3d/05_cub3d
+make bonus
+./cub3d maps/bonus.cub
+```
+### 구현 목록
+- RayCating을 이용해 2D를 3D로 그려냄
+- 캐릭터 움직이기
+- 방향키로 캐릭터 회전
+- 스페이스로 물고기 획득
+- 물고기 모두 획득 시 다음 레벨 혹은 게임 종료
 
 ### 학습내용
 - RayCasting
 - openGL
 - DFS 알고리즘
+https://user-images.githubusercontent.com/57436863/169983698-351475b8-d8c7-4533-99a7-2420792a0a4a.mov
+
