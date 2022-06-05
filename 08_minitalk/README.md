@@ -2,9 +2,13 @@
 시그널 SIGUSR1, SIGUSR2를 통해서 클라이언트와 서버는 통신을 하게 되며 클라이언트에서는 보내고자 하는 문자열을 비트단위로 쪼개서 SIGUSR1 = 0, SIGUSR2 = 1 로 구분하여 보냅니다.<br/>
 그러면 서버에서는 해당 시그널을 분석해서 문자열로 재조합하여 출력합니다.
 
+### 인원
+- 1인
 
-https://user-images.githubusercontent.com/57436863/170279140-877db24d-f2b2-4cad-8ecb-019ddc8f13f8.mp4
+### 구현 목록
+- 서버와 클라이언트간의 채팅
 
 ### 학습 내용
 - 유닉스 시그널 및 시그널 핸들링
-- 비트연산
+
+https://user-images.githubusercontent.com/57436863/170279140-877db24d-f2b2-4cad-8ecb-019ddc8f13f8.mp4
