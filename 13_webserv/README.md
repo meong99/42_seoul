@@ -29,8 +29,8 @@ make
 ### 기여도
 - 70%
 - 프로그램 로직 구상
-- Config file parsing
-- Receve client request & parsing
+- Config file 파싱
+- client request 받기 및 파싱
 - php파일 호출 시 파이썬 환경변수 Response 생성 및 송신
 - 기타 CGI 호출 시 Request body에 있는 텍스트 중 소문자를 대문자로 변경해서 전송
 
