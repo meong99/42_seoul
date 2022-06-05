@@ -4,9 +4,35 @@ Bash의 Builtin-Command(echo, cd, pwd, export, env, unset, exit) 및 외부 프�
 [관련 지식을 정리한 블로그 1](https://velog.io/@meong9090/series/minishell)<br/>
 [관련 지식을 정리한 블로그 2](https://velog.io/@meong9090/series/OS)<br/>
 
-![minishell_gif](https://user-images.githubusercontent.com/57436863/170262870-73a6f7e6-2cd6-49db-96d5-3743b414a234.gif)
+### 인원
+- 2인
+
+### 실행
+```
+git clone git@github.com:meong99/42_seoul.git minishell
+cd minishell/11_minishell
+make
+./minishell
+```
+
+### 구현목록
+- echo, cd, pwd, export, env, unset, exit
+- 외부 프로그램 실행
+- redirection
+- heredoc
+- pipe
+- Use environment variable
+- Signal Handling
+
+### 협업 방법
+- 페어프로그래밍
+
+### 기여도
+- 90% (페어프로그래밍 중 대부분의 코드를 작성)
 
 ### 학습내용
 - 프로세스 및 멀티 프로세스
 - 외부 프로그램 병행 실행
 - 파일 관리 시스템
+
+![minishell_gif](https://user-images.githubusercontent.com/57436863/170262870-73a6f7e6-2cd6-49db-96d5-3743b414a234.gif)
