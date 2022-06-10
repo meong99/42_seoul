@@ -2,6 +2,11 @@
 [관련 내용을 정리한 블로그](https://velog.io/@meong9090/series/ftprintf)
 ### 인원
 - 1인
+
+
+### 사용 언어
+- C
+
 ### 학습내용
 - 가변인자
 - printf의 구조
