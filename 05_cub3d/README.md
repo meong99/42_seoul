@@ -6,6 +6,11 @@ openGL기반으로 제작되었으며 기본적인 라이브러리는 42Seoul에
 [관련 지식을 정리한 블로그](https://velog.io/@meong9090/series/cub3d)
 ### 인원
 - 1인
+
+
+### 사용 언어
+- C
+
 ### 환경
 - intel macOS Catalina
 
