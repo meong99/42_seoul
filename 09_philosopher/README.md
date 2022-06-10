@@ -5,6 +5,9 @@
 ### 인원
 - 1인
 
+### 사용 언어
+- C
+
 ### 프로그램 실행
 ```
 git clone git@github.com:meong99/42_seoul.git philosopher
