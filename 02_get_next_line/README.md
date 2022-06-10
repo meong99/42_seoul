@@ -9,6 +9,9 @@ int	get_next_line(int fd, char **line)
 ### 인원
 - 1인
 
+### 사용 언어
+- C
+
 ### 학습내용
 - 정적변수
 - 파일 입출력
