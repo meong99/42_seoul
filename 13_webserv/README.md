@@ -5,6 +5,9 @@ Nginx를 모방하는 웹서버를 만드는게 목표이며 HTTP/1.1 사양에 
 ### 인원
 - 3인
 
+### 사용 언어
+- C++
+
 ### 실행
 ```
 git clone git@github.com:meong99/42_seoul.git webserv
