@@ -25,4 +25,3 @@
 
 
 - [열 둘 번째 과제 cpp-module](https://github.com/meong99/42_seoul/tree/master/12_cpp)
-- [열 세 번째 과제 webserv](https://github.com/meong99/42_seoul/tree/master/13_webserv)
