@@ -5,14 +5,6 @@ Bash의 Builtin-Command(echo, cd, pwd, export, env, unset, exit) 및 외부 프�
 ### 사용 언어
 - C
 
-### 실행
-```
-git clone git@github.com:meong99/42_seoul.git minishell
-cd minishell/11_minishell
-make
-./minishell
-```
-
 ### 구현목록
 - echo, cd, pwd, export, env, unset, exit
 - 외부 프로그램 실행
@@ -21,9 +13,6 @@ make
 - pipe
 - Use environment variable
 - Signal Handling
-
-### 협업 방법
-- 페어프로그래밍
 
 ### 학습내용
 - 프로세스 및 멀티 프로세스
