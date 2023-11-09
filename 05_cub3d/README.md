@@ -13,13 +13,6 @@ openGL기반으로 제작되었으며 기본적인 라이브러리는 42Seoul에
 ### 환경
 - intel macOS Catalina
 
-### 실행
-```
-git clone git@github.com:meong99/42_seoul.git Cub3d
-cd Cub3d/05_cub3d
-make bonus
-./cub3d maps/bonus.cub
-```
 ### 구현 목록
 - RayCating을 이용해 2D를 3D로 그려냄
 - 캐릭터 움직이기
