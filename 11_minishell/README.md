@@ -2,9 +2,6 @@
 Bash의 Builtin-Command(echo, cd, pwd, export, env, unset, exit) 및 외부 프로그램 실행(ls, cat .etc), redirection, heredoc, pipes, Environment variables, Signal등의 기능을 구현하게 됩니다.<br/>
 이 과정에서 멀티 프로세스 및 파일의 입출력 및 관리의 심화 등을 학습하게 됩니다.<br/>
 
-### 인원
-- 2인
-
 ### 사용 언어
 - C
 
@@ -27,10 +24,6 @@ make
 
 ### 협업 방법
 - 페어프로그래밍
-
-### 기여도
-- 90%
-- 전체 프로그램 구현
 
 ### 학습내용
 - 프로세스 및 멀티 프로세스
